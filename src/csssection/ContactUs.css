@@ -37,8 +37,8 @@
 }
 
 .progress-step {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.3);
   display: flex;
@@ -65,12 +65,12 @@
 }
 
 .contact-left-panel h2 {
-  font-size: 32px;
+  font-size: 38px;
   margin-bottom: 15px;
 }
 
 .contact-left-panel p {
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1.6;
   opacity: 0.9;
 }
@@ -311,6 +311,7 @@
   align-items: center;
   gap: 15px;
   margin-bottom: 15px;
+  font-size: 22px;
 }
 .contact-info-item a {
   color: white;

@@ -175,8 +175,12 @@ const ContactUs = () => {
               </div>
               <div className="contact-info-item">
                 <FaPhone />
-                <a href="tel:+919740484570">+91 9740484570</a>
+                <a href="tel:+919535764655">+91 9535764655</a>
               </div>
+              <div className="contact-info-item">
+              <FaWhatsapp />
+              <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer">+91 9535764655</a>
+            </div>
             </div>
           </motion.div>
         </div>

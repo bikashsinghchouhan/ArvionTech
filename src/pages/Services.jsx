@@ -37,7 +37,7 @@ const servicesData = [
   {
     id: 'payroll',
     icon: <FaFileInvoiceDollar />,
-    title: 'Payroll  (coming sonn!!!)',
+    title: 'Payroll  (coming soon!!!)',
     summary: 'An efficient and secure application to manage all aspects of your company’s payroll and compliance.',
     path: '/services/payroll',
   },
