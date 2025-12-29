@@ -10,7 +10,7 @@ const Footer = () => {
     { name: 'Payroll Outsourcing', path: '/services/outsourcing' },
     { name: 'Statutory Registrations', path: '/services/registrations' },
     { name: 'Accounting', path: '/services/accounting' },
-    { name: 'Payroll', path: '/services/payroll' },
+  
   ];
 
   return (

@@ -18,7 +18,7 @@ const About = () => {
             Driving Innovation, Empowering Businesses.
           </p>
           <p className="about-description">
-            Founded on the principle of simplifying complex business processes, Arvion Technologies is a leader in providing bespoke ERP, Payroll, and Outsourcing solutions. Our mission is to empower organizations by leveraging cutting-edge technology to enhance efficiency, foster growth, and ensure compliance.
+            Founded on the principle of simplifying complex business processes, Arvion Technologies is a leader in providing bespoke ERP and Outsourcing solutions. Our mission is to empower organizations by leveraging cutting-edge technology to enhance efficiency, foster growth, and ensure compliance.
           </p>
           <p className="about-description">
             Our team of dedicated experts brings together years of industry experience and a passion for problem-solving. We believe in building strong partnerships with our clients, understanding their unique challenges, and delivering solutions that not only meet but exceed their expectations.

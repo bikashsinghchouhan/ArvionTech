@@ -12,14 +12,14 @@ import schoolImg from '../assets/service-school.png';
 import outsourcingImg from '../assets/service-outsourcing.png';
 import registrationsImg from '../assets/service-registrations.png';
 import accountingImg from '../assets/service-accounting.png';
-import payrollImg from '../assets/service-payroll.png';
+// import payrollImg from '../assets/service-payroll.png';
 
 const services = [
   { title: 'School Management', image: schoolImg, path: '/services/school-management', stats: [ { icon: <FaCalendarAlt />, text: 'Effortless Scheduling' }, { icon: <FaCheckCircle />, text: 'Automated Attendance' }, { icon: <FaChartBar />, text: 'Real-time Reporting' } ] },
   { title: 'Payroll Outsourcing', image: outsourcingImg, path: '/services/outsourcing', stats: [ { icon: <FaGlobe />, text: 'Global Talent Pool' }, { icon: <FaPuzzlePiece />, text: 'Seamless Integration' }, { icon: <FaClock />, text: 'End-to-End Payroll Processing' } ] },
   { title: 'Statutory Registrations',  image: registrationsImg, path: '/services/registrations', stats: [ { icon: <FaStamp />, text: 'Business Name Approval' }, { icon: <FaFileSignature />, text: 'GST & Tax ID Application' }, { icon: <FaBuilding />, text: 'Company Incorporation' } ] },
   { title: 'Accounting',  image: accountingImg, path: '/services/accounting', stats: [ { icon: <FaBook />, text: 'Bookkeeping Services' }, { icon: <FaChartLine />, text: 'Financial Reporting' }, { icon: <FaCalculator />, text: 'Expense Tracking' } ] },
-  { title: 'Payroll',  image: payrollImg, path: '/services/payroll', stats: [ { icon: <FaShieldAlt />, text: 'Secure Transactions' }, { icon: <FaCalculator />, text: 'Accurate Calculations' }, { icon: <FaFileContract />, text: 'Compliance Ready' } ] },
+  // { title: 'Payroll',  image: payrollImg, path: '/services/payroll', stats: [ { icon: <FaShieldAlt />, text: 'Secure Transactions' }, { icon: <FaCalculator />, text: 'Accurate Calculations' }, { icon: <FaFileContract />, text: 'Compliance Ready' } ] },
 ];
 
 const HorizontalScroll = () => {

@@ -120,6 +120,7 @@
   top: 50%;
   transform: translateY(50%);
   color: #aaa;
+  z-index: 1; /* Ensure icon stays on top of background */
 }
 
 .input-group input {
@@ -129,7 +130,7 @@
   border-radius: 8px;
   font-size: 16px;
   box-sizing: border-box;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .input-group input:focus {
@@ -137,6 +138,28 @@
   border-color: #ff7f32;
 }
 
+/* --- NEW: Error Styling --- */
+.input-group input.input-error,
+.select-input.input-error,
+.date-input.input-error {
+  border: 1px solid #ff4d4d !important;
+  background-color: #fff5f5;
+}
+
+.input-group input.input-error:focus {
+  border-color: #ff4d4d !important;
+  box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1);
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* Button Styling */
 .nav-btn {
   padding: 12px 25px;
   border: none;
@@ -159,6 +182,8 @@
 
 .next-btn:hover {
   background: #e96e25;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 127, 50, 0.2);
 }
 
 .form-nav-buttons {
@@ -174,6 +199,51 @@
 
 .prev-btn:hover {
   background: #dee2e6;
+}
+
+/* --- NEW: Disabled Button Styling --- */
+.nav-btn:disabled,
+.submit-final-btn:disabled,
+.verification-btn:disabled {
+  background-color: #e0e0e0 !important;
+  color: #888 !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* OTP Specifics */
+.otp-info-message {
+  font-size: 14px;
+  color: #28a745;
+  margin-bottom: 10px;
+}
+
+.verification-btn {
+  background-color: #333;
+  color: white;
+  margin-bottom: 10px;
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+.verify-btn {
+    background-color: #28a745;
+    color: white;
+    height: 100%;
+}
+.input-group.otp-group {
+    display: flex;
+    gap: 10px;
+}
+.verification-success {
+    color: #28a745;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Step 2 Styling */
@@ -238,6 +308,7 @@
   border-radius: 8px;
   font-size: 16px;
   margin-bottom: 20px;
+  font-family: inherit;
 }
 .timeslot-grid {
   display: grid;
@@ -284,6 +355,7 @@
 .privacy-policy-group a:hover {
   text-decoration: underline;
 }
+
 .submit-final-btn {
   background: #ff7f32;
   color: white;
@@ -294,6 +366,11 @@
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+.submit-final-btn:hover:not(:disabled) {
+    background: #e96e25;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 127, 50, 0.2);
 }
 
 /* Styles for the contact info block in the left panel */
@@ -323,12 +400,16 @@
   opacity: 0.8;
 }
 
+/* Success Message Styling */
 .success-message {
   background-color: white;
   padding: 60px;
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .success-icon {
   font-size: 60px;
@@ -343,6 +424,29 @@
 .success-message p {
   font-size: 18px;
   color: #555;
+  margin-bottom: 30px;
+}
+
+/* --- NEW: Home Button Styling --- */
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #ff7f32;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #e96e25;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 110, 37, 0.3);
 }
 
 /* Mobile Header and Footer for the form */
@@ -350,7 +454,7 @@
   display: none; /* Hidden by default on desktop */
 }
 
-/* --- MOBILE RESPONSIVE STYLES (CORRECTED) --- */
+/* --- MOBILE RESPONSIVE STYLES --- */
 @media (max-width: 992px) {
   .contact-container-v2 {
     grid-template-columns: 1fr;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../csssection/Header.css';
@@ -10,6 +10,17 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileSubMenuOpen, setIsMobileSubMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,12 +36,14 @@ const Header = () => {
     { name: 'Accounting', path: '/services/accounting' },
   ];
 
+  /*
   const handlePayrollClick = (e) => {
     e.preventDefault();
     setIsModalOpen(true);
     setIsDropdownOpen(false);
     setIsMenuOpen(false);
   };
+  */
 
   const toggleMobileSubMenu = (e) => {
     e.preventDefault();
@@ -39,7 +52,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="main-header">
+      <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
           <Link to="/" className="logo-link">
             <img src={logo} alt="Arvion Technologies Logo" className="logo-image" />
@@ -59,7 +72,6 @@ const Header = () => {
                 onMouseEnter={() => setIsDropdownOpen(true)}
                 onMouseLeave={() => setIsDropdownOpen(false)}
               >
-                {/* MODIFIED: The link and the arrow are now separate elements */}
                 <div className="services-link-group">
                   <NavLink to="/services" className="nav-link" onClick={toggleMenu}>
                     Services
@@ -69,7 +81,6 @@ const Header = () => {
                   </button>
                 </div>
 
-                {/* This is the DESKTOP dropdown menu */}
                 {isDropdownOpen && (
                   <div className="dropdown-menu">
                     {services.map((service) => (
@@ -77,14 +88,13 @@ const Header = () => {
                         {service.name}
                       </Link>
                     ))}
-                    <a href="#" className="dropdown-link coming-soon" onClick={handlePayrollClick}>
+                    {/* <a href="#" className="dropdown-link coming-soon" onClick={handlePayrollClick}>
                       Payroll <span className="coming-soon-badge">Coming Soon</span>
-                    </a>
+                    </a> */}
                   </div>
                 )}
               </li>
 
-              {/* This is the MOBILE sub-menu */}
               {isMobileSubMenuOpen && isMenuOpen && (
                 <div className="mobile-submenu">
                   {services.map((service) => (
@@ -92,9 +102,9 @@ const Header = () => {
                       {service.name}
                     </NavLink>
                   ))}
-                  <a href="#" className="mobile-submenu-link coming-soon" onClick={handlePayrollClick}>
+                  {/* <a href="#" className="mobile-submenu-link coming-soon" onClick={handlePayrollClick}>
                     Payroll <span className="coming-soon-badge">Coming Soon</span>
-                  </a>
+                  </a> */}
                 </div>
               )}
 

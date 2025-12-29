@@ -34,16 +34,17 @@ const featuresData = {
     points: ['Bookkeeping & General Ledger', 'Financial Statement Preparation', 'Expense Management', 'Budgeting & Forecasting'],
     image: accountingImg,
   },
-  payroll: {
-    title: 'Payroll (Coming Soon!!!)',
-    description: 'An efficient and secure application to manage all aspects of your company’s payroll and compliance.',
-    points: ['Automated salary calculation', 'Secure data handling', 'Effortless compliance reporting', 'Employee self-service portal'],
-    image: payrollImg,
-  },
+
+  // payroll: {
+  //   title: 'Payroll (Coming Soon!!!)',
+  //   description: 'An efficient and secure application to manage all aspects of your company’s payroll and compliance.',
+  //   points: ['Automated salary calculation', 'Secure data handling', 'Effortless compliance reporting', 'Employee self-service portal'],
+  //   image: payrollImg,
+  // },
 };
 
-const serviceOrder = ['school', 'outsourcing', 'registrations', 'accounting', 'payroll'];
-
+const serviceOrder = ['school', 'outsourcing', 'registrations', 'accounting' ]; //,'payroll'
+//
 const FeaturesSection = () => {
   const [activeService, setActiveService] = useState('school');
 

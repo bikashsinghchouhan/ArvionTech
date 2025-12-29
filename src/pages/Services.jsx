@@ -34,13 +34,13 @@ const servicesData = [
     summary: 'Ensure financial accuracy and gain valuable insights with our comprehensive accounting solutions.',
     path: '/services/accounting',
   },
-  {
-    id: 'payroll',
-    icon: <FaFileInvoiceDollar />,
-    title: 'Payroll  (coming soon!!!)',
-    summary: 'An efficient and secure application to manage all aspects of your company’s payroll and compliance.',
-    path: '/services/payroll',
-  },
+  // {
+  //   id: 'payroll',
+  //   icon: <FaFileInvoiceDollar />,
+  //   title: 'Payroll  (coming soon!!!)',
+  //   summary: 'An efficient and secure application to manage all aspects of your company’s payroll and compliance.',
+  //   path: '/services/payroll',
+  // },
 ];
 
 const Services = () => {
