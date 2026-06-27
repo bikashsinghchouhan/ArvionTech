@@ -191,8 +191,8 @@ const About = ({ isSinglePage }) => {
             <span className="text-[#ff7f32] opacity-25 text-5xl mb-6">
               <FaQuoteLeft />
             </span>
-            <p className="text-lg sm:text-xl lg:text-2xl font-black text-slate-700 leading-relaxed tracking-wide font-sans mb-8">
-              "OUR MISSION IS TO REMOVE ADMINISTRATIVE OVERHEAD FROM DEDICATED TEAMS. BY COMBINING ROBUST AUTOMATION SOFTWARE WITH EXPERT COMPLIANCE DIRECTIVES, WE ENSURE YOUR CORPORATION SCALES ON SOLID GROUND."
+            <p className="text-sm sm:text-xl lg:text-2xl font-serif italic text-slate-700 leading-relaxed tracking-wide mb-8">
+              "Our mission is to remove administrative overhead from dedicated teams. By combining robust automation software with expert compliance directives, we ensure your corporation scales on solid ground."
             </p>
             <div className="h-[2px] w-16 bg-[#ff7f32] mb-4" />
             <span className="text-xs font-bold text-[#0d1b2a] tracking-widest uppercase font-sans">
