@@ -3,13 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaBuilding, FaPhone, FaArrowRight, FaArrowLeft, FaBriefcase, FaPaperPlane, FaCheckCircle, FaWhatsapp, FaHome } from 'react-icons/fa';
 import '../csssection/ContactUs.css';
+import { FaSquarePhone, FaSquarePhoneFlip } from "react-icons/fa6";
+import { pageConfig } from '../configurations/SchoolManagementConfig';
 
 const ContactUs = ({ isSinglePage }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    name: '', email: '', company: '', phone: '', jobTitle: '',
-    services: [], studentRange: '', outsourcingTeamSize: '', registrationType: '', accountingVolume: '',
-    date: '', timeSlot: '', finalPhone: '', privacyPolicy: false,
+    name: '', email: '', company: '', phone: '',
+    services: [], studentRange: '', schoolPlan: '', outsourcingTeamSize: '', registrationType: '', accountingVolume: '',
+    date: '', timeSlot: '', privacyPolicy: false,
   });
 
   // State for validation
@@ -21,8 +23,6 @@ const ContactUs = ({ isSinglePage }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [today, setToday] = useState('');
   const [selectedService, setSelectedService] = useState("");
-
-  const timeSlots = ["09:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00", "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00"];
 
   useEffect(() => {
     const date = new Date();
@@ -49,8 +49,14 @@ const ContactUs = ({ isSinglePage }) => {
   const handleBlur = (e) => {
     const { name, value, required } = e.target;
     // If field is empty and required, mark as error
-    if (!value && (name === 'name' || name === 'email' || name === 'jobTitle' || name === 'finalPhone')) {
+    if (!value && (name === 'name' || name === 'email' || name === 'phone')) {
       setFieldErrors(prev => ({ ...prev, [name]: true }));
+    }
+    if (name === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setFieldErrors(prev => ({ ...prev, email: true }));
+    }
+    if (name === 'phone' && value && !/^[0-9]{10}$/.test(value)) {
+      setFieldErrors(prev => ({ ...prev, phone: true }));
     }
     if (name === 'company' && selectedService && !value) {
       setFieldErrors(prev => ({ ...prev, [name]: true }));
@@ -59,14 +65,17 @@ const ContactUs = ({ isSinglePage }) => {
 
   // Check if Step 1 is completely valid to enable button
   const isStep1Valid = () => {
-    const basicFields = formData.name && formData.email && formData.jobTitle && selectedService;
+    const basicFields = formData.name &&
+      formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+      formData.phone && /^[0-9]{10}$/.test(formData.phone) &&
+      selectedService;
     const companyValid = selectedService ? formData.company : true; // Company required if service selected
     return basicFields && companyValid;
   };
 
   // Check if Step 3 is completely valid to enable button
   const isStep3Valid = () => {
-    return formData.date && formData.timeSlot && formData.finalPhone && formData.privacyPolicy;
+    return formData.date && formData.timeSlot && formData.privacyPolicy;
   };
 
   const handleNext = () => {
@@ -105,17 +114,16 @@ const ContactUs = ({ isSinglePage }) => {
           Name: formData.name,
           Email: formData.email,
           Phone: formData.phone || "Not provided",
-          Job_Title: formData.jobTitle,
           Company: formData.company || "N/A",
           Main_Service: selectedService,
+          Interested_Plan: formData.schoolPlan || "N/A",
           Additional_Services: formData.services.join(", ") || "None",
           Student_Range: formData.studentRange || "N/A",
           Outsourcing_Team_Size: formData.outsourcingTeamSize || "N/A",
           Registration_Type: formData.registrationType || "N/A",
           Accounting_Volume: formData.accountingVolume || "N/A",
           Meeting_Date: formData.date,
-          Meeting_Time: formData.timeSlot,
-          Final_Contact_Phone: formData.finalPhone
+          Meeting_Time: formData.timeSlot
         })
       });
 
@@ -138,7 +146,10 @@ const ContactUs = ({ isSinglePage }) => {
       const newServices = checked ? [...prev.services, value] : prev.services.filter((s) => s !== value);
       const updatedData = { ...prev, services: newServices };
       if (!checked) {
-        if (value === 'School Management') updatedData.studentRange = '';
+        if (value === 'School Management') {
+          updatedData.studentRange = '';
+          updatedData.schoolPlan = '';
+        }
         if (value === 'Outsourcing') updatedData.outsourcingTeamSize = '';
         if (value === 'Statutory Registrations') updatedData.registrationType = '';
         if (value === 'Accounting') updatedData.accountingVolume = '';
@@ -213,17 +224,17 @@ const ContactUs = ({ isSinglePage }) => {
             <p className="text-[16px] leading-[1.5] opacity-90 text-white">{stepContent[step - 1].description}</p>
             <div className="tw-contact-info-block mt-8 pt-6 border-t border-white/20 text-white">
               <p className="font-bold text-sm mb-4 uppercase tracking-widest text-orange-100">Or contact us directly:</p>
-              <div className="tw-contact-info-item flex items-center gap-3 mb-3 text-lg text-white">
-                <FaEnvelope className="text-orange-200" />
-                <a href="mailto:cat@arvion.com" className="text-white no-underline font-semibold hover:opacity-85 transition-opacity">cat@arvion.com</a>
-              </div>
-              <div className="tw-contact-info-item flex items-center gap-3 mb-3 text-lg text-white">
-                <FaPhone className="text-orange-200" />
-                <a href="tel:+919535764655" className="text-white no-underline font-semibold hover:opacity-85 transition-opacity">+91 9535764655</a>
-              </div>
-              <div className="tw-contact-info-item flex items-center gap-3 mb-3 text-lg text-white">
-                <FaWhatsapp className="text-orange-200" />
-                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white no-underline font-semibold hover:opacity-85 transition-opacity">+91 9535764655</a>
+              <div className="flex gap-5 items-center">
+                <a href="mailto:cat@arvion.com" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Email Us">
+                  <FaEnvelope />
+                </a>
+                <a href="tel:+919535764655" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Call Us">
+                  {/* <FaPhone /> */}
+                  <FaSquarePhoneFlip />
+                </a>
+                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orange-200 transition-colors text-2xl" title="WhatsApp Us">
+                  <FaWhatsapp />
+                </a>
               </div>
             </div>
           </motion.div>
@@ -236,12 +247,12 @@ const ContactUs = ({ isSinglePage }) => {
             <div className="tw-progress-bar flex items-center mb-4 max-w-xs mx-auto">
               {[1, 2, 3].map((num) => (
                 <React.Fragment key={num}>
-                  <div className={`tw-progress-step w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all duration-300 ${step >= num ? 'bg-white text-[#ff7f32]' : 'bg-[#e9ecef] text-[#555]'}`}>{num}</div>
-                  {num < 3 && <div className={`tw-progress-line flex-grow h-[2px] transition-all duration-300 ${step > num ? 'bg-[#ff7f32]' : 'bg-[#e9ecef]'}`}></div>}
+                  <div className={`tw-progress-step w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all duration-300 ${step >= num ? 'bg-white text-[#ff7f32]' : 'bg-white/30 text-white'}`}>{num}</div>
+                  {num < 3 && <div className={`tw-progress-line flex-grow h-[2px] transition-all duration-300 ${step > num ? 'bg-white' : 'bg-white/30'}`}></div>}
                 </React.Fragment>
               ))}
             </div>
-            <h2 className="text-lg font-extrabold text-[#0d1b2a] m-0 text-center uppercase tracking-wider text-white">{stepContent[step - 1].title}</h2>
+            <h2 className="text-lg font-extrabold m-0 text-center uppercase tracking-wider text-white">{stepContent[step - 1].title}</h2>
           </div>
 
           <AnimatePresence mode="wait">
@@ -318,39 +329,30 @@ const ContactUs = ({ isSinglePage }) => {
                   </div>
                 )}
 
-                <div className="tw-input-group relative mb-4">
-                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Job Title <span className="text-[#e53e3e] ml-[1px]">*</span></label>
-                  <div className="relative">
-                    <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
-                      <FaBriefcase />
-                    </div>
-                    <input
-                      type="text"
-                      name="jobTitle"
-                      className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.jobTitle ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
-                      placeholder="e.g., HR Manager"
-                      value={formData.jobTitle}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                  </div>
-                </div>
+
 
                 <div className="tw-input-group relative mb-4">
-                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number</label>
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number <span className="text-[#e53e3e] ml-[1px]">*</span></label>
                   <div className="relative">
                     <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
-                      <FaPhone />
+                      {/* <FaPhone /> */}
+                      <FaSquarePhone size={18} />
+                    </div>
+                    <div className="absolute left-[34px] top-1/2 -translate-y-1/2 text-slate-700 text-sm font-bold z-[1] select-none border-r border-[#ddd] pr-2">
+                      +91
                     </div>
                     <input
                       type="tel"
                       name="phone"
-                      placeholder="(Optional)"
+                      placeholder="9876543210"
+                      maxLength="10"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full pl-10 pr-3 py-2 border border-[#ddd] rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32]"
+                      onBlur={handleBlur}
+                      className={`w-full pl-[74px] pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.phone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
                     />
                   </div>
+                  {fieldErrors.phone && formData.phone && <p className="text-[10px] text-[#ff4d4d] mt-1 font-semibold">Please enter a valid 10-digit number</p>}
                 </div>
 
                 <div className="tw-input-group relative mb-4">
@@ -369,6 +371,7 @@ const ContactUs = ({ isSinglePage }) => {
                       onBlur={handleBlur}
                     />
                   </div>
+                  {fieldErrors.email && formData.email && <p className="text-[10px] text-[#ff4d4d] mt-1 font-semibold">Please enter a valid email address</p>}
                 </div>
 
                 {error && <p className="error-message text-[#ff4d4d] text-xs mt-[-5px] mb-4 font-semibold">{error}</p>}
@@ -389,7 +392,29 @@ const ContactUs = ({ isSinglePage }) => {
                 <h3 className="text-lg font-extrabold text-[#0d1b2a] mb-5 uppercase tracking-wider">Which services are you interested in?</h3>
                 <div className="tw-checkbox-group flex flex-col gap-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="School Management" onChange={handleCheckboxChange} checked={formData.services.includes('School Management')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> School Management</label>
-                  <AnimatePresence>{formData.services.includes('School Management') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Students</h4><select name="studentRange" value={formData.studentRange} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a range</option><option value="1-200">1-200</option><option value="201-500">201-500</option><option value="501-1000">501-1000</option><option value="1000+">1000+</option></select></motion.div>)}</AnimatePresence>
+                  <AnimatePresence>
+                    {formData.services.includes('School Management') && (
+                      <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden flex flex-col gap-3 pb-2">
+                        <div>
+                          <h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Interested Plan</h4>
+                          <select name="schoolPlan" value={formData.schoolPlan} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]">
+                            <option value="">Select a plan</option>
+                            {pageConfig.plans.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
+                          </select>
+                        </div>
+                        <div>
+                          <h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Students</h4>
+                          <select name="studentRange" value={formData.studentRange} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]">
+                            <option value="">Select a range</option>
+                            <option value="1-200">1-200</option>
+                            <option value="201-500">201-500</option>
+                            <option value="501-1000">501-1000</option>
+                            <option value="1000+">1000+</option>
+                          </select>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Outsourcing" onChange={handleCheckboxChange} checked={formData.services.includes('Outsourcing')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Payroll Outsourcing</label>
                   <AnimatePresence>{formData.services.includes('Outsourcing') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Roles to Fill</h4><select name="outsourcingTeamSize" value={formData.outsourcingTeamSize} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a number</option><option value="1-5">1-5 Roles</option><option value="6-15">6-15 Roles</option><option value="15+">15+ Roles</option></select></motion.div>)}</AnimatePresence>
@@ -413,44 +438,28 @@ const ContactUs = ({ isSinglePage }) => {
                 <h3 className="text-lg font-extrabold text-[#0d1b2a] mb-5 uppercase tracking-wider">Book a Preferred Date & Time</h3>
                 <p className="step-description text-xs text-[#555] mb-4 leading-relaxed font-semibold">Select a date and a time slot that works best for you. We will confirm the final meeting details via email.</p>
 
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleChange}
-                  className={`date-input w-full p-2 border rounded-lg text-sm mb-4 font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
-                  min={today}
-                />
-
-                <div className="timeslot-grid grid grid-cols-3 gap-2 mb-4">
-                  {timeSlots.map(slot => (
-                    <button
-                      key={slot}
-                      type="button"
-                      className={`timeslot-btn p-2 border rounded-md cursor-pointer transition-all duration-300 font-semibold text-xs ${formData.timeSlot === slot ? 'bg-[#ff7f32] text-white border-[#ff7f32]' : 'border-[#ddd] bg-white text-slate-600 hover:border-[#ff7f32] hover:text-[#ff7f32]'}`}
-                      onClick={() => setFormData(prev => ({ ...prev, timeSlot: slot }))}
-                    >
-                      {slot}
-                    </button>
-                  ))}
+                <div className="mb-4">
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Preferred Date</label>
+                  <input
+                    type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    className={`date-input w-full p-2 border rounded-lg text-sm font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                    min={today}
+                  />
                 </div>
 
-                <div className="tw-input-group relative mb-4 mt-6">
-                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number <span className="required-asterisk text-[#e53e3e] ml-[2px]">*</span></label>
-                  <div className="relative">
-                    <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
-                      <FaPhone />
-                    </div>
-                    <input
-                      type="tel"
-                      name="finalPhone"
-                      className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.finalPhone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
-                      placeholder="e.g., 9876543210"
-                      value={formData.finalPhone}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                  </div>
+                <div className="mb-4">
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Preferred Time to Call</label>
+                  <input
+                    type="text"
+                    name="timeSlot"
+                    value={formData.timeSlot}
+                    onChange={handleChange}
+                    placeholder="e.g., 10:00 AM - 11:00 AM"
+                    className="w-full p-2 border border-[#ddd] rounded-lg text-sm font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32]"
+                  />
                 </div>
 
                 <div className="privacy-policy-group flex items-start gap-2 mt-4 mb-4">
@@ -475,20 +484,17 @@ const ContactUs = ({ isSinglePage }) => {
 
           {/* Mobile Footer (Hidden on Desktop) */}
           <div className="tw-mobile-form-footer block p-6 bg-[#ff7f32] border-t border-[#e9ecef] text-center lg:hidden">
-            <p className="font-extrabold text-sm mb-4 uppercase tracking-widest text-[#0d1b2a]">Or contact us directly:</p>
-            <div className="flex flex-col gap-3">
-              <div className="tw-contact-info-item flex items-center gap-3 text-lg justify-center text-[#555]">
-                <FaEnvelope className="text-orange-200" />
-                <a href="mailto:cat@arvion.com" className="text-[#f7f5f4] font-semibold hover:opacity-85 transition-opacity no-underline">cat@arvion.com</a>
-              </div>
-              <div className="tw-contact-info-item flex items-center gap-3 text-lg justify-center text-[#555]">
-                <FaPhone className="text-orange-200" />
-                <a href="tel:+919535764655" className="text-[#f7f5f4] font-semibold hover:opacity-85 transition-opacity no-underline">+91 9535764655</a>
-              </div>
-              <div className="tw-contact-info-item flex items-center gap-3 text-lg justify-center text-[#555]">
-                <FaWhatsapp className="text-orange-200" />
-                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-[#f7f5f4] font-semibold hover:opacity-85 transition-opacity no-underline">+91 9535764655</a>
-              </div>
+            <p className="font-extrabold text-sm mb-4 uppercase tracking-widest text-white">Or contact us directly:</p>
+            <div className="flex justify-center gap-6">
+              <a href="mailto:cat@arvion.com" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Email Us">
+                <FaEnvelope />
+              </a>
+              <a href="tel:+919535764655" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Call Us">
+                <FaPhone />
+              </a>
+              <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orange-200 transition-colors text-2xl" title="WhatsApp Us">
+                <FaWhatsapp />
+              </a>
             </div>
           </div>
         </div>

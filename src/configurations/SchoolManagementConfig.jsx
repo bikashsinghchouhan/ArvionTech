@@ -1,8 +1,8 @@
 import React from 'react';
-import { 
-  FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave, 
-  FaChartLine, FaClipboardCheck, FaBookOpen, FaCheckCircle, 
-  FaMapMarker, FaBookReader, FaBusAlt, FaBullhorn, FaUserCheck 
+import {
+  FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave,
+  FaChartLine, FaClipboardCheck, FaBookOpen, FaCheckCircle,
+  FaMapMarker, FaBookReader, FaBusAlt, FaBullhorn, FaUserCheck
 } from 'react-icons/fa';
 import techImage from '../assets/techImage.png';
 
@@ -67,6 +67,8 @@ export const pageConfig = {
       }
     }
   ],
+
+
   customErp: {
     title: "Custom ERP Solutions",
     subtitle: "(Tailored for Your Institution)",
@@ -77,6 +79,8 @@ export const pageConfig = {
       { name: "Enterprise", price: "₹90,000", billing: "One-Time Setup + Server Cost", color: "bg-red-800" }
     ]
   },
+
+
   modules: [
     { title: "Mobile App for Parents/student", price: "₹20/student", icon: <FaMobileAlt size={24} /> },
     { title: "Mobile App for Staff", price: "₹10,000/yr", icon: <FaMobileAlt size={24} /> },
@@ -84,6 +88,9 @@ export const pageConfig = {
     { title: "Payment Gateway Integration", price: "₹2,000/yr", icon: <FaMoneyBillWave size={24} /> },
     { title: "Domain Registration", price: "₹899/yr", icon: <FaGlobe size={24} /> }
   ],
+
+
+
   featureSuite: [
     { title: "Admission Management", desc: "Automate and streamline the entire student enrollment process, from handling initial inquiries and digital application forms to document verification and final admission confirmation." },
     { title: "Comprehensive Student Profiles", desc: "Maintain a complete 360-degree view of every student, from initial admission and enrollment to academic progress, attendance records, and extracurricular activities. Our system provides a centralized, secure database, making it easy for administrators and teachers to access the information they need, when they need it." },
@@ -100,6 +107,9 @@ export const pageConfig = {
     { title: "Customizable Dashboard", desc: "Provide personalized, role-based dashboards for administrators, teachers, and parents, highlighting the most critical daily metrics, announcements, and pending tasks at a glance." },
     { title: "Master Setup", desc: "Configure core institutional data like academic sessions, user roles, detailed permission controls, departments, and institutional branding with a highly flexible master module." }
   ],
+
+
+
   contact: {
     title: "Contact Arvion Technologies",
     subtitle: "Get in touch with our ERP experts to schedule a free demo and consultation.",
@@ -107,6 +117,9 @@ export const pageConfig = {
     phone: "+91 9535764655",
     email: "info@arviontechnologies.com"
   },
+
+
+
   appFeaturesLeft: [
     { title: "Dashboard Management", desc: "Customize and manage different dashboard on different modules.", icon: <FaChartLine className="text-blue-500 text-3xl" /> },
     { title: "Attendance Entry", desc: "Manage and view user's attendance with a detailed report.", icon: <FaClipboardCheck className="text-blue-500 text-3xl" /> },
@@ -114,6 +127,9 @@ export const pageConfig = {
     { title: "Fee Management", desc: "View and Check Fee by students/parents.", icon: <FaMoneyBillWave className="text-blue-500 text-3xl" /> },
     { title: "Timetable Entry", desc: "Automated timetable for every class and sections.", icon: <FaCheckCircle className="text-blue-500 text-3xl" /> }
   ],
+
+
+
   appFeaturesRight: [
     { title: "Location View", desc: "Separate location entries for students, teachers and other staffs", icon: <FaMapMarker className="text-blue-500 text-3xl" /> },
     { title: "Library Management", desc: "To manage available books, its issues and returns", icon: <FaBookReader className="text-blue-500 text-3xl" /> },
@@ -121,6 +137,12 @@ export const pageConfig = {
     { title: "Circular", desc: "Ease of communication with Student/Parent", icon: <FaBullhorn className="text-blue-500 text-3xl" /> },
     { title: "Student Tracking", desc: "Parents/Teachers can keep eye on their children activities", icon: <FaUserCheck className="text-blue-500 text-3xl" /> }
   ],
+
+
+
+
+
+
   testimonials: [
     { name: "Dr. Sharma", role: "Principal, Sunrise Public School", text: "The Arvion ERP has transformed how we manage our day-to-day operations. The attendance and fee modules are incredibly intuitive and have saved us countless hours.", rating: 5 },
     { name: "Mr. Verma", role: "Director, Excellence Academy", text: "Having a centralized dashboard for all our administrative tasks is a game changer. Our teachers can now focus more on teaching rather than paperwork.", rating: 5 },
@@ -128,4 +150,6 @@ export const pageConfig = {
     { name: "Mr. Singh", role: "IT Coordinator", text: "The face-based attendance system is incredibly accurate and fast. It completely eliminated proxy attendance in our institution.", rating: 5 },
     { name: "Ms. Patel", role: "Finance Manager", text: "Fee collection used to be a nightmare. Now, with automated reminders and instant receipts, our revenue tracking is seamless and error-free.", rating: 5 }
   ]
+
+
 };
