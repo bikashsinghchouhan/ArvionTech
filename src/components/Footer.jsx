@@ -150,12 +150,12 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom / Legal */}
-      <div className="max-w-7xl mx-auto mt-4 pt-4 border-t border-white/5 flex flex-col md:flex-row items-center justify-center md:justify-end gap-4 md:gap-10 text-[12px] text-slate-500 relative z-10">
-        <p className="mr-auto">© {new Date().getFullYear()} Arvion Technologies. All Rights Reserved.</p>
-        <div className="flex items-center gap-4">
-          <Link to="#" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+      <div className="max-w-7xl mx-auto mt-4 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-[12px] text-slate-500 relative z-10 text-center">
+        <p>© {new Date().getFullYear()} Arvion Technologies. All Rights Reserved.</p>
+        <div className="flex items-center justify-center gap-4">
+          <Link to="/privacy-policy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
           <span>|</span>
-          <Link to="#" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
+          <Link to="/terms-of-service" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
         </div>
       </div>
     </footer>

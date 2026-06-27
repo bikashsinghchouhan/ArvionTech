@@ -107,9 +107,8 @@ const Header = () => {
       ? activeSection === sectionId
       : routerActive;
 
-    return `text-[11px] sm:text-[12px] tracking-wider uppercase font-bold transition-all duration-300 relative py-1 after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center text-white/90 hover:text-white after:bg-white ${
-      isActive ? 'after:scale-x-100 text-white font-bold' : ''
-    }`;
+    return `text-[11px] sm:text-[12px] tracking-wider uppercase font-bold transition-all duration-300 relative py-1 after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center text-white/90 hover:text-white after:bg-white ${isActive ? 'after:scale-x-100 text-white font-bold' : ''
+      }`;
   };
 
   // Helper to compute active classes for mobile drawer links
@@ -118,24 +117,22 @@ const Header = () => {
       ? activeSection === sectionId
       : routerActive;
 
-    return `px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide transition-all flex items-center gap-3 ${
-      isActive ? 'bg-orange-50 text-[#ff7f32]' : 'text-slate-700 hover:bg-slate-50'
-    }`;
+    return `px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide transition-all flex items-center gap-3 ${isActive ? 'bg-orange-50 text-[#ff7f32]' : 'text-slate-700 hover:bg-slate-50'
+      }`;
   };
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#ff7f32] shadow-md ${
-          isScrolled ? 'py-2 sm:py-2.5 shadow-lg' : 'py-3.5 sm:py-4 shadow-md'
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#ff7f32] shadow-md ${isScrolled ? 'py-2 sm:py-2.5 shadow-lg' : 'py-3.5 sm:py-4 shadow-md'
+          }`}
       >
         {/* Removed vertical padding from inner wrapper to allow header py height changes on scroll */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
 
           {/* Logo / Brand Link */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             onClick={(e) => handleNavClick(e, 'home')}
             className="flex items-center gap-2 group focus:outline-none flex-shrink-0"
           >
@@ -192,27 +189,29 @@ const Header = () => {
 
                 {/* Dropdown Popover - Single Vertical Column list */}
                 {isDropdownOpen && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[320px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-3 flex flex-col gap-1.5 z-50 animate-fadeIn">
-                    {services.map((service) => (
-                      <Link
-                        key={service.name}
-                        to={service.path}
-                        className="flex gap-3 items-center p-2 rounded-xl hover:bg-orange-50/50 transition-all duration-200 group/item cursor-pointer no-underline"
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        <span className="bg-orange-50 text-sm text-[#ff7f32] p-2.5 rounded-lg flex-shrink-0 transition-transform duration-300 group-hover/item:scale-105 group-hover/item:bg-orange-100">
-                          {service.icon}
-                        </span>
-                        <div className="flex flex-col text-left">
-                          <span className="text-xs font-bold text-slate-800 transition-colors group-hover/item:text-[#ff7f32] leading-snug">
-                            {service.name}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-[320px] z-50">
+                    <div className="bg-white rounded-sm shadow-2xl border border-slate-100 p-3 flex flex-col gap-1.5 animate-fadeIn">
+                      {services.map((service) => (
+                        <Link
+                          key={service.name}
+                          to={service.path}
+                          className="flex gap-3 items-center p-2 rounded-xl hover:bg-orange-50/50 transition-all duration-200 group/item cursor-pointer no-underline"
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          <span className="!bg-orange-50 hover:!bg-orange-500 text-sm text-[#ff7f32] hover:text-white  p-2.5 rounded-lg flex-shrink-0 transition-transform duration-300 group-hover/item:scale-105 group-hover/item:bg-orange-100">
+                            {service.icon}
                           </span>
-                          <span className="text-[10px] text-slate-400 mt-0.5 leading-normal font-normal">
-                            {service.desc}
-                          </span>
-                        </div>
-                      </Link>
-                    ))}
+                          <div className="flex flex-col text-left">
+                            <span className="text-xs font-bold text-slate-800 transition-colors group-hover/item:text-[#ff7f32] leading-snug">
+                              {service.name}
+                            </span>
+                            <span className="text-[10px] text-slate-400 mt-0.5 leading-normal font-normal">
+                              {service.desc}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </li>

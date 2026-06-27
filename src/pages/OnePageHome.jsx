@@ -5,6 +5,7 @@ import FeaturesSection from '../components/FeaturesSection';
 import AboutUs from './AboutUs';
 import Services from './Services';
 import ContactUs from './ContactUs';
+import TestimonialSection from '../components/TestimonialSection';
 
 const OnePageHome = () => {
   const { hash } = useLocation();
@@ -41,6 +42,11 @@ const OnePageHome = () => {
       {/* Services Grid Section */}
       <div id="services" className="scroll-mt-24 w-full">
         <Services isSinglePage={true} />
+      </div>
+
+      {/* Testimonials Section */}
+      <div id="testimonials" className="w-full">
+        <TestimonialSection />
       </div>
 
       {/* Contact Form Section */}

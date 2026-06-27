@@ -198,7 +198,7 @@ const HorizontalScroll = () => {
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-base cursor-pointer"
                     onClick={() => navigate(service.path)}
                   >
-                    Our Services <FaArrowRight className="text-[10px] sm:text-xs transition-transform duration-300" />
+                    Explore Solutions <FaArrowRight className="text-[10px] sm:text-xs transition-transform duration-300" />
                   </button>
                 </div>
 

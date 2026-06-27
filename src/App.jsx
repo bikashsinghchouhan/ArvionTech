@@ -12,7 +12,7 @@ import ScrollToTop from './components/ScrollToTop';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import Services from './pages/Services';
-import SchoolManagementPage from './pages/SchoolManagementPage';
+import SchoolManagement from './our_services/SchoolManagement';
 import OutsourcingPage from './pages/OutsourcingPage';
 import RegistrationsPage from './pages/RegistrationsPage';
 import AccountingPage from './pages/AccountingPage';
@@ -37,10 +37,11 @@ function App() {
           {/* Main Page Routes */}
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/services" element={<Services />} />
 
           {/* Dedicated Service Page Routes */}
-          <Route path="/services/school-management" element={<SchoolManagementPage />} />
+          <Route path="/services/school-management" element={<SchoolManagement />} />
           <Route path="/services/outsourcing" element={<OutsourcingPage />} />
           <Route path="/services/registrations" element={<RegistrationsPage />} />
           <Route path="/services/accounting" element={<AccountingPage />} />
