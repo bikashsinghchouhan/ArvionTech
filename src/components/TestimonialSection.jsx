@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft, FaStar } from 'react-icons/fa';
-import { testimonialsData } from '../testimonialsConfig';
+import { testimonialsData } from '../configurations/TestimonialsConfig';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
