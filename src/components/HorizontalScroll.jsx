@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  FaCalendarAlt, FaCheckCircle, FaChartBar, FaGlobe, FaPuzzlePiece, FaClock, 
-  FaStamp, FaFileSignature, FaBuilding, FaCalculator, FaChartLine, FaBook, 
+import {
+  FaCalendarAlt, FaCheckCircle, FaChartBar, FaGlobe, FaPuzzlePiece, FaClock,
+  FaStamp, FaFileSignature, FaBuilding, FaCalculator, FaChartLine, FaBook,
   FaChevronLeft, FaChevronRight, FaArrowRight, FaPhone, FaWhatsapp, FaEnvelope
 } from 'react-icons/fa';
 import '../csssection/HorizontalScroll.css'; // Retained but not used for classes
@@ -14,57 +14,57 @@ import registrationsImg from '../assets/service-registrations.png';
 import accountingImg from '../assets/service-accounting.png';
 
 const services = [
-  { 
-    title: 'School Management System', 
+  {
+    title: 'School Management System',
     badge: 'ERP Solutions',
     category: 'Education & Administration',
     description: 'Transform institutional administration with an enterprise-grade academic platform. Seamlessly automate attendance protocols, optimize complex grading matrices, and elevate stakeholder communication.',
-    image: schoolImg, 
-    path: '/services/school-management', 
-    stats: [ 
-      { icon: <FaCalendarAlt />, text: 'Effortless Scheduling' }, 
-      { icon: <FaCheckCircle />, text: 'Automated Attendance' }, 
-      { icon: <FaChartBar />, text: 'Real-time Reporting' } 
-    ] 
+    image: schoolImg,
+    path: '/services/school-management',
+    stats: [
+      { icon: <FaCalendarAlt />, text: 'Effortless Scheduling' },
+      { icon: <FaCheckCircle />, text: 'Automated Attendance' },
+      { icon: <FaChartBar />, text: 'Real-time Reporting' }
+    ]
   },
-  { 
-    title: 'Payroll Outsourcing Services', 
+  {
+    title: 'Payroll Outsourcing Services',
     badge: 'HR & Talent Systems',
     category: 'Talent & Compliance',
     description: 'Accelerate global operations with secure, end-to-end payroll and talent management solutions. We assume the complexities of compliance, taxation, and international onboarding.',
-    image: outsourcingImg, 
-    path: '/services/outsourcing', 
-    stats: [ 
-      { icon: <FaGlobe />, text: 'Global Talent Pool' }, 
-      { icon: <FaPuzzlePiece />, text: 'Seamless Integration' }, 
-      { icon: <FaClock />, text: 'End-to-End Payroll Processing' } 
-    ] 
+    image: outsourcingImg,
+    path: '/services/outsourcing',
+    stats: [
+      { icon: <FaGlobe />, text: 'Global Talent Pool' },
+      { icon: <FaPuzzlePiece />, text: 'Seamless Integration' },
+      { icon: <FaClock />, text: 'End-to-End Payroll Processing' }
+    ]
   },
-  { 
-    title: 'Statutory Entity Registrations',  
+  {
+    title: 'Statutory Entity Registrations',
     badge: 'Business Setup',
     category: 'Corporate Services',
     description: 'Establish your corporate footprint with precision. We orchestrate comprehensive statutory compliance, from initial entity incorporation and intellectual property protection to complex tax registrations.',
-    image: registrationsImg, 
-    path: '/services/registrations', 
-    stats: [ 
-      { icon: <FaStamp />, text: 'Business Name Approval' }, 
-      { icon: <FaFileSignature />, text: 'GST & Tax ID Application' }, 
-      { icon: <FaBuilding />, text: 'Company Incorporation' } 
-    ] 
+    image: registrationsImg,
+    path: '/services/registrations',
+    stats: [
+      { icon: <FaStamp />, text: 'Business Name Approval' },
+      { icon: <FaFileSignature />, text: 'GST & Tax ID Application' },
+      { icon: <FaBuilding />, text: 'Company Incorporation' }
+    ]
   },
-  { 
-    title: 'Professional Accounting Services',  
+  {
+    title: 'Professional Accounting Services',
     badge: 'Finance & Bookkeeping',
     category: 'Finance & Accounts',
     description: 'Gain unparalleled visibility into your financial architecture. We provide rigorous ledger management, real-time analytical reporting, and strategic advisory to drive sustainable corporate growth.',
-    image: accountingImg, 
-    path: '/services/accounting', 
-    stats: [ 
-      { icon: <FaBook />, text: 'Bookkeeping Services' }, 
-      { icon: <FaChartLine />, text: 'Financial Reporting' }, 
-      { icon: <FaCalculator />, text: 'Expense Tracking' } 
-    ] 
+    image: accountingImg,
+    path: '/services/accounting',
+    stats: [
+      { icon: <FaBook />, text: 'Bookkeeping Services' },
+      { icon: <FaChartLine />, text: 'Financial Reporting' },
+      { icon: <FaCalculator />, text: 'Expense Tracking' }
+    ]
   },
 ];
 
@@ -72,6 +72,11 @@ const HorizontalScroll = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isHovering, setIsHovering] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(true);
+
+  // Swipe support states
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
   const autoScrollInterval = useRef(null);
   const navigate = useNavigate();
 
@@ -120,25 +125,58 @@ const HorizontalScroll = () => {
     }
   }, [isTransitioning]);
 
+  // Swipe Handlers
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    }
+    if (isRightSwipe) {
+      handlePrev();
+    }
+  };
+
   return (
-    <section 
+    <section
       className="relative w-full overflow-hidden"
-      onMouseEnter={() => setIsHovering(true)}
+      onMouseEnter={() => {
+        if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+          setIsHovering(true);
+        }
+      }}
       onMouseLeave={() => setIsHovering(false)}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
     >
       {/* Slider Viewport Container */}
       <div className="relative w-full overflow-hidden">
         {/* Slides Track */}
-        <div 
-          className="flex w-full" 
-          style={{ 
+        <div
+          className="flex w-full"
+          style={{
             transform: `translateX(-${currentIndex * 100}%)`,
             transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)' : 'none'
           }}
         >
           {extendedServices.map((service, index) => (
-            <div 
-              className="w-full flex-shrink-0 flex items-center justify-center bg-cover bg-center bg-no-repeat relative h-[55vh] min-h-[400px] sm:h-[70vh] sm:min-h-[500px] lg:h-screen lg:min-h-[650px] box-border" 
+            <div
+              className="w-full flex-shrink-0 flex items-center justify-center bg-cover bg-center bg-no-repeat relative h-[55vh] min-h-[400px] sm:h-[70vh] sm:min-h-[500px] lg:h-screen lg:min-h-[650px] box-border"
               style={{ backgroundImage: `url(${service.image})` }}
               key={index}
             >
@@ -146,8 +184,8 @@ const HorizontalScroll = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/40 z-0" />
 
               {/* 🔹 Centered Foreground Content Panel */}
-              <div className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-12 box-border text-white flex flex-col items-center text-center pt-24 pb-12 sm:py-24 lg:py-28">
-                
+              <div className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-12 box-border text-white flex flex-col items-center text-center pt-24 pb-16 sm:py-24 lg:py-28">
+
                 {/* Badge (Pill Styled) */}
                 <span className="inline-flex items-center px-3 py-0.5 rounded-full text-[9px] font-bold bg-[#ff7f32]/30 border border-[#ff7f32]/45 text-orange-200 uppercase tracking-widest mb-3 sm:mb-4 backdrop-blur-md">
                   {service.badge}
@@ -171,7 +209,7 @@ const HorizontalScroll = () => {
                 {/* Centered Small Stats List - Hidden on mobile for clutter-free responsive view */}
                 <div className="hidden sm:flex flex-wrap justify-center gap-4 mb-6 max-w-3xl">
                   {service.stats.map((stat, statIndex) => (
-                    <div 
+                    <div
                       className="inline-flex items-center gap-2 bg-black/40 hover:bg-black/55 border border-white/10 hover:border-white/20 px-3.5 py-2 rounded-xl backdrop-blur-md transition-all duration-300"
                       key={statIndex}
                     >
@@ -187,14 +225,14 @@ const HorizontalScroll = () => {
 
                 {/* Double CTA Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
-                  <button 
+                  <button
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#ff8c42] to-[#ff7f32] hover:opacity-95 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-base cursor-pointer"
                     onClick={() => navigate('/contact')}
                   >
-                    Get in Touch
+                    Contact Us
                   </button>
-                  
-                  <button 
+
+                  <button
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-base cursor-pointer"
                     onClick={() => navigate(service.path)}
                   >
@@ -210,13 +248,13 @@ const HorizontalScroll = () => {
       </div>
 
       {/* Slide Navigation Arrows */}
-      <button 
+      <button
         className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-[#ff7f32] text-white p-3.5 rounded-full transition-all duration-300 focus:outline-none hidden md:flex items-center justify-center shadow-md hover:scale-110 z-20 cursor-pointer backdrop-blur-sm border border-white/10"
         onClick={handlePrev}
       >
         <FaChevronLeft size={18} />
       </button>
-      <button 
+      <button
         className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-[#ff7f32] text-white p-3.5 rounded-full transition-all duration-300 focus:outline-none hidden md:flex items-center justify-center shadow-md hover:scale-110 z-20 cursor-pointer backdrop-blur-sm border border-white/10"
         onClick={handleNext}
       >
@@ -224,12 +262,12 @@ const HorizontalScroll = () => {
       </button>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5 z-20">
+      <div className="absolute bottom-3 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5 z-20">
         {services.map((_, idx) => {
           // Adjust index map since extendedServices has clone padding
           const activeIndex = currentIndex === 0 ? services.length - 1 : currentIndex === extendedServices.length - 1 ? 0 : currentIndex - 1;
           return (
-            <button 
+            <button
               key={idx}
               className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${idx === activeIndex ? 'w-8 bg-[#ff7f32]' : 'w-2.5 bg-white/40 hover:bg-white/80'}`}
               onClick={() => setCurrentIndex(idx + 1)}

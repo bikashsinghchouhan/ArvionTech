@@ -28,9 +28,9 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="py-20 px-4 w-full mx-auto bg-slate-50 border-t border-slate-200">
+    <section className="pt-16 pb-4 sm:pt-20 sm:pb-8 px-4 w-full mx-auto bg-slate-50 border-t border-slate-200">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb:-8 md:mb-12">
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
             className="text-3xl font-bold text-slate-800 mb-4"

@@ -197,7 +197,7 @@ const About = ({ isSinglePage }) => {
             </p>
             <div className="h-[2px] w-16 bg-[#ff7f32] mb-4" />
             <span className="text-xs font-bold text-[#0d1b2a] tracking-widest uppercase font-sans">
-              The Arvion Leadership Team
+              -The Arvion Leadership Team
             </span>
           </div>
         </section>

@@ -9,7 +9,7 @@ const Footer = () => {
 
   const contactInfo = {
     address: [
-      "Ban"
+      "Utrahalli, Bansankari, Banglore, 560078"
     ],
     phone: "+91 9535764655",
     whatsapp: "+91 9535764655",
@@ -102,7 +102,7 @@ const Footer = () => {
         {/* Column 4: Contact Info */}
         <div className="flex flex-col space-y-7">
           <h4 className="text-white text-base font-semibold mb-2">Contact Us</h4>
-          <div className="w-10 h-0.5 bg-[#8b5cf6] mb-6 rounded-full"></div>
+          <div className="w-10 h-0.5 bg-[#8b5cf6] mb-4 rounded-full"></div>
 
           <p className="text-[13px] leading-relaxed text-slate-400">
             {contactInfo.address.map((line, i) => (

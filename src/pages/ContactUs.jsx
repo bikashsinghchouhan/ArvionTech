@@ -88,32 +88,32 @@ const ContactUs = ({ isSinglePage }) => {
     }
     setError('');
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch("https://formsubmit.co/ajax/bikashkrsin22@gmail.com", {
         method: "POST",
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
-            _subject: `New Lead: ${formData.name} from ${formData.company || 'Unknown Company'}`,
-            _template: "table",
-            Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${formData.date} at ${formData.timeSlot}.`,
-            Name: formData.name,
-            Email: formData.email,
-            Phone: formData.phone || "Not provided",
-            Job_Title: formData.jobTitle,
-            Company: formData.company || "N/A",
-            Main_Service: selectedService,
-            Additional_Services: formData.services.join(", ") || "None",
-            Student_Range: formData.studentRange || "N/A",
-            Outsourcing_Team_Size: formData.outsourcingTeamSize || "N/A",
-            Registration_Type: formData.registrationType || "N/A",
-            Accounting_Volume: formData.accountingVolume || "N/A",
-            Meeting_Date: formData.date,
-            Meeting_Time: formData.timeSlot,
-            Final_Contact_Phone: formData.finalPhone
+          _subject: `New Lead: ${formData.name} from ${formData.company || 'Unknown Company'}`,
+          _template: "table",
+          Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${formData.date} at ${formData.timeSlot}.`,
+          Name: formData.name,
+          Email: formData.email,
+          Phone: formData.phone || "Not provided",
+          Job_Title: formData.jobTitle,
+          Company: formData.company || "N/A",
+          Main_Service: selectedService,
+          Additional_Services: formData.services.join(", ") || "None",
+          Student_Range: formData.studentRange || "N/A",
+          Outsourcing_Team_Size: formData.outsourcingTeamSize || "N/A",
+          Registration_Type: formData.registrationType || "N/A",
+          Accounting_Volume: formData.accountingVolume || "N/A",
+          Meeting_Date: formData.date,
+          Meeting_Time: formData.timeSlot,
+          Final_Contact_Phone: formData.finalPhone
         })
       });
 
@@ -170,9 +170,32 @@ const ContactUs = ({ isSinglePage }) => {
   }
 
   return (
-    <div className={isSinglePage ? "py-12 sm:py-16 bg-[#f8f9fa] w-full flex items-center justify-center box-border px-4" : "tw-contact-page min-h-screen bg-[#f0f2f5] p-6 pt-[100px] sm:p-10 sm:pt-[120px] flex items-center justify-center box-border"}>
+    <div className={isSinglePage ? "pt-8 pb-8 sm:pt-10 sm:pb-20 bg-[#f8f9fa] w-full flex flex-col items-center justify-center box-border px-4" : "tw-contact-page min-h-screen bg-[#f0f2f5] p-6 pt-[100px] sm:p-10 sm:pt-[120px] flex flex-col items-center justify-center box-border"}>
+
+      {isSinglePage && (
+        <div className="text-center mb-6 md:mb-8 max-w-2xl mx-auto px-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight mb-4 uppercase"
+          >
+            Get In Touch
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-slate-500 font-semibold leading-relaxed text-sm sm:text-base"
+          >
+            Ready to transform your operations? Reach out to us for a tailored consultation and discover how Arvion Technologies can drive your growth.
+          </motion.p>
+        </div>
+      )}
+
       <div className={`tw-contact-container grid grid-cols-1 min-[992px]:grid-cols-[1fr_1.2fr] max-w-[1200px] w-full bg-white rounded-[16px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden animate-fadeIn ${isSinglePage ? 'min-h-[500px]' : ''}`}>
-        
+
         {/* Left Panel */}
         <div className="tw-contact-left-panel hidden min-[992px]:flex min-[992px]:flex-col min-[992px]:justify-center bg-gradient-to-br from-[#ff8c42] to-[#ff7f32] text-white p-10 lg:p-12">
           <motion.div key={step} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -203,7 +226,7 @@ const ContactUs = ({ isSinglePage }) => {
             </div>
           </motion.div>
         </div>
- 
+
         {/* Right Panel */}
         <div className={`tw-contact-right-panel p-0 min-[992px]:p-10 w-full ${isSinglePage ? 'h-full flex flex-col justify-center' : ''}`}>
           {/* Mobile Header (Hidden on Desktop) */}
@@ -222,27 +245,27 @@ const ContactUs = ({ isSinglePage }) => {
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div key="step1" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col">
-                <h3 className="text-lg font-extrabold text-[#0d1b2a] mb-5 uppercase tracking-wider">Your Contact Information</h3>
-                
+                <h3 className="text-sm sm:text-lg font-extrabold text-[#0d1b2a] mb-5 uppercase tracking-wider">Your Contact Information</h3>
+
                 {/* Name Input with Error Styling */}
                 <div className="tw-input-group relative mb-4">
-                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Full Name <span className="text-[#e53e3e] ml-[1px]">*</span></label>
-                    <div className="relative">
-                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
-                        <FaUser />
-                      </div>
-                      <input 
-                          type="text" 
-                          name="name" 
-                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.name ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
-                          placeholder="e.g., John Doe" 
-                          value={formData.name} 
-                          onChange={handleChange} 
-                          onBlur={handleBlur}
-                      />
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Full Name <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                  <div className="relative">
+                    <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                      <FaUser />
                     </div>
+                    <input
+                      type="text"
+                      name="name"
+                      className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.name ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                      placeholder="e.g., John Doe"
+                      value={formData.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </div>
                 </div>
-                
+
                 {/* Service Select with Error Styling */}
                 <div className="tw-input-group relative mb-4">
                   <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Service <span className="text-[#e53e3e] ml-[1px]">*</span></label>
@@ -294,67 +317,67 @@ const ContactUs = ({ isSinglePage }) => {
                 )}
 
                 <div className="tw-input-group relative mb-4">
-                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Job Title <span className="text-[#e53e3e] ml-[1px]">*</span></label>
-                    <div className="relative">
-                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
-                        <FaBriefcase />
-                      </div>
-                      <input 
-                          type="text" 
-                          name="jobTitle" 
-                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.jobTitle ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
-                          placeholder="e.g., HR Manager" 
-                          value={formData.jobTitle} 
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                      />
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Job Title <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                  <div className="relative">
+                    <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                      <FaBriefcase />
                     </div>
+                    <input
+                      type="text"
+                      name="jobTitle"
+                      className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.jobTitle ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                      placeholder="e.g., HR Manager"
+                      value={formData.jobTitle}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </div>
                 </div>
-                
+
                 <div className="tw-input-group relative mb-4">
-                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number</label>
-                    <div className="relative">
-                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
-                        <FaPhone />
-                      </div>
-                      <input 
-                        type="tel" 
-                        name="phone" 
-                        placeholder="(Optional)" 
-                        value={formData.phone} 
-                        onChange={handleChange} 
-                        className="w-full pl-10 pr-3 py-2 border border-[#ddd] rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32]"
-                      />
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number</label>
+                  <div className="relative">
+                    <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                      <FaPhone />
                     </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="(Optional)"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full pl-10 pr-3 py-2 border border-[#ddd] rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32]"
+                    />
+                  </div>
                 </div>
-                
+
                 <div className="tw-input-group relative mb-4">
-                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Work Email <span className="text-[#e53e3e] ml-[1px]">*</span></label>
-                    <div className="relative">
-                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
-                        <FaEnvelope />
-                      </div>
-                      <input 
-                          type="email" 
-                          name="email" 
-                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
-                          placeholder="e.g., john.doe@company.com" 
-                          value={formData.email} 
-                          onChange={handleChange} 
-                          onBlur={handleBlur}
-                      />
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Work Email <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                  <div className="relative">
+                    <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                      <FaEnvelope />
                     </div>
+                    <input
+                      type="email"
+                      name="email"
+                      className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                      placeholder="e.g., john.doe@company.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </div>
                 </div>
 
                 {error && <p className="error-message text-[#ff4d4d] text-xs mt-[-5px] mb-4 font-semibold">{error}</p>}
-                
+
                 {/* Next Button */}
-                <button 
-                    className="tw-nav-btn px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-[#ff7f32] text-white self-end hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer" 
-                    onClick={handleNext} 
-                    disabled={!isStep1Valid()}
+                <button
+                  className="tw-nav-btn px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-[#ff7f32] text-white self-end hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer"
+                  onClick={handleNext}
+                  disabled={!isStep1Valid()}
                 >
-                    Next Step <FaArrowRight />
+                  Next Step <FaArrowRight />
                 </button>
               </motion.div>
             )}
@@ -365,20 +388,20 @@ const ContactUs = ({ isSinglePage }) => {
                 <div className="tw-checkbox-group flex flex-col gap-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="School Management" onChange={handleCheckboxChange} checked={formData.services.includes('School Management')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> School Management</label>
                   <AnimatePresence>{formData.services.includes('School Management') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Students</h4><select name="studentRange" value={formData.studentRange} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a range</option><option value="1-200">1-200</option><option value="201-500">201-500</option><option value="501-1000">501-1000</option><option value="1000+">1000+</option></select></motion.div>)}</AnimatePresence>
-                  
+
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Outsourcing" onChange={handleCheckboxChange} checked={formData.services.includes('Outsourcing')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Payroll Outsourcing</label>
                   <AnimatePresence>{formData.services.includes('Outsourcing') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Roles to Fill</h4><select name="outsourcingTeamSize" value={formData.outsourcingTeamSize} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a number</option><option value="1-5">1-5 Roles</option><option value="6-15">6-15 Roles</option><option value="15+">15+ Roles</option></select></motion.div>)}</AnimatePresence>
-                  
+
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Statutory Registrations" onChange={handleCheckboxChange} checked={formData.services.includes('Statutory Registrations')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Statutory Registrations</label>
                   <AnimatePresence>{formData.services.includes('Statutory Registrations') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Type of Entity</h4><select name="registrationType" value={formData.registrationType} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a type</option><option value="New Company">New Company</option><option value="Existing Company">Existing Company</option><option value="Sole Proprietorship">Sole Proprietorship</option></select></motion.div>)}</AnimatePresence>
-                  
+
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Accounting" onChange={handleCheckboxChange} checked={formData.services.includes('Accounting')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Accounting Services</label>
                   <AnimatePresence>{formData.services.includes('Accounting') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Monthly Transaction Volume</h4><select name="accountingVolume" value={formData.accountingVolume} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a volume</option><option value="<100 font-semibold">Under 100</option><option value="101-500">101-500</option><option value="500+">Over 500</option></select></motion.div>)}</AnimatePresence>
                 </div>
-                
+
                 <div className="form-nav-buttons flex justify-between mt-8">
-                    <button className="tw-nav-btn bg-[#e9ecef] text-[#333] px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
-                    <button className="tw-nav-btn bg-[#ff7f32] text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] cursor-pointer" onClick={handleNext}>Next Step <FaArrowRight /></button>
+                  <button className="tw-nav-btn bg-[#e9ecef] text-[#333] px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
+                  <button className="tw-nav-btn bg-[#ff7f32] text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] cursor-pointer" onClick={handleNext}>Next Step <FaArrowRight /></button>
                 </div>
               </motion.div>
             )}
@@ -387,62 +410,62 @@ const ContactUs = ({ isSinglePage }) => {
               <motion.div key="step3" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col">
                 <h3 className="text-lg font-extrabold text-[#0d1b2a] mb-5 uppercase tracking-wider">Book a Preferred Date & Time</h3>
                 <p className="step-description text-xs text-[#555] mb-4 leading-relaxed font-semibold">Select a date and a time slot that works best for you. We will confirm the final meeting details via email.</p>
-                
-                <input 
-                    type="date" 
-                    name="date" 
-                    value={formData.date} 
-                    onChange={handleChange} 
-                    className={`date-input w-full p-2 border rounded-lg text-sm mb-4 font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
-                    min={today} 
+
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  className={`date-input w-full p-2 border rounded-lg text-sm mb-4 font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                  min={today}
                 />
-                
+
                 <div className="timeslot-grid grid grid-cols-3 gap-2 mb-4">
                   {timeSlots.map(slot => (
-                      <button 
-                        key={slot} 
-                        type="button"
-                        className={`timeslot-btn p-2 border rounded-md cursor-pointer transition-all duration-300 font-semibold text-xs ${formData.timeSlot === slot ? 'bg-[#ff7f32] text-white border-[#ff7f32]' : 'border-[#ddd] bg-white text-slate-600 hover:border-[#ff7f32] hover:text-[#ff7f32]'}`} 
-                        onClick={() => setFormData(prev => ({ ...prev, timeSlot: slot }))}
-                      >
-                        {slot}
-                      </button>
+                    <button
+                      key={slot}
+                      type="button"
+                      className={`timeslot-btn p-2 border rounded-md cursor-pointer transition-all duration-300 font-semibold text-xs ${formData.timeSlot === slot ? 'bg-[#ff7f32] text-white border-[#ff7f32]' : 'border-[#ddd] bg-white text-slate-600 hover:border-[#ff7f32] hover:text-[#ff7f32]'}`}
+                      onClick={() => setFormData(prev => ({ ...prev, timeSlot: slot }))}
+                    >
+                      {slot}
+                    </button>
                   ))}
                 </div>
-                
+
                 <div className="tw-input-group relative mb-4 mt-6">
-                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number <span className="required-asterisk text-[#e53e3e] ml-[2px]">*</span></label>
-                    <div className="relative">
-                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
-                        <FaPhone />
-                      </div>
-                      <input 
-                          type="tel" 
-                          name="finalPhone" 
-                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.finalPhone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
-                          placeholder="e.g., 9876543210" 
-                          value={formData.finalPhone} 
-                          onChange={handleChange}
-                          onBlur={handleBlur} 
-                      />
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number <span className="required-asterisk text-[#e53e3e] ml-[2px]">*</span></label>
+                  <div className="relative">
+                    <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                      <FaPhone />
                     </div>
+                    <input
+                      type="tel"
+                      name="finalPhone"
+                      className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.finalPhone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                      placeholder="e.g., 9876543210"
+                      value={formData.finalPhone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </div>
                 </div>
-                
+
                 <div className="privacy-policy-group flex items-start gap-2 mt-4 mb-4">
-                    <input type="checkbox" id="privacyPolicy" name="privacyPolicy" checked={formData.privacyPolicy} onChange={handleChange} className="mt-0.5 w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" />
-                    <label htmlFor="privacyPolicy" className="text-[11px] text-slate-500 leading-relaxed font-semibold">I agree to receive email updates and promotional offers. I understand I can unsubscribe at any time. Please read our <Link to="/privacy-policy" target="_blank" className="text-[#ff7f32] font-bold no-underline hover:underline">Privacy Policy</Link>.</label>
+                  <input type="checkbox" id="privacyPolicy" name="privacyPolicy" checked={formData.privacyPolicy} onChange={handleChange} className="mt-0.5 w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" />
+                  <label htmlFor="privacyPolicy" className="text-[11px] text-slate-500 leading-relaxed font-semibold">I agree to receive email updates and promotional offers. I understand I can unsubscribe at any time. Please read our <Link to="/privacy-policy" target="_blank" className="text-[#ff7f32] font-bold no-underline hover:underline">Privacy Policy</Link>.</label>
                 </div>
-                
+
                 <div className="form-nav-buttons flex justify-between mt-8">
-                    <button className="tw-nav-btn bg-[#e9ecef] text-[#333] px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
-                    
-                    <button 
-                        className="tw-nav-btn bg-[#ff7f32] text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer" 
-                        onClick={handleSubmit} 
-                        disabled={isSubmitting || !isStep3Valid()}
-                    >
-                        {isSubmitting ? 'Submitting...' : 'Submit Request'}
-                    </button>
+                  <button className="tw-nav-btn bg-[#e9ecef] text-[#333] px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
+
+                  <button
+                    className="tw-nav-btn bg-[#ff7f32] text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting || !isStep3Valid()}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit Request'}
+                  </button>
                 </div>
               </motion.div>
             )}
