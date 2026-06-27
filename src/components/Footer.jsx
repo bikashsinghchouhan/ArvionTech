@@ -9,9 +9,7 @@ const Footer = () => {
 
   const contactInfo = {
     address: [
-      "D-326 New Minal, Near Gate No.5,",
-      "Bhopal",
-      "Madhya Pradesh, India."
+      "Ban"
     ],
     phone: "+91 9535764655",
     whatsapp: "+91 9535764655",

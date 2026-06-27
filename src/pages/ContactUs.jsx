@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaBuilding, FaPhone, FaArrowRight, FaArrowLeft, FaBriefcase, FaPaperPlane, FaCheckCircle, FaWhatsapp, FaHome } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 import '../csssection/ContactUs.css';
-import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const ContactUs = ({ isSinglePage }) => {
   const [step, setStep] = useState(1);
@@ -18,12 +15,7 @@ const ContactUs = ({ isSinglePage }) => {
   // State for validation
   const [fieldErrors, setFieldErrors] = useState({});
 
-  const [otpSent, setOtpSent] = useState(false);
-  const [generatedOtp, setGeneratedOtp] = useState('');
-  const [enteredOtp, setEnteredOtp] = useState('');
-  const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState('');
-  const [isSending, setIsSending] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -69,7 +61,7 @@ const ContactUs = ({ isSinglePage }) => {
   const isStep1Valid = () => {
     const basicFields = formData.name && formData.email && formData.jobTitle && selectedService;
     const companyValid = selectedService ? formData.company : true; // Company required if service selected
-    return basicFields && companyValid && isVerified;
+    return basicFields && companyValid;
   };
 
   // Check if Step 3 is completely valid to enable button
@@ -80,46 +72,13 @@ const ContactUs = ({ isSinglePage }) => {
   const handleNext = () => {
     // Double check validation before moving
     if (step === 1 && !isStep1Valid()) {
-      setError("Please fill all fields and verify OTP.");
+      setError("Please fill all fields.");
       return;
     }
     setStep((prev) => prev + 1);
   };
 
   const handlePrev = () => setStep((prev) => prev - 1);
-
-  const handleSendOtp = () => {
-    if (!formData.email) {
-      setFieldErrors(prev => ({ ...prev, email: true }));
-      setError('Please enter your email address first.');
-      return;
-    }
-    setIsSending(true);
-    setError('');
-
-    const newOtp = Math.floor(1000 + Math.random() * 9000).toString();
-    setGeneratedOtp(newOtp);
-    const templateParams = {
-      to_email: formData.email,
-      otp_code: newOtp,
-      name: formData.name || "User",
-      time: new Date().toLocaleString(),
-    };
-
-    emailjs.send("service_g06n1sw", "template_ybf0pf2", templateParams, "UaWGHyhF3HEaur86A")
-      .then(() => setOtpSent(true))
-      .catch(() => setError('Could not send OTP. Please try again.'))
-      .finally(() => setIsSending(false));
-  };
-
-  const handleVerifyOtp = () => {
-    if (enteredOtp === generatedOtp) {
-      setIsVerified(true);
-      setError('');
-    } else {
-      setError('Invalid OTP. Please try again.');
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -129,16 +88,43 @@ const ContactUs = ({ isSinglePage }) => {
     }
     setError('');
     setIsSubmitting(true);
+    
     try {
-      await addDoc(collection(db, "submissions"), {
-        ...formData,
-        selectedServiceMain: selectedService, // Include the main service selection
-        submittedAt: serverTimestamp()
+      const response = await fetch("https://formsubmit.co/ajax/bikashkrsin22@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: `New Lead: ${formData.name} from ${formData.company || 'Unknown Company'}`,
+            _template: "table",
+            Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${formData.date} at ${formData.timeSlot}.`,
+            Name: formData.name,
+            Email: formData.email,
+            Phone: formData.phone || "Not provided",
+            Job_Title: formData.jobTitle,
+            Company: formData.company || "N/A",
+            Main_Service: selectedService,
+            Additional_Services: formData.services.join(", ") || "None",
+            Student_Range: formData.studentRange || "N/A",
+            Outsourcing_Team_Size: formData.outsourcingTeamSize || "N/A",
+            Registration_Type: formData.registrationType || "N/A",
+            Accounting_Volume: formData.accountingVolume || "N/A",
+            Meeting_Date: formData.date,
+            Meeting_Time: formData.timeSlot,
+            Final_Contact_Phone: formData.finalPhone
+        })
       });
-      setIsSubmitted(true);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        throw new Error("Failed to send submission");
+      }
     } catch (err) {
-      console.error("Error adding document: ", err);
-      alert("There was an error submitting your request.");
+      console.error("Error submitting form: ", err);
+      alert("There was an error submitting your request. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -351,48 +337,16 @@ const ContactUs = ({ isSinglePage }) => {
                       <input 
                           type="email" 
                           name="email" 
-                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
                           placeholder="e.g., john.doe@company.com" 
                           value={formData.email} 
                           onChange={handleChange} 
                           onBlur={handleBlur}
-                          disabled={otpSent} 
                       />
                     </div>
                 </div>
 
                 {error && <p className="error-message text-[#ff4d4d] text-xs mt-[-5px] mb-4 font-semibold">{error}</p>}
-
-                {/* Send OTP Button */}
-                {!otpSent && (
-                    <button 
-                        className="tw-nav-btn bg-[#333] text-white mb-4 text-xs px-4 py-2 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2 hover:opacity-90 disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 self-start cursor-pointer" 
-                        onClick={handleSendOtp} 
-                        disabled={isSending || !formData.email}
-                    >
-                        <FaPaperPlane /> {isSending ? 'Sending...' : 'Send OTP'}
-                    </button>
-                )}
-
-                {/* OTP Input and Verify Button */}
-                {otpSent && !isVerified && (
-                    <>
-                        <p className="otp-info-message text-xs text-[#28a745] mb-2 font-semibold">An OTP has been sent to your email. Please enter it below.</p>
-                        <div className="tw-input-group flex gap-2 mb-4">
-                            <input 
-                              type="text" 
-                              placeholder="Enter 4-digit OTP" 
-                              value={enteredOtp} 
-                              onChange={(e) => setEnteredOtp(e.target.value)} 
-                              maxLength="4" 
-                              className="w-full px-3 py-2 border border-[#ddd] rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32]"
-                            />
-                            <button className="tw-nav-btn bg-[#28a745] text-white px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer" onClick={handleVerifyOtp}>Verify</button>
-                        </div>
-                    </>
-                )}
-                
-                {isVerified && (<div className="verification-success text-[#28a745] font-bold text-xs mb-4 flex items-center gap-1.5"><FaCheckCircle /> Your email has been verified successfully!</div>)}
                 
                 {/* Next Button */}
                 <button 

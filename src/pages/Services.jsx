@@ -81,13 +81,13 @@ const Services = ({ isSinglePage }) => {
                     >
                         {servicesData.map((service) => (
                             <motion.div
-                                className="bg-white hover:bg-slate-50/20 p-6 sm:p-7 rounded-2xl border border-slate-100 hover:border-orange-200/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-default"
+                                className="bg-white hover:bg-slate-50/50 p-6 sm:p-7 rounded-2xl border border-slate-200 shadow-md hover:border-orange-300 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-default"
                                 key={service.id}
                                 variants={cardVariants}
                             >
                                 <div>
                                     {/* Icon */}
-                                    <span className="inline-flex p-3 rounded-xl bg-orange-50 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-300 mb-5 shadow-sm">
+                                    <span className="inline-flex p-3 rounded-xl bg-orange-50 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-300 mb-5 shadow-sm border border-orange-100/50">
                                         {service.icon}
                                     </span>
 
@@ -95,18 +95,18 @@ const Services = ({ isSinglePage }) => {
                                     <h3 className="text-base sm:text-lg font-black text-[#0d1b2a] mb-3 group-hover:text-[#ff7f32] transition-colors leading-tight font-sans uppercase tracking-wide">
                                         {service.title}
                                     </h3>
-                                    <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed mb-6 font-semibold">
+                                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed mb-6 font-medium">
                                         {service.summary}
                                     </p>
 
                                     {/* Quick Bullets */}
-                                    <div className="flex flex-col gap-2.5 mb-8 border-t border-slate-100/80 pt-5">
+                                    <div className="flex flex-col gap-2.5 mb-8 border-t border-slate-200 pt-5">
                                         {service.features.map((feature, fIdx) => (
                                             <div key={fIdx} className="flex gap-2 items-start">
-                                                <span className="text-[#ff7f32] mt-0.5 text-[9px]">
+                                                <span className="text-[#ff7f32] mt-0.5 text-[10px]">
                                                     <FaCheck />
                                                 </span>
-                                                <span className="text-[10px] sm:text-[11px] font-semibold text-slate-500 leading-tight">
+                                                <span className="text-[10px] sm:text-[11px] font-semibold text-slate-700 leading-tight">
                                                     {feature}
                                                 </span>
                                             </div>

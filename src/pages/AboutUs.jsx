@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import aboutImage from '../assets/about-us-team.png';
+// import aboutImage from '../assets/about-us-team.png';
+import aboutImage from '../assets/arvion_building-1.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaLightbulb, FaUsers, FaShieldAlt, FaRocket,
@@ -50,7 +51,7 @@ const About = ({ isSinglePage }) => {
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
               <span className="inline-block self-start px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-[#ff7f32] bg-orange-50 border border-orange-100 mb-4 shadow-sm">
-                About Our Firm
+                About Our Company
               </span>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0d1b2a] tracking-tight leading-tight mb-4 font-sans uppercase">
                 About Arvion Technologies
@@ -80,7 +81,7 @@ const About = ({ isSinglePage }) => {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl pointer-events-none" />
-              
+
               {/* Clickable Description Overlay */}
               <AnimatePresence>
                 {showImgDesc && (

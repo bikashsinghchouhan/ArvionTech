@@ -165,7 +165,7 @@ const Header = () => {
                 <a
                   href="/#about"
                   onClick={(e) => handleNavClick(e, 'about')}
-                  className={getNavLinkClass('about', location.pathname === '/about')}
+                  className={getNavLinkClass('about', location.pathname.startsWith('/about'))}
                 >
                   About Us
                 </a>
@@ -181,7 +181,7 @@ const Header = () => {
                   <a
                     href="/#services"
                     onClick={(e) => handleNavClick(e, 'services')}
-                    className={getNavLinkClass('services', location.pathname === '/services')}
+                    className={getNavLinkClass('services', location.pathname.startsWith('/services'))}
                   >
                     Services
                   </a>
@@ -223,7 +223,7 @@ const Header = () => {
                 <a
                   href="/#contact"
                   onClick={(e) => handleNavClick(e, 'contact')}
-                  className={getNavLinkClass('contact', location.pathname === '/contact')}
+                  className={getNavLinkClass('contact', location.pathname.startsWith('/contact'))}
                 >
                   Contact Us
                 </a>
@@ -285,7 +285,7 @@ const Header = () => {
                 <a
                   href="/#about"
                   onClick={(e) => handleNavClick(e, 'about')}
-                  className={getMobileLinkClass('about', location.pathname === '/about')}
+                  className={getMobileLinkClass('about', location.pathname.startsWith('/about'))}
                 >
                   <FaInfoCircle /> About Us
                 </a>
@@ -329,7 +329,7 @@ const Header = () => {
                 <a
                   href="/#contact"
                   onClick={(e) => handleNavClick(e, 'contact')}
-                  className={getMobileLinkClass('contact', location.pathname === '/contact')}
+                  className={getMobileLinkClass('contact', location.pathname.startsWith('/contact'))}
                 >
                   <FaEnvelope /> Contact Us
                 </a>
