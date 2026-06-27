@@ -90,7 +90,9 @@ const ContactUs = ({ isSinglePage }) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/bikashkrsin22@gmail.com", {
+      //  const response = await fetch("https://formsubmit.co/ajax/bikashkrsin22@gmail.com", {
+      // Using the secure hash provided by FormSubmit to prevent spam and activation loops
+      const response = await fetch("https://formsubmit.co/ajax/12bb51b12c0679f90d7fa573568e7455", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
