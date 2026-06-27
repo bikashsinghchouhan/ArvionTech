@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaCheckCircle, FaTimesCircle, FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPlus, FaMinus, FaStar, FaQuoteLeft, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck, FaMapMarker, FaBookReader, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import TestimonialSection from '../components/TestimonialSection';
@@ -394,14 +395,12 @@ const SchoolManagement = () => {
               </div>
 
               <div className="p-6 bg-slate-50 border-t border-slate-100">
-                <a
-                  href={`https://wa.me/919535764655?text=${encodeURIComponent("Hello Arvion Technologies Team,\n\nI am interested in implementing your School Management ERP System for our institution. Specifically, I would like to explore the " + plan.name + " plan and understand its features in more detail.\n\nCould we schedule a formal demo or consultation to discuss this further?\n\nThank you.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/contact"
                   className="block w-full py-3 rounded-lg font-bold text-white transition-transform hover:scale-[1.02] bg-[#f97316] text-center shadow-md hover:shadow-lg"
                 >
                   Get Started
-                </a>
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -409,7 +408,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* 1.2 APP FEATURES */}
-      <section className="py-20 px-4 w-full mx-auto bg-white overflow-hidden">
+      <section className="py-20 px-4 w-full mx-auto bg-slate-50 overflow-hidden">
         <div className="text-center mb-16">
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
@@ -460,36 +459,38 @@ const SchoolManagement = () => {
 
 
       {/* 4. ADD-ONS / MODULES */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-3xl font-bold text-slate-800 mb-4"
-          >
-            Additional Modules & Add-ons
-          </motion.h2>
-          <motion.p
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-slate-500"
-          >
-            Extend the functionality of your ERP with specialized modules.
-          </motion.p>
-        </div>
+      <section className="py-20 px-4 w-full mx-auto bg-white">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="text-center mb-16">
+            <motion.h2
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
+              className="text-3xl font-bold text-slate-800 mb-4"
+            >
+              Upcoming Modules & Add-ons
+            </motion.h2>
+            <motion.p
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
+              className="text-slate-500"
+            >
+              Extend the functionality of your ERP with specialized modules.
+            </motion.p>
+          </div>
 
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-        >
-          {pageConfig.modules.map((mod, idx) => (
-            <motion.div key={idx} variants={fadeUpVariant} className="bg-white p-6 rounded-xl shadow-md border border-slate-100 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mb-4">
-                {mod.icon}
-              </div>
-              <h4 className="font-bold text-slate-800 mb-2">{mod.title}</h4>
-              <span className="text-indigo-600 font-semibold">{mod.price}</span>
-            </motion.div>
-          ))}
-        </motion.div>
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
+          >
+            {pageConfig.modules.map((mod, idx) => (
+              <motion.div key={idx} variants={fadeUpVariant} className="bg-slate-50 p-6 rounded-xl shadow-md border border-slate-100 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mb-4">
+                  {mod.icon}
+                </div>
+                <h4 className="font-bold text-slate-800 mb-2">{mod.title}</h4>
+                {/* <span className="text-indigo-600 font-semibold">{mod.price}</span> */}
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* 5. TESTIMONIALS */}
@@ -518,17 +519,17 @@ const SchoolManagement = () => {
 
           <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-4 md:gap-6 mb-12"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-6 md:gap-10 mb-12"
           >
-            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl md:rounded-full border border-white/10 w-full md:w-auto justify-center">
+            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaPhoneAlt className="text-orange-400 flex-shrink-0" />
               <span className="text-slate-200 text-sm md:text-base font-medium">{pageConfig.contact.phone}</span>
             </div>
-            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl md:rounded-full border border-white/10 w-full md:w-auto justify-center">
+            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaEnvelope className="text-orange-400 flex-shrink-0" />
               <span className="text-slate-200 text-sm md:text-base font-medium">{pageConfig.contact.email}</span>
             </div>
-            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl md:rounded-full border border-white/10 w-full md:w-auto justify-center">
+            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaMapMarkerAlt className="text-orange-400 flex-shrink-0" />
               <span className="text-slate-200 text-sm md:text-base font-medium text-center md:text-left">{pageConfig.contact.address}</span>
             </div>

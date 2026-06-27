@@ -41,7 +41,7 @@ const services = [
     ]
   },
   {
-    title: 'Statutory Entity Registrations',
+    title: 'Statutory Registrations',
     badge: 'Business Setup',
     category: 'Corporate Services',
     description: 'Establish your corporate footprint with precision. We orchestrate comprehensive statutory compliance, from initial entity incorporation and intellectual property protection to complex tax registrations.',

@@ -253,24 +253,25 @@ const Header = () => {
               className="fixed inset-0 bg-[#0d1b2a]/60 backdrop-blur-md z-40 md:hidden"
               onClick={toggleMenu}
             />
-            <motion.div 
+            <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.35, ease: 'circOut' }}
-              className="fixed top-0 right-0 h-full w-[250px] bg-white shadow-2xl z-50 flex flex-col p-6 md:hidden overflow-y-auto rounded-l-2xl border-l border-slate-100"
+              className="fixed top-0 right-0 h-full w-[250px] bg-white shadow-2xl z-50 flex flex-col px-6 py-2 md:hidden overflow-y-auto rounded-l-2xl border-l border-slate-100"
             >
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+              <div className="flex flex-col mb-8 pb-4 border-b border-slate-100">
+                <div className="flex justify-end w-full mb-4">
+                  <button
+                    onClick={toggleMenu}
+                    className="text-slate-400 hover:text-[#ff7f32] bg-slate-50 hover:bg-orange-50 p-2.5 rounded-full transition-all focus:outline-none cursor-pointer"
+                  >
+                    <FaTimes size={16} />
+                  </button>
+                </div>
                 <div className="flex items-center gap-2">
-                  <img src={logo} alt="Arvion Logo" className="h-6 w-auto" />
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#ff7f32]">Arvion Technologies</span>
                 </div>
-                <button
-                  onClick={toggleMenu}
-                  className="text-slate-400 hover:text-[#ff7f32] bg-slate-50 hover:bg-orange-50 p-2.5 rounded-full transition-all focus:outline-none"
-                >
-                  <FaTimes size={16} />
-                </button>
               </div>
 
               <nav className="flex flex-col gap-3">
@@ -302,7 +303,7 @@ const Header = () => {
 
                   <AnimatePresence>
                     {isMobileSubMenuOpen && (
-                      <motion.div 
+                      <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import aboutImage from '../assets/about-us-team.png';
-import aboutImage from '../assets/arvion_building-1.png';
+import aboutImage from '../assets/about-us-team.png';
+// import aboutImage from '../assets/arvion_building-1.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaLightbulb, FaUsers, FaShieldAlt, FaRocket,
