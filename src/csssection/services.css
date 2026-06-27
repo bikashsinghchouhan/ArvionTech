@@ -1,154 +1,17 @@
+/* Clean minimal styling for Services Section to overlay Tailwind styles */
+
 .services-page {
   width: 100%;
+}
+
+.services-grid-section {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .services-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 40px;
-}
-
-/* Top Grid Section Styling */
-.services-grid-section {
-  padding: 120px 0 80px;
-  text-align: center;
-  background-color: #f8f9fa;
-}
-
-.services-main-title {
-  font-size: 42px;
-  font-weight: 700;
-  color: #0d1b2a;
-}
-
-.services-main-subtitle {
-  font-size: 22px;
-  color: #555;
-  max-width: 600px;
-  margin: 10px auto 50px;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.service-card-summary {
-  background-color: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  text-align: left;
-  border: 1px solid #e9ecef;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card-summary:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-}
-
-.summary-icon {
-  font-size: 42px;
-  color: #ff7f32;
-  margin-bottom: 20px;
-}
-
-.summary-title {
-  font-size: 28px;
-  font-weight: 600;
-  color: #0d1b2a;
-  margin-bottom: 15px;
-}
-
-.summary-text {
-  font-size: 20px;
-  line-height: 1.6;
-  color: #555;
-  flex-grow: 1;
-}
-
-.summary-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #ff7f32;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  align-self: flex-start;
-  font-size: 22px;
-}
-
-.summary-btn:hover {
-  background: #e96e25;
-}
-
-/* Detail Section Styling (No longer used on this page, but kept for consistency) */
-.service-detail-section {
-  padding: 80px 0;
-}
-
-.detail-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-/* --- MOBILE RESPONSIVE STYLES for Services Page --- */
-@media (max-width: 768px) {
-  .services-grid-section {
-    padding: 100px 20px 60px;
-  }
-
-  .services-main-title {
-    font-size: 32px;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr; /* Change to a single column layout */
-    gap: 20px;
-  }
-
-  /* MODIFIED: Changed the card to the "Featured List" style */
-  .service-card-summary {
-    display: grid;
-    grid-template-columns: auto 1fr; /* Icon on left, content on right */
-    grid-template-rows: auto auto auto; /* Added a row for the button */
-    gap: 0 20px; /* No row gap, 20px column gap */
-    align-items: center;
-    padding: 25px;
-  }
-
-  .summary-icon {
-    grid-row: 1 / 4; /* Icon spans all three rows */
-    margin-bottom: 0;
-    font-size: 36px;
-  }
-
-  .summary-title {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    margin-bottom: 5px;
-  }
-
-  .summary-text {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    flex-grow: 0; /* Unset flex-grow */
-  }
-
-  .summary-btn {
-    /* MODIFIED: Made the button visible and styled it for mobile */
-    display: block; 
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-    margin-top: 15px;
-    width: auto; /* Allow button to size to its content */
-  }
 }

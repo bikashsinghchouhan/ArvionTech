@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import '../csssection/Header.css';
-import { FaBars, FaTimes, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import '../csssection/Header.css'; // Retaining import but we don't use legacy classes
+import {
+  FaBars, FaTimes, FaChevronDown, FaChevronUp, FaHome, FaInfoCircle,
+  FaPhone, FaBriefcase, FaEnvelope, FaBuilding, FaStamp, FaCalculator
+} from 'react-icons/fa';
 import ComingSoonModal from './ComingSoonModal';
 
 const Header = () => {
@@ -11,16 +14,39 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileSubMenuOpen, setIsMobileSubMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Scroll listener for height shrinking & single-page scroll highlighting
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 15);
+
+      if (location.pathname === '/') {
+        const sections = ['home', 'about', 'services', 'contact'];
+        let currentActive = 'home';
+        for (const section of sections) {
+          const el = document.getElementById(section);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            // Trigger threshold slightly above middle of the screen
+            if (rect.top <= 120) {
+              currentActive = section;
+            }
+          }
+        }
+        setActiveSection(currentActive);
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [location.pathname]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -29,90 +55,266 @@ const Header = () => {
     }
   };
 
-  const services = [
-    { name: 'School Management', path: '/services/school-management' },
-    { name: 'Payroll Outsourcing', path: '/services/outsourcing' },
-    { name: 'Statutory Registrations', path: '/services/registrations' },
-    { name: 'Accounting', path: '/services/accounting' },
-  ];
-
-  /*
-  const handlePayrollClick = (e) => {
+  // Helper to handle smooth scroll on homepage, or navigation with hash on subpages
+  const handleNavClick = (e, sectionId) => {
     e.preventDefault();
-    setIsModalOpen(true);
-    setIsDropdownOpen(false);
+    if (location.pathname === '/') {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate(`/#${sectionId}`);
+    }
     setIsMenuOpen(false);
   };
-  */
+
+  const services = [
+    {
+      name: 'School Management',
+      path: '/services/school-management',
+      desc: 'Complete ERP platform for schools and colleges.',
+      icon: <FaBuilding />
+    },
+    {
+      name: 'Payroll Outsourcing',
+      path: '/services/outsourcing',
+      desc: 'Global compliant pay & employee systems.',
+      icon: <FaBriefcase />
+    },
+    {
+      name: 'Statutory Registrations',
+      path: '/services/registrations',
+      desc: 'Entity setups, tax registrations, & compliance.',
+      icon: <FaStamp />
+    },
+    {
+      name: 'Accounting Services',
+      path: '/services/accounting',
+      desc: 'Expert bookkeeping, reporting, and consulting.',
+      icon: <FaCalculator />
+    },
+  ];
 
   const toggleMobileSubMenu = (e) => {
     e.preventDefault();
     setIsMobileSubMenuOpen(!isMobileSubMenuOpen);
   };
 
+  // Helper to compute link active classes (consistently white on orange header)
+  const getNavLinkClass = (sectionId, routerActive) => {
+    const isActive = (location.pathname === '/')
+      ? activeSection === sectionId
+      : routerActive;
+
+    return `text-[11px] sm:text-[12px] tracking-wider uppercase font-bold transition-all duration-300 relative py-1 after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center text-white/90 hover:text-white after:bg-white ${
+      isActive ? 'after:scale-x-100 text-white font-bold' : ''
+    }`;
+  };
+
+  // Helper to compute active classes for mobile drawer links
+  const getMobileLinkClass = (sectionId, routerActive) => {
+    const isActive = (location.pathname === '/')
+      ? activeSection === sectionId
+      : routerActive;
+
+    return `px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide transition-all flex items-center gap-3 ${
+      isActive ? 'bg-orange-50 text-[#ff7f32]' : 'text-slate-700 hover:bg-slate-50'
+    }`;
+  };
+
   return (
     <>
-      <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="header-container">
-          <Link to="/" className="logo-link">
-            <img src={logo} alt="Arvion Technologies Logo" className="logo-image" />
-            <span className="brand-name">Arvion Technologies</span>
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#ff7f32] shadow-md ${
+          isScrolled ? 'py-2 sm:py-2.5 shadow-lg' : 'py-3.5 sm:py-4 shadow-md'
+        }`}
+      >
+        {/* Removed vertical padding from inner wrapper to allow header py height changes on scroll */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
+
+          {/* Logo / Brand Link */}
+          <Link 
+            to="/" 
+            onClick={(e) => handleNavClick(e, 'home')}
+            className="flex items-center gap-2 group focus:outline-none flex-shrink-0"
+          >
+            <img
+              src={logo}
+              alt="Arvion Technologies Logo"
+              className="h-7 w-7 sm:h-8 sm:w-8 transition-transform duration-300 group-hover:scale-105 object-contain"
+            />
+            <span className="text-sm sm:text-base tracking-wider uppercase whitespace-nowrap transition-colors duration-300 font-sans text-white font-black">
+              Arvion Technologies
+            </span>
           </Link>
 
-          <div className="menu-toggle" onClick={toggleMenu}>
-            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </div>
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-5">
+            <ul className="flex items-center gap-5 list-none m-0 p-0">
+              <li>
+                <a
+                  href="/#home"
+                  onClick={(e) => handleNavClick(e, 'home')}
+                  className={getNavLinkClass('home', location.pathname === '/' && activeSection === 'home')}
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#about"
+                  onClick={(e) => handleNavClick(e, 'about')}
+                  className={getNavLinkClass('about', location.pathname === '/about')}
+                >
+                  About Us
+                </a>
+              </li>
 
-          <nav className={`main-nav ${isMenuOpen ? 'open' : ''}`}>
-            <ul>
-              <li><NavLink to="/" className="nav-link" onClick={toggleMenu}>Home</NavLink></li>
-              <li><NavLink to="/about" className="nav-link" onClick={toggleMenu}>About Us</NavLink></li>
-              <li 
-                className="nav-item-dropdown"
+              {/* Dropdown Link: Modern single-column layout */}
+              <li
+                className="relative group py-1"
                 onMouseEnter={() => setIsDropdownOpen(true)}
                 onMouseLeave={() => setIsDropdownOpen(false)}
               >
-                <div className="services-link-group">
-                  <NavLink to="/services" className="nav-link" onClick={toggleMenu}>
+                <div className="flex items-center gap-1 cursor-pointer">
+                  <a
+                    href="/#services"
+                    onClick={(e) => handleNavClick(e, 'services')}
+                    className={getNavLinkClass('services', location.pathname === '/services')}
+                  >
                     Services
-                  </NavLink>
-                  <button className="dropdown-toggle-btn" onClick={toggleMobileSubMenu}>
-                    {isMobileSubMenuOpen ? <FaChevronUp className="dropdown-arrow" /> : <FaChevronDown className="dropdown-arrow" />}
-                  </button>
+                  </a>
+                  <span className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''} text-white`}>
+                    <FaChevronDown className="text-[9px]" />
+                  </span>
                 </div>
 
+                {/* Dropdown Popover - Single Vertical Column list */}
                 {isDropdownOpen && (
-                  <div className="dropdown-menu">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[320px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-3 flex flex-col gap-1.5 z-50 animate-fadeIn">
                     {services.map((service) => (
-                      <Link key={service.name} to={service.path} className="dropdown-link" onClick={() => setIsDropdownOpen(false)}>
-                        {service.name}
+                      <Link
+                        key={service.name}
+                        to={service.path}
+                        className="flex gap-3 items-center p-2 rounded-xl hover:bg-orange-50/50 transition-all duration-200 group/item cursor-pointer no-underline"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        <span className="bg-orange-50 text-sm text-[#ff7f32] p-2.5 rounded-lg flex-shrink-0 transition-transform duration-300 group-hover/item:scale-105 group-hover/item:bg-orange-100">
+                          {service.icon}
+                        </span>
+                        <div className="flex flex-col text-left">
+                          <span className="text-xs font-bold text-slate-800 transition-colors group-hover/item:text-[#ff7f32] leading-snug">
+                            {service.name}
+                          </span>
+                          <span className="text-[10px] text-slate-400 mt-0.5 leading-normal font-normal">
+                            {service.desc}
+                          </span>
+                        </div>
                       </Link>
                     ))}
-                    {/* <a href="#" className="dropdown-link coming-soon" onClick={handlePayrollClick}>
-                      Payroll <span className="coming-soon-badge">Coming Soon</span>
-                    </a> */}
                   </div>
                 )}
               </li>
 
-              {isMobileSubMenuOpen && isMenuOpen && (
-                <div className="mobile-submenu">
-                  {services.map((service) => (
-                    <NavLink key={service.name} to={service.path} className="mobile-submenu-link" onClick={toggleMenu}>
-                      {service.name}
-                    </NavLink>
-                  ))}
-                  {/* <a href="#" className="mobile-submenu-link coming-soon" onClick={handlePayrollClick}>
-                    Payroll <span className="coming-soon-badge">Coming Soon</span>
-                  </a> */}
-                </div>
-              )}
-
-              <li><NavLink to="/contact" className="nav-link" onClick={toggleMenu}>Contact Us</NavLink></li>
+              <li>
+                <a
+                  href="/#contact"
+                  onClick={(e) => handleNavClick(e, 'contact')}
+                  className={getNavLinkClass('contact', location.pathname === '/contact')}
+                >
+                  Contact Us
+                </a>
+              </li>
             </ul>
           </nav>
+
+          {/* Mobile Hamburger Menu Toggle */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden focus:outline-none p-2 rounded-lg transition-colors text-white hover:bg-orange-600"
+          >
+            {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+          </button>
         </div>
       </header>
+
+      {/* Mobile Drawer Panel */}
+      {isMenuOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+            onClick={toggleMenu}
+          />
+          <div className="fixed top-0 right-0 h-full w-[280px] bg-white shadow-2xl z-50 flex flex-col p-6 md:hidden overflow-y-auto animate-slideIn">
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+              <span className="text-sm font-bold uppercase tracking-widest text-[#0d1b2a]">Navigation</span>
+              <button
+                onClick={toggleMenu}
+                className="text-slate-700 hover:bg-slate-100 p-2 rounded-lg focus:outline-none"
+              >
+                <FaTimes size={18} />
+              </button>
+            </div>
+
+            <nav className="flex flex-col gap-3">
+              <a
+                href="/#home"
+                onClick={(e) => handleNavClick(e, 'home')}
+                className={getMobileLinkClass('home', location.pathname === '/' && activeSection === 'home')}
+              >
+                <FaHome /> Home
+              </a>
+
+              <a
+                href="/#about"
+                onClick={(e) => handleNavClick(e, 'about')}
+                className={getMobileLinkClass('about', location.pathname === '/about')}
+              >
+                <FaInfoCircle /> About Us
+              </a>
+
+              {/* Mobile Services Sub-menu */}
+              <div>
+                <div
+                  className="px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-slate-700 hover:bg-slate-50 flex items-center justify-between cursor-pointer"
+                  onClick={toggleMobileSubMenu}
+                >
+                  <span className="flex items-center gap-3"><FaBriefcase /> Services</span>
+                  {isMobileSubMenuOpen ? <FaChevronUp className="text-xs" /> : <FaChevronDown className="text-xs" />}
+                </div>
+
+                {isMobileSubMenuOpen && (
+                  <div className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-orange-100 pl-3">
+                    {services.map((service) => (
+                      <NavLink
+                        key={service.name}
+                        to={service.path}
+                        className={({ isActive }) =>
+                          `block px-4 py-2 text-xs font-bold uppercase tracking-wide rounded-md transition-all ${isActive ? 'text-[#ff7f32] bg-orange-50/50' : 'text-slate-600 hover:bg-slate-50'
+                          }`
+                        }
+                        onClick={toggleMenu}
+                      >
+                        {service.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <a
+                href="/#contact"
+                onClick={(e) => handleNavClick(e, 'contact')}
+                className={getMobileLinkClass('contact', location.pathname === '/contact')}
+              >
+                <FaPhone /> Contact Us
+              </a>
+            </nav>
+          </div>
+        </>
+      )}
+
       <ComingSoonModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );

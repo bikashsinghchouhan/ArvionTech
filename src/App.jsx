@@ -20,6 +20,8 @@ import PayrollPage from './pages/PayrollPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 
+import OnePageHome from './pages/OnePageHome';
+
 import './App.css';
 
 function App() {
@@ -29,16 +31,8 @@ function App() {
       <ScrollToTop />
       <main className="main-content">
         <Routes>
-          {/* Homepage Route */}
-          <Route
-            path="/"
-            element={
-              <>
-                <HorizontalScroll />
-                <FeaturesSection />
-              </>
-            }
-          />
+          {/* Homepage Route - Aggregates Home, About, Services, Contact into One Page */}
+          <Route path="/" element={<OnePageHome />} />
           
           {/* Main Page Routes */}
           <Route path="/about" element={<AboutUs />} />

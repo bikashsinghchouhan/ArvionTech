@@ -7,7 +7,7 @@ import '../csssection/ContactUs.css';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
-const ContactUs = () => {
+const ContactUs = ({ isSinglePage }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '', email: '', company: '', phone: '', jobTitle: '',
@@ -17,14 +17,14 @@ const ContactUs = () => {
 
   // State for validation
   const [fieldErrors, setFieldErrors] = useState({});
-  
+
   const [otpSent, setOtpSent] = useState(false);
   const [generatedOtp, setGeneratedOtp] = useState('');
   const [enteredOtp, setEnteredOtp] = useState('');
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState('');
   const [isSending, setIsSending] = useState(false);
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [today, setToday] = useState('');
@@ -46,7 +46,7 @@ const ContactUs = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
-    
+
     // Clear error for this field immediately when user types
     if (fieldErrors[name]) {
       setFieldErrors(prev => ({ ...prev, [name]: false }));
@@ -80,12 +80,12 @@ const ContactUs = () => {
   const handleNext = () => {
     // Double check validation before moving
     if (step === 1 && !isStep1Valid()) {
-        setError("Please fill all fields and verify OTP.");
-        return; 
+      setError("Please fill all fields and verify OTP.");
+      return;
     }
     setStep((prev) => prev + 1);
   };
-  
+
   const handlePrev = () => setStep((prev) => prev - 1);
 
   const handleSendOtp = () => {
@@ -106,7 +106,7 @@ const ContactUs = () => {
       time: new Date().toLocaleString(),
     };
 
-    emailjs.send("service_g06n1sw","template_ybf0pf2", templateParams,"UaWGHyhF3HEaur86A")
+    emailjs.send("service_g06n1sw", "template_ybf0pf2", templateParams, "UaWGHyhF3HEaur86A")
       .then(() => setOtpSent(true))
       .catch(() => setError('Could not send OTP. Please try again.'))
       .finally(() => setIsSending(false));
@@ -130,10 +130,10 @@ const ContactUs = () => {
     setError('');
     setIsSubmitting(true);
     try {
-      await addDoc(collection(db, "submissions"), { 
-        ...formData, 
+      await addDoc(collection(db, "submissions"), {
+        ...formData,
         selectedServiceMain: selectedService, // Include the main service selection
-        submittedAt: serverTimestamp() 
+        submittedAt: serverTimestamp()
       });
       setIsSubmitted(true);
     } catch (err) {
@@ -168,15 +168,15 @@ const ContactUs = () => {
   // ---------------- RENDER SUCCESS VIEW ----------------
   if (isSubmitted) {
     return (
-      <div className="contact-page-v2">
+      <div className={isSinglePage ? "py-16 bg-[#f8f9fa] w-full flex items-center justify-center box-border px-4" : "contact-page-v2"}>
         <motion.div className="success-message" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
           <FaCheckCircle className="success-icon" />
           <h2>Thank You!</h2>
           <p>Your request has been submitted successfully. Our team will get back to you shortly.</p>
-          
+
           {/* Requirement 3: Go to Home Button */}
           <Link to="/" className="home-btn">
-             <FaHome /> Go to Home
+            <FaHome /> Go to Home
           </Link>
         </motion.div>
       </div>
@@ -184,158 +184,191 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="contact-page-v2">
-      <div className="contact-container-v2">
-        <div className="contact-left-panel">
+    <div className={isSinglePage ? "py-12 sm:py-16 bg-[#f8f9fa] w-full flex items-center justify-center box-border px-4" : "tw-contact-page min-h-screen bg-[#f0f2f5] p-6 pt-[100px] sm:p-10 sm:pt-[120px] flex items-center justify-center box-border"}>
+      <div className={`tw-contact-container grid grid-cols-1 min-[992px]:grid-cols-[1fr_1.2fr] max-w-[1200px] w-full bg-white rounded-[16px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden animate-fadeIn ${isSinglePage ? 'min-h-[500px]' : ''}`}>
+        
+        {/* Left Panel */}
+        <div className="tw-contact-left-panel hidden min-[992px]:flex min-[992px]:flex-col min-[992px]:justify-center bg-gradient-to-br from-[#ff8c42] to-[#ff7f32] text-white p-10 lg:p-12">
           <motion.div key={step} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="progress-bar">
+            <div className="tw-progress-bar flex items-center mb-[25px]">
               {[1, 2, 3].map((num) => (
                 <React.Fragment key={num}>
-                  <div className={`progress-step ${step >= num ? 'active' : ''}`}>{num}</div>
-                  {num < 3 && <div className={`progress-line ${step > num ? 'active' : ''}`}></div>}
+                  <div className={`tw-progress-step w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${step >= num ? 'bg-white text-[#ff7f32]' : 'bg-white/30 text-white'}`}>{num}</div>
+                  {num < 3 && <div className={`tw-progress-line flex-grow h-[2px] transition-all duration-300 ${step > num ? 'bg-white' : 'bg-white/30'}`}></div>}
                 </React.Fragment>
               ))}
             </div>
-            <h2>{stepContent[step - 1].title}</h2>
-            <p>{stepContent[step - 1].description}</p>
-            <div className="contact-info-block">
-              <p>Or contact us directly:</p>
-              <div className="contact-info-item">
-                <FaEnvelope />
-                <a href="mailto:cat@arvion.com">cat@arvion.com</a>
+            <h2 className="text-[28px] font-black mb-3 leading-tight text-white">{stepContent[step - 1].title}</h2>
+            <p className="text-[16px] leading-[1.5] opacity-90 text-white">{stepContent[step - 1].description}</p>
+            <div className="tw-contact-info-block mt-8 pt-6 border-t border-white/20 text-white">
+              <p className="font-bold text-sm mb-4 uppercase tracking-widest text-orange-100">Or contact us directly:</p>
+              <div className="tw-contact-info-item flex items-center gap-3 mb-3 text-lg text-white">
+                <FaEnvelope className="text-orange-200" />
+                <a href="mailto:cat@arvion.com" className="text-white no-underline font-semibold hover:opacity-85 transition-opacity">cat@arvion.com</a>
               </div>
-              <div className="contact-info-item">
-                <FaPhone />
-                <a href="tel:+919535764655">+91 9535764655</a>
+              <div className="tw-contact-info-item flex items-center gap-3 mb-3 text-lg text-white">
+                <FaPhone className="text-orange-200" />
+                <a href="tel:+919535764655" className="text-white no-underline font-semibold hover:opacity-85 transition-opacity">+91 9535764655</a>
               </div>
-              <div className="contact-info-item">
-                <FaWhatsapp />
-                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer">+91 9535764655</a>
+              <div className="tw-contact-info-item flex items-center gap-3 mb-3 text-lg text-white">
+                <FaWhatsapp className="text-orange-200" />
+                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white no-underline font-semibold hover:opacity-85 transition-opacity">+91 9535764655</a>
               </div>
             </div>
           </motion.div>
         </div>
-
-        <div className="contact-right-panel">
-          <div className="mobile-form-header">
-            <div className="progress-bar">
+ 
+        {/* Right Panel */}
+        <div className={`tw-contact-right-panel p-0 min-[992px]:p-10 w-full ${isSinglePage ? 'h-full flex flex-col justify-center' : ''}`}>
+          {/* Mobile Header (Hidden on Desktop) */}
+          <div className="tw-mobile-form-header block p-6 bg-[#ff7f32] border-b border-[#e9ecef] min-[992px]:hidden text-white">
+            <div className="tw-progress-bar flex items-center mb-4 max-w-xs mx-auto">
               {[1, 2, 3].map((num) => (
                 <React.Fragment key={num}>
-                  <div className={`progress-step ${step >= num ? 'active' : ''}`}>{num}</div>
-                  {num < 3 && <div className={`progress-line ${step > num ? 'active' : ''}`}></div>}
+                  <div className={`tw-progress-step w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all duration-300 ${step >= num ? 'bg-white text-[#ff7f32]' : 'bg-[#e9ecef] text-[#555]'}`}>{num}</div>
+                  {num < 3 && <div className={`tw-progress-line flex-grow h-[2px] transition-all duration-300 ${step > num ? 'bg-[#ff7f32]' : 'bg-[#e9ecef]'}`}></div>}
                 </React.Fragment>
               ))}
             </div>
-            <h2>{stepContent[step - 1].title}</h2>
+            <h2 className="text-lg font-extrabold text-[#0d1b2a] m-0 text-center uppercase tracking-wider text-white">{stepContent[step - 1].title}</h2>
           </div>
 
           <AnimatePresence mode="wait">
             {step === 1 && (
-              <motion.div key="step1" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="form-step">
-                <h3>Your Contact Information</h3>
+              <motion.div key="step1" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col">
+                <h3 className="text-lg font-extrabold text-[#0d1b2a] mb-5 uppercase tracking-wider">Your Contact Information</h3>
                 
                 {/* Name Input with Error Styling */}
-                <div className="input-group">
-                    <label>Full Name <span className="required-asterisk">*</span></label>
-                    <FaUser />
-                    <input 
-                        type="text" 
-                        name="name" 
-                        className={fieldErrors.name ? 'input-error' : ''}
-                        placeholder="e.g., John Doe" 
-                        value={formData.name} 
-                        onChange={handleChange} 
-                        onBlur={handleBlur}
-                    />
+                <div className="tw-input-group relative mb-4">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Full Name <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                    <div className="relative">
+                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                        <FaUser />
+                      </div>
+                      <input 
+                          type="text" 
+                          name="name" 
+                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.name ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                          placeholder="e.g., John Doe" 
+                          value={formData.name} 
+                          onChange={handleChange} 
+                          onBlur={handleBlur}
+                      />
+                    </div>
                 </div>
                 
                 {/* Service Select with Error Styling */}
-                <div className="input-group">
-                  <label>Service <span className="required-asterisk">*</span></label>
-                  <FaBriefcase />
-                  <select
-                    className={`select-input ${fieldErrors.selectedService ? 'input-error' : ''}`}
-                    value={selectedService}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      setSelectedService(value);
-                      setFieldErrors(prev => ({ ...prev, selectedService: false })); // Clear error
-                      setFormData((prev) => ({ ...prev, company: "" }));
-                    }}
-                    style={{ paddingLeft: "2.2rem" }}
-                  >
-                    <option value="">-- Choose a Service --</option>
-                    <option value="School Management Service">School Management Service</option>
-                    <option value="Payroll Outsourcing">Payroll Outsourcing</option>
-                    <option value="Accounting">Accounting</option>
-                    <option value="Statuary Registration">Statuary Registration</option>
-                  </select>
+                <div className="tw-input-group relative mb-4">
+                  <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Service <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                  <div className="relative">
+                    <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                      <FaBriefcase />
+                    </div>
+                    <select
+                      className={`tw-select-input w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.selectedService ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                      value={selectedService}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setSelectedService(value);
+                        setFieldErrors(prev => ({ ...prev, selectedService: false })); // Clear error
+                        setFormData((prev) => ({ ...prev, company: "" }));
+                      }}
+                    >
+                      <option value="">-- Choose a Service --</option>
+                      <option value="School Management Service">School Management Service</option>
+                      <option value="Payroll Outsourcing">Payroll Outsourcing</option>
+                      <option value="Accounting">Accounting</option>
+                      <option value="Statuary Registration">Statuary Registration</option>
+                    </select>
+                  </div>
                 </div>
 
                 {/* Company Name (Conditional) with Error Styling */}
                 {selectedService && (
-                  <div className="input-group">
-                    <label>
+                  <div className="tw-input-group relative mb-4">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">
                       {selectedService === "School Management Service" ? "School Name" : "Company Name"}{" "}
-                      <span className="required-asterisk">*</span>
+                      <span className="text-[#e53e3e] ml-[1px]">*</span>
                     </label>
-                    <FaBuilding />
-                    <input
-                      type="text"
-                      name="company"
-                      className={fieldErrors.company ? 'input-error' : ''}
-                      placeholder={selectedService === "School Management Service" ? "e.g., Bright Future School" : "e.g., Arvion Technologies"}
-                      value={formData.company}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      style={{ paddingLeft: "2.2rem" }}
-                    />
+                    <div className="relative">
+                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                        <FaBuilding />
+                      </div>
+                      <input
+                        type="text"
+                        name="company"
+                        className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.company ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                        placeholder={selectedService === "School Management Service" ? "e.g., Bright Future School" : "e.g., Arvion Technologies"}
+                        value={formData.company}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    </div>
                   </div>
                 )}
 
-                <div className="input-group">
-                    <label>Job Title <span className="required-asterisk">*</span></label>
-                    <FaBriefcase />
-                    <input 
-                        type="text" 
-                        name="jobTitle" 
-                        className={fieldErrors.jobTitle ? 'input-error' : ''}
-                        placeholder="e.g., HR Manager" 
-                        value={formData.jobTitle} 
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
+                <div className="tw-input-group relative mb-4">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Job Title <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                    <div className="relative">
+                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                        <FaBriefcase />
+                      </div>
+                      <input 
+                          type="text" 
+                          name="jobTitle" 
+                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.jobTitle ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                          placeholder="e.g., HR Manager" 
+                          value={formData.jobTitle} 
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                      />
+                    </div>
                 </div>
                 
-                <div className="input-group">
-                    <label>Phone Number</label>
-                    <FaPhone />
-                    <input type="tel" name="phone" placeholder="(Optional)" value={formData.phone} onChange={handleChange} />
-                </div>
-                
-                <div className="input-group">
-                    <label>Work Email <span className="required-asterisk">*</span></label>
-                    <FaEnvelope />
-                    <input 
-                        type="email" 
-                        name="email" 
-                        className={fieldErrors.email ? 'input-error' : ''}
-                        placeholder="e.g., john.doe@company.com" 
-                        value={formData.email} 
+                <div className="tw-input-group relative mb-4">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number</label>
+                    <div className="relative">
+                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                        <FaPhone />
+                      </div>
+                      <input 
+                        type="tel" 
+                        name="phone" 
+                        placeholder="(Optional)" 
+                        value={formData.phone} 
                         onChange={handleChange} 
-                        onBlur={handleBlur}
-                        disabled={otpSent} 
-                    />
+                        className="w-full pl-10 pr-3 py-2 border border-[#ddd] rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32]"
+                      />
+                    </div>
+                </div>
+                
+                <div className="tw-input-group relative mb-4">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Work Email <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                    <div className="relative">
+                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                        <FaEnvelope />
+                      </div>
+                      <input 
+                          type="email" 
+                          name="email" 
+                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                          placeholder="e.g., john.doe@company.com" 
+                          value={formData.email} 
+                          onChange={handleChange} 
+                          onBlur={handleBlur}
+                          disabled={otpSent} 
+                      />
+                    </div>
                 </div>
 
-                {error && <p className="error-message">{error}</p>}
+                {error && <p className="error-message text-[#ff4d4d] text-xs mt-[-5px] mb-4 font-semibold">{error}</p>}
 
                 {/* Send OTP Button */}
                 {!otpSent && (
                     <button 
-                        className="nav-btn verification-btn" 
+                        className="tw-nav-btn bg-[#333] text-white mb-4 text-xs px-4 py-2 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2 hover:opacity-90 disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 self-start cursor-pointer" 
                         onClick={handleSendOtp} 
-                        disabled={isSending || !formData.email} // Require email to click
+                        disabled={isSending || !formData.email}
                     >
                         <FaPaperPlane /> {isSending ? 'Sending...' : 'Send OTP'}
                     </button>
@@ -344,21 +377,28 @@ const ContactUs = () => {
                 {/* OTP Input and Verify Button */}
                 {otpSent && !isVerified && (
                     <>
-                        <p className="otp-info-message">An OTP has been sent to your email. Please enter it below.</p>
-                        <div className="input-group otp-group">
-                            <input type="text" placeholder="Enter 4-digit OTP" value={enteredOtp} onChange={(e) => setEnteredOtp(e.target.value)} maxLength="4" />
-                            <button className="nav-btn verify-btn" onClick={handleVerifyOtp}>Verify</button>
+                        <p className="otp-info-message text-xs text-[#28a745] mb-2 font-semibold">An OTP has been sent to your email. Please enter it below.</p>
+                        <div className="tw-input-group flex gap-2 mb-4">
+                            <input 
+                              type="text" 
+                              placeholder="Enter 4-digit OTP" 
+                              value={enteredOtp} 
+                              onChange={(e) => setEnteredOtp(e.target.value)} 
+                              maxLength="4" 
+                              className="w-full px-3 py-2 border border-[#ddd] rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32]"
+                            />
+                            <button className="tw-nav-btn bg-[#28a745] text-white px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer" onClick={handleVerifyOtp}>Verify</button>
                         </div>
                     </>
                 )}
                 
-                {isVerified && (<div className="verification-success"><FaCheckCircle /> Your email has been verified successfully!</div>)}
+                {isVerified && (<div className="verification-success text-[#28a745] font-bold text-xs mb-4 flex items-center gap-1.5"><FaCheckCircle /> Your email has been verified successfully!</div>)}
                 
-                {/* Requirement 2: Disabled Next Button */}
+                {/* Next Button */}
                 <button 
-                    className="nav-btn next-btn" 
+                    className="tw-nav-btn px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-[#ff7f32] text-white self-end hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer" 
                     onClick={handleNext} 
-                    disabled={!isStep1Valid()} // Visually and functionally disabled
+                    disabled={!isStep1Valid()}
                 >
                     Next Step <FaArrowRight />
                 </button>
@@ -366,49 +406,49 @@ const ContactUs = () => {
             )}
 
             {step === 2 && (
-              <motion.div key="step2" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="form-step">
-                <h3>Which services are you interested in?</h3>
-                <div className="checkbox-group">
-                  <label><input type="checkbox" value="School Management" onChange={handleCheckboxChange} checked={formData.services.includes('School Management')} /> School Management</label>
-                  <AnimatePresence>{formData.services.includes('School Management') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="sub-options"><h4>Number of Students</h4><select name="studentRange" value={formData.studentRange} onChange={handleChange} className="select-input"><option value="">Select a range</option><option value="1-200">1-200</option><option value="201-500">201-500</option><option value="501-1000">501-1000</option><option value="1000+">1000+</option></select></motion.div>)}</AnimatePresence>
+              <motion.div key="step2" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col">
+                <h3 className="text-lg font-extrabold text-[#0d1b2a] mb-5 uppercase tracking-wider">Which services are you interested in?</h3>
+                <div className="tw-checkbox-group flex flex-col gap-3">
+                  <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="School Management" onChange={handleCheckboxChange} checked={formData.services.includes('School Management')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> School Management</label>
+                  <AnimatePresence>{formData.services.includes('School Management') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Students</h4><select name="studentRange" value={formData.studentRange} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a range</option><option value="1-200">1-200</option><option value="201-500">201-500</option><option value="501-1000">501-1000</option><option value="1000+">1000+</option></select></motion.div>)}</AnimatePresence>
                   
-                  <label><input type="checkbox" value="Outsourcing" onChange={handleCheckboxChange} checked={formData.services.includes('Outsourcing')} />Payroll Outsourcing</label>
-                  <AnimatePresence>{formData.services.includes('Outsourcing') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="sub-options"><h4>Number of Roles to Fill</h4><select name="outsourcingTeamSize" value={formData.outsourcingTeamSize} onChange={handleChange} className="select-input"><option value="">Select a number</option><option value="1-5">1-5 Roles</option><option value="6-15">6-15 Roles</option><option value="15+">15+ Roles</option></select></motion.div>)}</AnimatePresence>
+                  <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Outsourcing" onChange={handleCheckboxChange} checked={formData.services.includes('Outsourcing')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Payroll Outsourcing</label>
+                  <AnimatePresence>{formData.services.includes('Outsourcing') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Roles to Fill</h4><select name="outsourcingTeamSize" value={formData.outsourcingTeamSize} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a number</option><option value="1-5">1-5 Roles</option><option value="6-15">6-15 Roles</option><option value="15+">15+ Roles</option></select></motion.div>)}</AnimatePresence>
                   
-                  <label><input type="checkbox" value="Statutory Registrations" onChange={handleCheckboxChange} checked={formData.services.includes('Statutory Registrations')} /> Statutory Registrations</label>
-                  <AnimatePresence>{formData.services.includes('Statutory Registrations') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="sub-options"><h4>Type of Entity</h4><select name="registrationType" value={formData.registrationType} onChange={handleChange} className="select-input"><option value="">Select a type</option><option value="New Company">New Company</option><option value="Existing Company">Existing Company</option><option value="Sole Proprietorship">Sole Proprietorship</option></select></motion.div>)}</AnimatePresence>
+                  <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Statutory Registrations" onChange={handleCheckboxChange} checked={formData.services.includes('Statutory Registrations')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Statutory Registrations</label>
+                  <AnimatePresence>{formData.services.includes('Statutory Registrations') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Type of Entity</h4><select name="registrationType" value={formData.registrationType} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a type</option><option value="New Company">New Company</option><option value="Existing Company">Existing Company</option><option value="Sole Proprietorship">Sole Proprietorship</option></select></motion.div>)}</AnimatePresence>
                   
-                  <label><input type="checkbox" value="Accounting" onChange={handleCheckboxChange} checked={formData.services.includes('Accounting')} /> Accounting</label>
-                  <AnimatePresence>{formData.services.includes('Accounting') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="sub-options"><h4>Monthly Transaction Volume</h4><select name="accountingVolume" value={formData.accountingVolume} onChange={handleChange} className="select-input"><option value="">Select a volume</option><option value="<100">Under 100</option><option value="101-500">101-500</option><option value="500+">Over 500</option></select></motion.div>)}</AnimatePresence>
+                  <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Accounting" onChange={handleCheckboxChange} checked={formData.services.includes('Accounting')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Accounting Services</label>
+                  <AnimatePresence>{formData.services.includes('Accounting') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Monthly Transaction Volume</h4><select name="accountingVolume" value={formData.accountingVolume} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a volume</option><option value="<100 font-semibold">Under 100</option><option value="101-500">101-500</option><option value="500+">Over 500</option></select></motion.div>)}</AnimatePresence>
                 </div>
                 
-                <div className="form-nav-buttons">
-                    <button className="nav-btn prev-btn" onClick={handlePrev}><FaArrowLeft /> Back</button>
-                    {/* Next button always enabled on Step 2 as fields are optional/checkboxes */}
-                    <button className="nav-btn next-btn" onClick={handleNext}>Next Step <FaArrowRight /></button>
+                <div className="form-nav-buttons flex justify-between mt-8">
+                    <button className="tw-nav-btn bg-[#e9ecef] text-[#333] px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
+                    <button className="tw-nav-btn bg-[#ff7f32] text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] cursor-pointer" onClick={handleNext}>Next Step <FaArrowRight /></button>
                 </div>
               </motion.div>
             )}
 
             {step === 3 && (
-              <motion.div key="step3" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="form-step">
-                <h3>Book a Preferred Date & Time</h3>
-                <p className="step-description">Select a date and a time slot that works best for you. We will confirm the final meeting details via email.</p>
+              <motion.div key="step3" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col">
+                <h3 className="text-lg font-extrabold text-[#0d1b2a] mb-5 uppercase tracking-wider">Book a Preferred Date & Time</h3>
+                <p className="step-description text-xs text-[#555] mb-4 leading-relaxed font-semibold">Select a date and a time slot that works best for you. We will confirm the final meeting details via email.</p>
                 
                 <input 
                     type="date" 
                     name="date" 
                     value={formData.date} 
                     onChange={handleChange} 
-                    className={`date-input ${!formData.date && fieldErrors.date ? 'input-error' : ''}`}
+                    className={`date-input w-full p-2 border rounded-lg text-sm mb-4 font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
                     min={today} 
                 />
                 
-                <div className="timeslot-grid">
+                <div className="timeslot-grid grid grid-cols-3 gap-2 mb-4">
                   {timeSlots.map(slot => (
                       <button 
                         key={slot} 
-                        className={`timeslot-btn ${formData.timeSlot === slot ? 'active' : ''}`} 
+                        type="button"
+                        className={`timeslot-btn p-2 border rounded-md cursor-pointer transition-all duration-300 font-semibold text-xs ${formData.timeSlot === slot ? 'bg-[#ff7f32] text-white border-[#ff7f32]' : 'border-[#ddd] bg-white text-slate-600 hover:border-[#ff7f32] hover:text-[#ff7f32]'}`} 
                         onClick={() => setFormData(prev => ({ ...prev, timeSlot: slot }))}
                       >
                         {slot}
@@ -416,31 +456,34 @@ const ContactUs = () => {
                   ))}
                 </div>
                 
-                <div className="input-group h3-margin-top">
-                    <label>Phone Number <span className="required-asterisk">*</span></label>
-                    <FaPhone />
-                    <input 
-                        type="tel" 
-                        name="finalPhone" 
-                        className={fieldErrors.finalPhone ? 'input-error' : ''}
-                        placeholder="e.g., 9876543210" 
-                        value={formData.finalPhone} 
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
-                    />
+                <div className="tw-input-group relative mb-4 mt-6">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Phone Number <span className="required-asterisk text-[#e53e3e] ml-[2px]">*</span></label>
+                    <div className="relative">
+                      <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 text-xs z-[1]">
+                        <FaPhone />
+                      </div>
+                      <input 
+                          type="tel" 
+                          name="finalPhone" 
+                          className={`w-full pl-10 pr-3 py-2 border rounded-lg text-sm transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${fieldErrors.finalPhone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#ddd]'}`}
+                          placeholder="e.g., 9876543210" 
+                          value={formData.finalPhone} 
+                          onChange={handleChange}
+                          onBlur={handleBlur} 
+                      />
+                    </div>
                 </div>
                 
-                <div className="privacy-policy-group">
-                    <input type="checkbox" id="privacyPolicy" name="privacyPolicy" checked={formData.privacyPolicy} onChange={handleChange} />
-                    <label htmlFor="privacyPolicy">I agree to receive email updates and promotional offers. I understand I can unsubscribe at any time. Please read our <Link to="/privacy-policy" target="_blank">Privacy Policy</Link>.</label>
+                <div className="privacy-policy-group flex items-start gap-2 mt-4 mb-4">
+                    <input type="checkbox" id="privacyPolicy" name="privacyPolicy" checked={formData.privacyPolicy} onChange={handleChange} className="mt-0.5 w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" />
+                    <label htmlFor="privacyPolicy" className="text-[11px] text-slate-500 leading-relaxed font-semibold">I agree to receive email updates and promotional offers. I understand I can unsubscribe at any time. Please read our <Link to="/privacy-policy" target="_blank" className="text-[#ff7f32] font-bold no-underline hover:underline">Privacy Policy</Link>.</label>
                 </div>
                 
-                <div className="form-nav-buttons">
-                    <button className="nav-btn prev-btn" onClick={handlePrev}><FaArrowLeft /> Back</button>
+                <div className="form-nav-buttons flex justify-between mt-8">
+                    <button className="tw-nav-btn bg-[#e9ecef] text-[#333] px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
                     
-                    {/* Requirement 2: Disabled Submit Button */}
                     <button 
-                        className="nav-btn submit-final-btn" 
+                        className="tw-nav-btn bg-[#ff7f32] text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer" 
                         onClick={handleSubmit} 
                         disabled={isSubmitting || !isStep3Valid()}
                     >
@@ -451,19 +494,22 @@ const ContactUs = () => {
             )}
           </AnimatePresence>
 
-          <div className="mobile-form-footer">
-            <p>Or contact us directly:</p>
-            <div className="contact-info-item">
-              <FaEnvelope />
-              <a href="mailto:cat@arvion.com">cat@arvion.com</a>
-            </div>
-            <div className="contact-info-item">
-              <FaPhone />
-              <a href="tel:+919535764655">+91 9535764655</a>
-            </div>
-            <div className="contact-info-item">
-              <FaWhatsapp />
-              <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer">+91 9535764655</a>
+          {/* Mobile Footer (Hidden on Desktop) */}
+          <div className="tw-mobile-form-footer block p-6 bg-[#ff7f32] border-t border-[#e9ecef] text-center lg:hidden">
+            <p className="font-extrabold text-sm mb-4 uppercase tracking-widest text-[#0d1b2a]">Or contact us directly:</p>
+            <div className="flex flex-col gap-3">
+              <div className="tw-contact-info-item flex items-center gap-3 text-lg justify-center text-[#555]">
+                <FaEnvelope className="text-orange-200" />
+                <a href="mailto:cat@arvion.com" className="text-[#f7f5f4] font-semibold hover:opacity-85 transition-opacity no-underline">cat@arvion.com</a>
+              </div>
+              <div className="tw-contact-info-item flex items-center gap-3 text-lg justify-center text-[#555]">
+                <FaPhone className="text-orange-200" />
+                <a href="tel:+919535764655" className="text-[#f7f5f4] font-semibold hover:opacity-85 transition-opacity no-underline">+91 9535764655</a>
+              </div>
+              <div className="tw-contact-info-item flex items-center gap-3 text-lg justify-center text-[#555]">
+                <FaWhatsapp className="text-orange-200" />
+                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-[#f7f5f4] font-semibold hover:opacity-85 transition-opacity no-underline">+91 9535764655</a>
+              </div>
             </div>
           </div>
         </div>
