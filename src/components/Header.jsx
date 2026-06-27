@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
 import '../csssection/Header.css'; // Retaining import but we don't use legacy classes
 import {
@@ -47,6 +48,8 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [location.pathname]);
+
+  // Removed scroll lock as requested by user
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -239,80 +242,102 @@ const Header = () => {
       </header>
 
       {/* Mobile Drawer Panel */}
-      {isMenuOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
-            onClick={toggleMenu}
-          />
-          <div className="fixed top-0 right-0 h-full w-[280px] bg-white shadow-2xl z-50 flex flex-col p-6 md:hidden overflow-y-auto animate-slideIn">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
-              <span className="text-sm font-bold uppercase tracking-widest text-[#0d1b2a]">Navigation</span>
-              <button
-                onClick={toggleMenu}
-                className="text-slate-700 hover:bg-slate-100 p-2 rounded-lg focus:outline-none"
-              >
-                <FaTimes size={18} />
-              </button>
-            </div>
-
-            <nav className="flex flex-col gap-3">
-              <a
-                href="/#home"
-                onClick={(e) => handleNavClick(e, 'home')}
-                className={getMobileLinkClass('home', location.pathname === '/' && activeSection === 'home')}
-              >
-                <FaHome /> Home
-              </a>
-
-              <a
-                href="/#about"
-                onClick={(e) => handleNavClick(e, 'about')}
-                className={getMobileLinkClass('about', location.pathname === '/about')}
-              >
-                <FaInfoCircle /> About Us
-              </a>
-
-              {/* Mobile Services Sub-menu */}
-              <div>
-                <div
-                  className="px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-slate-700 hover:bg-slate-50 flex items-center justify-between cursor-pointer"
-                  onClick={toggleMobileSubMenu}
-                >
-                  <span className="flex items-center gap-3"><FaBriefcase /> Services</span>
-                  {isMobileSubMenuOpen ? <FaChevronUp className="text-xs" /> : <FaChevronDown className="text-xs" />}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-[#0d1b2a]/60 backdrop-blur-md z-40 md:hidden"
+              onClick={toggleMenu}
+            />
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.35, ease: 'circOut' }}
+              className="fixed top-0 right-0 h-full w-[250px] bg-white shadow-2xl z-50 flex flex-col p-6 md:hidden overflow-y-auto rounded-l-2xl border-l border-slate-100"
+            >
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-2">
+                  <img src={logo} alt="Arvion Logo" className="h-6 w-auto" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#ff7f32]">Arvion Technologies</span>
                 </div>
-
-                {isMobileSubMenuOpen && (
-                  <div className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-orange-100 pl-3">
-                    {services.map((service) => (
-                      <NavLink
-                        key={service.name}
-                        to={service.path}
-                        className={({ isActive }) =>
-                          `block px-4 py-2 text-xs font-bold uppercase tracking-wide rounded-md transition-all ${isActive ? 'text-[#ff7f32] bg-orange-50/50' : 'text-slate-600 hover:bg-slate-50'
-                          }`
-                        }
-                        onClick={toggleMenu}
-                      >
-                        {service.name}
-                      </NavLink>
-                    ))}
-                  </div>
-                )}
+                <button
+                  onClick={toggleMenu}
+                  className="text-slate-400 hover:text-[#ff7f32] bg-slate-50 hover:bg-orange-50 p-2.5 rounded-full transition-all focus:outline-none"
+                >
+                  <FaTimes size={16} />
+                </button>
               </div>
 
-              <a
-                href="/#contact"
-                onClick={(e) => handleNavClick(e, 'contact')}
-                className={getMobileLinkClass('contact', location.pathname === '/contact')}
-              >
-                <FaPhone /> Contact Us
-              </a>
-            </nav>
-          </div>
-        </>
-      )}
+              <nav className="flex flex-col gap-3">
+                <a
+                  href="/#home"
+                  onClick={(e) => handleNavClick(e, 'home')}
+                  className={getMobileLinkClass('home', location.pathname === '/' && activeSection === 'home')}
+                >
+                  <FaHome /> Home
+                </a>
+
+                <a
+                  href="/#about"
+                  onClick={(e) => handleNavClick(e, 'about')}
+                  className={getMobileLinkClass('about', location.pathname === '/about')}
+                >
+                  <FaInfoCircle /> About Us
+                </a>
+
+                {/* Mobile Services Sub-menu */}
+                <div>
+                  <div
+                    className="px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-slate-700 hover:bg-slate-50 flex items-center justify-between cursor-pointer"
+                    onClick={toggleMobileSubMenu}
+                  >
+                    <span className="flex items-center gap-3"><FaBriefcase /> Services</span>
+                    {isMobileSubMenuOpen ? <FaChevronUp className="text-xs" /> : <FaChevronDown className="text-xs" />}
+                  </div>
+
+                  <AnimatePresence>
+                    {isMobileSubMenuOpen && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-orange-100 pl-1 overflow-hidden"
+                      >
+                        {services.map((service) => (
+                          <NavLink
+                            key={service.name}
+                            to={service.path}
+                            className={({ isActive }) =>
+                              `block px-3 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-r-md transition-all ${isActive ? 'text-[#ff7f32] bg-orange-50/50' : 'text-slate-600 hover:bg-slate-50'
+                              }`
+                            }
+                            onClick={toggleMenu}
+                          >
+                            {service.name}
+                          </NavLink>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <a
+                  href="/#contact"
+                  onClick={(e) => handleNavClick(e, 'contact')}
+                  className={getMobileLinkClass('contact', location.pathname === '/contact')}
+                >
+                  <FaEnvelope /> Contact Us
+                </a>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       <ComingSoonModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
