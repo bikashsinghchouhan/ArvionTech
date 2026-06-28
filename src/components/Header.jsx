@@ -155,7 +155,7 @@ const Header = () => {
             <img
               src={logo}
               alt="Arvion Technologies Logo"
-              className="h-7 w-7 sm:h-8 sm:w-8 transition-transform duration-300 group-hover:scale-105 object-contain"
+              className="h-7 w-7 sm:h-8 sm:w-8 transition-transform duration-300 group-hover:scale-105 object-contain bg-white p-1 rounded-md shadow-sm"
             />
             <span className="text-sm sm:text-base tracking-wider uppercase whitespace-nowrap transition-colors duration-300 font-sans text-white font-black">
               Arvion Technologies

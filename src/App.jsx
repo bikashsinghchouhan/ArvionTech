@@ -7,6 +7,7 @@ import HorizontalScroll from "./components/HorizontalScroll";
 import FeaturesSection from './components/FeaturesSection';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Chatbot from './components/Chatbot';
 
 // Import All Page Components from the correct 'pages' folder
 import AboutUs from './pages/AboutUs';
@@ -53,6 +54,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <Chatbot />
     </div>
   );
 }
