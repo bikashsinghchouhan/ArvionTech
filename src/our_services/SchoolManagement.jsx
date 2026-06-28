@@ -193,7 +193,7 @@ const SchoolManagement = () => {
             <motion.div
               key={index}
               variants={fadeUpVariant}
-              className={`relative bg-white rounded-2xl transition-all duration-300 overflow-hidden border-2 flex flex-col h-full ${plan.popular ? 'border-orange-500 shadow-xl ring-4 ring-orange-500/10' : 'border-slate-100 shadow-md hover:shadow-xl hover:border-orange-500'}`}
+              className={`relative bg-white rounded-2xl transition-all duration-300 overflow-hidden border-2 flex flex-col h-full ${plan.popular ? 'border-orange-500 hover:shadow-2xl' : 'border-slate-100 shadow-md hover:shadow-2xl hover:border-orange-500'}`}
             >
               {plan.popular && (
                 <div className="absolute top-0 right-0 overflow-hidden w-32 h-32 pointer-events-none rounded-tr-2xl z-10">
@@ -238,12 +238,12 @@ const SchoolManagement = () => {
       </section>
 
       {/* 1.2 APP FEATURES */}
-      <section className="py-20 px-4 w-full mx-auto bg-slate-50 overflow-hidden">
+      <section className="py-10 px-4 w-full mx-auto bg-slate-50 overflow-hidden">
         <div className="text-center mb-16">
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
             // className="text-3xl md:text-5xl font-extrabold text-slate-800 tracking-tight"
-            className="text-2xl md:text-5xl font-bold text-slate-800 mb-6"
+            className="text-2xl md:text-4xl font-bold text-slate-800 mb-6"
           >
 
             School Software Features
