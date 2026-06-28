@@ -1,7 +1,7 @@
 import React from 'react';
-import { 
-  FaCalendarAlt, FaCheckCircle, FaChartBar, FaGlobe, FaPuzzlePiece, FaClock, 
-  FaStamp, FaFileSignature, FaBuilding, FaBook, FaChartLine, FaCalculator 
+import {
+  FaCalendarAlt, FaCheckCircle, FaChartBar, FaGlobe, FaPuzzlePiece, FaClock,
+  FaStamp, FaFileSignature, FaBuilding, FaBook, FaChartLine, FaCalculator
 } from 'react-icons/fa';
 
 import schoolImg from '../assets/service-school.png';
@@ -42,7 +42,7 @@ export const services = [
     category: 'Corporate Services',
     description: 'Establish your corporate footprint with precision. We orchestrate comprehensive statutory compliance, from initial entity incorporation and intellectual property protection to complex tax registrations.',
     image: registrationsImg,
-    path: '/services/registrations',
+    path: '/services/statutory-registrations',
     stats: [
       { icon: <FaStamp />, text: 'Business Name Approval' },
       { icon: <FaFileSignature />, text: 'GST & Tax ID Application' },

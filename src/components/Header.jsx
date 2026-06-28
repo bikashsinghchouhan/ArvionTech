@@ -100,7 +100,7 @@ const Header = () => {
     },
     {
       name: 'Statutory Registrations',
-      path: '/services/registrations',
+      path: '/services/statutory-registrations',
       desc: 'Entity setups, tax registrations, & compliance.',
       icon: <FaStamp />
     },

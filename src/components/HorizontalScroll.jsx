@@ -95,12 +95,6 @@ const HorizontalScroll = () => {
   return (
     <section
       className="relative w-full overflow-hidden"
-      onMouseEnter={() => {
-        if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
-          setIsHovering(true);
-        }
-      }}
-      onMouseLeave={() => setIsHovering(false)}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -125,7 +119,15 @@ const HorizontalScroll = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/40 z-0" />
 
               {/* 🔹 Centered Foreground Content Panel */}
-              <div className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-12 box-border text-white flex flex-col items-center text-center pt-24 pb-16 sm:py-24 lg:py-28">
+              <div 
+                className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-12 box-border text-white flex flex-col items-center text-center pt-24 pb-16 sm:py-24 lg:py-28"
+                onMouseEnter={() => {
+                  if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+                    setIsHovering(true);
+                  }
+                }}
+                onMouseLeave={() => setIsHovering(false)}
+              >
 
                 {/* Badge (Pill Styled) */}
                 <span className="inline-flex items-center px-3 py-0.5 rounded-full text-[9px] font-bold bg-[#ff7f32]/30 border border-[#ff7f32]/45 text-orange-200 uppercase tracking-widest mb-3 sm:mb-4 backdrop-blur-md">
@@ -167,7 +169,7 @@ const HorizontalScroll = () => {
                 {/* Double CTA Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
                   <button
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#ff8c42] to-[#ff7f32] hover:opacity-95 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-base cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#ea580c] to-[#c2410c] hover:opacity-95 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-base cursor-pointer"
                     onClick={() => navigate('/contact')}
                   >
                     Contact Us

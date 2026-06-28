@@ -42,10 +42,10 @@ const Footer = () => {
   // ];
 
   const ourProducts = [
-    { name: "School Managenement Software", path: "services/school-management" },
-    { name: "Payroll ", path: "#" },
-    { name: "Statutory Registration", path: "#" },
-    { name: "Accounting Services", path: "#" },
+    { name: "School Management Software", path: "/services/school-management" },
+    { name: "Payroll Outsourcing", path: "/services/outsourcing" },
+    { name: "Statutory Registration", path: "/services/statutory-registrations" },
+    { name: "Accounting Services", path: "/services/accounting" },
     { name: "IT Services", path: "#" }
   ];
 

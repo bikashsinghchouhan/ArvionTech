@@ -28,7 +28,7 @@ const servicesData = [
         title: 'Statutory Registrations',
         summary: 'Navigate legal frameworks with ease. We streamline entity setup, tax registration filings, and trademark registrations.',
         features: ['Legal company incorporation', 'Tax registrations & GST setup', 'Import Export IEC processing', 'Intellectual Property protection'],
-        path: '/services/registrations',
+        path: '/services/statutory-registrations',
     },
     {
         id: 'accounting',

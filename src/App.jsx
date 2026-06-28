@@ -33,7 +33,7 @@ function App() {
         <Routes>
           {/* Homepage Route - Aggregates Home, About, Services, Contact into One Page */}
           <Route path="/" element={<OnePageHome />} />
-          
+
           {/* Main Page Routes */}
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs />} />
@@ -43,10 +43,10 @@ function App() {
           {/* Dedicated Service Page Routes */}
           <Route path="/services/school-management" element={<SchoolManagement />} />
           <Route path="/services/outsourcing" element={<OutsourcingPage />} />
-          <Route path="/services/registrations" element={<RegistrationsPage />} />
+          <Route path="/services/statutory-registrations" element={<RegistrationsPage />} />
           <Route path="/services/accounting" element={<AccountingPage />} />
           <Route path="/services/payroll" element={<PayrollPage />} />
-          
+
           {/* Legal Page Routes */}
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
