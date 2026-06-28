@@ -53,17 +53,37 @@ const Chatbot = () => {
       {/* Floating Action Button */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(true)}
-            className="w-14 h-14 cursor-pointer rounded-full bg-[#ff7f32] text-white flex items-center justify-center shadow-2xl shadow-orange-500/40 hover:bg-[#ff8c42] transition-colors"
-          >
-            <FaComments size={24} />
-          </motion.button>
+          <div className="relative">
+            {/* Water Wave / Ripple Effects */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: [0, 0.25, 0], scale: [0.9, 1.2, 1.5] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
+              className="absolute inset-0 rounded-full bg-[#ff7f32] z-0"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: [0, 0.25, 0], scale: [0.9, 1.2, 1.5] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 1.25 }}
+              className="absolute inset-0 rounded-full bg-[#ff7f32] z-0"
+            />
+
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{
+                scale: { type: "spring", stiffness: 260, damping: 20 },
+                opacity: { duration: 0.3 }
+              }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsOpen(true)}
+              className="relative z-10 w-14 h-14 cursor-pointer rounded-full bg-gradient-to-tr from-[#ff7f32] to-[#ff9b5a] text-white flex items-center justify-center shadow-[0_8px_30px_rgb(255,127,50,0.4)] hover:shadow-[0_8px_30px_rgb(255,127,50,0.6)] transition-shadow"
+            >
+              <FaComments size={24} />
+            </motion.button>
+          </div>
         )}
       </AnimatePresence>
 

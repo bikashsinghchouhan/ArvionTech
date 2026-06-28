@@ -327,7 +327,7 @@ const SchoolManagement = () => {
       <TestimonialSection />
 
       {/* 6. CTA / CONTACT SECTION */}
-      <section className="relative py-24 flex items-center justify-center overflow-hidden mt-10">
+      <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
         <div className="absolute inset-0 z-0">
           <img src={pageConfig.hero.image} alt="Tech Background" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>
@@ -336,20 +336,20 @@ const SchoolManagement = () => {
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-3xl md:text-5xl font-bold text-white mb-6"
+            className="text-2xl md:text-5xl font-bold text-white mb-4 md:mb-6"
           >
             {pageConfig.contact.title}
           </motion.h2>
           <motion.p
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-xl text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             {pageConfig.contact.subtitle}
           </motion.p>
 
           <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-6 md:gap-10 mb-12"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-4 md:gap-10 mb-8 md:mb-12"
           >
             <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaPhoneAlt className="text-orange-400 flex-shrink-0" />
@@ -368,7 +368,7 @@ const SchoolManagement = () => {
           <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <a
               href="/contact"
-              className="inline-block px-10 py-4 bg-orange-500 text-white text-lg rounded-full font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all hover:-translate-y-1"
+              className="inline-block px-8 py-3 md:px-10 md:py-4 bg-orange-500 text-white text-base md:text-lg rounded-full font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all hover:-translate-y-1"
             >
               Contact Our Experts
             </a>

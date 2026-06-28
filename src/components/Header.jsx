@@ -155,7 +155,7 @@ const Header = () => {
             <img
               src={logo}
               alt="Arvion Technologies Logo"
-              className="h-7 w-7 sm:h-8 sm:w-8 transition-transform duration-300 group-hover:scale-105 object-contain bg-white p-1 rounded-md shadow-sm"
+              className="h-8 w-8 sm:h-10 sm:w-10 transition-transform duration-300 group-hover:scale-105 object-contain bg-white p-1 rounded-md shadow-sm"
             />
             <span className="text-sm sm:text-base tracking-wider uppercase whitespace-nowrap transition-colors duration-300 font-sans text-white font-black">
               Arvion Technologies
@@ -283,7 +283,7 @@ const Header = () => {
                   </button>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#ff7f32]">Arvion Technologies</span>
+                  <span className="text-[13px] font-black uppercase tracking-widest text-[#ff7f32]">Arvion Technologies</span>
                 </div>
               </div>
 

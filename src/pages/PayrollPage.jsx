@@ -92,7 +92,7 @@ const PayrollPage = () => {
         <TestimonialSection />
 
         {/* 4. CTA / CONTACT SECTION */}
-        <section className="relative py-24 flex items-center justify-center overflow-hidden mt-10">
+        <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
           <div className="absolute inset-0 z-0">
             <img src={heroImg} alt="Tech Background" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>
@@ -101,13 +101,13 @@ const PayrollPage = () => {
           <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
             <motion.h2 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-              className="text-3xl md:text-5xl font-bold text-white mb-6 uppercase tracking-tight"
+              className="text-2xl md:text-5xl font-bold text-white mb-4 md:mb-6 uppercase tracking-tight"
             >
               Want to be the first to know?
             </motion.h2>
             <motion.p 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-              className="text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="text-base md:text-xl text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
             >
               Join our waitlist, and we'll notify you as soon as Payroll (Paybooks) is live.
             </motion.p>
@@ -115,7 +115,7 @@ const PayrollPage = () => {
             <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center gap-3 px-10 py-4 bg-orange-500 text-white text-lg rounded-full font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all hover:-translate-y-1"
+                className="inline-flex items-center gap-3 px-8 py-3 md:px-10 md:py-4 bg-orange-500 text-white text-base md:text-lg rounded-full font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all hover:-translate-y-1"
               >
                 Join the Waitlist <FaArrowRight />
               </button>

@@ -490,7 +490,7 @@ const ContactUs = ({ isSinglePage }) => {
                 <FaEnvelope />
               </a>
               <a href="tel:+919535764655" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Call Us">
-                <FaPhone />
+                <FaSquarePhoneFlip />
               </a>
               <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orange-200 transition-colors text-2xl" title="WhatsApp Us">
                 <FaWhatsapp />

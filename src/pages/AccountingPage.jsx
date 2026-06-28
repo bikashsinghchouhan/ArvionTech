@@ -155,7 +155,7 @@ const AccountingPage = () => {
       <TestimonialSection />
 
       {/* 6. CTA / CONTACT SECTION */}
-      <section className="relative py-24 flex items-center justify-center overflow-hidden mt-10">
+      <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
         <div className="absolute inset-0 z-0">
           <img src={heroImg} alt="Tech Background" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>
@@ -164,30 +164,30 @@ const AccountingPage = () => {
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           <motion.h2 
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-3xl md:text-5xl font-bold text-white mb-6 uppercase tracking-tight"
+            className="text-2xl md:text-5xl font-bold text-white mb-4 md:mb-6 uppercase tracking-tight"
           >
             Ready to Take Control of Your Finances?
           </motion.h2>
           <motion.p 
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-xl text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             Let's discuss how our accounting services can provide the clarity your business needs.
           </motion.p>
           
           <motion.div 
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-4 md:gap-6 mb-12"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-4 md:gap-6 mb-8 md:mb-12"
           >
-            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl md:rounded-full border border-white/10 w-full md:w-auto justify-center">
+            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaPhoneAlt className="text-orange-400 flex-shrink-0" />
               <span className="text-slate-200 text-sm md:text-base font-medium">+91 9535764655</span>
             </div>
-            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl md:rounded-full border border-white/10 w-full md:w-auto justify-center">
+            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaEnvelope className="text-orange-400 flex-shrink-0" />
               <span className="text-slate-200 text-sm md:text-base font-medium">info@arviontechnologies.com</span>
             </div>
-            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl md:rounded-full border border-white/10 w-full md:w-auto justify-center">
+            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaMapMarkerAlt className="text-orange-400 flex-shrink-0" />
               <span className="text-slate-200 text-sm md:text-base font-medium text-center md:text-left">utrahalli, bansankari, bangalore</span>
             </div>
@@ -196,7 +196,7 @@ const AccountingPage = () => {
           <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <Link 
               to="/contact-us" 
-              className="inline-block px-10 py-4 bg-orange-500 text-white text-lg rounded-full font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all hover:-translate-y-1"
+              className="inline-block px-8 py-3 md:px-10 md:py-4 bg-orange-500 text-white text-base md:text-lg rounded-full font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all hover:-translate-y-1"
             >
               Schedule a Consultation
             </Link>
