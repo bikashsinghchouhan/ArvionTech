@@ -29,7 +29,7 @@ const OnePageHome = () => {
   return (
     <div className="w-full flex flex-col">
       {/* Home Section (Slider + Stats/Features) */}
-      <div id="home" className="scroll-mt-16 w-full">
+      <div id="home" className="mt-2 sm:mt-4 scroll-mt-16 w-full">
         <HorizontalScroll />
         <FeaturesSection />
       </div>

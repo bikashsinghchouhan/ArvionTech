@@ -147,39 +147,43 @@ const About = ({ isSinglePage }) => {
               viewport={{ once: true, margin: "-50px" }}
             >
               {/* Value 1 */}
-              <motion.div className="bg-white hover:bg-slate-50/10 p-6 rounded-2xl border border-slate-100 hover:border-orange-200/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start cursor-default group" variants={itemVariants}>
-                <span className="p-3.5 rounded-xl bg-orange-50 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-300 mb-5 shadow-sm">
+              <motion.div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-lg hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-500 flex flex-col items-start cursor-default group relative overflow-hidden" variants={itemVariants}>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-50 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500 opacity-50" />
+                <span className="p-3 sm:p-3.5 rounded-xl bg-orange-100/60 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-500 mb-5 shadow-sm">
                   <FaLightbulb className="text-xl" />
                 </span>
-                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-2 font-sans">Innovation</h3>
-                <p className="text-[11px] sm:text-xs text-slate-400 font-semibold leading-relaxed">Continuous improvement and automated operations through cutting-edge cloud software solutions.</p>
+                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 uppercase tracking-wider mb-3 font-sans group-hover:text-[#ff7f32] transition-colors duration-300">Innovation</h3>
+                <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">Continuous improvement and automated operations through cutting-edge cloud software solutions.</p>
               </motion.div>
 
               {/* Value 2 */}
-              <motion.div className="bg-white hover:bg-slate-50/10 p-6 rounded-2xl border border-slate-100 hover:border-orange-200/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start cursor-default group" variants={itemVariants}>
-                <span className="p-3.5 rounded-xl bg-orange-50 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-300 mb-5 shadow-sm">
+              <motion.div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-lg hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-500 flex flex-col items-start cursor-default group relative overflow-hidden" variants={itemVariants}>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-50 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500 opacity-50" />
+                <span className="p-3 sm:p-3.5 rounded-xl bg-orange-100/60 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-500 mb-5 shadow-sm">
                   <FaUsers className="text-xl" />
                 </span>
-                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-2 font-sans">Collaboration</h3>
-                <p className="text-[11px] sm:text-xs text-slate-400 font-semibold leading-relaxed">We work hand-in-hand with administrative, HR, and finance leaders to craft bespoke system designs.</p>
+                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 uppercase tracking-wider mb-3 font-sans group-hover:text-[#ff7f32] transition-colors duration-300">Collaboration</h3>
+                <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">We work hand-in-hand with administrative, HR, and finance leaders to craft bespoke system designs.</p>
               </motion.div>
 
               {/* Value 3 */}
-              <motion.div className="bg-white hover:bg-slate-50/10 p-6 rounded-2xl border border-slate-100 hover:border-orange-200/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start cursor-default group" variants={itemVariants}>
-                <span className="p-3.5 rounded-xl bg-orange-50 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-300 mb-5 shadow-sm">
+              <motion.div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-lg hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-500 flex flex-col items-start cursor-default group relative overflow-hidden" variants={itemVariants}>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-50 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500 opacity-50" />
+                <span className="p-3 sm:p-3.5 rounded-xl bg-orange-100/60 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-500 mb-5 shadow-sm">
                   <FaShieldAlt className="text-xl" />
                 </span>
-                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-2 font-sans">Reliability</h3>
-                <p className="text-[11px] sm:text-xs text-slate-400 font-semibold leading-relaxed">Consistently delivering tax-compliant, secure records that guarantee clean and audit-ready bookkeeping.</p>
+                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 uppercase tracking-wider mb-3 font-sans group-hover:text-[#ff7f32] transition-colors duration-300">Reliability</h3>
+                <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">Consistently delivering tax-compliant, secure records that guarantee clean and audit-ready bookkeeping.</p>
               </motion.div>
 
               {/* Value 4 */}
-              <motion.div className="bg-white hover:bg-slate-50/10 p-6 rounded-2xl border border-slate-100 hover:border-orange-200/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start cursor-default group" variants={itemVariants}>
-                <span className="p-3.5 rounded-xl bg-orange-50 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-300 mb-5 shadow-sm">
+              <motion.div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-lg hover:shadow-2xl hover:border-orange-400 hover:-translate-y-2 transition-all duration-500 flex flex-col items-start cursor-default group relative overflow-hidden" variants={itemVariants}>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-50 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500 opacity-50" />
+                <span className="p-3 sm:p-3.5 rounded-xl bg-orange-100/60 text-[#ff7f32] group-hover:bg-[#ff7f32] group-hover:text-white transition-colors duration-500 mb-5 shadow-sm">
                   <FaRocket className="text-xl" />
                 </span>
-                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-2 font-sans">Impact</h3>
-                <p className="text-[11px] sm:text-xs text-slate-400 font-semibold leading-relaxed">Empowering school and office operations with digital billing structures and automated tax calculations.</p>
+                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 uppercase tracking-wider mb-3 font-sans group-hover:text-[#ff7f32] transition-colors duration-300">Impact</h3>
+                <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">Empowering school and office operations with digital billing structures and automated tax calculations.</p>
               </motion.div>
             </motion.div>
 

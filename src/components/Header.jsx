@@ -140,7 +140,7 @@ const Header = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#ff7f32] shadow-md ${isScrolled ? 'py-2 sm:py-2.5 shadow-lg' : 'py-3.5 sm:py-4 shadow-md'
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#ff7f32] py-2 sm:py-3 ${isScrolled ? 'shadow-lg' : 'shadow-md'
           }`}
       >
         {/* Removed vertical padding from inner wrapper to allow header py height changes on scroll */}
