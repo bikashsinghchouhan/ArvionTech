@@ -22,12 +22,15 @@ export const pageConfig = {
       popular: false,
       features: {
         included: [
-          "Master setup", "Student management", "Class section", "Class time table",
-          "Attendance management", "Admission management"
+          "Master setup", "Student management", "Teacher Management", 
+          "Staff Management", "Time Table setup", "Attendance management", 
+          "customizable dashboard"
         ],
         excluded: [
-          "Fee management", "Exam management", "Leave management", "Holiday Management",
-          "Notification", "Library management", "Reports", "Customizable dashboard", "Face based attendance"
+          "Examination Management", "Holiday Management", "fee management", 
+          "Promotion Desk", "Notification", "Role based Access control", 
+          "Face based Attendance", "Library management", "Exit Management", 
+          "Operational Logs", "Reports generation"
         ]
       }
     },
@@ -40,12 +43,16 @@ export const pageConfig = {
       popular: false,
       features: {
         included: [
-          "Master setup", "Student management", "Class section", "Class time table",
-          "Attendance management", "Admission management", "Fee management", "Exam management",
-          "Leave management", "Holiday Management", "Notification"
+          "Master setup", "Student management", "Teacher Management", 
+          "Staff Management", "Time Table setup", "Attendance management", 
+          "customizable dashboard", "Examination Management", 
+          "Holiday Management", "fee management", "Promotion Desk", 
+          "Notification"
         ],
         excluded: [
-          "Library management", "Reports", "Customizable dashboard", "Face based attendance"
+          "Role based Access control", "Face based Attendance", 
+          "Library management", "Exit Management", "Operational Logs", 
+          "Reports generation"
         ]
       }
     },
@@ -58,10 +65,13 @@ export const pageConfig = {
       popular: true,
       features: {
         included: [
-          "Master setup", "Student management", "Class section", "Class time table",
-          "Attendance management", "Admission management", "Fee management", "Exam management",
-          "Leave management", "Holiday Management", "Notification", "Library management",
-          "Reports", "Customizable dashboard", "Face based attendance"
+          "Master setup", "Student management", "Teacher Management", 
+          "Staff Management", "Time Table setup", "Attendance management", 
+          "customizable dashboard", "Examination Management", 
+          "Holiday Management", "fee management", "Promotion Desk", 
+          "Notification", "Role based Access control", "Face based Attendance", 
+          "Library management", "Exit Management", "Operational Logs", 
+          "Reports generation"
         ],
         excluded: []
       }
@@ -113,9 +123,9 @@ export const pageConfig = {
   contact: {
     title: "Contact Arvion Technologies",
     subtitle: "Get in touch with our ERP experts to schedule a free demo and consultation.",
-    address: "utrahalli, bansankari, bangalore-560076",
+    address: "Arvion Technologies Pvt Ltd. IBLUE Entertainment, #62/1, New No 7, Ground Floor, 1st Cross, 2nd Main, Ganganagar, Bangalore-560032",
     phone: "+91 9535764655",
-    email: "info@arviontechnologies.com"
+    email: "sales@arviontechnologies.com"
   },
 
 

@@ -13,37 +13,65 @@ const HorizontalScroll = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isHovering, setIsHovering] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Swipe support states
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
   const autoScrollInterval = useRef(null);
+  const pauseTimeoutRef = useRef(null);
   const navigate = useNavigate();
+
+  // Preload images for faster loading and caching
+  useEffect(() => {
+    services.forEach((service) => {
+      if (service.image) {
+        const img = new Image();
+        img.src = service.image;
+      }
+    });
+  }, []);
 
   // Clone first & last for infinite scroll
   const extendedServices = [services[services.length - 1], ...services, services[0]];
 
+  const pauseAutoScroll = () => {
+    setIsPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 30000); // 30 seconds
+  };
+
+  useEffect(() => {
+    return () => {
+      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    };
+  }, []);
+
   const handleNext = () => {
     if (!isTransitioning) return;
-    setCurrentIndex((prevIndex) => prevIndex + 1);
+    pauseAutoScroll();
+    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, extendedServices.length - 1));
   };
 
   const handlePrev = () => {
     if (!isTransitioning) return;
-    setCurrentIndex((prevIndex) => prevIndex - 1);
+    pauseAutoScroll();
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
-  // ✅ Auto-scroll runs when not hovering
+  // ✅ Auto-scroll runs when not hovering and not paused
   useEffect(() => {
     let intervalId;
-    if (!isHovering) {
+    if (!isHovering && !isPaused) {
       intervalId = setInterval(() => {
         setCurrentIndex((prevIndex) => prevIndex + 1);
       }, 3500);
     }
     return () => clearInterval(intervalId);
-  }, [isHovering]);
+  }, [isHovering, isPaused]);
 
   // Infinite loop reset - matches 600ms transition duration to prevent visual clipping
   useEffect(() => {
@@ -70,6 +98,7 @@ const HorizontalScroll = () => {
   const minSwipeDistance = 50;
 
   const onTouchStart = (e) => {
+    pauseAutoScroll();
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -213,7 +242,10 @@ const HorizontalScroll = () => {
             <button
               key={idx}
               className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${idx === activeIndex ? 'w-8 bg-[#ff7f32]' : 'w-2.5 bg-white/40 hover:bg-white/80'}`}
-              onClick={() => setCurrentIndex(idx + 1)}
+              onClick={() => {
+                pauseAutoScroll();
+                setCurrentIndex(idx + 1);
+              }}
             />
           );
         })}

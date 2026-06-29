@@ -9,11 +9,11 @@ const Footer = () => {
 
   const contactInfo = {
     address: [
-      "Utrahalli, Bansankari, Banglore, 560078"
+      "Arvion Technologies Pvt Ltd. IBLUE Entertainment, #62/1, New No 7, Ground Floor, 1st Cross, 2nd Main, Ganganagar, Bangalore-560032"
     ],
     phone: "+91 9535764655",
     whatsapp: "+91 9535764655",
-    email: "info@arviontechnologies.com",
+    email: "sales@arviontechnologies.com",
     website: "www.arviontechnologies.com"
   };
 
@@ -113,7 +113,7 @@ const Footer = () => {
             ))}
           </p>
 
-          <div className="flex flex-col space-y-4 text-[13px] text-slate-400">
+          <div className="flex flex-col space-y-2 text-[13px] text-slate-400">
             <div className="flex items-center gap-3">
               <FaPhoneAlt className="text-slate-300" size={12} />
               <span>{contactInfo.phone}</span>

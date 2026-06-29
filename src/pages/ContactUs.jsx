@@ -224,16 +224,18 @@ const ContactUs = ({ isSinglePage }) => {
             <p className="text-[16px] leading-[1.5] opacity-90 text-white">{stepContent[step - 1].description}</p>
             <div className="tw-contact-info-block mt-8 pt-6 border-t border-white/20 text-white">
               <p className="font-bold text-sm mb-4 uppercase tracking-widest text-orange-100">Or contact us directly:</p>
-              <div className="flex gap-5 items-center">
-                <a href="mailto:cat@arvion.com" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Email Us">
-                  <FaEnvelope />
+              <div className="flex flex-col gap-4">
+                <a href="mailto:sales@arviontechnologies.com" className="text-white hover:text-orange-200 transition-colors flex items-center gap-3 text-base" title="Email Us">
+                  <FaEnvelope className="text-xl flex-shrink-0" />
+                  <span>sales@arviontechnologies.com</span>
                 </a>
-                <a href="tel:+919535764655" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Call Us">
-                  {/* <FaPhone /> */}
-                  <FaSquarePhoneFlip />
+                <a href="tel:+919535764655" className="text-white hover:text-orange-200 transition-colors flex items-center gap-3 text-base" title="Call Us">
+                  <FaSquarePhoneFlip className="text-xl flex-shrink-0" />
+                  <span>+91 9535764655</span>
                 </a>
-                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orange-200 transition-colors text-2xl" title="WhatsApp Us">
-                  <FaWhatsapp />
+                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orange-200 transition-colors flex items-center gap-3 text-base" title="WhatsApp Us">
+                  <FaWhatsapp className="text-xl flex-shrink-0" />
+                  <span>+91 9535764655</span>
                 </a>
               </div>
             </div>
@@ -485,15 +487,18 @@ const ContactUs = ({ isSinglePage }) => {
           {/* Mobile Footer (Hidden on Desktop) */}
           <div className="tw-mobile-form-footer block p-6 bg-[#ff7f32] border-t border-[#e9ecef] text-center lg:hidden">
             <p className="font-extrabold text-sm mb-4 uppercase tracking-widest text-white">Or contact us directly:</p>
-            <div className="flex justify-center gap-6">
-              <a href="mailto:cat@arvion.com" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Email Us">
-                <FaEnvelope />
+            <div className="flex flex-col items-center gap-4">
+              <a href="mailto:sales@arviontechnologies.com" className="text-white hover:text-orange-200 transition-colors flex items-center gap-3 text-base" title="Email Us">
+                <FaEnvelope className="text-xl flex-shrink-0" />
+                <span>sales@arviontechnologies.com</span>
               </a>
-              <a href="tel:+919535764655" className="text-white hover:text-orange-200 transition-colors text-2xl" title="Call Us">
-                <FaSquarePhoneFlip />
+              <a href="tel:+919535764655" className="text-white hover:text-orange-200 transition-colors flex items-center gap-3 text-base" title="Call Us">
+                <FaSquarePhoneFlip className="text-xl flex-shrink-0" />
+                <span>+91 9535764655</span>
               </a>
-              <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orange-200 transition-colors text-2xl" title="WhatsApp Us">
-                <FaWhatsapp />
+              <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orange-200 transition-colors flex items-center gap-3 text-base" title="WhatsApp Us">
+                <FaWhatsapp className="text-xl flex-shrink-0" />
+                <span>+91 9535764655</span>
               </a>
             </div>
           </div>

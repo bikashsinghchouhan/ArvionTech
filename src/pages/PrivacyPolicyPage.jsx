@@ -145,8 +145,8 @@ const PrivacyPolicyPage = () => {
               If you have any questions, comments, or concerns about this Privacy Policy or our data practices, please contact our Client Advocacy Team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="mailto:cat@arvion.com" className="bg-[#0d1b2a] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1a2b3c] hover:-translate-y-1 transition-all duration-300 shadow-lg">
-                cat@arvion.com
+              <a href="mailto:sales@arviontechnologies.com" className="bg-[#0d1b2a] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1a2b3c] hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                sales@arviontechnologies.com
               </a>
               <a href="tel:+919535764655" className="bg-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20">
                 +91 9535764655

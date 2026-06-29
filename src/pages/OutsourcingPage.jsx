@@ -21,25 +21,25 @@ const staggerContainer = {
 
 const OutsourcingPage = () => {
   const detailedFeatures = [
-    { 
-      title: 'Access to a Global Talent Pool', 
-      description: 'Connect with a vetted network of professionals from around the world. We provide access to specialized skills and expertise that may not be available locally, allowing you to build a world-class team without geographical limitations.', 
-      icon: <FaGlobe className="text-[#ff7f32] text-3xl" /> 
+    {
+      title: 'Access to a Global Talent Pool',
+      description: 'Connect with a vetted network of professionals from around the world. We provide access to specialized skills and expertise that may not be available locally, allowing you to build a world-class team without geographical limitations.',
+      icon: <FaGlobe className="text-[#ff7f32] text-3xl" />
     },
-    { 
-      title: 'Flexible and Scalable Teams', 
-      description: 'Flexibly scale your team up or down to meet your project’s changing needs. Our model allows you to quickly adapt to market demands, ensuring you have the right resources at the right time without the overhead of permanent hiring.', 
-      icon: <FaUsers className="text-[#ff7f32] text-3xl" /> 
+    {
+      title: 'Flexible and Scalable Teams',
+      description: 'Flexibly scale your team up or down to meet your project’s changing needs. Our model allows you to quickly adapt to market demands, ensuring you have the right resources at the right time without the overhead of permanent hiring.',
+      icon: <FaUsers className="text-[#ff7f32] text-3xl" />
     },
-    { 
-      title: 'Managed Services & Project Delivery', 
-      description: 'We handle the administrative and operational overhead so you can focus on your core business. From recruitment and onboarding to project management, we ensure a seamless and efficient workflow for your outsourced teams.', 
-      icon: <FaCogs className="text-[#ff7f32] text-3xl" /> 
+    {
+      title: 'Managed Services & Project Delivery',
+      description: 'We handle the administrative and operational overhead so you can focus on your core business. From recruitment and onboarding to project management, we ensure a seamless and efficient workflow for your outsourced teams.',
+      icon: <FaCogs className="text-[#ff7f32] text-3xl" />
     },
-    { 
-      title: 'Performance Analytics & Reporting', 
-      description: 'Track team productivity and project milestones with our detailed reporting and analytics. We provide transparent insights into performance, ensuring your outsourced projects are on track and delivering the expected results.', 
-      icon: <FaChartBar className="text-[#ff7f32] text-3xl" /> 
+    {
+      title: 'Performance Analytics & Reporting',
+      description: 'Track team productivity and project milestones with our detailed reporting and analytics. We provide transparent insights into performance, ensuring your outsourced projects are on track and delivering the expected results.',
+      icon: <FaChartBar className="text-[#ff7f32] text-3xl" />
     },
   ];
 
@@ -54,14 +54,14 @@ const OutsourcingPage = () => {
 
   return (
     <div className="w-full bg-[#f8f9fa] min-h-screen font-sans">
-      
+
       {/* 1. HERO SECTION */}
       <section className="relative pt-[120px] pb-24 md:pt-[160px] md:pb-32 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={heroImg} alt="Payroll Outsourcing Hero" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0d1b2a]/80 backdrop-blur-[2px]"></div>
         </div>
-        
+
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
@@ -69,13 +69,13 @@ const OutsourcingPage = () => {
           >
             Global Talent
           </motion.div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight uppercase"
           >
             Payroll Outsourcing
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium"
           >
@@ -102,13 +102,13 @@ const OutsourcingPage = () => {
             <div className="w-24 h-1 bg-[#ff7f32] mx-auto mt-4 rounded-full"></div>
           </div>
 
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
           >
             {detailedFeatures.map((feat, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 variants={fadeUpVariant}
                 className="bg-[#f8f9fa] p-8 rounded-2xl border border-slate-100 hover:border-orange-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start"
               >
@@ -160,42 +160,44 @@ const OutsourcingPage = () => {
           <img src={heroImg} alt="Tech Background" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>
         </div>
-        
+
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
-          <motion.h2 
+          <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-2xl md:text-5xl font-bold text-white mb-4 md:mb-6 uppercase tracking-tight"
+            className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4 uppercase tracking-tight"
           >
             Ready to Scale Your Team?
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-base md:text-xl text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-lg text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             Let's discuss how our global talent pool can provide the momentum your business needs.
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-4 md:gap-6 mb-8 md:mb-12"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-10 mb-8 md:mb-12"
           >
+            <div className="w-full text-center flex justify-center">
+              <p className="text-slate-200 text-xs md:text-sm font-medium leading-relaxed max-w-2xl text-center">
+                <FaMapMarkerAlt className="text-orange-400 inline-block mr-2 -mt-1" />
+                Arvion Technologies Pvt Ltd. IBLUE Entertainment, #62/1, New No 7, Ground Floor, 1st Cross, 2nd Main, Ganganagar, Bangalore-560032
+              </p>
+            </div>
             <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaPhoneAlt className="text-orange-400 flex-shrink-0" />
-              <span className="text-slate-200 text-sm md:text-base font-medium">+91 9535764655</span>
+              <span className="text-slate-200 text-xs md:text-sm font-medium">+91 9535764655</span>
             </div>
             <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaEnvelope className="text-orange-400 flex-shrink-0" />
-              <span className="text-slate-200 text-sm md:text-base font-medium">info@arviontechnologies.com</span>
-            </div>
-            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
-              <FaMapMarkerAlt className="text-orange-400 flex-shrink-0" />
-              <span className="text-slate-200 text-sm md:text-base font-medium text-center md:text-left">utrahalli, bansankari, bangalore</span>
+              <span className="text-slate-200 text-xs md:text-sm font-medium">sales@arviontechnologies.com</span>
             </div>
           </motion.div>
 
           <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <Link 
-              to="/contact-us" 
+            <Link
+              to="/contact-us"
               className="inline-block px-8 py-3 md:px-10 md:py-4 bg-orange-500 text-white text-base md:text-lg rounded-full font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all hover:-translate-y-1"
             >
               Contact Our Experts

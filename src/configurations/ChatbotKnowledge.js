@@ -41,7 +41,7 @@ const knowledgeBase = [
   },
   {
     keywords: ["contact", "call", "email", "phone", "reach", "touch"],
-    answer: "You can reach us at cat@arvion.com, call us at +91 9535764655, or visit our Contact Us page to send a direct message."
+    answer: "You can reach us at sales@arviontechnologies.com, call us at +91 9535764655, or visit our Contact Us page to send a direct message."
   },
   {
     keywords: ["hi", "hello", "hey", "greetings"],

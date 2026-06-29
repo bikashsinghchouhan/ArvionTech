@@ -336,33 +336,37 @@ const SchoolManagement = () => {
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-2xl md:text-5xl font-bold text-white mb-4 md:mb-6"
+            className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4"
           >
             {pageConfig.contact.title}
           </motion.h2>
           <motion.p
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-base md:text-xl text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-lg text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             {pageConfig.contact.subtitle}
           </motion.p>
 
           <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-4 md:gap-10 mb-8 md:mb-12"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-6 mb-8 md:mb-12"
           >
+            <div className="w-full text-center flex justify-center">
+              <p className="text-slate-200 text-xs md:text-sm font-medium leading-relaxed max-w-2xl text-center">
+                <FaMapMarkerAlt className="text-orange-400 inline-block mr-2 -mt-1" />
+                {pageConfig.contact.address}
+              </p>
+            </div>
             <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaPhoneAlt className="text-orange-400 flex-shrink-0" />
-              <span className="text-slate-200 text-sm md:text-base font-medium">{pageConfig.contact.phone}</span>
+              <span className="text-slate-200 text-xs md:text-sm font-medium">{pageConfig.contact.phone}</span>
             </div>
+
             <div className="flex items-center gap-3 w-full md:w-auto justify-center">
               <FaEnvelope className="text-orange-400 flex-shrink-0" />
-              <span className="text-slate-200 text-sm md:text-base font-medium">{pageConfig.contact.email}</span>
+              <span className="text-slate-200 text-xs md:text-sm font-medium">{pageConfig.contact.email}</span>
             </div>
-            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
-              <FaMapMarkerAlt className="text-orange-400 flex-shrink-0" />
-              <span className="text-slate-200 text-sm md:text-base font-medium text-center md:text-left">{pageConfig.contact.address}</span>
-            </div>
+
           </motion.div>
 
           <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>

@@ -134,8 +134,8 @@ const TermsOfServicePage = () => {
               If you have any questions or concerns regarding these Terms of Service, please reach out to our dedicated Client Advocacy Team. We're here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="mailto:cat@arvion.com" className="bg-[#ff7f32] text-white px-8 py-4 rounded-full font-bold hover:bg-orange-600 hover:-translate-y-1 transition-all duration-300 shadow-lg">
-                cat@arvion.com
+              <a href="mailto:sales@arviontechnologies.com" className="bg-[#ff7f32] text-white px-8 py-4 rounded-full font-bold hover:bg-orange-600 hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                sales@arviontechnologies.com
               </a>
               <a href="tel:+919535764655" className="bg-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/10">
                 +91 9535764655
