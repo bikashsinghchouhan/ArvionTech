@@ -53,7 +53,7 @@ const OutsourcingPage = () => {
     <div className="w-full bg-white min-h-screen font-sans">
 
       {/* 1. HERO SECTION */}
-      <section className="relative pt-[80px] pb-16 md:pt-[90px] md:pb-8 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-8 bg-white overflow-hidden">
+      <section className="relative pt-[80px] pb-8 md:pt-[90px] md:pb-16 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-8 bg-white overflow-x-clip">
 
         {/* Left Column (Text & CTA) */}
         <motion.div
@@ -64,21 +64,21 @@ const OutsourcingPage = () => {
             Payroll Outsourcing Services
           </motion.div>
 
-          <motion.h1 variants={fadeUpVariant} className="text-4xl md:text-6xl font-extrabold text-[#0d1b2a] leading-tight mb-6 tracking-tight">
+          <motion.h1 variants={fadeUpVariant} className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-[#0d1b2a] leading-tight mb-4 md:mb-6 tracking-tight">
             Smarter Payroll.<br />
             <span className="text-[#0d1b2a]">Stronger Business.</span>
           </motion.h1>
 
-          <motion.p variants={fadeUpVariant} className="text-slate-500 text-lg mb-8 max-w-xl font-medium leading-relaxed">
+          <motion.p variants={fadeUpVariant} className="text-slate-500 text-base md:text-lg mb-6 md:mb-8 max-w-xl font-medium leading-relaxed">
             End-to-end payroll outsourcing solutions to help you save time, ensure compliance, and keep your employees happy.
           </motion.p>
 
-          <motion.div variants={fadeUpVariant} className="flex flex-wrap items-center gap-4 mb-10">
-            <Link to="/contact-us" className="px-8 py-3.5 bg-[#ff7f32] text-white font-bold rounded-lg shadow-lg shadow-orange-500/30 hover:bg-[#e66c25] transition-all hover:-translate-y-0.5">
+          <motion.div variants={fadeUpVariant} className="flex flex-wrap items-center gap-3 md:gap-4 mb-8 md:mb-10">
+            <Link to="/contact-us" className="px-6 py-3 md:px-8 md:py-3.5 text-sm md:text-base bg-[#ff7f32] text-white font-bold rounded-lg shadow-lg shadow-orange-500/30 hover:bg-[#e66c25] transition-all hover:-translate-y-0.5">
               Get Started &rarr;
             </Link>
-            <button className="px-8 py-3.5 bg-white text-slate-700 border border-slate-200 font-bold rounded-lg hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm">
-              <FaPlayCircle className="text-blue-500 text-lg" />
+            <button className="px-6 py-3 md:px-8 md:py-3.5 text-sm md:text-base bg-white text-slate-700 border border-slate-200 font-bold rounded-lg hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm">
+              <FaPlayCircle className="text-blue-500 text-base md:text-lg" />
               How It Works
             </button>
           </motion.div>
@@ -93,11 +93,11 @@ const OutsourcingPage = () => {
 
         {/* Right Column (Image & Floating UI) */}
         <motion.div
-          className="flex-1 w-full relative h-[400px] sm:h-[500px] lg:h-[600px] z-10"
+          className="flex-1 w-full relative z-10 flex items-center justify-center lg:justify-end mt-6 sm:mt-8 lg:mt-0 lg:h-[600px]"
           initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}
         >
           {/* Main Hero Image & Background Circle */}
-          <div className="absolute right-0 lg:right-10 top-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] lg:w-[500px] lg:h-[500px] flex items-center justify-center z-10">
+          <div className="relative lg:absolute lg:right-10 lg:top-1/2 lg:-translate-y-1/2 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] flex items-center justify-center z-10 my-4 lg:my-0">
             {/* Light blue halo */}
             <div className="absolute inset-0 bg-[#e6f0fa] rounded-full -z-10 scale-105"></div>
 
@@ -105,38 +105,38 @@ const OutsourcingPage = () => {
             <img
               src={heroImg}
               alt="Payroll Outsourcing Professional"
-              className="w-full h-full object-cover rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-8 border-white relative z-0"
+              className="w-full h-full object-cover rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-4 sm:border-8 border-white relative z-0"
             />
 
             {/* Floating Card 1: Payroll Processed */}
             <motion.div
               initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5, duration: 0.5 }}
-              className="absolute -top-4 -left-6 sm:-left-12 lg:-left-20 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-white/40 flex flex-col w-[160px] sm:w-[200px] z-20"
+              className="absolute -top-4 -left-4 sm:-left-10 lg:-left-20 bg-white/90 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-2xl border border-white/40 flex flex-col w-[150px] sm:w-[200px] z-20"
             >
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Payroll Processed</span>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xl sm:text-2xl font-black text-[#0d1b2a]">1,250</span>
-                <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center"><FaUserFriends /></div>
+              <span className="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Payroll Processed</span>
+              <div className="flex items-center justify-between mb-2 sm:mb-3">
+                <span className="text-lg sm:text-2xl font-black text-[#0d1b2a]">1,250</span>
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs sm:text-base"><FaUserFriends /></div>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium">Employees</span>
-              <div className="w-full bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
+              <span className="text-[9px] sm:text-[10px] text-slate-400 font-medium">Employees</span>
+              <div className="w-full bg-slate-100 h-1 sm:h-1.5 rounded-full mt-1.5 sm:mt-2 overflow-hidden">
                 <div className="w-3/4 bg-green-500 h-full rounded-full"></div>
               </div>
-              <span className="text-[9px] text-slate-400 font-medium mt-1">+12% from last month</span>
+              <span className="text-[8px] sm:text-[9px] text-slate-400 font-medium mt-1">+12% from last month</span>
             </motion.div>
 
             {/* Floating Card 2: Compliance */}
             <motion.div
               initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }}
-              className="absolute -bottom-4 -left-2 sm:-left-6 lg:-left-10 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-white/40 flex flex-col w-[140px] sm:w-[160px] z-20"
+              className="absolute -bottom-2 sm:-bottom-4 -left-2 sm:-left-6 lg:-left-10 bg-white/90 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-2xl border border-white/40 flex flex-col w-[130px] sm:w-[160px] z-20"
             >
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Compliance</span>
+              <span className="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Compliance</span>
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-xl sm:text-2xl font-black text-green-500 block leading-none mb-1">100%</span>
-                  <span className="text-[10px] text-slate-400 font-medium">On Time</span>
+                  <span className="text-lg sm:text-2xl font-black text-green-500 block leading-none mb-1">100%</span>
+                  <span className="text-[9px] sm:text-[10px] text-slate-400 font-medium">On Time</span>
                 </div>
-                <div className="w-8 h-8 bg-green-50 text-green-500 rounded-full flex items-center justify-center border border-green-100"><FaShieldAlt /></div>
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-50 text-green-500 rounded-full flex items-center justify-center border border-green-100 text-xs sm:text-base"><FaShieldAlt /></div>
               </div>
             </motion.div>
 
@@ -168,8 +168,8 @@ const OutsourcingPage = () => {
 
 
       {/* 3. SERVICES & STATS SECTION */}
-      <section className="py-20 px-4 max-w-7xl mx-auto bg-white">
-        <div className="text-center mb-16">
+      <section className="py-10 md:py-16 px-4 max-w-7xl mx-auto bg-white">
+        <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-4">Our Payroll Outsourcing Services</h2>
           <p className="text-slate-500 font-medium">Comprehensive payroll solutions tailored to your business needs.</p>
         </div>
@@ -200,9 +200,9 @@ const OutsourcingPage = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:w-[400px] bg-slate-50 border border-slate-100 rounded-3xl p-8 flex flex-col justify-center gap-8"
+            className="w-full lg:w-[400px] bg-slate-50 border border-slate-100 rounded-3xl p-6 sm:p-8 flex flex-col justify-center gap-8 mt-8 lg:mt-0"
           >
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-4 sm:gap-8">
               <div className="text-center">
                 <div className="text-3xl font-black text-[#194b8e] mb-1">500+</div>
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">Happy Clients</div>
@@ -225,8 +225,8 @@ const OutsourcingPage = () => {
       </section>
 
       {/* WHY CHOOSE OUR PAYROLL SYSTEM */}
-      <section className="py-16 bg-slate-50 px-4 max-w-7xl mx-auto rounded-3xl mb-16">
-        <div className="text-center mb-12">
+      <section className="py-10 md:py-16 bg-slate-50 px-4 max-w-7xl mx-auto rounded-3xl mb-10">
+        <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-4">Why Choose Our Payroll System</h2>
           <p className="text-slate-500 font-medium max-w-2xl mx-auto">
             Experience a seamless, secure, and highly efficient payroll management process built for modern businesses.
@@ -258,7 +258,7 @@ const OutsourcingPage = () => {
       </section>
 
       {/* CORE PAYROLL FEATURES */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
+      <section className="py-10 md:py-16 px-4 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1">
             <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-6">Core Payroll Features</h2>
@@ -324,8 +324,8 @@ const OutsourcingPage = () => {
 
 
       {/* FAQ SECTION */}
-      <section className="py-16 px-4 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
+      <section className="py-10 md:py-16 px-4 max-w-4xl mx-auto">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-50 text-blue-500 rounded-full mb-4">
             <FaRegQuestionCircle className="text-2xl" />
           </div>
@@ -363,7 +363,7 @@ const OutsourcingPage = () => {
       <TestimonialSection />
 
       {/* 5. CTA / CONTACT SECTION */}
-      <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
+      <section className="relative py-12 md:py-20 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
         <div className="absolute inset-0 z-0 bg-[#0d1b2a]"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
