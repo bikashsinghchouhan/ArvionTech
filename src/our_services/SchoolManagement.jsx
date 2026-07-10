@@ -186,9 +186,64 @@ const SchoolManagement = () => {
 
 
 
+      {/* WHY CHOOSE US SECTION */}
+      <section className="py-20 px-4 w-full mx-auto bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-2xl md:text-4xl font-bold text-slate-800 mb-6">
+              Why Choose Our School ERP?
+            </motion.h2>
+            <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-slate-500 max-w-3xl mx-auto text-base md:text-lg">
+              We go beyond basic administration. Our platform is a comprehensive ecosystem designed to transform how your educational institution operates, empowering educators, engaging parents, and driving student success.
+            </motion.p>
+          </div>
 
-
-
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "100% Cloud-Based & Secure",
+                desc: "Access your school's data securely from anywhere. Our cloud infrastructure features enterprise-grade encryption and automated backups to ensure complete data protection.",
+                icon: <FaServer />
+              },
+              {
+                title: "Intuitive & User-Friendly",
+                desc: "Designed for effortless navigation. Teachers, admins, and parents can use the system immediately, requiring zero technical training or complex onboarding.",
+                icon: <FaDesktop />
+              },
+              {
+                title: "Highly Customizable & Scalable",
+                desc: "From small schools to large university groups, our modular architecture adapts and scales seamlessly as your educational institution expands over time.",
+                icon: <FaExpandArrowsAlt />
+              },
+              {
+                title: "Real-Time Analytics & Reporting",
+                desc: "Empower decision-making with instant, actionable insights. Monitor student performance, financial health, and staff productivity through an advanced dashboard.",
+                icon: <FaChartLine />
+              },
+              {
+                title: "Dedicated 24/7 Support",
+                desc: "Experience worry-free operations with our dedicated success team. We provide full implementation training and reliable round-the-clock technical assistance.",
+                icon: <FaHeadset />
+              },
+              {
+                title: "Seamless Integration",
+                desc: "Connect seamlessly with your existing tools. Our API-first platform integrates effortlessly with biometric devices, accounting software, and payment gateways.",
+                icon: <FaCodeBranch />
+              }
+            ].map((feature, idx) => (
+              <motion.div key={idx} variants={fadeUpVariant} className="bg-slate-50 border border-slate-100 p-8 rounded-3xl hover:shadow-xl hover:border-orange-200 hover:-translate-y-2 transition-all duration-300">
+                <div className="w-14 h-14 bg-orange-100 text-orange-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-4">{feature.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  {feature.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* HOW ERP SOLVES PROBLEMS */}
       <section className="py-20 px-4 w-full mx-auto bg-slate-50 relative overflow-hidden">

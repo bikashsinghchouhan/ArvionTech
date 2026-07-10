@@ -207,7 +207,7 @@ const ContactUs = ({ isSinglePage }) => {
         </div>
       )}
 
-      <div className={`tw-contact-container grid grid-cols-1 min-[992px]:grid-cols-[1fr_1.2fr] max-w-[1200px] w-full bg-white rounded-[16px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden animate-fadeIn ${isSinglePage ? 'min-h-[500px]' : ''}`}>
+      <div className={`tw-contact-container grid grid-cols-1 min-[992px]:grid-cols-[1fr_1.2fr] max-w-[1200px] w-full bg-white rounded-[16px] border border-gray-200 shadow-md overflow-hidden animate-fadeIn ${isSinglePage ? 'min-h-[500px]' : ''}`}>
 
         {/* Left Panel */}
         <div className="tw-contact-left-panel hidden min-[992px]:flex min-[992px]:flex-col min-[992px]:justify-center bg-gradient-to-br from-[#ff8c42] to-[#ff7f32] text-white p-10 lg:p-12">
