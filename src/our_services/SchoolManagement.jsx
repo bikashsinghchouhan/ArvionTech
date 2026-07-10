@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaTimesCircle, FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPlus, FaMinus, FaStar, FaQuoteLeft, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck, FaMapMarker, FaBookReader, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPlus, FaMinus, FaStar, FaQuoteLeft, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck, FaMapMarker, FaBookReader, FaChevronLeft, FaChevronRight, FaPlayCircle } from 'react-icons/fa';
 import TestimonialSection from '../components/TestimonialSection';
 import techImage from '../assets/techImage.png';
 import schoolErpMobile from '../assets/school_erp_mobile.png';
+import schoolHeroRight from '../assets/school_hero_generated.png';
 
 // --- CONFIGURATION ---
 import { pageConfig } from '../configurations/SchoolManagementConfig';
@@ -54,35 +55,159 @@ const SchoolManagement = () => {
     <div className="bg-slate-50 min-h-screen font-sans w-full overflow-x-hidden">
 
       {/* 1. HERO SECTION */}
-      <section className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img src={pageConfig.hero.image} alt="Tech Background" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-slate-900/70"></div>
-        </div>
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight"
-          >
-            {pageConfig.hero.title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-base md:text-xl text-slate-200"
-          >
-            {pageConfig.hero.subtitle}
-          </motion.p>
+      <section className="relative w-full bg-white pt-16  sm:pt-20 lg:pt-24 pb-8 lg:pb-16 overflow-hidden">
+        {/* Background Decorative Elements - Right Side Only */}
+        <div className="absolute top-0 right-0 w-full lg:w-[55%] h-full bg-[#f4f8fe] rounded-bl-[100px] -z-20"></div>
+        <div className="absolute top-0 right-0 w-full lg:w-[55%] h-full opacity-[0.15] -z-10 rounded-bl-[100px]" style={{ backgroundImage: 'radial-gradient(#4285F4 2px, transparent 2px)', backgroundSize: '32px 32px' }}></div>
+        <div className="absolute top-0 right-0 w-1/2 lg:w-1/3 h-3/4 bg-[#e1edff] rounded-bl-[200px] -z-10"></div>
+
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 relative z-10 ">
+          <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-8 ">
+
+            {/* Left Content */}
+            <div className="w-full  lg:w-1/2 flex flex-col justify-center items-start text-left z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+                className="bg-blue-100 text-blue-800 text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-wide uppercase"
+              >
+                School Management Services
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1B3D] mb-6 leading-[1.1] tracking-tight"
+              >
+                Smarter Management.<br />
+                <span className="text-[#0B1B3D]">Stronger Institution.</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed"
+              >
+                End-to-end school management solutions to help you save time, ensure compliance, and keep your students and staff happy.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto"
+              >
+                <Link to="/contact" className="bg-[#FF8000] hover:bg-[#E67300] text-white px-8 py-3.5 rounded-md font-semibold text-center transition-colors shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2">
+                  Get Started <FaChevronRight className="text-sm" />
+                </Link>
+                <button className="bg-white border-2 border-gray-200 hover:border-gray-300 text-[#0B1B3D] px-8 py-3.5 rounded-md font-semibold text-center transition-colors flex items-center justify-center gap-2">
+                  <FaPlayCircle className="text-blue-600 text-lg" /> How It Works
+                </button>
+              </motion.div>
+
+              {/* Checkmarks */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-gray-600 font-medium pt-6 border-t border-gray-100 w-full"
+              >
+                <div className="flex items-center gap-2"><FaCheckCircle className="text-blue-500" /> 100% Compliance</div>
+                <div className="flex items-center gap-2"><FaCheckCircle className="text-blue-500" /> Data Security</div>
+                <div className="flex items-center gap-2"><FaCheckCircle className="text-blue-500" /> Scalable Solutions</div>
+                <div className="flex items-center gap-2"><FaCheckCircle className="text-blue-500" /> Expert Support</div>
+              </motion.div>
+            </div>
+
+            {/* Right Image/Mockup */}
+            <div className="w-full lg:w-1/2 relative flex justify-center lg:justify-end mt-12 lg:mt-0">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative w-full max-w-lg lg:max-w-xl mx-auto lg:mr-0"
+              >
+
+                {/* Rectangular Image seamlessly blended into background with faded edges */}
+                <img src={schoolHeroRight} alt="School Management Hero" className="w-full h-auto rounded-xl relative z-10 object-cover scale-x-[-1] " style={{ WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at 50% 50%, black 70%, transparent 100%)', maskImage: 'radial-gradient(ellipse 90% 90% at 50% 50%, black 70%, transparent 100%)' }} />
+
+                {/* Floating Cards (Optional/Extra aesthetics) */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
+                  className="absolute top-4 sm:top-8 -left-2 sm:-left-4 lg:-left-10 bg-white p-2 sm:p-4 rounded-xl shadow-xl z-20 flex items-center gap-2 sm:gap-3 scale-75 sm:scale-100 origin-top-left"
+                >
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-100 text-orange-500 rounded-lg flex items-center justify-center text-sm sm:text-base"><FaBookOpen /></div>
+                  <div>
+                    <p className="text-[10px] sm:text-xs text-gray-500 font-medium">Active Schools</p>
+                    <p className="text-base sm:text-lg font-bold text-gray-800">50+</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.6 }}
+                  className="absolute top-1/3 -right-4 sm:-right-6 lg:-right-12 bg-white p-2 sm:p-4 rounded-xl shadow-xl z-20 flex items-center gap-2 sm:gap-3 scale-75 sm:scale-100 origin-top-right"
+                >
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-sm sm:text-base"><FaUserCheck /></div>
+                  <div>
+                    <p className="text-[10px] sm:text-xs text-gray-500 font-medium">Students Managed</p>
+                    <p className="text-base sm:text-lg font-bold text-gray-800">40K+</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.8 }}
+                  className="absolute bottom-10 sm:bottom-16 -left-0 sm:-left-2 lg:-left-6 bg-white p-2 sm:p-4 rounded-xl shadow-xl z-20 block scale-75 sm:scale-100 origin-bottom-left"
+                >
+                  <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs sm:text-sm"><FaClipboardCheck /></div>
+                    <p className="text-xs sm:text-sm font-bold text-gray-800">Compliance</p>
+                  </div>
+                  <div className="flex items-end gap-1 sm:gap-2">
+                    <p className="text-xl sm:text-2xl font-black text-green-500">100%</p>
+                    <p className="text-[10px] sm:text-xs text-gray-500 pb-0.5 sm:pb-1">On Time</p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+
+          </div>
         </div>
       </section>
 
+      {/* Trusted By Section */}
+      {/* <section className="bg-[#1A4B8F] py-8 w-full z-20 relative">
+        <div className="max-w-7xl mx-auto px-4">
+          <p className="text-center text-white/90 text-sm font-medium mb-6">Trusted by 500+ Educational Institutions Worldwide</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80 grayscale brightness-200 contrast-100">
+            <div className="text-white font-bold text-xl flex items-center gap-2"><span className="text-2xl">⬢</span> company</div>
+            <div className="text-white font-bold text-xl flex items-center gap-2">HEXLAB</div>
+            <div className="text-white font-bold text-xl flex items-center gap-2"><span className="text-2xl">◎</span> CIRCLE</div>
+            <div className="text-white font-bold text-xl flex items-center gap-2"><span className="text-2xl">〰</span> wave</div>
+            <div className="text-white font-bold text-xl flex items-center gap-2"><span className="bg-white text-[#1A4B8F] px-1 rounded text-sm">M</span> Martino</div>
+          </div>
+        </div>
+      </section> */}
 
 
+
+
+
+      {/* 2. WHY CHOOSE US */}
+      <section className="py-20 px-4 w-full mx-auto">
+        <div className="text-center max-w-4xl mx-auto">
+          <motion.h2
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
+            className="text-2xl md:text-4xl font-bold text-slate-800 mb-6"
+          >
+            Why Choose Our School Management Software?
+          </motion.h2>
+          <motion.h3
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
+            className="text-xl md:text-2xl font-semibold text-orange-500 mb-6"
+          >
+            Transforming Education Through Technology
+          </motion.h3>
+          <motion.p
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
+            className="text-slate-600 text-left md:text-center leading-relaxed"
+          >
+            Our School Management ERP is a comprehensive solution designed to streamline every facet of your institution. From student admissions and attendance tracking to grade management and parent communication, our platform provides a centralized hub for all your data, empowering educators to focus on what matters most: teaching.
+          </motion.p>
+        </div>
+      </section>
       {/* 1.5 FEATURES OVERVIEW */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
+      <section className="py-16 bg-white px-4 max-w-full mx-auto">
         <div className="text-center mb-12">
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
@@ -107,7 +232,7 @@ const SchoolManagement = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: (idx % 6) * 0.05 }}
-                className={`border rounded-xl overflow-hidden transition-all duration-300 ${isActive ? 'border-orange-500 shadow-md bg-white' : 'border-slate-200 bg-white hover:border-slate-300'}`}
+                className={`border rounded-xl overflow-hidden transition-all duration-300 ${isActive ? 'border-orange-500 shadow-md bg-white' : 'border-slate-200 bg-slate-50 hover:border-slate-300'}`}
               >
                 <button
                   onClick={() => toggleFeature(idx)}
@@ -143,31 +268,6 @@ const SchoolManagement = () => {
           </div>
         )}
       </section>
-
-      {/* 2. WHY CHOOSE US */}
-      <section className="py-20 px-4 w-full mx-auto bg-white">
-        <div className="text-center max-w-4xl mx-auto">
-          <motion.h2
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-2xl md:text-4xl font-bold text-slate-800 mb-6"
-          >
-            Why Choose Our School Management Software?
-          </motion.h2>
-          <motion.h3
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-xl md:text-2xl font-semibold text-orange-500 mb-6"
-          >
-            Transforming Education Through Technology
-          </motion.h3>
-          <motion.p
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-slate-600 text-left md:text-center leading-relaxed"
-          >
-            Our School Management ERP is a comprehensive solution designed to streamline every facet of your institution. From student admissions and attendance tracking to grade management and parent communication, our platform provides a centralized hub for all your data, empowering educators to focus on what matters most: teaching.
-          </motion.p>
-        </div>
-      </section>
-
       {/* 3. PLANS */}
       <section className="py-20 px-4 max-w-7xl mx-auto bg-slate-50 border-t border-slate-200">
         <div className="text-center mb-16">

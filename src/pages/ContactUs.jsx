@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaBuilding, FaPhone, FaArrowRight, FaArrowLeft, FaBriefcase, FaPaperPlane, FaCheckCircle, FaWhatsapp, FaHome } from 'react-icons/fa';
 import '../csssection/ContactUs.css';
 import { FaSquarePhone, FaSquarePhoneFlip } from "react-icons/fa6";
+import emailjs from '@emailjs/browser';
 import { pageConfig } from '../configurations/SchoolManagementConfig';
 
 const ContactUs = ({ isSinglePage }) => {
@@ -99,35 +100,34 @@ const ContactUs = ({ isSinglePage }) => {
     setIsSubmitting(true);
 
     try {
-      // Note: After the first submission, FormSubmit will send an activation email. 
-      // You can replace this email with the secure hash they provide to prevent spam.
-      const response = await fetch("https://formsubmit.co/ajax/sales@arviontechnologies.com", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `New Lead: ${formData.name} from ${formData.company || 'Unknown Company'}`,
-          _template: "table",
-          Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${formData.date} at ${formData.timeSlot}.`,
-          Name: formData.name,
-          Email: formData.email,
-          Phone: formData.phone || "Not provided",
-          Company: formData.company || "N/A",
-          Main_Service: selectedService,
-          Interested_Plan: formData.schoolPlan || "N/A",
-          Additional_Services: formData.services.join(", ") || "None",
-          Student_Range: formData.studentRange || "N/A",
-          Outsourcing_Team_Size: formData.outsourcingTeamSize || "N/A",
-          Registration_Type: formData.registrationType || "N/A",
-          Accounting_Volume: formData.accountingVolume || "N/A",
-          Meeting_Date: formData.date,
-          Meeting_Time: formData.timeSlot
-        })
-      });
+      const templateParams = {
+        Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${formData.date} at ${formData.timeSlot}.`,
+        Name: formData.name,
+        Email: formData.email,
+        Phone: formData.phone || "Not provided",
+        Company: formData.company || "N/A",
+        Main_Service: selectedService,
+        Interested_Plan: formData.schoolPlan || "N/A",
+        Additional_Services: formData.services.join(", ") || "None",
+        Student_Range: formData.studentRange || "N/A",
+        Outsourcing_Team_Size: formData.outsourcingTeamSize || "N/A",
+        Registration_Type: formData.registrationType || "N/A",
+        Accounting_Volume: formData.accountingVolume || "N/A",
+        Meeting_Date: formData.date,
+        Meeting_Time: formData.timeSlot
+      };
 
-      if (response.ok) {
+      // We added your exact Service ID: service_mkucjek
+      // You still need to replace YOUR_TEMPLATE_ID and YOUR_PUBLIC_KEY
+      //  to configure go - to-  email.js --> create email services and  email template  and copy both id
+      const response = await emailjs.send(
+        'service_mkucjek',  //service id
+        'template_u3wagyg', //template id
+        templateParams,
+        'vkUKK6w4C-sc4pRUo' //public key  --insde Accounts you will get 
+      );
+
+      if (response.status === 200) {
         setIsSubmitted(true);
       } else {
         throw new Error("Failed to send submission");
