@@ -97,7 +97,7 @@ const OutsourcingPage = () => {
           initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}
         >
           {/* Main Hero Image & Background Circle */}
-          <div className="relative lg:absolute lg:right-10 lg:top-1/2 lg:-translate-y-1/2 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] flex items-center justify-center z-10 my-4 lg:my-0">
+          <div className="relative lg:absolute lg:right-16 xl:right-24 lg:top-1/2 lg:-translate-y-1/2 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] flex items-center justify-center z-10 my-4 lg:my-0">
             {/* Light blue halo */}
             <div className="absolute inset-0 bg-[#e6f0fa] rounded-full -z-10 scale-105"></div>
 
@@ -143,7 +143,7 @@ const OutsourcingPage = () => {
             {/* Floating Card 3: Features Sidebar */}
             <motion.div
               initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.9, duration: 0.5 }}
-              className="absolute top-[60%] -translate-y-1/2 -right-4 sm:-right-8 lg:-right-12 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-2xl border border-white/40 flex flex-col gap-3 hidden sm:flex z-20"
+              className="absolute top-[60%] -translate-y-1/2 -right-4 sm:-right-8 lg:-right-16 xl:-right-20 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-2xl border border-white/40 flex flex-col gap-3 hidden sm:flex z-20"
             >
               <div className="flex items-center gap-3 p-2 bg-slate-50 rounded-xl">
                 <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center"><FaFileInvoiceDollar /></div>
@@ -313,7 +313,7 @@ const OutsourcingPage = () => {
                 <span className="text-xs font-bold text-slate-700 text-center">Best Payroll Provider</span>
               </div>
             </div>
-            
+
             <div className="mt-8 pt-6 border-t border-slate-200">
               <h3 className="text-lg font-bold text-[#0d1b2a] mb-4">Awards & Certifications</h3>
               <p className="text-sm text-slate-500">Recognized globally for excellence in payroll accuracy and data security compliance.</p>
@@ -332,7 +332,7 @@ const OutsourcingPage = () => {
           <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-4">Frequently Asked Questions</h2>
           <p className="text-slate-500 font-medium">Got questions? We've got answers to the most common queries about our payroll system.</p>
         </div>
-        
+
         <div className="space-y-4">
           {[
             { q: "How is salary calculated?", a: "Salary is calculated automatically based on attendance, predefined components, tax brackets, and any deductions or bonuses configured for the employee." },

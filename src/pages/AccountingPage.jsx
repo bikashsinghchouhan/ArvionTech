@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaBookOpen, FaFileInvoiceDollar, FaChartPie, FaChartLine, FaCheckCircle, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaBookOpen, FaFileInvoiceDollar, FaChartPie, FaChartLine, FaCheckCircle, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChevronDown, FaRegQuestionCircle } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
 import heroImg from '../assets/service-accounting.png';
@@ -135,10 +135,19 @@ const AccountingPage = () => {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {benefits.map((benefit, idx) => (
-                <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
-                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
-                  <span className="text-sm text-slate-700 font-bold">{benefit}</span>
-                </div>
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-orange-200 transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-full bg-green-50 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                    <FaCheckCircle className="text-lg" />
+                  </div>
+                  <span className="text-sm md:text-base text-slate-700 font-bold">{benefit}</span>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -148,6 +157,39 @@ const AccountingPage = () => {
               <div className="absolute inset-0 bg-gradient-to-tr from-[#0d1b2a]/60 to-transparent"></div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-16 md:py-24 px-4 max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-orange-500 rounded-full mb-6">
+            <FaRegQuestionCircle className="text-3xl" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] mb-4 uppercase tracking-tight">Frequently Asked Questions</h2>
+          <p className="text-slate-500 font-medium">Common questions about our accounting services and processes.</p>
+        </div>
+
+        <div className="space-y-4">
+          {[
+            { q: "What accounting software do you support?", a: "We are proficient in a wide range of leading accounting platforms including QuickBooks, Xero, Zoho Books, and Tally." },
+            { q: "How often will I receive financial reports?", a: "We provide detailed financial reports on a monthly basis. However, we can also customize reporting frequency (weekly or quarterly) based on your specific business needs." },
+            { q: "Are your accounting services compliant with tax laws?", a: "Yes, our team of experts stays completely up-to-date with all local, state, and federal tax regulations to ensure 100% compliance and avoid any penalties." },
+            { q: "Can you help with historical cleanup of my books?", a: "Absolutely. We offer catch-up and cleanup services to organize your past financial records, reconcile accounts, and bring your books entirely up to date." },
+            { q: "How secure is my financial data?", a: "We take data security very seriously. We use enterprise-grade encryption, secure servers, and strict access controls to ensure your sensitive financial information is always protected." }
+          ].map((faq, index) => {
+            return (
+              <details key={index} className="group border border-slate-200 rounded-2xl bg-white shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-slate-50 hover:bg-slate-100 transition-colors rounded-2xl">
+                  <span className="font-bold text-slate-800 text-base">{faq.q}</span>
+                  <FaChevronDown className="text-slate-400 group-open:rotate-180 transition-transform duration-300" />
+                </summary>
+                <div className="px-6 py-5 text-slate-600 bg-white border-t border-slate-100 text-sm md:text-base leading-relaxed rounded-b-2xl">
+                  {faq.a}
+                </div>
+              </details>
+            );
+          })}
         </div>
       </section>
 

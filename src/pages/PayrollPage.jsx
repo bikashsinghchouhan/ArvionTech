@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaBell, FaRocket } from 'react-icons/fa';
+import { FaArrowRight, FaBell, FaRocket, FaChevronDown, FaRegQuestionCircle } from 'react-icons/fa';
 import ComingSoonModal from '../components/ComingSoonModal';
 import heroImg from '../assets/service-payroll.png';
 import TestimonialSection from '../components/TestimonialSection';
@@ -88,6 +88,38 @@ const PayrollPage = () => {
           </motion.div>
         </section>
         
+        {/* FAQ SECTION */}
+        <section className="py-16 md:py-24 px-4 max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-orange-500 rounded-full mb-6">
+              <FaRegQuestionCircle className="text-3xl" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] mb-4 uppercase tracking-tight">Frequently Asked Questions</h2>
+            <p className="text-slate-500 font-medium">Have questions about our upcoming payroll software? We've got answers.</p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              { q: "When will the new Payroll system be launched?", a: "We are currently in the final stages of beta testing and plan to roll out the system in the coming months. Join the waitlist to be the first to get access!" },
+              { q: "Will the new system support multiple locations?", a: "Yes! Our new payroll system is built from the ground up to support multi-branch operations, handling different regional compliances seamlessly." },
+              { q: "Can we migrate our existing payroll data?", a: "Absolutely. We are building robust migration tools to allow you to import all your historical payroll data and employee records safely and securely." },
+              { q: "Will there be an employee self-service portal?", a: "Yes, employees will have their own dedicated portal to download payslips, view tax computations, and submit investment declarations." }
+            ].map((faq, index) => {
+              return (
+                <details key={index} className="group border border-slate-200 rounded-2xl bg-white shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-slate-50 hover:bg-slate-100 transition-colors rounded-2xl">
+                    <span className="font-bold text-slate-800 text-base">{faq.q}</span>
+                    <FaChevronDown className="text-slate-400 group-open:rotate-180 transition-transform duration-300" />
+                  </summary>
+                  <div className="px-6 py-5 text-slate-600 bg-white border-t border-slate-100 text-sm md:text-base leading-relaxed rounded-b-2xl">
+                    {faq.a}
+                  </div>
+                </details>
+              );
+            })}
+          </div>
+        </section>
+
         {/* 3. TESTIMONIALS */}
         <TestimonialSection />
 

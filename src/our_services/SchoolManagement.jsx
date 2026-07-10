@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaTimesCircle, FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPlus, FaMinus, FaStar, FaQuoteLeft, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck, FaMapMarker, FaBookReader, FaChevronLeft, FaChevronRight, FaPlayCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPlus, FaMinus, FaStar, FaQuoteLeft, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck, FaMapMarker, FaBookReader, FaChevronLeft, FaChevronRight, FaPlayCircle, FaSearch, FaLock, FaUsers, FaServer, FaCodeBranch, FaCube, FaExpandArrowsAlt, FaSitemap, FaShieldAlt, FaSlidersH, FaHeadset, FaDesktop, FaSyncAlt, FaChevronDown, FaCalendarCheck } from 'react-icons/fa';
 import TestimonialSection from '../components/TestimonialSection';
 import techImage from '../assets/techImage.png';
 import schoolErpMobile from '../assets/school_erp_mobile.png';
@@ -26,6 +26,11 @@ const staggerContainer = {
 const SchoolManagement = () => {
   const [activeFeature, setActiveFeature] = useState(null);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
   const featuresEndRef = useRef(null);
   const testiScrollRef = useRef(null);
 
@@ -183,27 +188,34 @@ const SchoolManagement = () => {
 
 
 
-      {/* 2. WHY CHOOSE US */}
-      <section className="py-20 px-4 w-full mx-auto">
-        <div className="text-center max-w-4xl mx-auto">
-          <motion.h2
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-2xl md:text-4xl font-bold text-slate-800 mb-6"
-          >
-            Why Choose Our School Management Software?
+
+
+      {/* HOW ERP SOLVES PROBLEMS */}
+      <section className="py-20 px-4 w-full mx-auto bg-slate-50 relative overflow-hidden">
+        <div className="max-w-5xl mx-auto relative z-10 text-center">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-2xl md:text-4xl font-bold text-slate-800 mb-4">
+            One Platform. Complete Control.
           </motion.h2>
-          <motion.h3
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-xl md:text-2xl font-semibold text-orange-500 mb-6"
-          >
-            Transforming Education Through Technology
-          </motion.h3>
-          <motion.p
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-slate-600 text-left md:text-center leading-relaxed"
-          >
-            Our School Management ERP is a comprehensive solution designed to streamline every facet of your institution. From student admissions and attendance tracking to grade management and parent communication, our platform provides a centralized hub for all your data, empowering educators to focus on what matters most: teaching.
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-slate-500 mb-12">
+            Our ERP directly targets the pain points of modern educational administration.
           </motion.p>
+
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden text-left">
+            {[
+              { prob: "Manual student records", sol: "Centralized student database" },
+              { prob: "Attendance errors", sol: "Digital / AI attendance" },
+              { prob: "Fee tracking difficulty", sol: "Automated fee management" },
+              { prob: "Delayed results", sol: "Digital examination system" },
+              { prob: "Poor communication", sol: "Notifications and announcements" },
+              { prob: "Permission issues", sol: "Role-Based Access Control" },
+              { prob: "Multiple branches", sol: "Centralized multi-school control" }
+            ].map((item, idx) => (
+              <motion.div key={idx} variants={fadeUpVariant} className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-5 ${idx !== 6 ? 'border-b border-slate-100' : ''}`}>
+                <div className="flex items-center gap-3 text-slate-600"><FaTimesCircle className="flex-shrink-0 text-red-400" /> <span>{item.prob}</span></div>
+                <div className="flex items-center gap-3 text-slate-800 font-semibold md:pl-8 md:border-l border-slate-100"><FaCheckCircle className="flex-shrink-0 text-green-500" /> {item.sol}</div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
       {/* 1.5 FEATURES OVERVIEW */}
@@ -423,59 +435,182 @@ const SchoolManagement = () => {
         </div>
       </section>
 
+      {/* SECURITY SECTION */}
+      <section className="py-20 px-4 w-full mx-auto bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-3xl font-bold text-slate-800 mb-4">
+              Built with Security at the Core
+            </motion.h2>
+            <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-slate-500 max-w-2xl mx-auto">
+              Your institutional data is protected by enterprise-grade security protocols and strict access controls.
+            </motion.p>
+          </div>
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "JWT Authentication", icon: <FaLock />, desc: "Secure token-based login for all users." },
+              { title: "Role-Based Access", icon: <FaUsers />, desc: "Granular permission controls (RBAC)." },
+              { title: "Tenant Data Isolation", icon: <FaServer />, desc: "Strict separation of multi-school data." },
+              { title: "Secure API Access", icon: <FaCodeBranch />, desc: "Encrypted data transmission." }
+            ].map((sec, idx) => (
+              <motion.div key={idx} variants={fadeUpVariant} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                <div className="text-blue-500 text-3xl mb-4">{sec.icon}</div>
+                <h4 className="font-bold text-slate-800 mb-2">{sec.title}</h4>
+                <p className="text-sm text-slate-500">{sec.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* HOW IMPLEMENTATION WORKS */}
+      <section className="py-20 px-4 w-full mx-auto bg-white border-t border-slate-100 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-3xl font-bold text-slate-800 mb-4">
+              From Demo to Digital Transformation
+            </motion.h2>
+            <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-slate-500 max-w-2xl mx-auto">
+              A streamlined 5-step process to get your institution running on our ERP seamlessly.
+            </motion.p>
+          </div>
+          <div className="flex flex-col md:flex-row justify-between items-start relative gap-12 md:gap-0 pt-4 pl-4 md:pl-0">
+            {/* Desktop Horizontal Line */}
+            <div className="hidden md:block absolute top-[40px] left-[10%] w-[80%] h-1 bg-slate-200 -translate-y-1/2 z-0 overflow-hidden rounded-full">
+              <motion.div
+                className="w-full h-full bg-[#FF8000]"
+                style={{ originX: 0 }}
+                animate={{ scaleX: [0, 1] }}
+                transition={{ repeat: Infinity, duration: 5, ease: "linear", repeatDelay: 1 }}
+              />
+            </div>
+
+            {/* Mobile Vertical Line */}
+            <div className="md:hidden absolute left-[40px] top-[40px] bottom-[24px] w-1 bg-slate-200 -translate-x-1/2 z-0 overflow-hidden rounded-full">
+              <motion.div
+                className="w-full h-full bg-[#FF8000]"
+                style={{ originY: 0 }}
+                animate={{ scaleY: [0, 1] }}
+                transition={{ repeat: Infinity, duration: 5, ease: "linear", repeatDelay: 1 }}
+              />
+            </div>
+            {[
+              { step: "1", title: "Consultation" },
+              { step: "2", title: "Requirement Analysis" },
+              { step: "3", title: "Configuration" },
+              { step: "4", title: "Data Migration & Training" },
+              { step: "5", title: "Go Live" }
+            ].map((item, idx) => {
+              const hitTime = idx * 0.25;
+              const times = hitTime === 0 ? [0, 0.01, 1] :
+                hitTime === 1 ? [0, 0.98, 1] :
+                  [0, hitTime, hitTime + 0.05, 1];
+              const colors = hitTime === 0 ? ["#ffffff", "#22c55e", "#22c55e"] :
+                hitTime === 1 ? ["#ffffff", "#ffffff", "#22c55e"] :
+                  ["#ffffff", "#ffffff", "#22c55e", "#22c55e"];
+
+              return (
+                <motion.div key={idx} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} className="relative z-10 flex flex-row md:flex-col items-center px-0 md:px-4 w-full md:w-1/5 text-left md:text-center">
+                  <motion.div
+                    animate={{ borderColor: colors }}
+                    transition={{ repeat: Infinity, duration: 5, ease: "linear", repeatDelay: 1, times: times }}
+                    className="flex-shrink-0 w-12 h-12 bg-[#FF8000] text-white rounded-full flex items-center justify-center font-bold text-xl mb-0 md:mb-4 mr-6 md:mr-0 shadow-lg border-2 border-white"
+                  >
+                    {item.step}
+                  </motion.div>
+                  <h4 className="font-bold text-slate-800 text-base md:text-base">{item.title}</h4>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE OUR ERP */}
+      <section className="py-20 px-4 w-full mx-auto bg-slate-50">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-3xl font-bold text-slate-800 mb-12">
+            Why Schools Choose Our ERP
+          </motion.h2>
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {[
+              { title: "Complete Platform", icon: <FaCube /> },
+              { title: "Scalable Architecture", icon: <FaExpandArrowsAlt /> },
+              { title: "Multi-School Ready", icon: <FaSitemap /> },
+              { title: "Role-Based Security", icon: <FaShieldAlt /> },
+              { title: "Customizable Workflows", icon: <FaSlidersH /> },
+              { title: "Dedicated Support", icon: <FaHeadset /> },
+              { title: "Modern User Experience", icon: <FaDesktop /> },
+              { title: "Continuous Improvements", icon: <FaSyncAlt /> }
+            ].map((feature, idx) => (
+              <motion.div key={idx} variants={fadeUpVariant} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-[#FF8000] hover:shadow-md transition-all flex flex-col items-center">
+                <div className="text-[#FF8000] text-3xl mb-4">{feature.icon}</div>
+                <h4 className="font-bold text-slate-700 text-sm md:text-base">{feature.title}</h4>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-20 px-4 w-full mx-auto bg-white">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-3xl font-bold text-slate-800 mb-4">
+              Frequently Asked Questions
+            </motion.h2>
+          </div>
+          <div className="space-y-4">
+            {[
+              { q: "What is the School ERP?", a: "A comprehensive digital platform to manage all aspects of school administration, academics, and communication." },
+              { q: "Who can use the platform?", a: "Admins, teachers, students, and parents all have dedicated portals with role-specific access." },
+              { q: "Can the ERP be customized?", a: "Yes, we tailor workflows, grading systems, and reports to match your institution's specific needs." },
+              { q: "Does it support multiple schools?", a: "Absolutely. Our platform is built with a multi-tenant architecture to support centralized control across multiple branches." },
+              { q: "Is online fee payment supported?", a: "Yes, we integrate with popular payment gateways to allow parents to pay fees online securely." },
+              { q: "Can existing data be migrated?", a: "Yes, our team assists with bulk data import from Excel or legacy systems during the configuration phase." },
+              { q: "Does it support role-based access?", a: "Yes, our RBAC system ensures users only see data and features they are authorized to access." },
+              { q: "Is training provided?", a: "We provide comprehensive training for your staff along with dedicated ongoing support." },
+              { q: "How do we get started?", a: "Simply request a demo using the button below. Our team will contact you to analyze your requirements and set up a customized instance." }
+            ].map((faq, idx) => {
+              const isActive = activeFaq === idx;
+              return (
+                <div key={idx} className="border border-slate-200 rounded-lg bg-slate-50 overflow-hidden">
+                  <button onClick={() => toggleFaq(idx)} className="w-full flex justify-between items-center p-5 text-left font-bold text-slate-800 focus:outline-none hover:bg-slate-100 transition-colors">
+                    {faq.q}
+                    <FaChevronDown className={`transition-transform text-slate-400 ${isActive ? 'rotate-180' : ''}`} />
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isActive ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className="p-5 pt-0 text-slate-600 border-t border-slate-100">
+                      {faq.a}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* 5. TESTIMONIALS */}
       <TestimonialSection />
 
-      {/* 6. CTA / CONTACT SECTION */}
-      <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
-        <div className="absolute inset-0 z-0">
-          <img src={pageConfig.hero.image} alt="Tech Background" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
-          <motion.h2
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4"
-          >
-            {pageConfig.contact.title}
+      {/* 6. FINAL CTA SECTION */}
+      <section className="py-24 px-4 w-full mx-auto bg-gradient-to-br from-[#0B1B3D] to-[#1A4B8F] text-white text-center relative overflow-hidden mt-10">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+        <div className="max-w-4xl mx-auto relative z-10">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-3xl md:text-5xl font-bold mb-6">
+            Ready to Transform Your Institution?
           </motion.h2>
-          <motion.p
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-base md:text-lg text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
-          >
-            {pageConfig.contact.subtitle}
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} className="text-lg md:text-xl text-blue-200 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Talk to our team to explore how our School ERP can simplify operations, improve visibility, and create a more connected educational experience.
           </motion.p>
-
-          <motion.div
-            variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-6 mb-8 md:mb-12"
-          >
-            <div className="w-full text-center flex justify-center">
-              <p className="text-slate-200 text-xs md:text-sm font-medium leading-relaxed max-w-2xl text-center">
-                <FaMapMarkerAlt className="text-orange-400 inline-block mr-2 -mt-1" />
-                {pageConfig.contact.address}
-              </p>
-            </div>
-            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
-              <FaPhoneAlt className="text-orange-400 flex-shrink-0" />
-              <span className="text-slate-200 text-xs md:text-sm font-medium">{pageConfig.contact.phone}</span>
-            </div>
-
-            <div className="flex items-center gap-3 w-full md:w-auto justify-center">
-              <FaEnvelope className="text-orange-400 flex-shrink-0" />
-              <span className="text-slate-200 text-xs md:text-sm font-medium">{pageConfig.contact.email}</span>
-            </div>
-
-          </motion.div>
-
-          <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <a
-              href="/contact"
-              className="inline-block px-8 py-3 md:px-10 md:py-4 bg-orange-500 text-white text-base md:text-lg rounded-full font-bold shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all hover:-translate-y-1"
-            >
-              Contact Our Experts
-            </a>
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link to="/contact" className="bg-[#FF8000] hover:bg-[#E67300] text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all">
+              Request a Demo
+            </Link>
+            <Link to="/contact" className="bg-transparent hover:bg-white/10 text-white font-bold py-4 px-8 rounded-lg transition-all border-2 border-white/30 hover:border-white">
+              Contact Our Team
+            </Link>
           </motion.div>
         </div>
       </section>

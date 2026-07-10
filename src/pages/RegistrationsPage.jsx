@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaBuilding, FaStamp, FaGlobe, FaShieldAlt, FaCheckCircle, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaBuilding, FaStamp, FaGlobe, FaShieldAlt, FaCheckCircle, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChevronDown, FaRegQuestionCircle } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
 import heroImg from '../assets/service-registrations.png';
@@ -135,10 +135,19 @@ const RegistrationsPage = () => {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {benefits.map((benefit, idx) => (
-                <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
-                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
-                  <span className="text-sm text-slate-700 font-bold">{benefit}</span>
-                </div>
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-orange-200 transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-full bg-green-50 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                    <FaCheckCircle className="text-lg" />
+                  </div>
+                  <span className="text-sm md:text-base text-slate-700 font-bold">{benefit}</span>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -148,6 +157,39 @@ const RegistrationsPage = () => {
               <div className="absolute inset-0 bg-gradient-to-tr from-[#0d1b2a]/60 to-transparent"></div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-16 md:py-24 px-4 max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-orange-500 rounded-full mb-6">
+            <FaRegQuestionCircle className="text-3xl" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] mb-4 uppercase tracking-tight">Frequently Asked Questions</h2>
+          <p className="text-slate-500 font-medium">Common questions about company registration and compliance.</p>
+        </div>
+
+        <div className="space-y-4">
+          {[
+            { q: "What documents are required for company incorporation?", a: "Generally, you will need ID proofs (PAN, Aadhaar/Passport), address proofs, and photographs of the directors, along with proof of the registered office address." },
+            { q: "How long does it take to register a new company?", a: "With all documents in place, the entire incorporation process usually takes 7 to 15 working days, depending on government processing times." },
+            { q: "Do I need a commercial space to register my company?", a: "No, you can register your company at a residential address. You only need a NOC from the owner and a utility bill as proof of address." },
+            { q: "What is the difference between a Private Limited Company and an LLP?", a: "A Private Limited Company offers shares and is suitable for startups seeking funding. An LLP offers the benefits of limited liability but is structured more flexibly like a partnership, often with fewer compliance requirements." },
+            { q: "Do you handle post-incorporation compliances?", a: "Yes, we offer complete post-incorporation support including PAN/TAN applications, bank account opening assistance, GST registration, and ongoing annual compliances." }
+          ].map((faq, index) => {
+            return (
+              <details key={index} className="group border border-slate-200 rounded-2xl bg-white shadow-sm [&_summary::-webkit-details-marker]:hidden">
+                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-slate-50 hover:bg-slate-100 transition-colors rounded-2xl">
+                  <span className="font-bold text-slate-800 text-base">{faq.q}</span>
+                  <FaChevronDown className="text-slate-400 group-open:rotate-180 transition-transform duration-300" />
+                </summary>
+                <div className="px-6 py-5 text-slate-600 bg-white border-t border-slate-100 text-sm md:text-base leading-relaxed rounded-b-2xl">
+                  {faq.a}
+                </div>
+              </details>
+            );
+          })}
         </div>
       </section>
 
