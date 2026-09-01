@@ -22,15 +22,18 @@ export const pageConfig = {
       popular: false,
       features: {
         included: [
-          "Master setup", "Student management", "Teacher Management", 
-          "Staff Management", "Time Table setup", "Attendance management", 
+          "Master setup", "Student management", "Teacher Management",
+          "Staff Management", "Time Table setup", "Attendance management",
           "customizable dashboard"
         ],
         excluded: [
-          "Examination Management", "Holiday Management", "fee management", 
-          "Promotion Desk", "Notification", "Role based Access control", 
-          "Face based Attendance", "Library management", "Exit Management", 
-          "Operational Logs", "Reports generation"
+          "Examination Management", "Holiday Management", "fee management",
+          "Promotion Desk", "Notification", "Role based Access control",
+          "Face based Attendance", "Library management", "Exit Management",
+          "Operational Logs", "Reports generation",
+          "Marks Allocation", "Syllabus Management", "Assignment Management",
+          "Transport", "Income and Expense ", "Reimbursement", "Leave Management",
+          "Analytics Report", "Field Configuration"
         ]
       }
     },
@@ -43,16 +46,19 @@ export const pageConfig = {
       popular: false,
       features: {
         included: [
-          "Master setup", "Student management", "Teacher Management", 
-          "Staff Management", "Time Table setup", "Attendance management", 
-          "customizable dashboard", "Examination Management", 
-          "Holiday Management", "fee management", "Promotion Desk", 
+          "Master setup", "Student management", "Teacher Management",
+          "Staff Management", "Time Table setup", "Attendance management",
+          "customizable dashboard", "Examination Management",
+          "Holiday Management", "fee management", "Promotion Desk",
           "Notification"
         ],
         excluded: [
-          "Role based Access control", "Face based Attendance", 
-          "Library management", "Exit Management", "Operational Logs", 
-          "Reports generation"
+          "Role based Access control", "Face based Attendance",
+          "Library management", "Exit Management", "Operational Logs",
+          "Reports generation",
+          "Marks Allocation", "Syllabus Management", "Assignment Management",
+          "Transport", "Income and Expense ", "Reimbursement", "Leave Management",
+          "Analytics Report", "Field Configuration"
         ]
       }
     },
@@ -65,13 +71,16 @@ export const pageConfig = {
       popular: true,
       features: {
         included: [
-          "Master setup", "Student management", "Teacher Management", 
-          "Staff Management", "Time Table setup", "Attendance management", 
-          "customizable dashboard", "Examination Management", 
-          "Holiday Management", "fee management", "Promotion Desk", 
-          "Notification", "Role based Access control", "Face based Attendance", 
-          "Library management", "Exit Management", "Operational Logs", 
-          "Reports generation"
+          "Master setup", "Student management", "Teacher Management",
+          "Staff Management", "Time Table setup", "Attendance management",
+          "customizable dashboard", "Examination Management",
+          "Holiday Management", "fee management", "Promotion Desk",
+          "Notification", "Role based Access control", "Face based Attendance",
+          "Library management", "Exit Management", "Operational Logs",
+          "Reports generation",
+          "Marks Allocation", "Syllabus Management", "Assignment Management",
+          "Transport", "Income and Expense ", "Reimbursement", "Leave Management",
+          "Analytics Report", "Field Configuration"
         ],
         excluded: []
       }

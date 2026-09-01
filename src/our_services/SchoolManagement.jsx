@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaTimesCircle, FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPlus, FaMinus, FaStar, FaQuoteLeft, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck, FaMapMarker, FaBookReader, FaChevronLeft, FaChevronRight, FaPlayCircle, FaSearch, FaLock, FaUsers, FaServer, FaCodeBranch, FaCube, FaExpandArrowsAlt, FaSitemap, FaShieldAlt, FaSlidersH, FaHeadset, FaDesktop, FaSyncAlt, FaChevronDown, FaCalendarCheck } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPlus, FaMinus, FaStar, FaQuoteLeft, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck, FaMapMarker, FaBookReader, FaChevronLeft, FaChevronRight, FaPlayCircle, FaSearch, FaLock, FaUsers, FaServer, FaCodeBranch, FaCube, FaExpandArrowsAlt, FaSitemap, FaShieldAlt, FaSlidersH, FaHeadset, FaDesktop, FaSyncAlt, FaChevronDown, FaCalendarCheck, FaBuilding, FaChartBar, FaCrown } from 'react-icons/fa';
 import TestimonialSection from '../components/TestimonialSection';
 import techImage from '../assets/techImage.png';
 import schoolErpMobile from '../assets/school_erp_mobile.png';
@@ -370,22 +370,31 @@ const SchoolManagement = () => {
                 </div>
               )}
               <div className="p-8 flex-grow">
-                <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
-                <p className="text-sm text-slate-500 mb-6 min-h-[40px]">{plan.description}</p>
+                <div className="flex items-start gap-4 mb-6">
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${plan.color} bg-opacity-10 text-white shadow-sm`}>
+                    {plan.name === 'Basic' && <FaBuilding className="text-2xl" />}
+                    {plan.name === 'Standard' && <FaChartBar className="text-2xl" />}
+                    {plan.name === 'Premium' && <FaCrown className="text-2xl" />}
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-800 mb-1">{plan.name}</h3>
+                    <p className="text-xs text-slate-500 leading-relaxed">{plan.description}</p>
+                  </div>
+                </div>
 
                 <div className={`w-full h-1 bg-gradient-to-r ${plan.color} rounded-full mb-8`}></div>
 
-                <ul className="space-y-4">
+                <ul className="space-y-2">
                   {plan.features.included.map((feat, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
-                      <span className="text-slate-700 text-sm font-medium">{feat}</span>
+                    <li key={i} className="flex items-start gap-2">
+                      <FaCheckCircle className="text-green-500 mt-0.5 flex-shrink-0 text-sm" />
+                      <span className="text-slate-700 text-xs font-medium">{feat}</span>
                     </li>
                   ))}
                   {plan.features.excluded.map((feat, i) => (
-                    <li key={i} className="flex items-start gap-3 opacity-50">
-                      <FaTimesCircle className="text-slate-400 mt-1 flex-shrink-0" />
-                      <span className="text-slate-500 text-sm">{feat}</span>
+                    <li key={i} className="flex items-start gap-2 opacity-50">
+                      <FaTimesCircle className="text-slate-400 mt-0.5 flex-shrink-0 text-sm" />
+                      <span className="text-slate-500 text-xs">{feat}</span>
                     </li>
                   ))}
                 </ul>
@@ -394,7 +403,7 @@ const SchoolManagement = () => {
               <div className="p-6 bg-slate-50 border-t border-slate-100">
                 <Link
                   to="/contact"
-                  className="block w-full py-3 rounded-lg font-bold text-white transition-transform hover:scale-[1.02] bg-[#f97316] text-center shadow-md hover:shadow-lg"
+                  className={`block w-full py-3 rounded-lg font-bold text-white transition-transform hover:scale-[1.02] bg-gradient-to-r ${plan.color} text-center shadow-md hover:shadow-lg`}
                 >
                   Get Started
                 </Link>
