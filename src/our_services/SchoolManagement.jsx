@@ -370,31 +370,31 @@ const SchoolManagement = () => {
                 </div>
               )}
               <div className="p-8 flex-grow">
-                <div className="flex items-start gap-4 mb-6">
+                <div className="flex items-start gap-3 mb-4">
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${plan.color} bg-opacity-10 text-white shadow-sm`}>
                     {plan.name === 'Basic' && <FaBuilding className="text-2xl" />}
                     {plan.name === 'Standard' && <FaChartBar className="text-2xl" />}
                     {plan.name === 'Premium' && <FaCrown className="text-2xl" />}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-800 mb-1">{plan.name}</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">{plan.description}</p>
+                    <h3 className="text-2xl font-bold text-slate-800 mb-0">{plan.name}</h3>
+                    <p className="text-xs text-slate-500 leading-relaxed mb-0">{plan.description}</p>
                   </div>
                 </div>
 
-                <div className={`w-full h-1 bg-gradient-to-r ${plan.color} rounded-full mb-8`}></div>
+                <div className={`w-full h-1 bg-gradient-to-r ${plan.color} rounded-full mb-4`}></div>
 
                 <ul className="space-y-2">
                   {plan.features.included.map((feat, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <FaCheckCircle className="text-green-500 mt-0.5 flex-shrink-0 text-sm" />
-                      <span className="text-slate-700 text-xs font-medium">{feat}</span>
+                      <span className="text-slate-800 text-xs font-medium">{feat}</span>
                     </li>
                   ))}
                   {plan.features.excluded.map((feat, i) => (
-                    <li key={i} className="flex items-start gap-2 opacity-50">
-                      <FaTimesCircle className="text-slate-400 mt-0.5 flex-shrink-0 text-sm" />
-                      <span className="text-slate-500 text-xs">{feat}</span>
+                    <li key={i} className="flex items-start gap-2 opacity-80">
+                      <FaTimesCircle className="text-slate-500 mt-0.5 flex-shrink-0 text-sm" />
+                      <span className="text-slate-600 text-xs">{feat}</span>
                     </li>
                   ))}
                 </ul>

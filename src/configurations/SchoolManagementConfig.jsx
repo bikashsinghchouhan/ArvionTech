@@ -22,18 +22,46 @@ export const pageConfig = {
       popular: false,
       features: {
         included: [
-          "Master setup", "Student management", "Teacher Management",
-          "Staff Management", "Time Table setup", "Attendance management",
-          "customizable dashboard"
+          "Master setup",
+          "Student Management",
+          "Teacher Management",
+          "Staff Management",
+          "Time table setup",
+          "User management ",
+          "Notifications ",
+          "Holiday ",
+          "Promotion",
+          "Exit",
+          "Reports - basic level",
+          "Doc management - basic",
+          "Academic year creation",
+          "Data storage for future years' reference",
+          "Fee management",
+          "Access restriction",
+          "Dashboard"
         ],
         excluded: [
-          "Examination Management", "Holiday Management", "fee management",
-          "Promotion Desk", "Notification", "Role based Access control",
-          "Face based Attendance", "Library management", "Exit Management",
-          "Operational Logs", "Reports generation",
-          "Marks Allocation", "Syllabus Management", "Assignment Management",
-          "Transport", "Income and Expense ", "Reimbursement", "Leave Management",
-          "Analytics Report", "Field Configuration"
+
+          "Attendance - Manual marking",
+          "Examination & Marks allocation",
+          "Operational logs",
+          "Syllabus management",
+          "Reports & Analytics",
+          "Reimbursement",
+          "Income & Expenses",
+
+
+          "Library Management",
+          "Facial recognition attendance",
+          "Transport",
+          "Leave Management",
+          "Self check-in & check-out",
+          "Field configuration",
+          "Assignment Management",
+          "Inventory Management",
+          "Customizable dashboard",
+
+
         ]
       }
     },
@@ -46,19 +74,43 @@ export const pageConfig = {
       popular: false,
       features: {
         included: [
-          "Master setup", "Student management", "Teacher Management",
-          "Staff Management", "Time Table setup", "Attendance management",
-          "customizable dashboard", "Examination Management",
-          "Holiday Management", "fee management", "Promotion Desk",
-          "Notification"
+          "Master setup",
+          "Student Management",
+          "Teacher Management",
+          "Staff Management",
+          "Time table setup",
+          "User management ",
+          "Notifications ",
+          "Holiday ",
+          "Promotion",
+          "Exit",
+          "Reports - basic level",
+          "Doc management - basic",
+          "Academic year creation",
+          "Data storage for future years' reference",
+          "Fee management",
+          "Access restriction",
+          "Dashboard",
+
+          "Attendance - Manual marking",
+          "Examination & Marks allocation",
+          "Operational logs",
+          "Syllabus management",
+          "Reports & Analytics",
+          "Reimbursement",
+          "Income & Expenses",
         ],
         excluded: [
-          "Role based Access control", "Face based Attendance",
-          "Library management", "Exit Management", "Operational Logs",
-          "Reports generation",
-          "Marks Allocation", "Syllabus Management", "Assignment Management",
-          "Transport", "Income and Expense ", "Reimbursement", "Leave Management",
-          "Analytics Report", "Field Configuration"
+
+          "Library Management",
+          "Facial recognition attendance",
+          "Transport",
+          "Leave Management",
+          "Self check-in & check-out",
+          "Field configuration",
+          "Assignment Management",
+          "Inventory Management",
+          "Customizable dashboard",
         ]
       }
     },
@@ -71,16 +123,45 @@ export const pageConfig = {
       popular: true,
       features: {
         included: [
-          "Master setup", "Student management", "Teacher Management",
-          "Staff Management", "Time Table setup", "Attendance management",
-          "customizable dashboard", "Examination Management",
-          "Holiday Management", "fee management", "Promotion Desk",
-          "Notification", "Role based Access control", "Face based Attendance",
-          "Library management", "Exit Management", "Operational Logs",
-          "Reports generation",
-          "Marks Allocation", "Syllabus Management", "Assignment Management",
-          "Transport", "Income and Expense ", "Reimbursement", "Leave Management",
-          "Analytics Report", "Field Configuration"
+          "Master setup",
+          "Student Management",
+          "Teacher Management",
+          "Staff Management",
+          "Time table setup",
+          "User management ",
+          "Notifications ",
+          "Holiday ",
+          "Promotion",
+          "Exit",
+          "Reports - basic level",
+          "Doc management - basic",
+          "Academic year creation",
+          "Data storage for future years' reference",
+          "Fee management",
+          "Access restriction",
+          "Dashboard",
+
+
+
+          "Attendance - Manual marking",
+          "Examination & Marks allocation",
+          "Operational logs",
+          "Syllabus management",
+          "Reports & Analytics",
+          "Reimbursement",
+          "Income & Expenses",
+
+
+
+          "Library Management",
+          "Facial recognition attendance",
+          "Transport",
+          "Leave Management",
+          "Self check-in & check-out",
+          "Field configuration",
+          "Assignment Management",
+          "Inventory Management",
+          "Customizable dashboard",
         ],
         excluded: []
       }
