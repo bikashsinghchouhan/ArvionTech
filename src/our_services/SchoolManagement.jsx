@@ -26,6 +26,8 @@ const staggerContainer = {
 const SchoolManagement = () => {
   const [activeFeature, setActiveFeature] = useState(null);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [featureSearch, setFeatureSearch] = useState("");
   const [activeFaq, setActiveFaq] = useState(null);
 
   const toggleFaq = (index) => {
@@ -42,8 +44,8 @@ const SchoolManagement = () => {
     }
   };
 
-  const toggleFeature = (index) => {
-    setActiveFeature(activeFeature === index ? null : index);
+  const toggleFeature = (title) => {
+    setActiveFeature(activeFeature === title ? null : title);
   };
 
   const handleToggleFeatures = () => {
@@ -54,6 +56,38 @@ const SchoolManagement = () => {
       }, 10);
     }
     setShowAllFeatures(!showAllFeatures);
+  };
+
+  const categories = [
+    { label: "All", value: "All", count: pageConfig.featureSuite.length },
+    { label: "Core Administration", value: "Core Administration", count: pageConfig.featureSuite.filter(f => f.category === "Core Administration").length },
+    { label: "Academics & Operations", value: "Academics & Operations", count: pageConfig.featureSuite.filter(f => f.category === "Academics & Operations").length },
+    { label: "Advanced Enterprise Modules", value: "Advanced Enterprise Modules", count: pageConfig.featureSuite.filter(f => f.category === "Advanced Enterprise Modules").length }
+  ];
+
+  const filteredFeatures = pageConfig.featureSuite.filter((feature) => {
+    const matchesCategory = selectedCategory === "All" || feature.category === selectedCategory;
+    const matchesSearch = feature.title.toLowerCase().includes(featureSearch.toLowerCase()) ||
+                          feature.desc.toLowerCase().includes(featureSearch.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const isFiltering = featureSearch.trim() !== "" || selectedCategory !== "All";
+  const displayedFeatures = (showAllFeatures || isFiltering)
+    ? filteredFeatures
+    : filteredFeatures.slice(0, 8);
+
+  const getCategoryBadgeClass = (category) => {
+    switch (category) {
+      case "Core Administration":
+        return "bg-blue-50 text-blue-700 border-blue-200";
+      case "Academics & Operations":
+        return "bg-emerald-50 text-emerald-700 border-emerald-200";
+      case "Advanced Enterprise Modules":
+        return "bg-purple-50 text-purple-700 border-purple-200";
+      default:
+        return "bg-slate-100 text-slate-600 border-slate-200";
+    }
   };
 
   return (
@@ -275,7 +309,10 @@ const SchoolManagement = () => {
       </section>
       {/* 1.5 FEATURES OVERVIEW */}
       <section className="py-16 bg-white px-4 max-w-full mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 text-orange-700 text-xs font-bold px-3.5 py-1.5 rounded-full mb-3 uppercase tracking-wider">
+            <span>33+ Powerful Modules</span>
+          </div>
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
             className="text-2xl md:text-4xl font-bold text-slate-800 mb-4"
@@ -286,51 +323,119 @@ const SchoolManagement = () => {
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
             className="text-sm md:text-base text-slate-500 max-w-2xl mx-auto"
           >
-            Everything you need to run your institution efficiently.
+            Explore every module and tool designed to automate operations, boost academic outcomes, and streamline your institution.
           </motion.p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4">
-          {(showAllFeatures ? pageConfig.featureSuite : pageConfig.featureSuite.slice(0, 6)).map((feature, idx) => {
-            const isActive = activeFeature === idx;
+        {/* Category Filter Pills & Search */}
+        <div className="max-w-4xl mx-auto mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+            {/* Category tabs */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat.value}
+                  onClick={() => {
+                    setSelectedCategory(cat.value);
+                    setShowAllFeatures(false);
+                  }}
+                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                    selectedCategory === cat.value
+                      ? 'bg-orange-500 text-white shadow-md shadow-orange-500/20'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  {cat.label} ({cat.count})
+                </button>
+              ))}
+            </div>
+
+            {/* Search Input */}
+            <div className="relative w-full md:w-64 flex-shrink-0">
+              <FaSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs" />
+              <input
+                type="text"
+                placeholder="Search features..."
+                value={featureSearch}
+                onChange={(e) => setFeatureSearch(e.target.value)}
+                className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-full focus:outline-none focus:border-orange-500 focus:bg-white transition-colors"
+              />
+              {featureSearch && (
+                <button
+                  onClick={() => setFeatureSearch("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto space-y-3">
+          {displayedFeatures.map((feature, idx) => {
+            const isActive = activeFeature === feature.title;
             return (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                key={feature.title}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: (idx % 6) * 0.05 }}
-                className={`border rounded-xl overflow-hidden transition-all duration-300 ${isActive ? 'border-orange-500 shadow-md bg-white' : 'border-slate-200 bg-slate-50 hover:border-slate-300'}`}
+                transition={{ duration: 0.25, delay: (idx % 8) * 0.03 }}
+                className={`border rounded-xl overflow-hidden transition-all duration-300 ${
+                  isActive ? 'border-orange-500 shadow-md bg-white' : 'border-slate-200 bg-slate-50/70 hover:border-slate-300 hover:bg-white'
+                }`}
               >
                 <button
-                  onClick={() => toggleFeature(idx)}
-                  className="w-full px-6 py-4 flex items-center justify-between focus:outline-none"
+                  onClick={() => toggleFeature(feature.title)}
+                  className="w-full px-5 py-4 flex items-center justify-between focus:outline-none gap-3"
                 >
-                  <h4 className={`font-bold text-lg text-left transition-colors ${isActive ? 'text-orange-600' : 'text-slate-800'}`}>
-                    {feature.title}
-                  </h4>
-                  <span className={`flex-shrink-0 ml-4 transition-transform duration-300 ${isActive ? 'rotate-180' : 'rotate-0'}`}>
-                    {isActive ? <FaMinus className="text-orange-500" /> : <FaPlus className="text-slate-400" />}
+                  <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-left">
+                    <h4 className={`font-bold text-base sm:text-lg transition-colors ${isActive ? 'text-orange-600' : 'text-slate-800'}`}>
+                      {feature.title}
+                    </h4>
+                    <span className={`text-[10px] sm:text-[11px] font-semibold px-2.5 py-0.5 rounded-full border whitespace-nowrap ${getCategoryBadgeClass(feature.category)}`}>
+                      {feature.category}
+                    </span>
+                  </div>
+                  <span className={`flex-shrink-0 ml-2 p-1.5 rounded-full transition-transform duration-300 ${
+                    isActive ? 'rotate-180 bg-orange-100 text-orange-600' : 'text-slate-400 bg-white border border-slate-200'
+                  }`}>
+                    {isActive ? <FaMinus className="text-xs" /> : <FaPlus className="text-xs" />}
                   </span>
                 </button>
                 <div
-                  className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${isActive ? 'max-h-40 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}
+                  className={`px-5 overflow-hidden transition-all duration-300 ease-in-out ${
+                    isActive ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
                 >
-                  <p className="text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
+                  <p className="text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-3">
                     {feature.desc}
                   </p>
                 </div>
               </motion.div>
             );
           })}
+
+          {displayedFeatures.length === 0 && (
+            <div className="text-center py-12 bg-slate-50 rounded-2xl border border-slate-200">
+              <p className="text-slate-500 font-medium">No features found matching "{featureSearch}".</p>
+              <button
+                onClick={() => { setFeatureSearch(""); setSelectedCategory("All"); }}
+                className="mt-3 text-orange-500 hover:text-orange-600 text-sm font-semibold underline focus:outline-none"
+              >
+                Clear search & filters
+              </button>
+            </div>
+          )}
         </div>
 
-        {pageConfig.featureSuite.length > 6 && (
-          <div className="max-w-4xl mx-auto mt-4 flex justify-end" ref={featuresEndRef}>
+        {!isFiltering && pageConfig.featureSuite.length > 8 && (
+          <div className="max-w-4xl mx-auto mt-6 flex justify-center" ref={featuresEndRef}>
             <button
               onClick={handleToggleFeatures}
-              className="text-orange-500 hover:text-orange-600 font-medium text-sm md:text-base flex items-center transition-colors focus:outline-none"
+              className="bg-white border-2 border-orange-500 text-orange-600 hover:bg-orange-50 px-6 py-2.5 rounded-full font-semibold text-sm md:text-base transition-colors shadow-sm hover:shadow"
             >
-              {showAllFeatures ? "View Less" : "View All Features"}
+              {showAllFeatures ? "Show Less" : `View All ${pageConfig.featureSuite.length} Features`}
             </button>
           </div>
         )}

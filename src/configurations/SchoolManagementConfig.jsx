@@ -192,20 +192,171 @@ export const pageConfig = {
 
 
   featureSuite: [
-    { title: "Admission Management", desc: "Automate and streamline the entire student enrollment process, from handling initial inquiries and digital application forms to document verification and final admission confirmation." },
-    { title: "Comprehensive Student Profiles", desc: "Maintain a complete 360-degree view of every student, from initial admission and enrollment to academic progress, attendance records, and extracurricular activities. Our system provides a centralized, secure database, making it easy for administrators and teachers to access the information they need, when they need it." },
-    { title: "Class & Section Setup", desc: "Easily organize students into specific classes and sections. Allocate class teachers, manage class-level capacities, and handle end-of-year student promotions seamlessly." },
-    { title: "Automated Timetable & Scheduling", desc: "Effortlessly create, manage, and distribute complex academic schedules. Our intelligent timetabling tool helps you avoid conflicts, manage teacher allocations, and publish schedules directly to student and parent portals, saving countless hours of administrative work." },
-    { title: "Attendance Management", desc: "Track student and staff daily attendance efficiently. Generate instant daily, monthly, and yearly attendance reports to easily monitor punctuality and absenteeism." },
-    { title: "Face Based Attendance", desc: "Leverage advanced AI facial recognition technology for contact-less, highly accurate, and secure attendance logging, eliminating proxy attendance completely." },
-    { title: "Integrated Grade & Exam Management", desc: "Streamline the entire examination process, from creating exam schedules to entering grades and generating detailed report cards. Our platform provides powerful analytics to track student performance over time, helping educators identify trends and provide targeted support." },
-    { title: "Fee Management", desc: "Automate fee collections by defining custom fee structures and concessions. Generate instant receipts, track pending dues, and send automatic payment reminders to parents." },
-    { title: "Library Management", desc: "Digitize your entire library inventory. Effortlessly track book issues, returns, and lost items, while automatically calculating and applying late fines for delayed returns." },
-    { title: "Leave & Holiday Management", desc: "Define institutional academic calendars and holidays. Allow staff and students to apply for leaves digitally, backed by an automated multi-level approval workflow." },
-    { title: "Automated Notifications", desc: "Keep parents, teachers, and students informed in real-time through automated SMS, email, and push notifications for upcoming events, fee dues, and urgent announcements." },
-    { title: "Reports & Analytics", desc: "Generate exhaustive graphical and tabular reports covering academics, finances, and administration to empower school leadership to make informed, data-driven decisions." },
-    { title: "Customizable Dashboard", desc: "Provide personalized, role-based dashboards for administrators, teachers, and parents, highlighting the most critical daily metrics, announcements, and pending tasks at a glance." },
-    { title: "Master Setup", desc: "Configure core institutional data like academic sessions, user roles, detailed permission controls, departments, and institutional branding with a highly flexible master module." }
+    {
+      title: "Master setup",
+      category: "Core Administration",
+      desc: "Establish the complete operational foundation of your institution. Configure academic boards, institute profiles, multi-branch campuses, grading systems, operational rules, and system-wide default parameters that govern all software modules."
+    },
+    {
+      title: "Student Management",
+      category: "Core Administration",
+      desc: "Digitize and maintain complete 360-degree student profiles from inquiry to graduation. Track personal info, guardian contacts, previous schooling, enrollment records, class-section allocations, and medical documents in a unified repository."
+    },
+    {
+      title: "Teacher Management",
+      category: "Core Administration",
+      desc: "Manage faculty profiles, educational qualifications, department hierarchies, class teacher allocations, subject specializations, and daily teaching workloads with comprehensive administrative oversight."
+    },
+    {
+      title: "Staff Management",
+      category: "Core Administration",
+      desc: "Maintain organized records for all non-teaching, administrative, and support staff. Track employee designations, contact details, assigned campus responsibilities, shift allocations, and employment documentation."
+    },
+    {
+      title: "Time table setup",
+      category: "Core Administration",
+      desc: "Create and manage conflict-free class and teacher schedules with intelligent timetable configuration. Set period durations, breaks, subject-teacher allocations, and effortlessly assign proxy teachers for absent staff."
+    },
+    {
+      title: "User management",
+      category: "Core Administration",
+      desc: "Centralize account administration for school leaders, teachers, administrative staff, students, and parents. Easily create credentials, configure login methods, manage password resets, and track active sessions."
+    },
+    {
+      title: "Notifications",
+      category: "Core Administration",
+      desc: "Broadcast instant circulars, emergency alerts, holiday announcements, fee reminders, and event notices to parents, teachers, and students via SMS, automated emails, and mobile push notifications."
+    },
+    {
+      title: "Holiday",
+      category: "Core Administration",
+      desc: "Plan and publish the official institutional calendar including national holidays, festive breaks, seasonal vacations, and scheduled academic closures directly visible across web portals and mobile apps."
+    },
+    {
+      title: "Promotion",
+      category: "Core Administration",
+      desc: "Execute smooth academic year roll-overs. Promote eligible students in bulk to higher classes or sections based on exam performance, pass criteria, or administrative review with complete historical continuity."
+    },
+    {
+      title: "Exit",
+      category: "Core Administration",
+      desc: "Streamline the student exit and staff offboarding workflow. Generate Transfer Certificates (TC), conduct multi-department fee and asset clearances, and maintain alumni archival records effortlessly."
+    },
+    {
+      title: "Reports - basic level",
+      category: "Core Administration",
+      desc: "Generate day-to-day operational reports with one click, including class-wise student rolls, teacher allotment summaries, basic attendance registers, and daily fee transaction summaries."
+    },
+    {
+      title: "Doc management - basic",
+      category: "Core Administration",
+      desc: "Securely store, organize, and retrieve essential school documents, student birth certificates, transfer certificates, previous marksheets, ID proofs, and staff credentials in a structured digital vault."
+    },
+    {
+      title: "Academic year creation",
+      category: "Core Administration",
+      desc: "Set up upcoming academic years, terms, and semesters with defined start and end dates. Transition smoothly into new sessions while preserving complete historical data from previous years."
+    },
+    {
+      title: "Data storage for future years' reference",
+      category: "Core Administration",
+      desc: "Ensure enterprise-grade, encrypted cloud archival of historical student files, grade sheets, fee transactions, and institutional logs for audits, verification, and accreditation compliance."
+    },
+    {
+      title: "Fee management",
+      category: "Core Administration",
+      desc: "Configure customized fee structures, installment schedules, scholarships, and concessions. Generate instant digital receipts, calculate late fines, and track outstanding balances with automated reminders."
+    },
+    {
+      title: "Access restriction",
+      category: "Core Administration",
+      desc: "Enforce strict role-based access control (RBAC). Ensure that teachers, accountants, clerks, and parents can only view and modify the exact data permitted by their specific roles and authorization levels."
+    },
+    {
+      title: "Dashboard",
+      category: "Core Administration",
+      desc: "Gain an instant overview of daily campus operations with interactive summary widgets highlighting today's attendance, active admissions, collected fees, pending tasks, and urgent circulars."
+    },
+    {
+      title: "Attendance - Manual marking",
+      category: "Academics & Operations",
+      desc: "Empower teachers and administrators to quickly record daily, morning/afternoon, or period-wise student and staff attendance using intuitive web or mobile interfaces with bulk status toggles."
+    },
+    {
+      title: "Examination & Marks allocation",
+      category: "Academics & Operations",
+      desc: "Plan and schedule examinations, define grading schemes and subject weightages, input marks effortlessly, and generate automated, publication-ready student report cards and merit lists."
+    },
+    {
+      title: "Operational logs",
+      category: "Academics & Operations",
+      desc: "Maintain detailed, tamper-resistant system audit trails that log user logins, record modifications, financial entries, and administrative actions for transparency and institutional security."
+    },
+    {
+      title: "Syllabus management",
+      category: "Academics & Operations",
+      desc: "Define subject curricula, chapter breakdowns, and teaching milestones. Monitor real-time syllabus completion progress across classes to ensure teachers stay on track throughout the academic term."
+    },
+    {
+      title: "Reports & Analytics",
+      category: "Academics & Operations",
+      desc: "Gain deep institutional intelligence with visual analytics and in-depth reports covering student academic progression, attendance trends, staff performance, and fee collection efficiency."
+    },
+    {
+      title: "Reimbursement",
+      category: "Academics & Operations",
+      desc: "Digitize staff expense claims and official school purchases. Enable employees to upload receipt proofs, route requests through multi-level approval hierarchies, and track disbursement status."
+    },
+    {
+      title: "Income & Expenses",
+      category: "Academics & Operations",
+      desc: "Maintain accurate institutional financial records. Track non-fee revenues, daily petty cash, vendor disbursements, maintenance expenditures, and generate transparent income-expense summaries."
+    },
+    {
+      title: "Library Management",
+      category: "Advanced Enterprise Modules",
+      desc: "Automate your school library operations with barcode/ISBN cataloging, book issue and return tracking, lost book management, reservation queues, and automatic late return fine calculation."
+    },
+    {
+      title: "Facial recognition attendance",
+      category: "Advanced Enterprise Modules",
+      desc: "Deploy AI-driven facial recognition biometric cameras or kiosks for touchless, ultra-fast, and 100% proxy-free attendance tracking for students, teachers, and school staff members."
+    },
+    {
+      title: "Transport",
+      category: "Advanced Enterprise Modules",
+      desc: "Manage campus transportation logistics with ease: define bus routes, pickup and drop points, vehicle fleet records, driver allocations, student bus passes, and route-based transportation fees."
+    },
+    {
+      title: "Leave Management",
+      category: "Advanced Enterprise Modules",
+      desc: "Provide a digital workflow for staff and student leave applications. Track allocated leave balances, enforce institutional leave policies, arrange substitute teachers, and manage multi-level approvals."
+    },
+    {
+      title: "Self check-in & check-out",
+      category: "Advanced Enterprise Modules",
+      desc: "Enable staff members and authorized campus visitors to check in and out independently through on-premise touchscreen kiosks or geofenced mobile app verification."
+    },
+    {
+      title: "Field configuration",
+      category: "Advanced Enterprise Modules",
+      desc: "Flexibly customize registration forms, student records, and staff profiles by adding custom input fields, document requirements, and dropdown options without writing custom code."
+    },
+    {
+      title: "Assignment Management",
+      category: "Advanced Enterprise Modules",
+      desc: "Enable teachers to publish homework, assignments, and reading materials online with due dates. Students and parents can access tasks, submit work digitally, and receive teacher feedback."
+    },
+    {
+      title: "Inventory Management",
+      category: "Advanced Enterprise Modules",
+      desc: "Track institutional physical assets, classroom furniture, science lab equipment, sports gear, uniforms, and books with low-stock alerts, purchase records, and department distribution logs."
+    },
+    {
+      title: "Customizable dashboard",
+      category: "Advanced Enterprise Modules",
+      desc: "Allow principals, department heads, and teachers to personalize their dashboard view with custom widgets, graphical charts, and key operational shortcuts tailored to their specific daily priorities."
+    }
   ],
 
 

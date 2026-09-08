@@ -9,15 +9,21 @@ const Chatbot = () => {
     { text: "Hi there! 👋 Welcome to Arvion Technologies. How can I help you today?", isBot: true }
   ]);
   const [inputValue, setInputValue] = useState('');
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
+  const latestMessageRef = useRef(null);
 
-  // Auto-scroll to bottom of messages
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  // Auto-scroll to show the latest message clearly on screen
+  const scrollToLatest = () => {
+    if (latestMessageRef.current) {
+      latestMessageRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    const timer = setTimeout(() => {
+      scrollToLatest();
+    }, 80);
+    return () => clearTimeout(timer);
   }, [messages, isOpen]);
 
   // Handle opening with a delay to attract attention
@@ -40,12 +46,27 @@ const Chatbot = () => {
     setTimeout(() => {
       const response = getBotResponse(text);
       setMessages([...newMessages, { text: response, isBot: true }]);
-    }, 600);
+    }, 500);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSendMessage(inputValue);
+  };
+
+  const renderFormattedMessage = (text) => {
+    if (typeof text !== 'string') return text;
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return (
+          <strong key={index} className="font-semibold text-slate-900">
+            {part.slice(2, -2)}
+          </strong>
+        );
+      }
+      return part;
+    });
   };
 
   return (
@@ -58,30 +79,41 @@ const Chatbot = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: [0, 0.25, 0], scale: [0.9, 1.2, 1.5] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
-              className="absolute inset-0 rounded-full bg-[#ff7f32] z-0"
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute inset-0 rounded-full bg-[#ff7f32] -z-10"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: [0, 0.25, 0], scale: [0.9, 1.2, 1.5] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 1.25 }}
-              className="absolute inset-0 rounded-full bg-[#ff7f32] z-0"
+              animate={{ opacity: [0, 0.15, 0], scale: [0.9, 1.4, 1.8] }}
+              transition={{
+                duration: 2.5,
+                delay: 0.8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute inset-0 rounded-full bg-[#ff7f32] -z-20"
             />
 
+            {/* Glowing Backdrop */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-amber-500 blur-md opacity-40 -z-10 animate-pulse"></div>
+
             <motion.button
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{
-                scale: { type: "spring", stiffness: 260, damping: 20 },
-                opacity: { duration: 0.3 }
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(true)}
-              className="relative z-10 w-14 h-14 cursor-pointer rounded-full bg-gradient-to-tr from-[#ff7f32] to-[#ff9b5a] text-white flex items-center justify-center shadow-[0_8px_30px_rgb(255,127,50,0.4)] hover:shadow-[0_8px_30px_rgb(255,127,50,0.6)] transition-shadow"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              className="relative w-14 h-14 bg-gradient-to-r from-[#ff8c42] to-[#ff7f32] text-white rounded-full flex items-center justify-center shadow-lg shadow-orange-500/40 cursor-pointer group border border-white/30"
             >
-              <FaComments size={24} />
+              {/* Ping badge */}
+              <span className="absolute top-2 right-2 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+              </span>
+
+              <FaComments size={24} className="group-hover:rotate-12 transition-transform duration-300 drop-shadow" />
             </motion.button>
           </div>
         )}
@@ -95,7 +127,7 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="absolute bottom-0 right-0 w-[350px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-6rem)] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-100"
+            className="absolute bottom-0 right-0 w-[360px] max-w-[calc(100vw-2rem)] h-[520px] max-h-[calc(100vh-5rem)] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-100"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-[#ff8c42] to-[#ff7f32] p-4 text-white flex justify-between items-center">
@@ -117,34 +149,43 @@ const Chatbot = () => {
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 bg-slate-50 flex flex-col gap-3">
-              {messages.map((msg, idx) => (
-                <div
-                  key={idx}
-                  className={`max-w-[80%] rounded-2xl p-3 text-sm ${msg.isBot
-                    ? 'bg-white border border-slate-100 text-slate-700 rounded-tl-sm self-start shadow-sm'
-                    : 'bg-[#ff7f32] text-white rounded-tr-sm self-end shadow-sm'
-                    }`}
-                >
-                  {msg.text}
-                </div>
-              ))}
+            <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4 bg-slate-50 flex flex-col gap-3">
+              {messages.map((msg, idx) => {
+                const isLatest = idx === messages.length - 1;
+                return (
+                  <div
+                    key={idx}
+                    ref={isLatest ? latestMessageRef : null}
+                    className={`max-w-[85%] rounded-2xl p-3 text-sm whitespace-pre-line leading-relaxed ${msg.isBot
+                      ? 'bg-white border border-slate-100 text-slate-700 rounded-tl-sm self-start shadow-sm'
+                      : 'bg-[#ff7f32] text-white rounded-tr-sm self-end shadow-sm'
+                      }`}
+                  >
+                    {renderFormattedMessage(msg.text)}
+                  </div>
+                );
+              })}
+            </div>
 
-              {/* Quick Actions (only show at the end if the last message is from the bot) */}
-              {messages[messages.length - 1].isBot && (
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {predefinedQuestions.map((q, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleSendMessage(q)}
-                      className="text-[11px] bg-orange-50 text-[#ff7f32] border border-orange-200 px-3 py-1.5 rounded-full hover:bg-[#ff7f32] hover:text-white transition-colors text-left"
-                    >
-                      {q}
-                    </button>
-                  ))}
-                </div>
-              )}
-              <div ref={messagesEndRef} />
+            {/* Suggested Questions Section (Kept below messages, above input bar) */}
+            <div className="bg-slate-50 border-t border-slate-100 px-3 py-2">
+              <div
+                className="flex items-center gap-1.5 overflow-x-auto py-0.5"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex-shrink-0 mr-1">
+                  Suggested:
+                </span>
+                {predefinedQuestions.map((q, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleSendMessage(q)}
+                    className="flex-shrink-0 text-xs bg-white text-[#ff7f32] border border-orange-200 px-3 py-1 rounded-full hover:bg-[#ff7f32] hover:text-white transition-all shadow-2xs whitespace-nowrap cursor-pointer"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Input Area */}

@@ -100,10 +100,14 @@ const ContactUs = ({ isSinglePage }) => {
     setIsSubmitting(true);
 
     try {
+      // 1. Parameters for Admin Lead Notification
       const templateParams = {
         Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${formData.date} at ${formData.timeSlot}.`,
         Name: formData.name,
         Email: formData.email,
+        to_name: formData.name,
+        to_email: formData.email,
+        reply_to: formData.email,
         Phone: formData.phone || "Not provided",
         Company: formData.company || "N/A",
         Main_Service: selectedService,
@@ -117,15 +121,45 @@ const ContactUs = ({ isSinglePage }) => {
         Meeting_Time: formData.timeSlot
       };
 
-      // We added your exact Service ID: service_mkucjek
-      // You still need to replace YOUR_TEMPLATE_ID and YOUR_PUBLIC_KEY
-      //  to configure go - to-  email.js --> create email services and  email template  and copy both id
+      // Send lead notification to Arvion Team
       const response = await emailjs.send(
-        'service_mkucjek',  //service id
-        'template_u3wagyg', //template id
+        'service_mkucjek',  // Service ID
+        'template_u3wagyg', // Admin Notification Template ID
         templateParams,
-        'vkUKK6w4C-sc4pRUo' //public key  --insde Accounts you will get 
+        'vkUKK6w4C-sc4pRUo' // Public Key
       );
+
+      // 2. Send Professional Thank You / Confirmation Email to the user who filled the form
+      const autoReplyParams = {
+        to_email: formData.email,
+        email: formData.email,
+        Email: formData.email,
+        reply_to: formData.email,
+        to: formData.email,
+        user_email: formData.email,
+        to_name: formData.name,
+        name: formData.name,
+        Name: formData.name,
+        Main_Service: selectedService,
+        Meeting_Date: formData.date,
+        Meeting_Time: formData.timeSlot,
+        Company: formData.company || "your organization",
+        Subject: "Thank You for Reaching Out to Arvion Technologies - We'll Be in Touch Shortly!",
+        Message: `Dear ${formData.name},\n\nThank you for contacting Arvion Technologies! We have received your inquiry regarding our ${selectedService} solutions.\n\nOur team has noted your requested consultation for ${formData.date} at ${formData.timeSlot}. One of our domain specialists will review your requirements and get in touch with you shortly to confirm your session.\n\nIf you have any urgent questions or need immediate assistance, please feel free to reply directly to this email or call us at +91 9535764655.\n\nWarm regards,\nClient Success Team\nArvion Technologies Pvt Ltd\nwww.arviontechnologies.com`
+      };
+
+      try {
+        // Sends the confirmation email to the user using your Auto-Reply template
+        const autoReplyResponse = await emailjs.send(
+          'service_mkucjek',
+          'template_oazqn2n',
+          autoReplyParams,
+          'vkUKK6w4C-sc4pRUo'
+        );
+        console.log("Auto-reply sent successfully:", autoReplyResponse);
+      } catch (autoReplyErr) {
+        console.error("Auto-reply error details from EmailJS:", autoReplyErr);
+      }
 
       if (response.status === 200) {
         setIsSubmitted(true);
