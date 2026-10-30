@@ -60,6 +60,9 @@ export const pageConfig = {
           "Assignment Management",
           "Inventory Management",
           "Customizable dashboard",
+          "Biometric intergartion",
+          "Third party integration ",
+          "Teacher payroll Processing",
 
 
         ]
@@ -111,6 +114,9 @@ export const pageConfig = {
           "Assignment Management",
           "Inventory Management",
           "Customizable dashboard",
+          "Biometric intergartion",
+          "Third party integration ",
+          "Teacher payroll Processing",
         ]
       }
     },
@@ -162,6 +168,9 @@ export const pageConfig = {
           "Assignment Management",
           "Inventory Management",
           "Customizable dashboard",
+          "Biometric intergartion",
+          "Third party integration ",
+          "Teacher payroll Processing",
         ],
         excluded: []
       }
