@@ -28,6 +28,10 @@ const OnePageHome = () => {
 
   return (
     <div className="w-full flex flex-col">
+      {/* Page's main heading for search engines and screen readers (slider titles are h2) */}
+      <h1 className="sr-only">
+        Arvion Technologies – School Management ERP, Payroll Outsourcing, Accounting and Statutory Registration Services in Bangalore, India
+      </h1>
       {/* Home Section (Slider + Stats/Features) */}
       <div id="home" className="mt-2 sm:mt-4 scroll-mt-16 w-full">
         <HorizontalScroll />

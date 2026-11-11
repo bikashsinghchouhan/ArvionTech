@@ -43,6 +43,8 @@ import { servicesData } from "../configurations/ServicesConfig.jsx";
 // ];
 
 const Services = ({ isSinglePage }) => {
+    // Only one <h1> per page: embedded in the home page this becomes an <h2>.
+    const Heading = isSinglePage ? 'h2' : 'h1';
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -65,9 +67,9 @@ const Services = ({ isSinglePage }) => {
                         <span className="inline-block px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-[#ff7f32] bg-orange-50 border border-orange-100 mb-3 shadow-sm">
                             Our Expertise
                         </span>
-                        <h1 className="text-2xl md:text-4xl font-extrabold text-[#0d1b2a] tracking-tight leading-tight max-w-2xl font-sans uppercase">
+                        <Heading className="text-2xl md:text-4xl font-extrabold text-[#0d1b2a] tracking-tight leading-tight max-w-2xl font-sans uppercase">
                             Comprehensive Enterprise Solutions
-                        </h1>
+                        </Heading>
                         <p className="text-sm text-slate-500 max-w-lg mt-3 leading-relaxed font-semibold">
                             We handle administrative complexity, compliance, and systems so you can focus on building your core business products.
                         </p>

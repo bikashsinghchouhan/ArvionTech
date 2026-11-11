@@ -24,4 +24,5 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 // ADDED: Initialize and export Analytics
-export const analytics = getAnalytics(app);
+// Analytics needs a browser; skip it when pages are prerendered in Node.
+export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;

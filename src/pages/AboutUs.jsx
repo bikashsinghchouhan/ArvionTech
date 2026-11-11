@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import aboutImage from '../assets/about-us-team.png';
+import aboutImage from '../assets/about-us-team.webp';
 // import aboutImage from '../assets/arvion_building-1.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -9,6 +9,8 @@ import {
 import '../csssection/AboutUs.css'; // Maintaining backward compatibility
 
 const About = ({ isSinglePage }) => {
+  // Only one <h1> per page: embedded in the home page this becomes an <h2>.
+  const Heading = isSinglePage ? 'h2' : 'h1';
   const [showImgDesc, setShowImgDesc] = useState(false);
 
   const containerVariants = {
@@ -53,9 +55,9 @@ const About = ({ isSinglePage }) => {
               <span className="inline-block self-start px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-[#ff7f32] bg-orange-50 border border-orange-100 mb-4 shadow-sm">
                 About Our Company
               </span>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0d1b2a] tracking-tight leading-tight mb-4 font-sans uppercase">
+              <Heading className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0d1b2a] tracking-tight leading-tight mb-4 font-sans uppercase">
                 About Arvion Technologies
-              </h1>
+              </Heading>
               <h2 className="text-lg font-bold text-[#ff7f32] tracking-wide mb-6 uppercase">
                 Driving Innovation, Empowering Businesses.
               </h2>
@@ -77,7 +79,8 @@ const About = ({ isSinglePage }) => {
             >
               <img
                 src={aboutImage}
-                alt="Arvion Technologies Team"
+                alt="Arvion Technologies team at the Bangalore office"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl pointer-events-none" />

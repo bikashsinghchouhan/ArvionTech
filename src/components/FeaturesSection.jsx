@@ -4,10 +4,10 @@ import { FaSchool, FaUsers, FaStamp, FaCalculator, FaCheck } from 'react-icons/f
 import '../csssection/FeaturesSection.css';
 
 // Import service images
-import schoolImg from '../assets/service-school.png';
-import outsourcingImg from '../assets/service-outsourcing.png';
-import registrationsImg from '../assets/service-registrations.png';
-import accountingImg from '../assets/service-accounting.png';
+import schoolImg from '../assets/service-school.webp';
+import outsourcingImg from '../assets/service-outsourcing.webp';
+import registrationsImg from '../assets/service-registrations.webp';
+import accountingImg from '../assets/service-accounting.webp';
 
 const featuresData = {
   school: {

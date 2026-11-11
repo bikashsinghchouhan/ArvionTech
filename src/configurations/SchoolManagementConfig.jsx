@@ -4,7 +4,7 @@ import {
   FaChartLine, FaClipboardCheck, FaBookOpen, FaCheckCircle,
   FaMapMarker, FaBookReader, FaBusAlt, FaBullhorn, FaUserCheck
 } from 'react-icons/fa';
-import techImage from '../assets/techImage.png';
+import techImage from '../assets/tech-image.webp';
 
 export const pageConfig = {
   hero: {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 import '../csssection/Header.css'; // Retaining import but we don't use legacy classes
 import {
   FaBars, FaTimes, FaChevronDown, FaChevronUp, FaHome, FaInfoCircle,

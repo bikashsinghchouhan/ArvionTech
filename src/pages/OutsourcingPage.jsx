@@ -25,7 +25,7 @@ import {
 } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
-import heroImg from '../assets/service-outsourcing-new.png';
+import heroImg from '../assets/service-outsourcing-new.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },

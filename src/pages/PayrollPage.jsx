@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaBell, FaRocket, FaChevronDown, FaRegQuestionCircle } from 'react-icons/fa';
 import ComingSoonModal from '../components/ComingSoonModal';
-import heroImg from '../assets/service-payroll.png';
+import heroImg from '../assets/service-payroll.webp';
 import TestimonialSection from '../components/TestimonialSection';
 
 const fadeUpVariant = {
@@ -41,7 +41,7 @@ const PayrollPage = () => {
         {/* 1. HERO SECTION */}
         <section className="relative pt-[120px] pb-24 md:pt-[160px] md:pb-32 flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src={heroImg} alt="Payroll Hero" className="w-full h-full object-cover" />
+            <img src={heroImg} alt="" aria-hidden="true" fetchPriority="high" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-[#0d1b2a]/85 backdrop-blur-[2px]"></div>
           </div>
           
@@ -126,7 +126,7 @@ const PayrollPage = () => {
         {/* 4. CTA / CONTACT SECTION */}
         <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
           <div className="absolute inset-0 z-0">
-            <img src={heroImg} alt="Tech Background" className="w-full h-full object-cover" />
+            <img src={heroImg} alt="" aria-hidden="true" loading="lazy" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>
           </div>
           

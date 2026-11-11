@@ -219,6 +219,10 @@ const ContactUs = ({ isSinglePage }) => {
   return (
     <div className={isSinglePage ? "pt-8 pb-8 sm:pt-10 sm:pb-20 bg-[#f8f9fa] w-full flex flex-col items-center justify-center box-border px-4" : "tw-contact-page min-h-screen bg-[#f0f2f5] p-6 pt-[100px] sm:p-10 sm:pt-[120px] flex flex-col items-center justify-center box-border"}>
 
+      {!isSinglePage && (
+        <h1 className="sr-only">Contact Arvion Technologies – Book a Free Consultation</h1>
+      )}
+
       {isSinglePage && (
         <div className="text-center mb-6 md:mb-8 max-w-2xl mx-auto px-4">
           <motion.h2

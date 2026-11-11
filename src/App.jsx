@@ -1,57 +1,64 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Import Core Components
 import Header from './components/Header';
-import HorizontalScroll from "./components/HorizontalScroll";
-import FeaturesSection from './components/FeaturesSection';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/Chatbot';
+import Seo from './components/Seo';
 
-// Import All Page Components from the correct 'pages' folder
+// Home page and the pages it embeds load eagerly (they are in the main bundle anyway)
+import OnePageHome from './pages/OnePageHome';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import Services from './pages/Services';
-import SchoolManagement from './our_services/SchoolManagement';
-import OutsourcingPage from './pages/OutsourcingPage';
-import RegistrationsPage from './pages/RegistrationsPage';
-import AccountingPage from './pages/AccountingPage';
-import PayrollPage from './pages/PayrollPage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsOfServicePage from './pages/TermsOfServicePage';
 
-import OnePageHome from './pages/OnePageHome';
+// Other pages load on demand to keep the first download small
+const SchoolManagement = lazy(() => import('./our_services/SchoolManagement'));
+const OutsourcingPage = lazy(() => import('./pages/OutsourcingPage'));
+const RegistrationsPage = lazy(() => import('./pages/RegistrationsPage'));
+const AccountingPage = lazy(() => import('./pages/AccountingPage'));
+const PayrollPage = lazy(() => import('./pages/PayrollPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsOfServicePage = lazy(() => import('./pages/TermsOfServicePage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 import './App.css';
 
 function App() {
   return (
     <div className="app-container">
+      <Seo />
       <Header />
       <ScrollToTop />
       <main className="main-content">
-        <Routes>
-          {/* Homepage Route - Aggregates Home, About, Services, Contact into One Page */}
-          <Route path="/" element={<OnePageHome />} />
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <Routes>
+            {/* Homepage Route - Aggregates Home, About, Services, Contact into One Page */}
+            <Route path="/" element={<OnePageHome />} />
 
-          {/* Main Page Routes */}
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/services" element={<Services />} />
+            {/* Main Page Routes */}
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/contact-us" element={<Navigate to="/contact" replace />} />
+            <Route path="/services" element={<Services />} />
 
-          {/* Dedicated Service Page Routes */}
-          <Route path="/services/school-management" element={<SchoolManagement />} />
-          <Route path="/services/outsourcing" element={<OutsourcingPage />} />
-          <Route path="/services/statutory-registrations" element={<RegistrationsPage />} />
-          <Route path="/services/accounting" element={<AccountingPage />} />
-          <Route path="/services/payroll" element={<PayrollPage />} />
+            {/* Dedicated Service Page Routes */}
+            <Route path="/services/school-management" element={<SchoolManagement />} />
+            <Route path="/services/outsourcing" element={<OutsourcingPage />} />
+            <Route path="/services/statutory-registrations" element={<RegistrationsPage />} />
+            <Route path="/services/accounting" element={<AccountingPage />} />
+            <Route path="/services/payroll" element={<PayrollPage />} />
 
-          {/* Legal Page Routes */}
-          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-        </Routes>
+            {/* Legal Page Routes */}
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+
+            {/* Anything else: real 404 page (noindex) */}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
       <Chatbot />

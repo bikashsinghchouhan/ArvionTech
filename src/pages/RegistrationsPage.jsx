@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaBuilding, FaStamp, FaGlobe, FaShieldAlt, FaCheckCircle, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChevronDown, FaRegQuestionCircle } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
-import heroImg from '../assets/service-registrations.png';
+import heroImg from '../assets/service-registrations.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -58,7 +58,7 @@ const RegistrationsPage = () => {
       {/* 1. HERO SECTION */}
       <section className="relative pt-[120px] pb-24 md:pt-[160px] md:pb-32 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={heroImg} alt="Statutory Registrations Hero" className="w-full h-full object-cover" />
+          <img src={heroImg} alt="" aria-hidden="true" fetchPriority="high" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0d1b2a]/80 backdrop-blur-[2px]"></div>
         </div>
         
@@ -153,7 +153,7 @@ const RegistrationsPage = () => {
           </motion.div>
           <motion.div className="flex-1" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img src={heroImg} alt="Statutory Compliance" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" />
+              <img src={heroImg} alt="Business registration documents for GST, PF, ESI and statutory compliance" loading="lazy" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-tr from-[#0d1b2a]/60 to-transparent"></div>
             </div>
           </motion.div>
@@ -199,7 +199,7 @@ const RegistrationsPage = () => {
       {/* 6. CTA / CONTACT SECTION */}
       <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
         <div className="absolute inset-0 z-0">
-          <img src={heroImg} alt="Tech Background" className="w-full h-full object-cover" />
+          <img src={heroImg} alt="" aria-hidden="true" loading="lazy" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>
         </div>
         

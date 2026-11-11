@@ -164,14 +164,14 @@ const HorizontalScroll = () => {
                 </span>
 
                 {/* Title */}
-                <h1 className="text-xl sm:text-2xl md:text-3.5xl lg:text-4xl font-extrabold tracking-tight leading-tight text-white mb-2 sm:mb-3 drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] max-w-3xl font-sans">
+                <h2 className="text-xl sm:text-2xl md:text-3.5xl lg:text-4xl font-extrabold tracking-tight leading-tight text-white mb-2 sm:mb-3 drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] max-w-3xl font-sans">
                   {service.title}
-                </h1>
+                </h2>
 
                 {/* Subtitle / Category */}
-                <h2 className="text-[9px] sm:text-[11px] lg:text-xs font-bold text-[#feb47b] uppercase tracking-widest mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                <p className="text-[9px] sm:text-[11px] lg:text-xs font-bold text-[#feb47b] uppercase tracking-widest mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                   {service.category}
-                </h2>
+                </p>
 
                 {/* Professional Description */}
                 <p className="text-[10px] sm:text-[13px] md:text-sm text-slate-100/95 leading-relaxed mb-5 sm:mb-6 max-w-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
