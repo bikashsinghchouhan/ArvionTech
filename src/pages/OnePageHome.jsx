@@ -6,6 +6,8 @@ import AboutUs from './AboutUs';
 import Services from './Services';
 import ContactUs from './ContactUs';
 import TestimonialSection from '../components/TestimonialSection';
+import { WhyChooseArvion } from '../components/about/AboutSections';
+import { HowItWorks, HomeFAQ } from '../components/home/HomeSections';
 
 const OnePageHome = () => {
   const { hash } = useLocation();
@@ -43,6 +45,14 @@ const OnePageHome = () => {
         <AboutUs isSinglePage={true} />
       </div>
 
+      {/* Why Arvion (same section as the About page) */}
+      <div id="why-arvion" className="scroll-mt-24 w-full">
+        <WhyChooseArvion />
+      </div>
+
+      {/* How it works: demo to go-live */}
+      <HowItWorks />
+
       {/* Services Grid Section */}
       <div id="services" className="scroll-mt-24 w-full">
         <Services isSinglePage={true} />
@@ -52,6 +62,9 @@ const OnePageHome = () => {
       <div id="testimonials" className="w-full">
         <TestimonialSection />
       </div>
+
+      {/* FAQ */}
+      <HomeFAQ />
 
       {/* Contact Form Section */}
       <div id="contact" className="scroll-mt-16 w-full">

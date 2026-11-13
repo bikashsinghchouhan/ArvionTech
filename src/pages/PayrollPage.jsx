@@ -9,7 +9,7 @@ import {
 } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
-import heroIllustration from '../assets/service-heroes/payroll-hero.webp';
+import heroIllustration from '../assets/service-heroes/payroll.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 25 },
@@ -99,16 +99,27 @@ const PayrollPage = () => {
     <div className="w-full bg-[#f8f9fa] min-h-screen font-sans text-[#0B1B3D] overflow-x-hidden">
 
       {/* 1. EXACT HERO SECTION MATCHING DESIGN */}
-      <section className="relative w-full bg-gradient-to-r from-[#eef4ff] via-[#f8fbff] to-white pt-20 sm:pt-24 lg:pt-28 pb-8 lg:pb-12 border-b border-blue-50 overflow-hidden">
+      <section className="relative w-full overflow-hidden lg:min-h-[calc(100svh-38px)] lg:flex lg:flex-col bg-gradient-to-r from-[#eef4ff] via-[#f8fbff] to-white pt-16 border-b border-blue-50">
+        {/* Photo (includes the PAYROLL card): right side on large screens, fading into the background on its left edge */}
+        <div aria-hidden="true" className="hidden lg:block absolute top-16 bottom-0 right-0 w-[56%] xl:w-[55%]">
+          <img
+            src={heroIllustration}
+            alt=""
+            width="1178"
+            height="996"
+            fetchPriority="high"
+            className="w-full h-full object-cover object-right [mask-image:linear-gradient(to_right,transparent_0%,#000_7%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,#000_7%)]"
+          />
+        </div>
         {/* Soft atmospheric gradient accents */}
         <div aria-hidden="true" className="pointer-events-none absolute -top-24 -left-24 w-96 h-96 rounded-full bg-blue-200/35 blur-3xl" />
-        <div aria-hidden="true" className="pointer-events-none absolute top-1/2 left-1/3 w-[500px] h-60 rounded-full bg-sky-100/40 blur-3xl -translate-y-1/2" />
+        <div aria-hidden="true" className="pointer-events-none absolute top-1/2 left-1/4 w-[500px] h-60 rounded-full bg-sky-100/40 blur-3xl -translate-y-1/2" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 relative z-10 lg:flex-1 lg:flex lg:flex-col">
+          <div className="grid lg:grid-cols-2 items-center lg:flex-1">
 
             {/* Left Content Column */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-center items-start text-left">
+            <div className="w-full flex flex-col justify-center items-start text-left pt-5 pb-8 lg:pb-14 min-w-0 lg:pr-6">
 
               {/* Breadcrumb */}
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 mb-5">
@@ -210,122 +221,27 @@ const PayrollPage = () => {
 
             </div>
 
-            {/* Right Graphic Column: Woman at desk with Arvion laptop and Floating PAYROLL Card */}
-            <div className="w-full lg:w-1/2 relative flex justify-center items-center mt-8 lg:mt-0">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="relative w-full max-w-xl lg:max-w-2xl"
-              >
-                {/* Photo Container with rounded corners & shadow */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-blue-100/80 bg-white">
-                  <img
-                    src={heroIllustration}
-                    alt="Payroll Outsourcing specialist at desk with laptop"
-                    width="1376"
-                    height="768"
-                    fetchPriority="high"
-                    className="w-full h-auto object-cover select-none"
-                  />
-
-                  {/* Desktop Floating PAYROLL Card Overlay */}
-                  <div className="hidden sm:block absolute top-3 right-3 md:top-4 md:right-4 lg:top-5 lg:right-5 w-[255px] md:w-[280px] lg:w-[295px] z-20">
-                    <div className="rounded-2xl bg-white/95 backdrop-blur-md p-3 sm:p-3.5 shadow-2xl shadow-blue-950/25 border border-slate-100 ring-1 ring-slate-900/5">
-                      {/* Header */}
-                      <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1747a6] via-[#11409d] to-[#0c2f79] px-3.5 py-2 text-white shadow-md">
-                        <div className="relative z-10 flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
-                            <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 2C6.48 2 2 3.34 2 5s4.48 3 10 3 10-1.34 10-3-4.48-3-10-3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V4c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V9c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3z" />
-                            </svg>
-                          </div>
-                          <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
-                            PAYROLL
-                          </span>
-                        </div>
-                        {/* Orange accent curve on bottom right */}
-                        <svg className="absolute bottom-0 right-0 w-16 h-4 pointer-events-none" viewBox="0 0 80 20" fill="none">
-                          <path d="M0 20 Q 50 18, 80 0 L 80 20 Z" fill="#FF7A00" />
-                        </svg>
-                      </div>
-
-                      {/* 8 Items with green checkmarks */}
-                      <ul className="mt-2.5 space-y-1.5">
-                        {[
-                          'Payroll Processing',
-                          'Payslip Generation & Distribution',
-                          'PF, ESI, PT, TDS & LWF Compliance',
-                          'Income Tax & Declarations',
-                          'Reimbursement & Expense Processing',
-                          'Arrears & Recoveries',
-                          'MIS & Management Reports',
-                          'Audit Support & Data Security'
-                        ].map((item, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <span className="w-3.5 h-3.5 rounded-full bg-[#10B981] flex items-center justify-center text-white flex-shrink-0 shadow-sm">
-                              <svg className="w-2 h-2 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            </span>
-                            <span className="text-[11px] lg:text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
-                              {item}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Mobile-only Card */}
-                <div className="sm:hidden mt-4 w-full rounded-2xl bg-white p-3.5 shadow-xl border border-slate-100 ring-1 ring-slate-900/5">
-                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1747a6] via-[#11409d] to-[#0c2f79] px-3.5 py-2 text-white shadow-md">
-                    <div className="relative z-10 flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2C6.48 2 2 3.34 2 5s4.48 3 10 3 10-1.34 10-3-4.48-3-10-3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V4c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V9c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3z" />
-                        </svg>
-                      </div>
-                      <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
-                        PAYROLL
-                      </span>
-                    </div>
-                    <svg className="absolute bottom-0 right-0 w-16 h-4 pointer-events-none" viewBox="0 0 80 20" fill="none">
-                      <path d="M0 20 Q 50 18, 80 0 L 80 20 Z" fill="#FF7A00" />
-                    </svg>
-                  </div>
-                  <ul className="mt-3 space-y-2">
-                    {[
-                      'Payroll Processing',
-                      'Payslip Generation & Distribution',
-                      'PF, ESI, PT, TDS & LWF Compliance',
-                      'Income Tax & Declarations',
-                      'Reimbursement & Expense Processing',
-                      'Arrears & Recoveries',
-                      'MIS & Management Reports',
-                      'Audit Support & Data Security'
-                    ].map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2.5">
-                        <span className="w-4 h-4 rounded-full bg-[#10B981] flex items-center justify-center text-white flex-shrink-0">
-                          <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                        </span>
-                        <span className="text-xs font-semibold text-[#0B1B3D]">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-              </motion.div>
-            </div>
+            {/* Photo for small screens (large screens use the full-bleed photo above) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="lg:hidden pb-8"
+            >
+              <img
+                src={heroIllustration}
+                alt="Payroll Outsourcing specialist at desk with laptop and payroll checklist"
+                width="1178"
+                height="996"
+                className="w-full h-auto rounded-2xl shadow-xl ring-1 ring-blue-100 select-none pointer-events-none"
+              />
+            </motion.div>
 
           </div>
         </div>
 
         {/* Elegant Bottom Wave swoosh */}
-        <div className="w-full overflow-hidden leading-none relative z-10 pointer-events-none mt-6 sm:mt-10">
+        <div className="w-full overflow-hidden leading-none relative z-10 pointer-events-none">
           <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
             <path d="M0,30 C360,60 720,0 1080,40 C1260,60 1380,20 1440,30 L1440,60 L0,60 Z" fill="#ffffff" />
             <path d="M0,35 C360,65 720,5 1080,45 C1260,65 1380,25 1440,35" stroke="#FF7A00" strokeWidth="2" opacity="0.35" />

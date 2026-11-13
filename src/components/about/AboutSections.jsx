@@ -36,7 +36,7 @@ const SectionHeading = ({ eyebrow, before, highlight, after, desc, dark = false,
       </span>
       <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />
     </div>
-    <h2 className={`mt-4 text-[26px] sm:text-[34px] lg:text-[40px] font-extrabold tracking-tight leading-tight ${dark ? 'text-white' : 'text-[#0b1f4d]'}`}>
+    <h2 className={`mt-4 text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight ${dark ? 'text-white' : 'text-[#0b1f4d]'}`}>
       {before}<span className="text-[#f7861c]">{highlight}</span>{after}
     </h2>
     {desc && (
