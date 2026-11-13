@@ -7,10 +7,15 @@ import {
   FaChevronDown, FaPlayCircle, FaSearch, FaLock, FaUsers, FaServer, FaCodeBranch, FaCube, FaExpandArrowsAlt, FaSitemap,
   FaShieldAlt, FaSlidersH, FaHeadset, FaDesktop, FaSyncAlt, FaCalendarAlt, FaBuilding, FaChartBar, FaCrown, FaArrowRight,
   FaTimes, FaUserGraduate, FaUserTie, FaSignOutAlt, FaFolderOpen, FaThLarge, FaBook, FaFileInvoiceDollar, FaBoxes,
-  FaIdBadge, FaClipboardList, FaCopy, FaLayerGroup, FaUserFriends, FaWallet, FaUserPlus, FaFileAlt, FaBell, FaReceipt, FaHourglassHalf, FaVolumeMute, FaUnlock, FaColumns
+  FaIdBadge, FaClipboardList, FaCopy, FaLayerGroup, FaUserFriends, FaWallet, FaUserPlus, FaFileAlt, FaBell, FaReceipt, FaHourglassHalf, FaVolumeMute, FaUnlock, FaColumns, FaCalendarCheck, FaShareAlt
 } from 'react-icons/fa';
 import TestimonialSection from '../components/TestimonialSection';
 import schoolErpMobile from '../assets/school-erp-mobile.webp';
+import schoolErpHero from '../assets/school-erp-hero.webp';
+import portalAdmin from '../assets/portals/admin.webp';
+import portalTeacher from '../assets/portals/teacher.webp';
+import portalStudent from '../assets/portals/student.webp';
+import portalParent from '../assets/portals/parent.webp';
 
 // --- CONFIGURATION ---
 import { pageConfig } from '../configurations/SchoolManagementConfig';
@@ -101,20 +106,34 @@ const planPreviewOrder = {
 
 // Before / After section: each everyday problem and what the ERP replaces it with
 const beforeAfterRows = [
-  { problem: "Manual student records", problemDesc: "Files sit in cabinets and spreadsheets. Finding one child's full history takes hours.", problemIcon: <FaFolderOpen />,
-    solution: "Centralized student database", solutionDesc: "One profile per student from admission to transfer certificate: guardians, documents, class history and fees.", solutionIcon: <FaUsers /> },
-  { problem: "Attendance errors", problemDesc: "Paper registers, proxy marking and monthly totals worked out by hand.", problemIcon: <FaClipboardList />,
-    solution: "Digital / AI attendance", solutionDesc: "Teachers mark a class in seconds on web or phone. Facial recognition removes proxy attendance.", solutionIcon: <FaUserCheck /> },
-  { problem: "Fee tracking difficulty", problemDesc: "Handwritten receipts, missed dues and long evenings reconciling the cash book.", problemIcon: <FaReceipt />,
-    solution: "Automated fee management", solutionDesc: "Set fee structures, instalments and concessions once. Receipts, late fines and reminders run on their own.", solutionIcon: <FaWallet /> },
-  { problem: "Delayed results", problemDesc: "Marks are collected on paper and copied into report cards by hand, which takes weeks.", problemIcon: <FaHourglassHalf />,
-    solution: "Digital examination system", solutionDesc: "Teachers enter marks once. Grades, report cards and merit lists are generated automatically.", solutionIcon: <FaFileAlt /> },
-  { problem: "Poor communication", problemDesc: "Circulars get lost in school diaries and scattered WhatsApp groups. Parents miss key dates.", problemIcon: <FaVolumeMute />,
-    solution: "Notifications and announcements", solutionDesc: "Send circulars, holiday notices, alerts and fee reminders by SMS, email and app notification.", solutionIcon: <FaBell /> },
-  { problem: "Permission issues", problemDesc: "Either everyone can see everything, or nobody can find what they need.", problemIcon: <FaUnlock />,
-    solution: "Role-Based Access Control", solutionDesc: "Each person sees only what their role allows: principal, teacher, accountant, parent or student.", solutionIcon: <FaShieldAlt /> },
-  { problem: "Multiple branches", problemDesc: "Each campus keeps its own records, so management has no combined view.", problemIcon: <FaColumns />,
-    solution: "Centralized multi-school control", solutionDesc: "Run every branch from one dashboard while each campus's data stays separate.", solutionIcon: <FaSitemap /> },
+  {
+    problem: "Manual student records", problemDesc: "Files sit in cabinets and spreadsheets. Finding one child's full history takes hours.", problemIcon: <FaFolderOpen />,
+    solution: "Centralized student database", solutionDesc: "One profile per student from admission to transfer certificate: guardians, documents, class history and fees.", solutionIcon: <FaUsers />
+  },
+  {
+    problem: "Attendance errors", problemDesc: "Paper registers, proxy marking and monthly totals worked out by hand.", problemIcon: <FaClipboardList />,
+    solution: "Digital / AI attendance", solutionDesc: "Teachers mark a class in seconds on web or phone. Facial recognition removes proxy attendance.", solutionIcon: <FaUserCheck />
+  },
+  {
+    problem: "Fee tracking difficulty", problemDesc: "Handwritten receipts, missed dues and long evenings reconciling the cash book.", problemIcon: <FaReceipt />,
+    solution: "Automated fee management", solutionDesc: "Set fee structures, instalments and concessions once. Receipts, late fines and reminders run on their own.", solutionIcon: <FaWallet />
+  },
+  {
+    problem: "Delayed results", problemDesc: "Marks are collected on paper and copied into report cards by hand, which takes weeks.", problemIcon: <FaHourglassHalf />,
+    solution: "Digital examination system", solutionDesc: "Teachers enter marks once. Grades, report cards and merit lists are generated automatically.", solutionIcon: <FaFileAlt />
+  },
+  {
+    problem: "Poor communication", problemDesc: "Circulars get lost in school diaries and scattered WhatsApp groups. Parents miss key dates.", problemIcon: <FaVolumeMute />,
+    solution: "Notifications and announcements", solutionDesc: "Send circulars, holiday notices, alerts and fee reminders by SMS, email and app notification.", solutionIcon: <FaBell />
+  },
+  {
+    problem: "Permission issues", problemDesc: "Either everyone can see everything, or nobody can find what they need.", problemIcon: <FaUnlock />,
+    solution: "Role-Based Access Control", solutionDesc: "Each person sees only what their role allows: principal, teacher, accountant, parent or student.", solutionIcon: <FaShieldAlt />
+  },
+  {
+    problem: "Multiple branches", problemDesc: "Each campus keeps its own records, so management has no combined view.", problemIcon: <FaColumns />,
+    solution: "Centralized multi-school control", solutionDesc: "Run every branch from one dashboard while each campus's data stays separate.", solutionIcon: <FaSitemap />
+  },
 ];
 
 const norm = (s) => s.trim().toLowerCase();
@@ -161,7 +180,7 @@ const SchoolManagement = () => {
     navigator.clipboard?.writeText(email).then(() => {
       setEmailCopied(true);
       setTimeout(() => setEmailCopied(false), 2000);
-    }).catch(() => {});
+    }).catch(() => { });
   };
 
   const categories = [
@@ -174,7 +193,7 @@ const SchoolManagement = () => {
   const filteredFeatures = pageConfig.featureSuite.filter((feature) => {
     const matchesCategory = selectedCategory === "All" || feature.category === selectedCategory;
     const matchesSearch = feature.title.toLowerCase().includes(featureSearch.toLowerCase()) ||
-                          feature.desc.toLowerCase().includes(featureSearch.toLowerCase());
+      feature.desc.toLowerCase().includes(featureSearch.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -199,304 +218,113 @@ const SchoolManagement = () => {
   return (
     <div className="bg-slate-50 min-h-screen font-sans w-full overflow-x-clip text-[#0B1B3D]">
 
-      {/* 1. HERO SECTION */}
-      <section className="relative w-full bg-gradient-to-b from-white to-slate-50/60 pt-[78px] sm:pt-[84px] lg:pt-[88px] pb-14 sm:pb-16 lg:pb-20 border-b border-slate-200 overflow-hidden">
-        {/* Decorative background: soft orange glow behind the dashboard, dot grid, small accent circle */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-24 right-[-10%] w-[520px] h-[520px] rounded-full bg-[radial-gradient(circle,#ffe9d6_0%,transparent_70%)]" />
-          <div className="hidden lg:block absolute top-[22%] right-[30%] w-80 h-80 rounded-full bg-orange-100/70 blur-2xl" />
-          <div className="hidden lg:block absolute bottom-[12%] right-[2%] w-56 h-56 rounded-full bg-orange-100/60 blur-2xl" />
-          <div className="hidden lg:block absolute top-[30%] right-[44%] w-7 h-7 rounded-full bg-orange-200/80" />
-          <div className="hidden sm:block absolute top-[18%] right-[3%] w-28 h-24 opacity-70 bg-[radial-gradient(#FF8000_1.5px,transparent_1.5px)] [background-size:18px_18px]" />
+      {/* 1. HERO SECTION: light banner, photo on the right */}
+      <section className="relative w-full overflow-hidden lg:min-h-[calc(100svh-38px)] lg:flex lg:flex-col bg-gradient-to-r from-[#e8f1ff] via-[#f4f8ff] to-white pt-16 border-b border-blue-100">
+        {/* Photo: right side on large screens, fading into the light background on its left edge */}
+        <div aria-hidden="true" className="hidden lg:block absolute top-16 bottom-0 right-0 w-[56%] xl:w-[55%]">
+          <img
+            src={schoolErpHero}
+            alt=""
+            width="1376"
+            height="768"
+            fetchPriority="high"
+            className="w-full h-full object-cover object-[70%_center] [mask-image:linear-gradient(to_right,transparent_0%,#000_20%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,#000_20%)]"
+          />
         </div>
+        {/* Soft light accents */}
+        <div aria-hidden="true" className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full bg-blue-200/40 blur-3xl" />
+        <div aria-hidden="true" className="pointer-events-none absolute bottom-[-6rem] left-[28%] w-96 h-48 rounded-full bg-sky-200/40 blur-3xl" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          {/* Breadcrumb + in-page navigation */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 sm:mb-8 lg:mb-10">
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm sm:text-[15px] text-slate-500">
-              <Link to="/" className="hover:text-[#0B1B3D] focus:outline-none focus-visible:underline">Home</Link>
-              <span aria-hidden="true" className="text-slate-300">/</span>
-              <Link to="/services" className="hover:text-[#0B1B3D] focus:outline-none focus-visible:underline">Services</Link>
-              <span aria-hidden="true" className="text-slate-300">/</span>
-              <span className="font-semibold text-[#0B1B3D]" aria-current="page">School Management</span>
-            </nav>
-            <nav aria-label="On this page" className="hidden md:flex items-center gap-1 text-[15px] font-medium text-slate-600">
-              {[["#features", "Modules"], ["#plans", "Plans"], ["#process", "Process"], ["#faq", "FAQ"]].map(([href, label]) => (
-                <a key={href} href={href} className="px-3.5 py-1.5 rounded-md hover:bg-white hover:text-[#0B1B3D] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">{label}</a>
-              ))}
-            </nav>
-          </div>
+        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 relative z-10 lg:flex-1 lg:flex lg:flex-col">
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-4 sm:pt-5 text-[13px] sm:text-sm text-slate-500">
+            <Link to="/" className="hover:text-[#0f2a6b] focus:outline-none focus-visible:underline">Home</Link>
+            <span aria-hidden="true" className="text-slate-300">/</span>
+            <Link to="/services" className="hover:text-[#0f2a6b] focus:outline-none focus-visible:underline">Services</Link>
+            <span aria-hidden="true" className="text-slate-300">/</span>
+            <span className="font-semibold text-[#0f2a6b]" aria-current="page">School ERP</span>
+          </nav>
 
-          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 sm:gap-12 lg:gap-10 xl:gap-14 items-center">
-            {/* Left Content */}
-            <div className="grid gap-4 sm:gap-6 min-w-0">
+          <div className="grid lg:grid-cols-2 items-center lg:flex-1">
+            {/* Left content */}
+            <div className="grid gap-4 sm:gap-5 pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-8 lg:pb-14 min-w-0 lg:pr-6">
               <motion.span
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2.5 w-max max-w-full bg-orange-50 border border-orange-100 text-[#0B1B3D] text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full"
+                className="inline-flex items-center gap-2 w-max max-w-full bg-white border border-blue-100 text-[#0f2a6b] text-xs sm:text-[13px] font-semibold px-3 py-1.5 rounded-full shadow-sm"
               >
-                <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500" /> School Management Services
+                <span className="w-2 h-2 rounded-full bg-[#ffc727]" /> Arvion School ERP
               </motion.span>
 
               <motion.h1
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
-                className="text-[clamp(24px,8.1vw,34px)] sm:text-[52px] lg:text-[46px] xl:text-[58px] font-extrabold text-[#0B1B3D] leading-[1.12] sm:leading-[1.04] tracking-[-0.025em] sm:tracking-[-0.03em]"
+                className="text-[28px] sm:text-[38px] lg:text-[38px] xl:text-[42px] font-extrabold leading-[1.15] tracking-[-0.02em] text-[#0f2a6b] text-balance"
               >
-                <span className="whitespace-nowrap">Smarter<br className="hidden sm:block" /> Management.</span><br />
-                <span className="text-[#FF8000] whitespace-nowrap">
-                  Stronger{' '}
-                  <span className="relative inline-block whitespace-nowrap">
-                    Institution.
-                    {/* hand-drawn underline */}
-                    <svg aria-hidden="true" viewBox="0 0 220 14" preserveAspectRatio="none" className="absolute left-[6%] -bottom-1.5 sm:-bottom-3 w-[92%] h-2 sm:h-3.5 text-[#FF8000]">
-                      <path d="M3 10 C 60 3, 150 2, 217 7" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                </span>
+                Complete School ERP for Smarter Schools &amp; Stronger Institutions
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-                className="mt-1 sm:mt-2 text-[15px] sm:text-lg lg:text-[19px] text-slate-600 max-w-xl leading-relaxed"
+                className="text-[15px] sm:text-lg text-slate-800 max-w-xl leading-relaxed"
               >
-                End-to-end school management solutions to help you save time, ensure compliance, and keep your students and staff happy.
+                End-to-end school management software to run admissions, academics, attendance, fees, exams and parent communication &ndash; all in one place.
               </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-                className="grid grid-cols-2 sm:flex sm:flex-row gap-3 sm:gap-4 mt-1"
+                className="flex flex-wrap gap-3 sm:gap-4 mt-1"
               >
-                <Link to="/contact" className={`${BTN_PRIMARY} !h-10 sm:!h-12 lg:!h-[52px] !px-3 sm:!px-7 !text-[13px] sm:!text-[15px] rounded-xl shadow-md shadow-orange-500/25`}>
-                  Get Started <FaArrowRight className="text-xs sm:text-sm" />
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-bold text-sm sm:text-[15px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
+                >
+                  <FaCalendarCheck /> Book a Free Demo
                 </Link>
-                <a href="#process" className={`${BTN_SECONDARY} !h-10 sm:!h-12 lg:!h-[52px] !px-3 sm:!px-7 !text-[13px] sm:!text-[15px] rounded-xl shadow-sm`}>
-                  <FaPlayCircle className="text-blue-600 text-base sm:text-lg" /> How It Works
+                <a
+                  href="#features"
+                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold text-sm sm:text-[15px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+                >
+                  Explore Modules <FaArrowRight className="text-xs" />
                 </a>
               </motion.div>
 
+              {/* Assurance badges */}
+              <motion.ul
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+                className="mt-2 sm:mt-3 grid grid-cols-2 sm:flex sm:flex-wrap gap-x-5 gap-y-2.5 text-[13px] sm:text-sm font-medium text-slate-700"
+              >
+                {[
+                  [<FaShieldAlt />, "100% Compliance"],
+                  [<FaLayerGroup />, "Data Security"],
+                  [<FaChartBar />, "Scalable Solutions"],
+                  [<FaHeadset />, "Expert Support"],
+                ].map(([icon, label]) => (
+                  <li key={label} className="flex items-center gap-2">
+                    <span className="w-7 h-7 rounded-md bg-blue-100/70 text-[#1747a6] flex items-center justify-center text-xs flex-shrink-0">{icon}</span>
+                    {label}
+                  </li>
+                ))}
+              </motion.ul>
             </div>
 
-            {/* Right: sample admin dashboard (illustrative figures) */}
+            {/* Photo for small screens */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}
-              className="min-w-0"
-              role="img"
-              aria-label="Sample Arvion School ERP admin dashboard showing attendance, fee collection and pending tasks"
+              className="lg:hidden pb-10 sm:pb-12"
             >
-              <div className="bg-white/95 backdrop-blur border border-slate-200/80 rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-[0_2px_4px_rgba(11,27,61,.04),0_30px_60px_-25px_rgba(11,27,61,.28)] overflow-hidden">
-                {/* Window bar */}
-                <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100">
-                  <div className="hidden min-[400px]:flex gap-1.5 sm:gap-2" aria-hidden="true">
-                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FF5F57]" />
-                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FEBC2E]" />
-                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#28C840]" />
-                  </div>
-                  <span className="text-[13px] sm:text-[15px] font-semibold text-[#0B1B3D] min-[400px]:ml-2">Admin Dashboard</span>
-                  <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] sm:text-[13px] text-[#0B1B3D] bg-white border border-slate-200 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full whitespace-nowrap">
-                    AY 2026–27 <span className="text-slate-300">·</span> Term 1 <FaChevronDown className="text-[9px] sm:text-[10px] text-slate-500" />
-                  </span>
-                </div>
-
-                <div className="p-3 sm:p-5 grid gap-3 sm:gap-4">
-                  {/* KPI cards */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
-                    {[
-                      { label: "Today's Attendance", value: "94.2%", note: "1.8% vs last week", icon: <FaUserFriends />, tone: "bg-pink-50 text-pink-500" },
-                      { label: "Fees Collected", value: "₹18.4L", note: "72% of term target", icon: <FaWallet />, tone: "bg-orange-50 text-[#FF8000]" },
-                      { label: "New Admissions", value: "126", note: "14 this month", icon: <FaUserPlus />, tone: "bg-blue-50 text-blue-600" },
-                    ].map((k, i) => (
-                      <div key={k.label} className={`border border-slate-200/80 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 flex gap-2.5 min-w-0 ${i === 2 ? 'col-span-2 sm:col-span-1' : ''}`}>
-                        <span className={`hidden min-[400px]:flex w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl items-center justify-center flex-shrink-0 text-sm sm:text-base ${k.tone}`}>{k.icon}</span>
-                        <div className="grid gap-0.5 min-w-0">
-                          <small className="text-[11px] sm:text-xs text-slate-500 truncate">{k.label}</small>
-                          <strong className="text-lg sm:text-[22px] font-extrabold leading-tight tabular-nums text-[#0B1B3D]">{k.value}</strong>
-                          <span className="text-[11px] font-semibold text-emerald-600 truncate">▲ {k.note}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="grid sm:grid-cols-[1.15fr_1fr] gap-2.5 sm:gap-3">
-                    {/* Attendance chart */}
-                    <div className="border border-slate-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-4 min-w-0">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-[13px] sm:text-[15px] font-bold text-[#0B1B3D]">Attendance by Class</span>
-                        <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs text-slate-600 bg-slate-50 px-2 py-1 rounded-md">Today <FaChevronDown className="text-[8px]" /></span>
-                      </div>
-                      <div className="flex items-end gap-1.5 sm:gap-2 h-[96px] sm:h-[120px]">
-                        {[78, 86, 100, 86, 86, 91, 90].map((h, i) => (
-                          <span key={i} className={`flex-1 rounded-md ${i === 2 ? 'bg-blue-600' : 'bg-blue-100'}`} style={{ height: `${h}%` }} />
-                        ))}
-                      </div>
-                      <div className="flex gap-1.5 sm:gap-2 mt-2">
-                        {["VI", "VII", "VIII", "IX", "X", "XI", "XII"].map(c => <span key={c} className="flex-1 text-center text-[10px] sm:text-xs text-slate-600">{c}</span>)}
-                      </div>
-                    </div>
-
-                    {/* Pending tasks */}
-                    <div className="border border-slate-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-4 min-w-0">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-[13px] sm:text-[15px] font-bold text-[#0B1B3D]">Pending Tasks</span>
-                        <span className="w-6 h-6 rounded-md bg-orange-50 text-[#FF8000] text-xs font-bold flex items-center justify-center">4</span>
-                      </div>
-                      <div className="grid gap-2.5 sm:gap-3 text-xs sm:text-[13px] text-[#0B1B3D]">
-                        {[
-                          { task: "Term 1 report cards", tag: "Exam", cls: "bg-blue-50 text-blue-600", icon: <FaFileAlt /> },
-                          { task: "42 fee reminders", tag: "Due", cls: "bg-orange-50 text-[#FF8000]", icon: <FaBell /> },
-                          { task: "Bus route 4 updated", tag: "Done", cls: "bg-emerald-50 text-emerald-600", icon: <FaBusAlt /> },
-                          { task: "PTM circular sent", tag: "Done", cls: "bg-emerald-50 text-emerald-600", icon: <FaEnvelope /> },
-                        ].map(t => (
-                          <div key={t.task} className="flex items-center gap-2.5 min-w-0">
-                            <span className="text-blue-600/80 text-[13px] flex-shrink-0">{t.icon}</span>
-                            <span className="truncate">{t.task}</span>
-                            <span className={`ml-auto text-[11px] font-semibold px-2 py-0.5 rounded-md whitespace-nowrap ${t.cls}`}>{t.tag}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img
+                src={schoolErpHero}
+                alt="Teacher and students using Arvion School ERP on a laptop"
+                width="1376"
+                height="768"
+                className="w-full h-auto rounded-2xl shadow-xl ring-1 ring-blue-100"
+              />
             </motion.div>
           </div>
-
-          {/* Assurance badges: one row under both hero columns */}
-          <motion.ul
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-8 sm:mt-10 lg:mt-12 pt-5 sm:pt-6 border-t border-slate-200 grid grid-cols-2 sm:flex sm:flex-wrap gap-y-3 text-[13px] sm:text-sm lg:text-[15px] font-medium text-[#0B1B3D]"
-          >
-            {[
-              [<FaShieldAlt />, "100% Compliance"],
-              [<FaLayerGroup />, "Data Security"],
-              [<FaChartBar />, "Scalable Solutions"],
-              [<FaHeadset />, "Expert Support"],
-            ].map(([icon, label], i) => (
-              <li key={label} className={`flex items-center gap-2.5 sm:pr-4 sm:mr-4 ${i < 3 ? 'sm:border-r sm:border-slate-200' : ''}`}>
-                <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-orange-50 text-[#FF8000] flex items-center justify-center text-sm sm:text-base flex-shrink-0">{icon}</span>
-                {label}
-              </li>
-            ))}
-          </motion.ul>
-        </div>
-      </section>
-
-      {/* Proof strip */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-20 -mt-8 sm:-mt-10">
-        <div className={`${CARD} grid grid-cols-2 md:grid-cols-4 shadow-sm sm:shadow-[0_1px_2px_rgba(11,27,61,.06),0_12px_28px_-16px_rgba(11,27,61,.25)] overflow-hidden`}>
-          {[["50+", "Active schools"], ["40K+", "Students managed"], [`${pageConfig.featureSuite.length}+`, "Modules"], ["100%", "On-time compliance"]].map(([value, label], i) => (
-            <div key={label} className={`px-4 py-4 sm:px-5 sm:py-5 grid gap-0.5 border-slate-200 ${i % 2 === 1 ? 'border-l' : ''} ${i >= 2 ? 'border-t md:border-t-0' : ''} ${i === 2 ? 'md:border-l' : ''}`}>
-              <strong className="text-2xl sm:text-[28px] lg:text-3xl font-extrabold leading-tight tabular-nums">{value}</strong>
-              <span className="text-[13px] sm:text-sm text-slate-500">{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* WHY CHOOSE US SECTION */}
-      <section className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            eyebrow="Why Arvion"
-            title="Why Choose Our School ERP?"
-            desc="We go beyond basic administration. Our platform is a comprehensive ecosystem designed to transform how your educational institution operates, empowering educators, engaging parents, and driving student success."
-          />
-          <motion.div variants={staggerContainer} {...reveal} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200 border border-slate-200 rounded-xl sm:rounded-2xl overflow-hidden">
-            {[
-              { title: "100% Cloud-Based & Secure", desc: "Access your school's data securely from anywhere. Our cloud infrastructure features enterprise-grade encryption and automated backups to ensure complete data protection.", icon: <FaServer /> },
-              { title: "Intuitive & User-Friendly", desc: "Designed for effortless navigation. Teachers, admins, and parents can use the system immediately, requiring zero technical training or complex onboarding.", icon: <FaDesktop /> },
-              { title: "Highly Customizable & Scalable", desc: "From small schools to large university groups, our modular architecture adapts and scales seamlessly as your educational institution expands over time.", icon: <FaExpandArrowsAlt /> },
-              { title: "Real-Time Analytics & Reporting", desc: "Empower decision-making with instant, actionable insights. Monitor student performance, financial health, and staff productivity through an advanced dashboard.", icon: <FaChartLine /> },
-              { title: "Dedicated 24/7 Support", desc: "Experience worry-free operations with our dedicated success team. We provide full implementation training and reliable round-the-clock technical assistance.", icon: <FaHeadset /> },
-              { title: "Seamless Integration", desc: "Connect seamlessly with your existing tools. Our API-first platform integrates effortlessly with biometric devices, accounting software, and payment gateways.", icon: <FaCodeBranch /> }
-            ].map((feature) => (
-              <motion.article key={feature.title} variants={fadeUpVariant} className="bg-white p-5 sm:p-6 lg:p-7 grid gap-2.5 sm:gap-3 content-start hover:bg-slate-50 transition-colors">
-                <IconBox>{feature.icon}</IconBox>
-                <h3 className="text-base sm:text-lg font-bold">{feature.title}</h3>
-                <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed">{feature.desc}</p>
-              </motion.article>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* BEFORE / AFTER: one switch flips all items between "Without ERP" and "With Arvion" */}
-      <section className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            eyebrow="Before and after"
-            title="See the Difference in One Click"
-            desc="Switch between a school running on paper and one running on Arvion School ERP."
-          />
-
-          <div className="flex justify-center mb-6 sm:mb-8">
-            <div role="group" aria-label="Compare without and with the ERP" className="grid grid-cols-2 w-full max-w-[300px] sm:max-w-md bg-slate-100 border border-slate-200 p-1 sm:p-1.5 rounded-xl sm:rounded-2xl">
-              <button
-                type="button"
-                aria-pressed={!showAfter}
-                onClick={() => setShowAfter(false)}
-                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] px-2 sm:px-3 rounded-lg sm:rounded-xl text-[13px] sm:text-[15px] font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${
-                  !showAfter ? 'bg-white text-red-500 shadow-sm' : 'text-slate-500 hover:text-[#0B1B3D]'
-                }`}
-              >
-                <FaTimesCircle /> Without ERP
-              </button>
-              <button
-                type="button"
-                aria-pressed={showAfter}
-                onClick={() => setShowAfter(true)}
-                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] px-2 sm:px-3 rounded-lg sm:rounded-xl text-[13px] sm:text-[15px] font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 ${
-                  showAfter ? 'bg-[#FF8000] text-white shadow-md shadow-orange-500/30' : 'text-slate-500 hover:text-[#0B1B3D]'
-                }`}
-              >
-                <FaCheckCircle /> With Arvion
-              </button>
-            </div>
-          </div>
-
-          <motion.div
-            key={showAfter ? 'after' : 'before'}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 max-w-5xl mx-auto"
-            aria-live="polite"
-          >
-            {beforeAfterRows.map((row, idx) => (
-              <div
-                key={row.problem}
-                className={`flex items-start gap-3 sm:gap-4 rounded-xl sm:rounded-2xl p-3.5 sm:p-5 border transition-colors ${
-                  idx === beforeAfterRows.length - 1 && beforeAfterRows.length % 2 === 1 ? 'md:col-span-2 md:w-[calc(50%-0.5rem)] md:justify-self-center' : ''
-                } ${showAfter ? 'bg-white border-orange-200' : 'bg-slate-50/70 border-dashed border-slate-300'}`}
-              >
-                <span className={`w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 text-base sm:text-lg ${
-                  showAfter ? 'bg-orange-50 text-[#E67300]' : 'bg-red-50 text-red-500'
-                }`}>
-                  {showAfter ? row.solutionIcon : row.problemIcon}
-                </span>
-                <div className="min-w-0">
-                  <h3 className={`font-bold text-[14.5px] sm:text-base leading-snug ${showAfter ? 'text-[#0B1B3D]' : 'text-slate-600'}`}>
-                    {showAfter ? row.solution : row.problem}
-                  </h3>
-                  <p className="mt-1 text-[13px] sm:text-sm text-slate-600 leading-relaxed">
-                    {showAfter ? row.solutionDesc : row.problemDesc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          <p className={`mt-5 sm:mt-6 flex items-center justify-center gap-2 text-[13px] sm:text-[15px] text-center ${showAfter ? 'text-emerald-600' : 'text-red-500'}`}>
-            {showAfter ? <FaCheckCircle className="flex-shrink-0" /> : <FaTimesCircle className="flex-shrink-0" />}
-            <span className="text-slate-600">
-              {showAfter
-                ? <><b className="text-[#0B1B3D]">{beforeAfterRows.length} of {beforeAfterRows.length}</b> problems solved in one platform</>
-                : <><b className="text-[#0B1B3D]">{beforeAfterRows.length}</b> separate problems, handled by hand today</>}
-            </span>
-          </p>
         </div>
       </section>
 
       {/* FEATURES OVERVIEW */}
-      <section id="features" ref={featuresTopRef} className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full scroll-mt-20">
+      <section id="features" ref={featuresTopRef} className="py-8 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             eyebrow={`${pageConfig.featureSuite.length}+ Powerful Modules`}
@@ -518,9 +346,8 @@ const SchoolManagement = () => {
                       setSelectedCategory(cat.value);
                       setShowAllFeatures(false);
                     }}
-                    className={`inline-flex items-center justify-between sm:justify-start gap-2 min-h-[40px] px-3 py-1.5 rounded-lg text-[13px] sm:text-sm font-semibold text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${
-                      active ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
-                    }`}
+                    className={`inline-flex items-center justify-between sm:justify-start gap-2 min-h-[40px] px-3 py-1.5 rounded-lg text-[13px] sm:text-sm font-semibold text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${active ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
+                      }`}
                   >
                     {cat.label}
                     <span className={`font-mono text-[11px] px-1.5 rounded ${active ? 'bg-[#FF8000] text-white' : 'bg-slate-200 text-slate-600'}`}>{cat.count}</span>
@@ -565,50 +392,49 @@ const SchoolManagement = () => {
               On phones the column wrappers use display: contents and `order` keeps the original sequence. */}
           <div className="flex flex-col gap-2.5 md:grid md:grid-cols-2 md:items-start">
             {[0, 1].map((col) => (
-            <div key={col} className="contents md:flex md:flex-col md:gap-2.5">
-            {displayedFeatures.map((feature, idx) => {
-              if (idx % 2 !== col) return null;
-              const isActive = activeFeature === feature.title;
-              const panelId = `feature-${feature.title.replace(/\W+/g, '-').toLowerCase()}`;
-              return (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: (idx % 8) * 0.025 }}
-                  style={{ order: idx }}
-                  className={`bg-white border rounded-xl transition-all duration-200 ${
-                    isActive ? 'border-[#FF8000] shadow-md' : 'border-slate-200 hover:border-slate-300'
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggleFeature(feature.title)}
-                    aria-expanded={isActive}
-                    aria-controls={panelId}
-                    className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 flex items-center gap-3 text-left rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-300"
-                  >
-                    <IconBox size="sm" tone={categoryTone[feature.category] || "slate"}>
-                      {featureIcons[norm(feature.title)] || <FaCube />}
-                    </IconBox>
-                    <span className="grid gap-0.5 min-w-0 flex-1">
-                      <span className={`font-bold text-[15px] sm:text-[15.5px] ${isActive ? 'text-[#E67300]' : 'text-[#0B1B3D]'}`}>{feature.title}</span>
-                      <span className="text-xs text-slate-500">{feature.category}</span>
-                    </span>
-                    <FaChevronDown className={`flex-shrink-0 text-sm transition-transform duration-200 ${isActive ? 'rotate-180 text-[#FF8000]' : 'text-slate-400'}`} />
-                  </button>
-                  <div
-                    id={panelId}
-                    className={`grid transition-all duration-300 ease-in-out ${isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="px-3.5 sm:px-4 pb-4 sm:pl-16 text-slate-600 leading-relaxed text-sm sm:text-[14.5px]">{feature.desc}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-            </div>
+              <div key={col} className="contents md:flex md:flex-col md:gap-2.5">
+                {displayedFeatures.map((feature, idx) => {
+                  if (idx % 2 !== col) return null;
+                  const isActive = activeFeature === feature.title;
+                  const panelId = `feature-${feature.title.replace(/\W+/g, '-').toLowerCase()}`;
+                  return (
+                    <motion.div
+                      key={feature.title}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2, delay: (idx % 8) * 0.025 }}
+                      style={{ order: idx }}
+                      className={`bg-white border rounded-xl transition-all duration-200 ${isActive ? 'border-[#FF8000] shadow-md' : 'border-slate-200 hover:border-slate-300'
+                        }`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => toggleFeature(feature.title)}
+                        aria-expanded={isActive}
+                        aria-controls={panelId}
+                        className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 flex items-center gap-3 text-left rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-300"
+                      >
+                        <IconBox size="sm" tone={categoryTone[feature.category] || "slate"}>
+                          {featureIcons[norm(feature.title)] || <FaCube />}
+                        </IconBox>
+                        <span className="grid gap-0.5 min-w-0 flex-1">
+                          <span className={`font-bold text-[15px] sm:text-[15.5px] ${isActive ? 'text-[#E67300]' : 'text-[#0B1B3D]'}`}>{feature.title}</span>
+                          <span className="text-xs text-slate-500">{feature.category}</span>
+                        </span>
+                        <FaChevronDown className={`flex-shrink-0 text-sm transition-transform duration-200 ${isActive ? 'rotate-180 text-[#FF8000]' : 'text-slate-400'}`} />
+                      </button>
+                      <div
+                        id={panelId}
+                        className={`grid transition-all duration-300 ease-in-out ${isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="px-3.5 sm:px-4 pb-4 sm:pl-16 text-slate-600 leading-relaxed text-sm sm:text-[14.5px]">{feature.desc}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             ))}
 
             {displayedFeatures.length === 0 && (
@@ -638,8 +464,226 @@ const SchoolManagement = () => {
         </div>
       </section>
 
+      {/* WHY CHOOSE US SECTION */}
+      <section className="relative overflow-hidden py-10 sm:py-12 px-4 sm:px-6 w-full bg-gradient-to-b from-[#f5f8ff] via-white to-[#f7f9ff]">
+        {/* Background decoration: soft blue waves at the top corners and bottom, thin orange curve bottom-right */}
+        <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-full h-40 sm:h-56" viewBox="0 0 1440 220" preserveAspectRatio="none">
+          <path d="M0,0 H460 C380,40 250,70 0,64 Z" fill="#e3ecfb" opacity="0.7" />
+          <path d="M1440,0 V150 C1330,110 1260,60 1180,0 Z" fill="#e3ecfb" opacity="0.6" />
+        </svg>
+        <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 w-full h-20 sm:h-28" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,70 C200,50 360,90 520,120 L0,120 Z" fill="#dbe6fa" opacity="0.7" />
+          <path d="M900,120 C1080,40 1260,20 1440,40 L1440,120 Z" fill="#fde7d6" opacity="0.55" />
+          <path d="M760,120 C980,40 1220,10 1440,30" fill="none" stroke="#f7941d" strokeWidth="2" opacity="0.8" />
+        </svg>
+
+        <div className="relative max-w-7xl mx-auto">
+          {/* Heading */}
+          <motion.div {...reveal} variants={fadeUpVariant} className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <span className="inline-flex items-center gap-3 rounded-full bg-[#ffeadb] px-5 py-1.5 text-[12px] sm:text-[14px] font-extrabold uppercase tracking-[0.06em] text-[#f26b0f]">
+              <span aria-hidden="true" className="w-4 sm:w-5 h-0.5 rounded bg-[#f26b0f]" />
+              Why Arvion
+              <span aria-hidden="true" className="w-4 sm:w-5 h-0.5 rounded bg-[#f26b0f]" />
+            </span>
+            <h2 className="mt-4 text-[26px] sm:text-4xl lg:text-[44px] font-extrabold text-[#0B1B3D] tracking-tight leading-tight">
+              Why Choose Our <span className="text-[#f26b0f]">School ERP?</span>
+            </h2>
+            <p className="mt-3 sm:mt-4 text-[15px] sm:text-[17px] text-slate-600 leading-relaxed">
+              We go beyond basic administration. Our platform is a comprehensive ecosystem designed to transform how your educational institution operates, empowering educators, engaging parents, and driving student success.
+            </p>
+          </motion.div>
+
+          {/* Cards */}
+          <motion.div variants={staggerContainer} {...reveal} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+            {[
+              { title: "100% Cloud-Based & Secure", desc: "Access your school's data securely from anywhere. Our cloud infrastructure features enterprise-grade encryption and automated backups to ensure complete data protection.", icon: <FaServer />, tone: "bg-[#e3eeff] text-[#1d5fe0]", wave: "#1d6ff2" },
+              { title: "Intuitive & User-Friendly", desc: "Designed for effortless navigation. Teachers, admins, and parents can use the system immediately, requiring zero technical training or complex onboarding.", icon: <FaDesktop />, tone: "bg-[#ffece0] text-[#f26b0f]", wave: "#f26b0f" },
+              { title: "Highly Customizable & Scalable", desc: "From small schools to large university groups, our modular architecture adapts and scales seamlessly as your educational institution expands over time.", icon: <FaExpandArrowsAlt />, tone: "bg-[#efe9ff] text-[#8b5cf6]", wave: "#8b5cf6" },
+              { title: "Real-Time Analytics & Reporting", desc: "Empower decision-making with instant, actionable insights. Monitor student performance, financial health, and staff productivity through an advanced dashboard.", icon: <FaChartBar />, tone: "bg-[#e3f7ea] text-[#22a855]", wave: "#2fbf5f" },
+              { title: "Dedicated 24/7 Support", desc: "Experience worry-free operations with our dedicated success team. We provide full implementation training and reliable round-the-clock technical assistance.", icon: <FaHeadset />, tone: "bg-[#fff4d9] text-[#f5a50b]", wave: "#fbbf24" },
+              { title: "Seamless Integration", desc: "Connect seamlessly with your existing tools. Our API-first platform integrates effortlessly with biometric devices, accounting software, and payment gateways.", icon: <FaShareAlt />, tone: "bg-[#ffe4ee] text-[#e83e7c]", wave: "#ec4899" },
+            ].map((feature) => (
+              <motion.article
+                key={feature.title}
+                variants={fadeUpVariant}
+                className="group relative overflow-hidden bg-white/90 rounded-2xl border border-slate-200/80 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.3)] hover:-translate-y-1 transition-all duration-300 p-6 sm:p-7 pb-10 sm:pb-11"
+              >
+                {/* Coloured swoosh in the bottom-right corner */}
+                <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 w-[48%] h-12" viewBox="0 0 200 48" preserveAspectRatio="none">
+                  <path d="M0,48 C90,47 160,38 200,0 L200,48 Z" fill={feature.wave} opacity="0.1" />
+                  <path d="M60,48 C130,46 178,30 200,6 L200,48 Z" fill={feature.wave} />
+                </svg>
+                <span className={`relative inline-flex w-14 h-14 sm:w-[60px] sm:h-[60px] rounded-xl items-center justify-center text-2xl sm:text-[28px] transition-transform duration-300 group-hover:scale-105 ${feature.tone}`}>
+                  {feature.icon}
+                </span>
+                <h3 className="relative mt-4 text-[18px] sm:text-[20px] lg:text-[21px] font-extrabold text-[#0B1B3D] leading-snug">{feature.title}</h3>
+                <p className="relative mt-2 text-[14px] sm:text-[15px] text-slate-600 leading-relaxed">{feature.desc}</p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* USER PORTALS: one dedicated portal per role */}
+      <section id="portals" className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full bg-white scroll-mt-20">
+        <div aria-hidden="true" className="pointer-events-none hidden sm:block absolute top-8 right-8 w-24 h-16 opacity-60 bg-[radial-gradient(#b9cdf0_1.6px,transparent_1.6px)] [background-size:14px_14px]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-blue-50 blur-2xl" />
+
+        <div className="relative max-w-7xl mx-auto">
+          <motion.div {...reveal} variants={fadeUpVariant} className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <span className="inline-flex items-center gap-3 rounded-full bg-[#ffeadb] px-5 py-1.5 text-[12px] sm:text-[14px] font-extrabold uppercase tracking-[0.06em] text-[#f26b0f]">
+              <span aria-hidden="true" className="w-4 sm:w-5 h-0.5 rounded bg-[#f26b0f]" />
+              User Portals
+              <span aria-hidden="true" className="w-4 sm:w-5 h-0.5 rounded bg-[#f26b0f]" />
+            </span>
+            <h2 className="mt-4 text-[26px] sm:text-4xl lg:text-[44px] font-extrabold text-[#0B1B3D] tracking-tight leading-tight">
+              One Platform, <span className="text-[#f26b0f]">Four Portals</span>
+            </h2>
+            <p className="mt-3 sm:mt-4 text-[15px] sm:text-[17px] text-slate-600 leading-relaxed">
+              Dedicated interfaces for every stakeholder in the school ecosystem, on web and mobile.
+            </p>
+          </motion.div>
+
+          <motion.div variants={staggerContainer} {...reveal} className="grid md:grid-cols-2 gap-5 sm:gap-6">
+            {[
+              {
+                key: 'admin', title: 'Administrator Portal', audience: 'For principals & management', image: portalAdmin,
+                points: ['Complete school control', 'Configuration & settings', 'Reports & analytics'],
+                card: 'from-[#eef4ff] to-[#f8fbff] border-blue-100', tag: 'bg-blue-100/70 text-[#1747a6]', check: 'text-[#1d6ff2]',
+                btn: 'border-[#1d6ff2] text-[#1747a6] hover:bg-[#1d6ff2] hover:text-white', ring: 'ring-blue-100',
+              },
+              {
+                key: 'teacher', title: 'Teacher Portal', audience: 'For teaching staff', image: portalTeacher,
+                points: ['Class & attendance', 'Exams & marks entry', 'Student performance'],
+                card: 'from-[#f5efff] to-[#fbf8ff] border-violet-100', tag: 'bg-violet-100/70 text-violet-700', check: 'text-violet-600',
+                btn: 'border-violet-500 text-violet-700 hover:bg-violet-600 hover:text-white', ring: 'ring-violet-100',
+              },
+              {
+                key: 'student', title: 'Student Portal', audience: 'For students', image: portalStudent,
+                points: ['Timetable & attendance', 'Results & report card', 'Fee details & notices'],
+                card: 'from-[#ecf9f1] to-[#f7fdf9] border-emerald-100', tag: 'bg-emerald-100/70 text-emerald-700', check: 'text-emerald-600',
+                btn: 'border-emerald-500 text-emerald-700 hover:bg-emerald-600 hover:text-white', ring: 'ring-emerald-100',
+              },
+              {
+                key: 'parent', title: 'Parent Portal', audience: 'For parents & guardians', image: portalParent,
+                points: ["Child's academic progress", 'Attendance & fee status', 'School communication'],
+                card: 'from-[#fff3ea] to-[#fffaf6] border-orange-100', tag: 'bg-orange-100/80 text-[#c2560c]', check: 'text-[#f26b0f]',
+                btn: 'border-[#f26b0f] text-[#c2560c] hover:bg-[#f26b0f] hover:text-white', ring: 'ring-orange-100',
+              },
+            ].map((p) => (
+              <motion.article
+                key={p.key}
+                variants={fadeUpVariant}
+                className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-br ${p.card} p-3.5 sm:p-5 flex flex-row gap-3.5 sm:gap-6 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_16px_34px_-18px_rgba(15,42,107,.32)] hover:-translate-y-1 transition-all duration-300`}
+              >
+                <div className={`relative flex-shrink-0 w-[104px] min-[400px]:w-28 sm:w-40 lg:w-44 self-stretch rounded-xl overflow-hidden bg-white p-1 ring-2 sm:ring-4 ${p.ring} shadow-md`}>
+                  <img
+                    src={p.image}
+                    alt={`${p.title} user`}
+                    width="198"
+                    height="264"
+                    loading="lazy"
+                    className="block w-full h-full min-h-[150px] sm:min-h-[176px] object-cover object-top rounded-lg transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="flex flex-col min-w-0 py-1">
+                  <span className={`self-start rounded-full px-2.5 py-0.5 text-[11px] sm:text-xs font-bold ${p.tag}`}>{p.audience}</span>
+                  <h3 className="mt-2 text-[19px] sm:text-[22px] font-extrabold text-[#0B1B3D] leading-tight">{p.title}</h3>
+                  <ul className="mt-3 mb-4 grid gap-2">
+                    {p.points.map((pt) => (
+                      <li key={pt} className="flex items-center gap-2.5 text-[14px] sm:text-[15px] text-slate-700">
+                        <FaCheckCircle className={`flex-shrink-0 ${p.check}`} /> {pt}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to="/contact"
+                    className={`mt-auto self-start inline-flex items-center gap-2 rounded-lg border-2 bg-white px-4 py-2 text-[14px] font-bold transition-colors ${p.btn} focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200`}
+                  >
+                    View Demo <FaArrowRight className="text-xs" />
+                  </Link>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* BEFORE / AFTER: one switch flips all items between "Without ERP" and "With Arvion" */}
+      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeader
+            eyebrow="Before and after"
+            title="See the Difference in One Click"
+            desc="Switch between a school running on paper and one running on Arvion School ERP."
+          />
+
+          <div className="flex justify-center mb-6 sm:mb-8">
+            <div role="group" aria-label="Compare without and with the ERP" className="grid grid-cols-2 w-full max-w-[300px] sm:max-w-md bg-slate-100 border border-slate-200 p-1 sm:p-1.5 rounded-xl sm:rounded-2xl">
+              <button
+                type="button"
+                aria-pressed={!showAfter}
+                onClick={() => setShowAfter(false)}
+                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] px-2 sm:px-3 rounded-lg sm:rounded-xl text-[13px] sm:text-[15px] font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${!showAfter ? 'bg-white text-red-500 shadow-sm' : 'text-slate-500 hover:text-[#0B1B3D]'
+                  }`}
+              >
+                <FaTimesCircle /> Without ERP
+              </button>
+              <button
+                type="button"
+                aria-pressed={showAfter}
+                onClick={() => setShowAfter(true)}
+                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] px-2 sm:px-3 rounded-lg sm:rounded-xl text-[13px] sm:text-[15px] font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 ${showAfter ? 'bg-[#FF8000] text-white shadow-md shadow-orange-500/30' : 'text-slate-500 hover:text-[#0B1B3D]'
+                  }`}
+              >
+                <FaCheckCircle /> With Arvion
+              </button>
+            </div>
+          </div>
+
+          <motion.div
+            key={showAfter ? 'after' : 'before'}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 max-w-5xl mx-auto"
+            aria-live="polite"
+          >
+            {beforeAfterRows.map((row, idx) => (
+              <div
+                key={row.problem}
+                className={`flex items-start gap-3 sm:gap-4 rounded-xl sm:rounded-2xl p-3.5 sm:p-5 border transition-colors ${idx === beforeAfterRows.length - 1 && beforeAfterRows.length % 2 === 1 ? 'md:col-span-2 md:w-[calc(50%-0.5rem)] md:justify-self-center' : ''
+                  } ${showAfter ? 'bg-white border-orange-200' : 'bg-slate-50/70 border-dashed border-slate-300'}`}
+              >
+                <span className={`w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 text-base sm:text-lg ${showAfter ? 'bg-orange-50 text-[#E67300]' : 'bg-red-50 text-red-500'
+                  }`}>
+                  {showAfter ? row.solutionIcon : row.problemIcon}
+                </span>
+                <div className="min-w-0">
+                  <h3 className={`font-bold text-[14.5px] sm:text-base leading-snug ${showAfter ? 'text-[#0B1B3D]' : 'text-slate-600'}`}>
+                    {showAfter ? row.solution : row.problem}
+                  </h3>
+                  <p className="mt-1 text-[13px] sm:text-sm text-slate-600 leading-relaxed">
+                    {showAfter ? row.solutionDesc : row.problemDesc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <p className={`mt-5 sm:mt-6 flex items-center justify-center gap-2 text-[13px] sm:text-[15px] text-center ${showAfter ? 'text-emerald-600' : 'text-red-500'}`}>
+            {showAfter ? <FaCheckCircle className="flex-shrink-0" /> : <FaTimesCircle className="flex-shrink-0" />}
+            <span className="text-slate-600">
+              {showAfter
+                ? <><b className="text-[#0B1B3D]">{beforeAfterRows.length} of {beforeAfterRows.length}</b> problems solved in one platform</>
+                : <><b className="text-[#0B1B3D]">{beforeAfterRows.length}</b> separate problems, handled by hand today</>}
+            </span>
+          </p>
+        </div>
+      </section>
+
       {/* PLANS */}
-      <section id="plans" className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full bg-white border-y border-slate-200 scroll-mt-20">
+      <section id="plans" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             center
@@ -657,9 +701,8 @@ const SchoolManagement = () => {
                   type="button"
                   aria-pressed={planView === value}
                   onClick={() => setPlanView(value)}
-                  className={`min-h-[40px] px-2 rounded-lg text-[13px] sm:text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${
-                    planView === value ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
-                  }`}
+                  className={`min-h-[40px] px-2 rounded-lg text-[13px] sm:text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${planView === value ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
+                    }`}
                 >
                   {label}
                 </button>
@@ -668,171 +711,169 @@ const SchoolManagement = () => {
           </div>
 
           <div ref={plansViewRef} className="scroll-mt-24">
-          {/* SUMMARY: what each plan adds over the one before */}
-          {planView === "summary" && (
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-5 xl:gap-6 items-stretch max-w-xl lg:max-w-none mx-auto">
-            {plansWithAdditions.map((plan) => {
-              const style = planStyle[plan.name] || { icon: <FaCube />, tone: "slate" };
-              const order = (planPreviewOrder[plan.name] || []).map(norm);
-              const ordered = [
-                ...order.map(t => plan.added.find(f => norm(f) === t)).filter(Boolean),
-                ...plan.added.filter(f => !order.includes(norm(f))),
-              ];
-              const preview = ordered.slice(0, 7);
-              const remaining = plan.added.length - preview.length;
-              return (
-                <motion.article
-                  key={plan.name}
-                  variants={fadeUpVariant}
-                  className={`relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-7 lg:p-6 xl:p-7 flex flex-col gap-4 sm:gap-5 transition-shadow ${
-                    plan.popular ? 'border-2 border-[#FF8000] shadow-md sm:shadow-xl shadow-orange-500/10' : 'border border-slate-200 hover:shadow-lg'
-                  }`}
-                >
-                  {plan.popular && (
-                    <span className="absolute -top-3 left-5 sm:left-7 bg-[#FF8000] text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
-                  )}
-                  <div className="flex items-center gap-3.5">
-                    <IconBox tone={style.tone}>{style.icon}</IconBox>
-                    <h3 className="text-xl sm:text-2xl font-bold">{plan.name}</h3>
-                  </div>
-                  <p className="text-sm sm:text-[14.5px] text-slate-600 leading-relaxed">{plan.description}</p>
-                  <div className="flex items-baseline gap-2 py-3 sm:py-4 border-y border-slate-200">
-                    <strong className="text-[32px] sm:text-[38px] font-extrabold leading-none tabular-nums">{plan.features.included.length}</strong>
-                    <span className="text-sm text-slate-500">features included</span>
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
-                    {plan.prevName ? `Everything in ${plan.prevName}, plus` : 'Includes'}
-                  </span>
-                  <ul className="grid gap-2 sm:gap-2.5 text-sm sm:text-[14.5px]">
-                    {preview.map((feat) => (
-                      <li key={feat} className="flex items-start gap-2.5">
-                        <FaCheckCircle className="text-emerald-500 mt-1 flex-shrink-0 text-sm" />
-                        <span>{feat.trim()}</span>
-                      </li>
-                    ))}
-                    {remaining > 0 && (
-                      <li>
-                        <button type="button" onClick={() => showPlanView("full")} className="flex items-center gap-2.5 text-slate-500 hover:text-[#0B1B3D] font-medium focus:outline-none focus-visible:underline">
-                          <FaPlus className="text-xs" /> {remaining} more, see full list
-                        </button>
-                      </li>
+            {/* SUMMARY: what each plan adds over the one before */}
+            {planView === "summary" && (
+              <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-5 xl:gap-6 items-stretch max-w-xl lg:max-w-none mx-auto">
+                {plansWithAdditions.map((plan) => {
+                  const style = planStyle[plan.name] || { icon: <FaCube />, tone: "slate" };
+                  const order = (planPreviewOrder[plan.name] || []).map(norm);
+                  const ordered = [
+                    ...order.map(t => plan.added.find(f => norm(f) === t)).filter(Boolean),
+                    ...plan.added.filter(f => !order.includes(norm(f))),
+                  ];
+                  const preview = ordered.slice(0, 7);
+                  const remaining = plan.added.length - preview.length;
+                  return (
+                    <motion.article
+                      key={plan.name}
+                      variants={fadeUpVariant}
+                      className={`relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-7 lg:p-6 xl:p-7 flex flex-col gap-4 sm:gap-5 transition-shadow ${plan.popular ? 'border-2 border-[#FF8000] shadow-md sm:shadow-xl shadow-orange-500/10' : 'border border-slate-200 hover:shadow-lg'
+                        }`}
+                    >
+                      {plan.popular && (
+                        <span className="absolute -top-3 left-5 sm:left-7 bg-[#FF8000] text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                      )}
+                      <div className="flex items-center gap-3.5">
+                        <IconBox tone={style.tone}>{style.icon}</IconBox>
+                        <h3 className="text-xl sm:text-2xl font-bold">{plan.name}</h3>
+                      </div>
+                      <p className="text-sm sm:text-[14.5px] text-slate-600 leading-relaxed">{plan.description}</p>
+                      <div className="flex items-baseline gap-2 py-3 sm:py-4 border-y border-slate-200">
+                        <strong className="text-[32px] sm:text-[38px] font-extrabold leading-none tabular-nums">{plan.features.included.length}</strong>
+                        <span className="text-sm text-slate-500">features included</span>
+                      </div>
+                      <span className="text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
+                        {plan.prevName ? `Everything in ${plan.prevName}, plus` : 'Includes'}
+                      </span>
+                      <ul className="grid gap-2 sm:gap-2.5 text-sm sm:text-[14.5px]">
+                        {preview.map((feat) => (
+                          <li key={feat} className="flex items-start gap-2.5">
+                            <FaCheckCircle className="text-emerald-500 mt-1 flex-shrink-0 text-sm" />
+                            <span>{feat.trim()}</span>
+                          </li>
+                        ))}
+                        {remaining > 0 && (
+                          <li>
+                            <button type="button" onClick={() => showPlanView("full")} className="flex items-center gap-2.5 text-slate-500 hover:text-[#0B1B3D] font-medium focus:outline-none focus-visible:underline">
+                              <FaPlus className="text-xs" /> {remaining} more, see full list
+                            </button>
+                          </li>
+                        )}
+                      </ul>
+                      <Link to="/contact" className={`${plan.popular ? BTN_PRIMARY : BTN_SECONDARY} w-full mt-auto`}>
+                        Get Started
+                      </Link>
+                    </motion.article>
+                  );
+                })}
+              </motion.div>
+            )}
+
+            {/* FULL LIST: every feature per plan, included and not included */}
+            {planView === "full" && (
+              <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch max-w-xl md:max-w-none mx-auto">
+                {pageConfig.plans.map((plan) => (
+                  <motion.article
+                    key={plan.name}
+                    variants={fadeUpVariant}
+                    className={`relative bg-white rounded-xl sm:rounded-2xl overflow-hidden flex flex-col transition-all duration-300 ${plan.popular
+                        ? 'border-2 border-[#FF8000] shadow-md sm:shadow-xl shadow-orange-500/10 md:col-span-2 lg:col-span-1'
+                        : 'border border-slate-200 shadow-sm hover:shadow-lg hover:border-[#FF8000]'
+                      }`}
+                  >
+                    {plan.popular && (
+                      <div className="absolute top-0 right-0 w-28 h-28 overflow-hidden pointer-events-none z-10" aria-hidden="true">
+                        <div className="absolute top-5 -right-10 w-40 rotate-45 bg-[#FF8000] text-white text-[10px] font-bold uppercase tracking-widest text-center py-1.5 shadow-md">
+                          Most Popular
+                        </div>
+                      </div>
                     )}
-                  </ul>
-                  <Link to="/contact" className={`${plan.popular ? BTN_PRIMARY : BTN_SECONDARY} w-full mt-auto`}>
-                    Get Started
-                  </Link>
-                </motion.article>
-              );
-            })}
-          </motion.div>
-          )}
 
-          {/* FULL LIST: every feature per plan, included and not included */}
-          {planView === "full" && (
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch max-w-xl md:max-w-none mx-auto">
-            {pageConfig.plans.map((plan) => (
-              <motion.article
-                key={plan.name}
-                variants={fadeUpVariant}
-                className={`relative bg-white rounded-xl sm:rounded-2xl overflow-hidden flex flex-col transition-all duration-300 ${
-                  plan.popular
-                    ? 'border-2 border-[#FF8000] shadow-md sm:shadow-xl shadow-orange-500/10 md:col-span-2 lg:col-span-1'
-                    : 'border border-slate-200 shadow-sm hover:shadow-lg hover:border-[#FF8000]'
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute top-0 right-0 w-28 h-28 overflow-hidden pointer-events-none z-10" aria-hidden="true">
-                    <div className="absolute top-5 -right-10 w-40 rotate-45 bg-[#FF8000] text-white text-[10px] font-bold uppercase tracking-widest text-center py-1.5 shadow-md">
-                      Most Popular
+                    <div className="p-5 sm:p-7 flex-grow">
+                      <h3 className="text-xl sm:text-2xl font-bold">
+                        {plan.name}
+                        {plan.popular && <span className="sr-only"> (most popular)</span>}
+                      </h3>
+                      <p className="mt-1 text-[13px] sm:text-sm text-slate-500 leading-relaxed pr-10">{plan.description}</p>
+                      <div className={`h-1 w-full rounded-full bg-gradient-to-r ${plan.color} my-4 sm:my-5`} />
+
+                      <ul className="grid gap-2 sm:gap-2.5 text-[13px] sm:text-sm">
+                        {plan.features.included.map((feat) => (
+                          <li key={feat} className="flex items-start gap-2.5">
+                            <FaCheckCircle className="text-emerald-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                            <span className="font-medium text-slate-800">{feat.trim()}</span>
+                            <span className="sr-only">included</span>
+                          </li>
+                        ))}
+                        {plan.features.excluded.map((feat) => (
+                          <li key={feat} className="flex items-start gap-2.5">
+                            <FaTimesCircle className="text-slate-300 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                            <span className="text-slate-400">{feat.trim()}</span>
+                            <span className="sr-only">not included</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  </div>
-                )}
 
-                <div className="p-5 sm:p-7 flex-grow">
-                  <h3 className="text-xl sm:text-2xl font-bold">
-                    {plan.name}
-                    {plan.popular && <span className="sr-only"> (most popular)</span>}
-                  </h3>
-                  <p className="mt-1 text-[13px] sm:text-sm text-slate-500 leading-relaxed pr-10">{plan.description}</p>
-                  <div className={`h-1 w-full rounded-full bg-gradient-to-r ${plan.color} my-4 sm:my-5`} />
+                    <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-100">
+                      <Link to="/contact" className={`${BTN_PRIMARY} w-full`}>
+                        Get Started
+                      </Link>
+                    </div>
+                  </motion.article>
+                ))}
+              </motion.div>
+            )}
 
-                  <ul className="grid gap-2 sm:gap-2.5 text-[13px] sm:text-sm">
-                    {plan.features.included.map((feat) => (
-                      <li key={feat} className="flex items-start gap-2.5">
-                        <FaCheckCircle className="text-emerald-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                        <span className="font-medium text-slate-800">{feat.trim()}</span>
-                        <span className="sr-only">included</span>
-                      </li>
-                    ))}
-                    {plan.features.excluded.map((feat) => (
-                      <li key={feat} className="flex items-start gap-2.5">
-                        <FaTimesCircle className="text-slate-300 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                        <span className="text-slate-400">{feat.trim()}</span>
-                        <span className="sr-only">not included</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-100">
-                  <Link to="/contact" className={`${BTN_PRIMARY} w-full`}>
-                    Get Started
-                  </Link>
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
-          )}
-
-          {/* COMPARE: one table; no overflow clipping so the header row sticks below the fixed site header */}
-          {planView === "compare" && (
-            <div className={`${CARD}`}>
-              <table className="w-full table-fixed text-[13px] sm:text-[14.5px] border-separate border-spacing-0">
-                <colgroup>
-                  <col className="w-[46%] sm:w-auto" />
-                  {pageConfig.plans.map(p => <col key={p.name} className="sm:w-[18%]" />)}
-                </colgroup>
-                <thead>
-                  <tr>
-                    <th scope="col" className="sticky top-12 sm:top-16 z-10 bg-slate-50 text-left px-3 sm:px-4 py-3 text-xs min-[380px]:text-[13px] sm:text-[14.5px] font-bold border-b border-slate-200 rounded-tl-xl sm:rounded-tl-2xl">Feature</th>
-                    {pageConfig.plans.map((p, i) => (
-                      <th key={p.name} scope="col" className={`sticky top-12 sm:top-16 z-10 bg-slate-50 px-1 sm:px-4 py-3 text-[11px] min-[380px]:text-xs sm:text-[14.5px] font-bold text-center border-b border-slate-200 ${i === pageConfig.plans.length - 1 ? 'rounded-tr-xl sm:rounded-tr-2xl' : ''}`}>{p.name}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonGroups.map(group => (
-                    <React.Fragment key={group.label}>
-                      <tr className="bg-slate-100/70">
-                        <td colSpan={pageConfig.plans.length + 1} className="px-3 sm:px-4 py-2 text-xs font-bold uppercase tracking-[0.1em] text-slate-500 border-t border-slate-200">{group.label}</td>
-                      </tr>
-                      {group.rows.map(row => (
-                        <tr key={row} className="hover:bg-slate-50">
-                          <td className="px-3 sm:px-4 py-2.5 border-t border-slate-100">{row}</td>
-                          {pageConfig.plans.map(p => {
-                            const has = p.features.included.some(f => norm(f) === norm(row));
-                            return (
-                              <td key={p.name} className="px-1 sm:px-4 py-2.5 border-t border-slate-100 text-center">
-                                {has
-                                  ? <FaCheckCircle className="inline text-emerald-500" aria-label="Included" />
-                                  : <span className="text-slate-300" aria-label="Not included">—</span>}
-                              </td>
-                            );
-                          })}
-                        </tr>
+            {/* COMPARE: one table; no overflow clipping so the header row sticks below the fixed site header */}
+            {planView === "compare" && (
+              <div className={`${CARD}`}>
+                <table className="w-full table-fixed text-[13px] sm:text-[14.5px] border-separate border-spacing-0">
+                  <colgroup>
+                    <col className="w-[46%] sm:w-auto" />
+                    {pageConfig.plans.map(p => <col key={p.name} className="sm:w-[18%]" />)}
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col" className="sticky top-12 sm:top-16 z-10 bg-slate-50 text-left px-3 sm:px-4 py-3 text-xs min-[380px]:text-[13px] sm:text-[14.5px] font-bold border-b border-slate-200 rounded-tl-xl sm:rounded-tl-2xl">Feature</th>
+                      {pageConfig.plans.map((p, i) => (
+                        <th key={p.name} scope="col" className={`sticky top-12 sm:top-16 z-10 bg-slate-50 px-1 sm:px-4 py-3 text-[11px] min-[380px]:text-xs sm:text-[14.5px] font-bold text-center border-b border-slate-200 ${i === pageConfig.plans.length - 1 ? 'rounded-tr-xl sm:rounded-tr-2xl' : ''}`}>{p.name}</th>
                       ))}
-                    </React.Fragment>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonGroups.map(group => (
+                      <React.Fragment key={group.label}>
+                        <tr className="bg-slate-100/70">
+                          <td colSpan={pageConfig.plans.length + 1} className="px-3 sm:px-4 py-2 text-xs font-bold uppercase tracking-[0.1em] text-slate-500 border-t border-slate-200">{group.label}</td>
+                        </tr>
+                        {group.rows.map(row => (
+                          <tr key={row} className="hover:bg-slate-50">
+                            <td className="px-3 sm:px-4 py-2.5 border-t border-slate-100">{row}</td>
+                            {pageConfig.plans.map(p => {
+                              const has = p.features.included.some(f => norm(f) === norm(row));
+                              return (
+                                <td key={p.name} className="px-1 sm:px-4 py-2.5 border-t border-slate-100 text-center">
+                                  {has
+                                    ? <FaCheckCircle className="inline text-emerald-500" aria-label="Included" />
+                                    : <span className="text-slate-300" aria-label="Not included">—</span>}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ))}
+                      </React.Fragment>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       {/* APP FEATURES */}
-      <section className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full overflow-hidden">
+      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             center
@@ -866,7 +907,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* ADD-ONS + SECURITY */}
-      <section className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
+      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 sm:gap-6">
           <motion.div {...reveal} variants={fadeUpVariant} className={`${CARD} p-5 sm:p-7 grid gap-4 sm:gap-5 content-start`}>
             <div className="grid gap-1.5">
@@ -911,7 +952,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* HOW IMPLEMENTATION WORKS */}
-      <section id="process" className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full scroll-mt-20">
+      <section id="process" className="py-8 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             center
@@ -931,9 +972,8 @@ const SchoolManagement = () => {
               { title: "Go Live", desc: "Your school runs on the ERP, with ongoing support." }
             ].map((item, idx, arr) => (
               <motion.li key={item.title} variants={fadeUpVariant} className="relative grid grid-cols-[32px_1fr] md:grid-cols-1 gap-x-3 sm:gap-x-4 gap-y-0.5 md:gap-2.5 lg:gap-3 md:justify-items-center md:text-center">
-                <span className={`row-span-2 md:row-span-1 w-8 h-8 md:w-9 md:h-9 lg:w-11 lg:h-11 rounded-full border-2 border-[#FF8000] flex items-center justify-center font-bold text-sm md:text-[15px] lg:text-base tabular-nums ${
-                  idx === arr.length - 1 ? 'bg-[#FF8000] text-white' : 'bg-white text-[#E67300]'
-                }`}>{idx + 1}</span>
+                <span className={`row-span-2 md:row-span-1 w-8 h-8 md:w-9 md:h-9 lg:w-11 lg:h-11 rounded-full border-2 border-[#FF8000] flex items-center justify-center font-bold text-sm md:text-[15px] lg:text-base tabular-nums ${idx === arr.length - 1 ? 'bg-[#FF8000] text-white' : 'bg-white text-[#E67300]'
+                  }`}>{idx + 1}</span>
                 <h3 className="font-bold text-sm sm:text-[15px] lg:text-base leading-snug self-center md:self-auto">{item.title}</h3>
                 <p className="text-[13px] sm:text-sm text-slate-600 md:max-w-[24ch]">{item.desc}</p>
               </motion.li>
@@ -943,7 +983,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* WHY SCHOOLS CHOOSE OUR ERP */}
-      <section className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
+      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto">
           <SectionHeader center title="Why Schools Choose Our ERP" />
           <motion.div variants={staggerContainer} {...reveal} className="grid grid-cols-1 min-[440px]:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -969,7 +1009,7 @@ const SchoolManagement = () => {
       <TestimonialSection />
 
       {/* FAQ SECTION */}
-      <section id="faq" className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full bg-white border-t border-slate-200 scroll-mt-20">
+      <section id="faq" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-t border-slate-200 scroll-mt-20">
         <SectionHeader eyebrow="FAQ" title="Frequently Asked Questions" desc="Can't find your answer? Talk to our ERP team." />
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1.6fr] gap-8 sm:gap-10 lg:gap-12 xl:gap-14 items-start">
           <div className="grid gap-5 sm:gap-6 content-start lg:sticky lg:top-24">
@@ -1020,7 +1060,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* FINAL CTA SECTION */}
-      <section className="py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 w-full bg-[#0B1B3D] text-white">
+      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#0B1B3D] text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.4fr_1fr] gap-6 sm:gap-8 items-center">
           <motion.div {...reveal} variants={fadeUpVariant} className="grid gap-4">
             <h2 className="text-[26px] sm:text-3xl md:text-4xl xl:text-[44px] font-bold leading-tight tracking-tight text-balance">Ready to Transform Your Institution?</h2>
@@ -1046,9 +1086,8 @@ const AppFeature = ({ feat, align = "left" }) => (
   <motion.div
     {...reveal}
     variants={fadeUpVariant}
-    className={`flex items-start gap-3 sm:gap-3.5 md:p-3 lg:p-3.5 rounded-xl border border-transparent md:hover:bg-white md:hover:border-slate-200 transition-colors ${
-      align === "right" ? 'flex-row-reverse text-right' : 'text-left'
-    }`}
+    className={`flex items-start gap-3 sm:gap-3.5 md:p-3 lg:p-3.5 rounded-xl border border-transparent md:hover:bg-white md:hover:border-slate-200 transition-colors ${align === "right" ? 'flex-row-reverse text-right' : 'text-left'
+      }`}
   >
     <div className="hidden md:flex flex-shrink-0 w-10 h-10 lg:w-11 lg:h-11 rounded-lg lg:rounded-xl bg-blue-50 items-center justify-center [&>svg]:!text-xl">{feat.icon}</div>
     <div className="min-w-0">

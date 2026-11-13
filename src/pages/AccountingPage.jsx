@@ -56,7 +56,7 @@ const AccountingPage = () => {
     <div className="w-full bg-[#f8f9fa] min-h-screen font-sans">
       
       {/* 1. HERO SECTION */}
-      <section className="relative pt-[120px] pb-24 md:pt-[160px] md:pb-32 flex items-center justify-center overflow-hidden">
+      <section className="relative pt-[96px] pb-16 md:pt-[112px] md:pb-20 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={heroImg} alt="" aria-hidden="true" fetchPriority="high" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0d1b2a]/80 backdrop-blur-[2px]"></div>
@@ -85,7 +85,7 @@ const AccountingPage = () => {
       </section>
 
       {/* 2. INTRO SECTION */}
-      <section className="py-20 px-4 max-w-5xl mx-auto text-center">
+      <section className="py-8 md:py-10 px-4 max-w-5xl mx-auto text-center">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0d1b2a] mb-6 uppercase tracking-tight">Your Partner in Financial Accuracy</h2>
           <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-4xl mx-auto font-medium">
@@ -95,7 +95,7 @@ const AccountingPage = () => {
       </section>
 
       {/* 3. FEATURES GRID */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-8 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-[#0d1b2a] uppercase tracking-tight">A Closer Look at Our Features</h2>
@@ -126,7 +126,7 @@ const AccountingPage = () => {
       </section>
 
       {/* 4. BENEFITS LIST */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
+      <section className="py-8 md:py-10 px-4 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <motion.div className="flex-1" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
             <h2 className="text-3xl font-bold text-[#0d1b2a] mb-6 uppercase tracking-tight">Unlock Key Benefits</h2>
@@ -161,7 +161,7 @@ const AccountingPage = () => {
       </section>
 
       {/* FAQ SECTION */}
-      <section className="py-16 md:py-24 px-4 max-w-4xl mx-auto">
+      <section className="py-8 md:py-10 px-4 max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-orange-500 rounded-full mb-6">
             <FaRegQuestionCircle className="text-3xl" />
@@ -197,7 +197,7 @@ const AccountingPage = () => {
       <TestimonialSection />
 
       {/* 6. CTA / CONTACT SECTION */}
-      <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
+      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden mt-6 md:mt-8">
         <div className="absolute inset-0 z-0">
           <img src={heroImg} alt="" aria-hidden="true" loading="lazy" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>

@@ -10,7 +10,7 @@ const PrivacyPolicyPage = () => {
     <div className="bg-[#f0f4f8] min-h-screen pt-14 pb-20 overflow-hidden font-sans">
 
       {/* Vibrant Hero Section */}
-      <section className="relative bg-[#0d1b2a] text-white pt-24 pb-20 px-6 shadow-lg mb-16">
+      <section className="relative bg-[#0d1b2a] text-white pt-[88px] pb-14 px-6 shadow-lg mb-12">
         <div className="absolute inset-0 overflow-hidden">
           {/* Abstract background shapes */}
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#ff7f32]/20 rounded-full blur-3xl"></div>

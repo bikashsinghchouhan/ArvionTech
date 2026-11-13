@@ -168,7 +168,7 @@ const OutsourcingPage = () => {
 
 
       {/* 3. SERVICES & STATS SECTION */}
-      <section className="py-10 md:py-16 px-4 max-w-7xl mx-auto bg-white">
+      <section className="py-8 md:py-10 px-4 max-w-7xl mx-auto bg-white">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-4">Our Payroll Outsourcing Services</h2>
           <p className="text-slate-500 font-medium">Comprehensive payroll solutions tailored to your business needs.</p>
@@ -225,7 +225,7 @@ const OutsourcingPage = () => {
       </section>
 
       {/* WHY CHOOSE OUR PAYROLL SYSTEM */}
-      <section className="py-10 md:py-16 bg-slate-50 px-4 max-w-7xl mx-auto rounded-3xl mb-10">
+      <section className="py-8 md:py-10 bg-slate-50 px-4 max-w-7xl mx-auto rounded-3xl mb-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-4">Why Choose Our Payroll System</h2>
           <p className="text-slate-500 font-medium max-w-2xl mx-auto">
@@ -258,7 +258,7 @@ const OutsourcingPage = () => {
       </section>
 
       {/* CORE PAYROLL FEATURES */}
-      <section className="py-10 md:py-16 px-4 max-w-7xl mx-auto">
+      <section className="py-8 md:py-10 px-4 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1">
             <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-6">Core Payroll Features</h2>
@@ -324,7 +324,7 @@ const OutsourcingPage = () => {
 
 
       {/* FAQ SECTION */}
-      <section className="py-10 md:py-16 px-4 max-w-4xl mx-auto">
+      <section className="py-8 md:py-10 px-4 max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-50 text-blue-500 rounded-full mb-4">
             <FaRegQuestionCircle className="text-2xl" />
@@ -363,7 +363,7 @@ const OutsourcingPage = () => {
       <TestimonialSection />
 
       {/* 5. CTA / CONTACT SECTION */}
-      <section className="relative py-12 md:py-20 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
+      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden mt-6 md:mt-8">
         <div className="absolute inset-0 z-0 bg-[#0d1b2a]"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">

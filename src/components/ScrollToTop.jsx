@@ -1,14 +1,19 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { scrollToId } from '../utils/scrollToId';
 
 const ScrollToTop = () => {
-  // Extracts pathname property(key) from an object
-  const { pathname } = useLocation();
+  // Extracts pathname and hash from the current location
+  const { pathname, hash } = useLocation();
 
-  // Automatically scrolls to top whenever pathname changes
+  // Scrolls to the hash target if present, otherwise to the top whenever the route changes
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      scrollToId(decodeURIComponent(hash.slice(1)));
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
   return null; // This component does not render anything
 }

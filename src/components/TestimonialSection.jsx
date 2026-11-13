@@ -56,7 +56,7 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="pt-12 pb-10 sm:pt-14 sm:pb-12 md:pt-16 lg:pt-20 md:pb-14 lg:pb-16 px-4 sm:px-6 w-full mx-auto bg-slate-50 border-t border-slate-200">
+    <section className="pt-8 pb-8 sm:pt-10 sm:pb-10 px-4 sm:px-6 w-full mx-auto bg-slate-50 border-t border-slate-200">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-6 sm:mb-8 md:mb-12">
           <motion.h2

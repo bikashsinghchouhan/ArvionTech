@@ -121,7 +121,7 @@ const ContactUs = ({ isSinglePage }) => {
         Meeting_Time: formData.timeSlot
       };
 
-      // Send lead notification to Arvion Team
+      // Send lead notification to Arvion Team - email.js
       const response = await emailjs.send(
         'service_mkucjek',  // Service ID
         'template_u3wagyg', // Admin Notification Template ID

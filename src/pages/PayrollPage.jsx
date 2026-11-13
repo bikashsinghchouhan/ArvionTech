@@ -39,7 +39,7 @@ const PayrollPage = () => {
       <div className="w-full bg-[#f8f9fa] min-h-screen font-sans">
         
         {/* 1. HERO SECTION */}
-        <section className="relative pt-[120px] pb-24 md:pt-[160px] md:pb-32 flex items-center justify-center overflow-hidden">
+        <section className="relative pt-[96px] pb-16 md:pt-[112px] md:pb-20 flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img src={heroImg} alt="" aria-hidden="true" fetchPriority="high" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-[#0d1b2a]/85 backdrop-blur-[2px]"></div>
@@ -68,7 +68,7 @@ const PayrollPage = () => {
         </section>
 
         {/* 2. INTRO SECTION */}
-        <section className="py-24 px-4 max-w-5xl mx-auto text-center">
+        <section className="py-8 md:py-10 px-4 max-w-5xl mx-auto text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0d1b2a] mb-6 uppercase tracking-tight">A Sneak Peek at What's Coming</h2>
             <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-4xl mx-auto font-medium mb-12">
@@ -89,7 +89,7 @@ const PayrollPage = () => {
         </section>
         
         {/* FAQ SECTION */}
-        <section className="py-16 md:py-24 px-4 max-w-4xl mx-auto">
+        <section className="py-8 md:py-10 px-4 max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-orange-500 rounded-full mb-6">
               <FaRegQuestionCircle className="text-3xl" />
@@ -124,7 +124,7 @@ const PayrollPage = () => {
         <TestimonialSection />
 
         {/* 4. CTA / CONTACT SECTION */}
-        <section className="relative py-12 md:py-24 flex items-center justify-center overflow-hidden mt-6 md:mt-10">
+        <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden mt-6 md:mt-8">
           <div className="absolute inset-0 z-0">
             <img src={heroImg} alt="" aria-hidden="true" loading="lazy" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>

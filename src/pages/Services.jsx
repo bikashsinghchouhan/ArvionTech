@@ -60,7 +60,7 @@ const Services = ({ isSinglePage }) => {
 
     return (
         <div className={isSinglePage ? "w-full box-border" : " w-full min-h-screen bg-[#f8f9fa] box-border"}>
-            <section className={isSinglePage ? "py-8 sm:py-12 bg-white text-center box-border px-4 sm:px-6 lg:px-8" : "services-grid-section px-4 sm:px-6 lg:px-8"}>
+            <section className={isSinglePage ? "py-8 sm:py-10 bg-white text-center box-border px-4 sm:px-6 lg:px-8" : "services-grid-section px-4 sm:px-6 lg:px-8"}>
                 <div className="max-w-6xl mx-auto">
                     {/* Heading */}
                     <div className="flex flex-col items-center mb-4 md:mb-8">
