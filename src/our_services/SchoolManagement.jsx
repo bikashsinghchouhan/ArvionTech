@@ -952,30 +952,62 @@ const SchoolManagement = () => {
       </section>
 
       {/* HOW IMPLEMENTATION WORKS */}
-      <section id="process" className="py-8 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20">
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            center
-            eyebrow="Implementation"
-            title="From Demo to Digital Transformation"
-            desc="A streamlined 5-step process to get your institution running on our ERP seamlessly."
-          />
-          {/* Circle sizes: 32px phone, 36px tablet, 44px desktop. Connector lines run through the circle centres. */}
-          <motion.ol variants={staggerContainer} {...reveal} className="relative grid grid-cols-1 md:grid-cols-5 gap-4 sm:gap-5 md:gap-4 max-w-md md:max-w-none mx-auto">
-            <span aria-hidden="true" className="hidden md:block absolute top-[17px] lg:top-[21px] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-[#FF8000] to-slate-300" />
-            <span aria-hidden="true" className="md:hidden absolute left-[15px] top-3 bottom-3 w-0.5 bg-gradient-to-b from-[#FF8000] to-slate-300" />
+      <section id="process" className="relative overflow-hidden py-12 sm:py-14 px-4 sm:px-6 w-full scroll-mt-20 bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
+        {/* Corner swooshes (same as testimonials / FAQ) */}
+        <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-[34%] max-w-[420px] h-auto" viewBox="0 0 560 170" fill="none">
+          <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
+          <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
+        </svg>
+        <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 w-[34%] max-w-[420px] h-auto rotate-180" viewBox="0 0 560 170" fill="none">
+          <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
+          <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
+        </svg>
+
+        <div className="relative max-w-6xl mx-auto">
+          {/* Heading: pill with side lines + highlighted words with underline */}
+          <motion.div variants={fadeUpVariant} {...reveal} className="flex flex-col items-center text-center mb-10 sm:mb-12">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
+              <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">
+                Implementation
+              </span>
+              <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
+            </div>
+            <h2 className="mt-4 text-[26px] sm:text-[34px] lg:text-[38px] font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
+              From Demo to{' '}
+              <span className="relative inline-block text-[#f2700f]">
+                Digital Transformation
+                <svg aria-hidden="true" viewBox="0 0 200 14" preserveAspectRatio="none" className="absolute left-[10%] -bottom-2 sm:-bottom-3 w-[90%] h-2.5 sm:h-3.5 text-[#f2700f]">
+                  <path d="M2 11 C 60 3, 140 2, 198 7" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+                </svg>
+              </span>
+            </h2>
+            <p className="mt-5 text-[15px] sm:text-[17px] text-slate-600 max-w-2xl">
+              A streamlined 5-step process to get your institution running on our ERP seamlessly.
+            </p>
+          </motion.div>
+
+          <motion.ol variants={staggerContainer} {...reveal} className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 md:gap-4 lg:gap-5 list-none m-0 p-0">
+            {/* dashed connector through the icon centres (desktop) */}
+            <span aria-hidden="true" className="hidden md:block absolute top-8 left-[10%] right-[10%] h-[2px] bg-[repeating-linear-gradient(90deg,#f7941d_0_8px,transparent_8px_16px)]" />
             {[
-              { title: "Consultation", desc: "We learn how your school runs today." },
-              { title: "Requirement Analysis", desc: "We map your workflows, roles and reports." },
-              { title: "Configuration", desc: "We set up modules, fee rules and grading." },
-              { title: "Data Migration & Training", desc: "We import your records and train your staff." },
-              { title: "Go Live", desc: "Your school runs on the ERP, with ongoing support." }
-            ].map((item, idx, arr) => (
-              <motion.li key={item.title} variants={fadeUpVariant} className="relative grid grid-cols-[32px_1fr] md:grid-cols-1 gap-x-3 sm:gap-x-4 gap-y-0.5 md:gap-2.5 lg:gap-3 md:justify-items-center md:text-center">
-                <span className={`row-span-2 md:row-span-1 w-8 h-8 md:w-9 md:h-9 lg:w-11 lg:h-11 rounded-full border-2 border-[#FF8000] flex items-center justify-center font-bold text-sm md:text-[15px] lg:text-base tabular-nums ${idx === arr.length - 1 ? 'bg-[#FF8000] text-white' : 'bg-white text-[#E67300]'
-                  }`}>{idx + 1}</span>
-                <h3 className="font-bold text-sm sm:text-[15px] lg:text-base leading-snug self-center md:self-auto">{item.title}</h3>
-                <p className="text-[13px] sm:text-sm text-slate-600 md:max-w-[24ch]">{item.desc}</p>
+              { Icon: FaUserFriends, title: "Consultation", desc: "We learn how your school runs today." },
+              { Icon: FaClipboardList, title: "Requirement Analysis", desc: "We map your workflows, roles and reports." },
+              { Icon: FaSlidersH, title: "Configuration", desc: "We set up modules, fee rules and grading." },
+              { Icon: FaSyncAlt, title: "Data Migration & Training", desc: "We import your records and train your staff." },
+              { Icon: FaPlayCircle, title: "Go Live", desc: "Your school runs on the ERP, with ongoing support." }
+            ].map(({ Icon, title, desc }, idx) => (
+              <motion.li key={title} variants={fadeUpVariant} className="relative flex flex-col items-center text-center">
+                <span className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white flex items-center justify-center shadow-lg shadow-orange-500/25 ring-4 ring-[#f6f9fe]">
+                  <Icon className="text-[22px]" aria-hidden="true" />
+                  <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#0f2a6b] text-white text-[12px] font-extrabold flex items-center justify-center ring-2 ring-[#f6f9fe] tabular-nums">
+                    {idx + 1}
+                  </span>
+                </span>
+                <div className="mt-4 w-full flex-1 bg-white rounded-2xl border border-slate-200 shadow-[0_1px_3px_rgba(11,42,107,.06)] px-4 py-4">
+                  <h3 className="text-[15px] lg:text-[16px] font-extrabold text-[#0f2a6b] leading-snug">{title}</h3>
+                  <p className="mt-1.5 text-[13px] lg:text-[14px] text-slate-600 leading-relaxed">{desc}</p>
+                </div>
               </motion.li>
             ))}
           </motion.ol>

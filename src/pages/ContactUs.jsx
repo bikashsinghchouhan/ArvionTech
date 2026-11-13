@@ -217,7 +217,7 @@ const ContactUs = ({ isSinglePage }) => {
   }
 
   return (
-    <div className={isSinglePage ? "relative overflow-hidden pt-10 pb-12 sm:pt-14 sm:pb-20 bg-gradient-to-b from-[#f3f7fd] to-white w-full flex flex-col items-center justify-center box-border px-4" : "tw-contact-page min-h-screen bg-[#f0f2f5] p-6 pt-[100px] sm:p-10 sm:pt-[120px] flex flex-col items-center justify-center box-border"}>
+    <div className={isSinglePage ? "relative overflow-hidden pt-10 pb-12 sm:pt-14 sm:pb-20 bg-gradient-to-b from-[#f3f7fd] to-white w-full flex flex-col items-center justify-center box-border px-0 sm:px-4" : "tw-contact-page min-h-screen bg-[#f0f2f5] p-0 pt-16 sm:p-10 sm:pt-[120px] flex flex-col items-center justify-start sm:justify-center box-border"}>
 
       {!isSinglePage && (
         <h1 className="sr-only">Contact Arvion Technologies – Book a Free Consultation</h1>
@@ -255,7 +255,7 @@ const ContactUs = ({ isSinglePage }) => {
         </div>
       )}
 
-      <div className={`tw-contact-container grid grid-cols-1 min-[992px]:grid-cols-[1fr_1.1fr] max-w-[1240px] w-full bg-white rounded-3xl border border-slate-200/70 shadow-[0_30px_60px_-30px_rgba(11,42,107,.35)] overflow-hidden animate-fadeIn ${isSinglePage ? 'min-h-[500px]' : ''}`}>
+      <div className={`tw-contact-container grid grid-cols-1 min-[992px]:grid-cols-[1fr_1.1fr] max-w-[1240px] w-full bg-white rounded-none sm:rounded-3xl border-0 sm:border border-slate-200/70 shadow-none sm:shadow-[0_30px_60px_-30px_rgba(11,42,107,.35)] overflow-hidden animate-fadeIn ${isSinglePage ? 'min-h-[500px]' : 'flex-1 sm:flex-none min-h-[calc(100svh-4rem)] sm:min-h-0'}`}>
 
         {/* Left Panel */}
         <div className="tw-contact-left-panel relative overflow-hidden hidden min-[992px]:flex min-[992px]:flex-col min-[992px]:justify-center bg-gradient-to-br from-[#0e3a8c] via-[#0b2f78] to-[#082262] text-white p-10 lg:p-12">
@@ -310,7 +310,7 @@ const ContactUs = ({ isSinglePage }) => {
         </div>
 
         {/* Right Panel */}
-        <div className={`tw-contact-right-panel p-0 min-[992px]:p-10 lg:p-12 w-full ${isSinglePage ? 'h-full flex flex-col justify-center' : ''}`}>
+        <div className={`tw-contact-right-panel p-0 min-[992px]:p-10 lg:p-12 w-full flex flex-col ${isSinglePage ? 'h-full flex flex-col justify-center' : ''}`}>
           {/* Mobile Header (Hidden on Desktop) */}
           <div className="tw-mobile-form-header block p-6 bg-gradient-to-br from-[#0e3a8c] to-[#082262] min-[992px]:hidden text-white">
             <div className="tw-progress-bar flex items-center mb-4 max-w-xs mx-auto">
@@ -570,7 +570,7 @@ const ContactUs = ({ isSinglePage }) => {
           </AnimatePresence>
 
           {/* Mobile Footer (Hidden on Desktop) */}
-          <div className="tw-mobile-form-footer block p-6 bg-gradient-to-br from-[#0e3a8c] to-[#082262] text-center min-[992px]:hidden">
+          <div className="tw-mobile-form-footer block mt-auto p-6 bg-gradient-to-br from-[#0e3a8c] to-[#082262] text-center min-[992px]:hidden">
             <p className="font-extrabold text-sm mb-4 uppercase tracking-widest text-white">Or contact us directly:</p>
             <div className="flex flex-col items-center gap-4">
               <a href="mailto:sales@arviontechnologies.com" className="text-white hover:text-orange-200 transition-colors flex items-center gap-3 text-base" title="Email Us">

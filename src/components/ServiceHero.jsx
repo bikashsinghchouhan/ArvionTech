@@ -47,7 +47,7 @@ const FeatureCard = ({ title, Icon, points, className = '' }) => (
 
 // Optional (used by the home page slider): showBreadcrumb, headingAs ('h1' | 'h2'),
 // wideInset (extra side padding so slider arrows don't cover the text), secondary.to (router link),
-// featureCard { title, Icon, points } (card over the top-right of the photo; under it on small screens).
+// featureCard { title, Icon, points } (card over the top-right of the photo; desktop only).
 const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, imageWidth = 828, imageHeight = 568, board, primary, secondary, points, showBreadcrumb = true, headingAs: Heading = 'h1', wideInset = false, featureCard }) => (
   <section className="relative w-full overflow-hidden bg-gradient-to-r from-[#e8f1ff] via-[#f4f8ff] to-[#eef4ff] pt-16 border-b border-blue-100 lg:min-h-[calc(100svh-38px)] lg:flex lg:flex-col">
     {/* Soft background shapes */}
@@ -183,7 +183,6 @@ const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, ima
           >
             <img src={image} alt={imageAlt} width={imageWidth} height={imageHeight} className="block w-full h-auto rounded-xl" />
           </motion.div>
-          {featureCard && <FeatureCard {...featureCard} className="lg:hidden" />}
 
           {/* Key points card: floats over the right edge of the photo on large screens.
               Skipped when no points are passed (the illustration already shows them). */}

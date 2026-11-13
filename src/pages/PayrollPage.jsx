@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   FaArrowRight, FaCalendarAlt, FaUserTie, FaBolt, FaShieldAlt,
   FaHeadset, FaPhoneAlt, FaCheckCircle, FaFileInvoiceDollar,
-  FaCalculator, FaUniversity, FaReceipt, FaChartBar, FaClock, FaBalanceScale, FaLock
+  FaCalculator, FaUniversity, FaReceipt, FaChartBar, FaChevronDown,
+  FaRegQuestionCircle, FaClock
 } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
-import FaqSection from '../components/FaqSection';
 import heroIllustration from '../assets/service-heroes/payroll.webp';
 
 const fadeUpVariant = {
@@ -25,7 +25,11 @@ const staggerContainer = {
 };
 
 const PayrollPage = () => {
+  const [activeFaq, setActiveFaq] = useState(null);
 
+  const toggleFaq = (idx) => {
+    setActiveFaq(activeFaq === idx ? null : idx);
+  };
 
   const detailedFeatures = [
     {
@@ -67,9 +71,6 @@ const PayrollPage = () => {
     { step: '04', title: 'Salary Disbursement', desc: 'Bank upload files generated for single-click salary crediting into employee accounts.' },
     { step: '05', title: 'Payslips & Statutory Filing', desc: 'Digital payslip distribution and filing of monthly PF, ESI, PT, and quarterly TDS challans.' }
   ];
-
-  // Icon shown next to each FAQ question (same order as faqs)
-  const faqIcons = [FaUniversity, FaBalanceScale, FaFileInvoiceDollar, FaLock, FaClock];
 
   const faqs = [
     {
@@ -232,7 +233,7 @@ const PayrollPage = () => {
               {/* 4 Feature Badges in a Row */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
-                className="flex flex-wrap gap-2 sm:gap-2.5 w-full mb-8"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-lg mb-8"
               >
                 {[
                   { title1: 'Expert', title2: 'Team', icon: <FaUserTie />, bg: 'bg-blue-50', text: 'text-blue-600' },
@@ -240,12 +241,12 @@ const PayrollPage = () => {
                   { title1: 'Data', title2: 'Security', icon: <FaShieldAlt />, bg: 'bg-blue-50', text: 'text-blue-600' },
                   { title1: 'Dedicated', title2: 'Support', icon: <FaHeadset />, bg: 'bg-orange-50', text: 'text-[#FF7A00]' }
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-white/90 rounded-xl pl-1.5 pr-3 py-1.5 border border-slate-200/70 shadow-sm flex items-center gap-2.5 hover:shadow-md hover:border-blue-100 transition-all">
-                    <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.text} flex items-center justify-center text-sm flex-shrink-0`}>
+                  <div key={idx} className="bg-white rounded-2xl p-3 border border-slate-200/70 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                    <div className={`w-9 h-9 rounded-xl ${item.bg} ${item.text} flex items-center justify-center text-sm mb-2`}>
                       {item.icon}
                     </div>
-                    <span className="text-[13px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
-                      {item.title1} {item.title2}
+                    <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
+                      {item.title1}<br />{item.title2}
                     </span>
                   </div>
                 ))}
@@ -341,21 +342,15 @@ const PayrollPage = () => {
       </section>
 
       {/* 2. DETAILED FEATURES GRID */}
-      <section id="features" className="w-full bg-white px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-        <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-12 sm:mb-14">
-          {/* Pill with side lines */}
-          <div className="flex items-center gap-3 sm:gap-4 mb-4">
-            <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
-            <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">
-              Comprehensive Capabilities
-            </span>
-            <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
-          </div>
-          <h2 className="text-[26px] sm:text-[34px] lg:text-[38px] font-extrabold text-[#0B1B3D] tracking-tight leading-tight mb-4">
-            Everything Your Payroll Demands,<br className="hidden sm:block" /> <span className="text-[#f2700f]">Perfectly Handled</span>
+      <section id="features" className="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto bg-white">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#FF7A00] text-xs font-bold uppercase tracking-wider mb-4">
+            Comprehensive Capabilities
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight mb-4">
+            Everything Your Payroll Demands, Perfectly Handled
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-3xl">
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
             From monthly gross-to-net calculations to complex multi-state statutory filings, our specialist team takes total ownership of your payroll administration.
           </p>
         </div>
@@ -368,9 +363,9 @@ const PayrollPage = () => {
             <motion.div
               key={idx}
               variants={fadeUpVariant}
-              className="group h-full bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-[0_8px_24px_-16px_rgba(11,42,107,.25)] hover:border-orange-200 hover:shadow-[0_18px_36px_-18px_rgba(11,42,107,.3)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-start"
+              className="bg-[#f8faff] rounded-2xl p-7 border border-slate-200/70 hover:border-orange-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start"
             >
-              <div className="w-14 h-14 rounded-2xl bg-[#fff1e3] flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-105">
+              <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center mb-5 shadow-sm">
                 {feat.icon}
               </div>
               <h3 className="text-lg font-bold text-[#0B1B3D] mb-3 leading-snug">{feat.title}</h3>
@@ -378,11 +373,10 @@ const PayrollPage = () => {
             </motion.div>
           ))}
         </motion.div>
-        </div>
       </section>
 
       {/* 3. OUR PROCESS SECTION */}
-      <section id="process" className="pt-16 sm:pt-20 pb-10 sm:pb-12 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50">
+      <section id="process" className="py-16 sm:py-20 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#1747a6] text-xs font-bold uppercase tracking-wider mb-4">
@@ -418,16 +412,47 @@ const PayrollPage = () => {
       </section>
 
       {/* 4. FAQ ACCORDION */}
-      <FaqSection
-        desc="Everything you need to know about outsourcing your payroll to Arvion."
-        items={faqs.map((faq, idx) => ({ ...faq, Icon: faqIcons[idx] }))}
-      />
+      <section className="py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-[#FF7A00] rounded-2xl mb-4 shadow-sm">
+            <FaRegQuestionCircle className="text-2xl" />
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] mb-4 tracking-tight">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-slate-600 text-base font-medium">
+            Everything you need to know about outsourcing your payroll to Arvion.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = activeFaq === idx;
+            return (
+              <div key={idx} className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-sm transition-colors">
+                <button
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full flex justify-between items-center px-6 py-5 text-left font-bold text-[#0B1B3D] text-base sm:text-lg focus:outline-none hover:bg-slate-50 transition-colors"
+                >
+                  <span>{faq.q}</span>
+                  <FaChevronDown className={`flex-shrink-0 text-slate-400 text-sm ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#FF7A00]' : ''}`} />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <div className="px-6 pb-5 pt-0 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100">
+                    {faq.a}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
       {/* 5. TESTIMONIALS */}
       <TestimonialSection />
 
       {/* 6. FINAL CTA BANNER */}
-      <section className="py-20 sm:py-24 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden">
+      <section className="py-20 sm:py-24 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden mt-10">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-3xl sm:text-5xl font-extrabold mb-6 tracking-tight">
