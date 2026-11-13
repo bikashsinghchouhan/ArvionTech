@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   FaArrowRight, FaCalendarAlt, FaUserTie, FaBolt, FaShieldAlt,
   FaHeadset, FaPhoneAlt, FaCheckCircle, FaFileInvoiceDollar,
-  FaCalculator, FaUniversity, FaReceipt, FaChartBar, FaChevronDown,
-  FaRegQuestionCircle, FaClock
+  FaCalculator, FaUniversity, FaReceipt, FaChartBar, FaClock, FaBalanceScale, FaLock
 } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
+import FaqSection from '../components/FaqSection';
 import heroIllustration from '../assets/service-heroes/payroll.webp';
 
 const fadeUpVariant = {
@@ -25,11 +25,7 @@ const staggerContainer = {
 };
 
 const PayrollPage = () => {
-  const [activeFaq, setActiveFaq] = useState(null);
 
-  const toggleFaq = (idx) => {
-    setActiveFaq(activeFaq === idx ? null : idx);
-  };
 
   const detailedFeatures = [
     {
@@ -72,6 +68,9 @@ const PayrollPage = () => {
     { step: '05', title: 'Payslips & Statutory Filing', desc: 'Digital payslip distribution and filing of monthly PF, ESI, PT, and quarterly TDS challans.' }
   ];
 
+  // Icon shown next to each FAQ question (same order as faqs)
+  const faqIcons = [FaUniversity, FaBalanceScale, FaFileInvoiceDollar, FaLock, FaClock];
+
   const faqs = [
     {
       q: 'What types of businesses can use Arvion Payroll Outsourcing?',
@@ -100,16 +99,64 @@ const PayrollPage = () => {
 
       {/* 1. EXACT HERO SECTION MATCHING DESIGN */}
       <section className="relative w-full overflow-hidden lg:min-h-[calc(100svh-38px)] lg:flex lg:flex-col bg-gradient-to-r from-[#eef4ff] via-[#f8fbff] to-white pt-16 border-b border-blue-50">
-        {/* Photo (includes the PAYROLL card): right side on large screens, fading into the background on its left edge */}
+        {/* Photo: right side on large screens, fading into the background on its left edge */}
         <div aria-hidden="true" className="hidden lg:block absolute top-16 bottom-0 right-0 w-[56%] xl:w-[55%]">
           <img
             src={heroIllustration}
             alt=""
-            width="1178"
-            height="996"
+            width="1200"
+            height="896"
             fetchPriority="high"
             className="w-full h-full object-cover object-right [mask-image:linear-gradient(to_right,transparent_0%,#000_7%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,#000_7%)]"
           />
+        </div>
+
+        {/* Desktop Floating PAYROLL Card on top of the image */}
+        <div className="hidden lg:block absolute top-20 right-6 xl:right-12 2xl:right-20 w-[275px] xl:w-[295px] z-20">
+          <div className="rounded-2xl bg-white/95 backdrop-blur-md p-3.5 xl:p-4 shadow-2xl shadow-blue-950/25 border border-slate-100 ring-1 ring-slate-900/5">
+            {/* Header */}
+            <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1747a6] via-[#11409d] to-[#0c2f79] px-3.5 py-2 text-white shadow-md">
+              <div className="relative z-10 flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 3.34 2 5s4.48 3 10 3 10-1.34 10-3-4.48-3-10-3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V4c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V9c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3z" />
+                  </svg>
+                </div>
+                <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
+                  PAYROLL
+                </span>
+              </div>
+              {/* Orange accent curve */}
+              <svg className="absolute bottom-0 right-0 w-16 h-4 pointer-events-none" viewBox="0 0 80 20" fill="none">
+                <path d="M0 20 Q 50 18, 80 0 L 80 20 Z" fill="#FF7A00" />
+              </svg>
+            </div>
+
+            {/* 8 Features List with Green Checkmarks */}
+            <ul className="mt-2.5 space-y-1.5">
+              {[
+                'Payroll Processing',
+                'Payslip Generation & Distribution',
+                'PF, ESI, PT, TDS & LWF Compliance',
+                'Income Tax & Declarations',
+                'Reimbursement & Expense Processing',
+                'Arrears & Recoveries',
+                'MIS & Management Reports',
+                'Audit Support & Data Security'
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-center gap-2">
+                  <span className="w-3.5 h-3.5 rounded-full bg-[#10B981] flex items-center justify-center text-white flex-shrink-0 shadow-sm">
+                    <svg className="w-2 h-2 text-white" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                  <span className="text-[11px] xl:text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         {/* Soft atmospheric gradient accents */}
         <div aria-hidden="true" className="pointer-events-none absolute -top-24 -left-24 w-96 h-96 rounded-full bg-blue-200/35 blur-3xl" />
@@ -185,7 +232,7 @@ const PayrollPage = () => {
               {/* 4 Feature Badges in a Row */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-lg mb-8"
+                className="flex flex-wrap gap-2 sm:gap-2.5 w-full mb-8"
               >
                 {[
                   { title1: 'Expert', title2: 'Team', icon: <FaUserTie />, bg: 'bg-blue-50', text: 'text-blue-600' },
@@ -193,12 +240,12 @@ const PayrollPage = () => {
                   { title1: 'Data', title2: 'Security', icon: <FaShieldAlt />, bg: 'bg-blue-50', text: 'text-blue-600' },
                   { title1: 'Dedicated', title2: 'Support', icon: <FaHeadset />, bg: 'bg-orange-50', text: 'text-[#FF7A00]' }
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-white rounded-2xl p-3 border border-slate-200/70 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-                    <div className={`w-9 h-9 rounded-xl ${item.bg} ${item.text} flex items-center justify-center text-sm mb-2`}>
+                  <div key={idx} className="bg-white/90 rounded-xl pl-1.5 pr-3 py-1.5 border border-slate-200/70 shadow-sm flex items-center gap-2.5 hover:shadow-md hover:border-blue-100 transition-all">
+                    <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.text} flex items-center justify-center text-sm flex-shrink-0`}>
                       {item.icon}
                     </div>
-                    <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
-                      {item.title1}<br />{item.title2}
+                    <span className="text-[13px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
+                      {item.title1} {item.title2}
                     </span>
                   </div>
                 ))}
@@ -221,20 +268,64 @@ const PayrollPage = () => {
 
             </div>
 
-            {/* Photo for small screens (large screens use the full-bleed photo above) */}
+            {/* Photo & Features Card for small screens */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="lg:hidden pb-8"
+              className="lg:hidden pb-8 w-full max-w-lg mx-auto"
             >
-              <img
-                src={heroIllustration}
-                alt="Payroll Outsourcing specialist at desk with laptop and payroll checklist"
-                width="1178"
-                height="996"
-                className="w-full h-auto rounded-2xl shadow-xl ring-1 ring-blue-100 select-none pointer-events-none"
-              />
+              <div className="relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-blue-100 bg-white">
+                <img
+                  src={heroIllustration}
+                  alt="Payroll Outsourcing specialist at desk with laptop"
+                  width="1200"
+                  height="896"
+                  className="w-full h-auto object-cover select-none"
+                />
+              </div>
+
+              {/* Mobile Features Card */}
+              <div className="mt-4 w-full rounded-2xl bg-white p-3.5 shadow-xl border border-slate-100 ring-1 ring-slate-900/5">
+                <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1747a6] via-[#11409d] to-[#0c2f79] px-3.5 py-2 text-white shadow-md">
+                  <div className="relative z-10 flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 3.34 2 5s4.48 3 10 3 10-1.34 10-3-4.48-3-10-3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V4c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V9c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3z" />
+                      </svg>
+                    </div>
+                    <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
+                      PAYROLL
+                    </span>
+                  </div>
+                  <svg className="absolute bottom-0 right-0 w-16 h-4 pointer-events-none" viewBox="0 0 80 20" fill="none">
+                    <path d="M0 20 Q 50 18, 80 0 L 80 20 Z" fill="#FF7A00" />
+                  </svg>
+                </div>
+                <ul className="mt-2.5 space-y-1.5">
+                  {[
+                    'Payroll Processing',
+                    'Payslip Generation & Distribution',
+                    'PF, ESI, PT, TDS & LWF Compliance',
+                    'Income Tax & Declarations',
+                    'Reimbursement & Expense Processing',
+                    'Arrears & Recoveries',
+                    'MIS & Management Reports',
+                    'Audit Support & Data Security'
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      <span className="w-3.5 h-3.5 rounded-full bg-[#10B981] flex items-center justify-center text-white flex-shrink-0 shadow-sm">
+                        <svg className="w-2 h-2 text-white" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </span>
+                      <span className="text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
 
           </div>
@@ -250,15 +341,21 @@ const PayrollPage = () => {
       </section>
 
       {/* 2. DETAILED FEATURES GRID */}
-      <section id="features" className="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto bg-white">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#FF7A00] text-xs font-bold uppercase tracking-wider mb-4">
-            Comprehensive Capabilities
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight mb-4">
-            Everything Your Payroll Demands, Perfectly Handled
+      <section id="features" className="w-full bg-white px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-12 sm:mb-14">
+          {/* Pill with side lines */}
+          <div className="flex items-center gap-3 sm:gap-4 mb-4">
+            <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
+            <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">
+              Comprehensive Capabilities
+            </span>
+            <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
+          </div>
+          <h2 className="text-[26px] sm:text-[34px] lg:text-[38px] font-extrabold text-[#0B1B3D] tracking-tight leading-tight mb-4">
+            Everything Your Payroll Demands,<br className="hidden sm:block" /> <span className="text-[#f2700f]">Perfectly Handled</span>
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-3xl">
             From monthly gross-to-net calculations to complex multi-state statutory filings, our specialist team takes total ownership of your payroll administration.
           </p>
         </div>
@@ -271,9 +368,9 @@ const PayrollPage = () => {
             <motion.div
               key={idx}
               variants={fadeUpVariant}
-              className="bg-[#f8faff] rounded-2xl p-7 border border-slate-200/70 hover:border-orange-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start"
+              className="group h-full bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-[0_8px_24px_-16px_rgba(11,42,107,.25)] hover:border-orange-200 hover:shadow-[0_18px_36px_-18px_rgba(11,42,107,.3)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-start"
             >
-              <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center mb-5 shadow-sm">
+              <div className="w-14 h-14 rounded-2xl bg-[#fff1e3] flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-105">
                 {feat.icon}
               </div>
               <h3 className="text-lg font-bold text-[#0B1B3D] mb-3 leading-snug">{feat.title}</h3>
@@ -281,10 +378,11 @@ const PayrollPage = () => {
             </motion.div>
           ))}
         </motion.div>
+        </div>
       </section>
 
       {/* 3. OUR PROCESS SECTION */}
-      <section id="process" className="py-16 sm:py-20 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50">
+      <section id="process" className="pt-16 sm:pt-20 pb-10 sm:pb-12 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#1747a6] text-xs font-bold uppercase tracking-wider mb-4">
@@ -320,47 +418,16 @@ const PayrollPage = () => {
       </section>
 
       {/* 4. FAQ ACCORDION */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-[#FF7A00] rounded-2xl mb-4 shadow-sm">
-            <FaRegQuestionCircle className="text-2xl" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] mb-4 tracking-tight">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-slate-600 text-base font-medium">
-            Everything you need to know about outsourcing your payroll to Arvion.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          {faqs.map((faq, idx) => {
-            const isOpen = activeFaq === idx;
-            return (
-              <div key={idx} className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-sm transition-colors">
-                <button
-                  onClick={() => toggleFaq(idx)}
-                  className="w-full flex justify-between items-center px-6 py-5 text-left font-bold text-[#0B1B3D] text-base sm:text-lg focus:outline-none hover:bg-slate-50 transition-colors"
-                >
-                  <span>{faq.q}</span>
-                  <FaChevronDown className={`flex-shrink-0 text-slate-400 text-sm ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#FF7A00]' : ''}`} />
-                </button>
-                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <div className="px-6 pb-5 pt-0 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100">
-                    {faq.a}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      <FaqSection
+        desc="Everything you need to know about outsourcing your payroll to Arvion."
+        items={faqs.map((faq, idx) => ({ ...faq, Icon: faqIcons[idx] }))}
+      />
 
       {/* 5. TESTIMONIALS */}
       <TestimonialSection />
 
       {/* 6. FINAL CTA BANNER */}
-      <section className="py-20 sm:py-24 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden mt-10">
+      <section className="py-20 sm:py-24 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-3xl sm:text-5xl font-extrabold mb-6 tracking-tight">

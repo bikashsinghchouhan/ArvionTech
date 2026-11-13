@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   FaBuilding, FaStamp, FaGlobe, FaShieldAlt, FaCheckCircle,
-  FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChevronDown,
-  FaRegQuestionCircle, FaCalendarAlt, FaArrowRight, FaUserTie,
-  FaClock, FaHeadset
+  FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCalendarAlt, FaArrowRight, FaUserTie,
+  FaClock, FaHeadset, FaFileAlt, FaBalanceScale
 } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
+import FaqSection from '../components/FaqSection';
 import heroIllustration from '../assets/service-heroes/statutory-hero.webp';
 import heroImg from '../assets/service-registrations.webp';
 
@@ -202,7 +202,7 @@ const RegistrationsPage = () => {
               {/* 4 Feature Badges in a Row */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-lg mb-8"
+                className="flex flex-wrap gap-2 sm:gap-2.5 w-full mb-8"
               >
                 {[
                   { title1: 'Expert', title2: 'Team', icon: <FaUserTie />, bg: 'bg-blue-50', text: 'text-blue-600' },
@@ -210,12 +210,12 @@ const RegistrationsPage = () => {
                   { title1: 'Data', title2: 'Security', icon: <FaShieldAlt />, bg: 'bg-blue-50', text: 'text-blue-600' },
                   { title1: 'Dedicated', title2: 'Support', icon: <FaHeadset />, bg: 'bg-orange-50', text: 'text-[#FF7A00]' }
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-white rounded-2xl p-3 border border-slate-200/70 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-                    <div className={`w-9 h-9 rounded-xl ${item.bg} ${item.text} flex items-center justify-center text-sm mb-2`}>
+                  <div key={idx} className="bg-white/90 rounded-xl pl-1.5 pr-3 py-1.5 border border-slate-200/70 shadow-sm flex items-center gap-2.5 hover:shadow-md hover:border-blue-100 transition-all">
+                    <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.text} flex items-center justify-center text-sm flex-shrink-0`}>
                       {item.icon}
                     </div>
-                    <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
-                      {item.title1}<br />{item.title2}
+                    <span className="text-[13px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
+                      {item.title1} {item.title2}
                     </span>
                   </div>
                 ))}
@@ -387,43 +387,22 @@ const RegistrationsPage = () => {
       </section>
 
       {/* FAQ SECTION */}
-      <section className="py-8 md:py-10 px-4 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-orange-500 rounded-full mb-6">
-            <FaRegQuestionCircle className="text-3xl" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] mb-4 uppercase tracking-tight">Frequently Asked Questions</h2>
-          <p className="text-slate-500 font-medium">Common questions about company registration and compliance.</p>
-        </div>
-
-        <div className="space-y-4">
-          {[
-            { q: "What documents are required for company incorporation?", a: "Generally, you will need ID proofs (PAN, Aadhaar/Passport), address proofs, and photographs of the directors, along with proof of the registered office address." },
-            { q: "How long does it take to register a new company?", a: "With all documents in place, the entire incorporation process usually takes 7 to 15 working days, depending on government processing times." },
-            { q: "Do I need a commercial space to register my company?", a: "No, you can register your company at a residential address. You only need a NOC from the owner and a utility bill as proof of address." },
-            { q: "What is the difference between a Private Limited Company and an LLP?", a: "A Private Limited Company offers shares and is suitable for startups seeking funding. An LLP offers the benefits of limited liability but is structured more flexibly like a partnership, often with fewer compliance requirements." },
-            { q: "Do you handle post-incorporation compliances?", a: "Yes, we offer complete post-incorporation support including PAN/TAN applications, bank account opening assistance, GST registration, and ongoing annual compliances." }
-          ].map((faq, index) => {
-            return (
-              <details key={index} className="group border border-slate-200 rounded-2xl bg-white shadow-sm [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-slate-50 hover:bg-slate-100 transition-colors rounded-2xl">
-                  <span className="font-bold text-slate-800 text-base">{faq.q}</span>
-                  <FaChevronDown className="text-slate-400 group-open:rotate-180 transition-transform duration-300" />
-                </summary>
-                <div className="px-6 py-5 text-slate-600 bg-white border-t border-slate-100 text-sm md:text-base leading-relaxed rounded-b-2xl">
-                  {faq.a}
-                </div>
-              </details>
-            );
-          })}
-        </div>
-      </section>
+      <FaqSection
+        desc="Common questions about company registration and compliance."
+        items={[
+          { Icon: FaFileAlt, q: "What documents are required for company incorporation?", a: "Generally, you will need ID proofs (PAN, Aadhaar/Passport), address proofs, and photographs of the directors, along with proof of the registered office address." },
+          { Icon: FaClock, q: "How long does it take to register a new company?", a: "With all documents in place, the entire incorporation process usually takes 7 to 15 working days, depending on government processing times." },
+          { Icon: FaBuilding, q: "Do I need a commercial space to register my company?", a: "No, you can register your company at a residential address. You only need a NOC from the owner and a utility bill as proof of address." },
+          { Icon: FaBalanceScale, q: "What is the difference between a Private Limited Company and an LLP?", a: "A Private Limited Company offers shares and is suitable for startups seeking funding. An LLP offers the benefits of limited liability but is structured more flexibly like a partnership, often with fewer compliance requirements." },
+          { Icon: FaShieldAlt, q: "Do you handle post-incorporation compliances?", a: "Yes, we offer complete post-incorporation support including PAN/TAN applications, bank account opening assistance, GST registration, and ongoing annual compliances." },
+        ]}
+      />
 
       {/* 5. TESTIMONIALS */}
       <TestimonialSection />
 
       {/* 6. CTA / CONTACT SECTION */}
-      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden mt-6 md:mt-8 bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
+      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
         {/* Soft decorative shapes (same style as the "Why Arvion" section) */}
         <div aria-hidden="true" className="pointer-events-none absolute -top-16 left-[8%] w-72 h-72 rounded-[40%] bg-white/[0.05] rotate-12" />
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 right-[6%] w-80 h-80 rounded-full bg-white/[0.04]" />

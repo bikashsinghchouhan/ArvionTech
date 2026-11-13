@@ -26,6 +26,8 @@ export const visionMission = {
   mission: 'To deliver practical and value-driven technology and outsourcing services with long-term support.',
   missionPoints: ['Easy-to-use software', 'Expert compliance team', 'Support after go-live'],
   visionPoints: ['Less paperwork', 'Fewer compliance risks', 'Better decisions with data'],
+  values: 'The principles we follow in every project, for every client.',
+  valuesPoints: ['Customer Focus', 'Integrity & Compliance', 'Quality & Reliability', 'Long-term Partnership'],
 };
 
 export const coreValues = [

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import aboutImage from '../assets/about-us-team.webp';
 import receptionImage from '../assets/about-reception.webp';
 import { Link } from 'react-router-dom';
 import { Lightbulb, UsersRound, ShieldCheck, Rocket } from 'lucide-react';
@@ -153,65 +152,73 @@ const About = ({ isSinglePage }) => {
 
         {/* 1b. Compact hero used when embedded in the home page */}
         {isSinglePage && (
-        <section className={isSinglePage ? "py-8 sm:py-10 bg-gradient-to-b from-white/95 to-slate-50/50 w-full box-border px-4 sm:px-6 lg:px-8" : "py-16 sm:py-24 bg-gradient-to-b from-white/95 to-slate-50/50 w-full box-border px-4 sm:px-6 lg:px-8"}>
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <section className="relative w-full box-border bg-white px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-14 items-center lg:items-stretch">
 
-            {/* Hero Left Content */}
+            {/* Left: text */}
             <motion.div
               className="flex flex-col text-left"
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              <span className="inline-block self-start px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-[#ff7f32] bg-orange-50 border border-orange-100 mb-4 shadow-sm">
-                About Our Company
-              </span>
-              <Heading className="text-2xl sm:text-3xl font-black text-[#0d1b2a] tracking-tight leading-tight mb-4 font-sans uppercase">
-                About Arvion Technologies
+
+              <Heading className="text-[28px] sm:text-[36px] lg:text-[32px] xl:text-[38px] font-black text-[#0b2a6b] tracking-tight leading-[1.1] uppercase font-sans">
+                About Arvion <span className="text-[#f2700f]">Technologies</span>
               </Heading>
-              <h2 className="text-lg font-bold text-[#ff7f32] tracking-wide mb-6 uppercase">
+              <h2 className="mt-4 text-[17px] sm:text-[21px] font-medium text-slate-600 tracking-wide uppercase">
                 Driving Innovation, Empowering Businesses.
               </h2>
-              <p className="text-sm sm:text-base text-slate-500 leading-relaxed mb-4 font-semibold">
-                Founded on the principle of simplifying complex business processes, Arvion Technologies is a leader in providing bespoke ERP and Outsourcing solutions. Our mission is to empower organizations by leveraging cutting-edge technology to enhance efficiency, foster growth, and ensure compliance.
+              <span aria-hidden="true" className="mt-5 mb-7 block w-16 sm:w-20 h-1 rounded-full bg-[#f2700f]" />
+
+              <p className="text-[15px] sm:text-[17px] text-slate-600 leading-[1.75] mb-5">
+                Founded on the principle of simplifying complex business processes, Arvion Technologies Private Limited is a technology partner for educational institutions, businesses, and growing organizations across India. Our mission is to empower organizations by leveraging cutting-edge technology to enhance efficiency, ensure growth, and maintain compliance.
               </p>
-              <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-semibold">
-                Our team of dedicated experts brings together years of industry experience and a passion for problem-solving. We believe in building strong partnerships with our clients, understanding their unique challenges, and delivering solutions that not only meet but exceed their expectations.
+              <p className="text-[15px] sm:text-[17px] text-slate-600 leading-[1.75]">
+                Our team of experienced professionals brings together deep industry expertise and a passion for problem-solving. We believe in building strong partnerships with our clients, understanding their unique challenges, and delivering solutions that not only meet but exceed their expectations.
               </p>
             </motion.div>
 
-            {/* Hero Right Image wrapper with premium shadow */}
+            {/* Right: framed photo with navy (bottom-left) and orange (top-right) accent blocks */}
             <motion.div
-              className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-100 group max-w-lg mx-auto aspect-[4/3] flex items-center justify-center bg-white cursor-pointer"
-              initial={{ opacity: 0, scale: 0.9 }}
+              className="relative w-full max-w-2xl mx-auto px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-6 lg:py-0 lg:flex lg:flex-col"
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              onClick={() => setShowImgDesc(!showImgDesc)}
             >
-              <img
-                src={aboutImage}
-                alt="Arvion Technologies team at the Bangalore office"
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl pointer-events-none" />
+              <div aria-hidden="true" className="absolute left-0 bottom-0 lg:-bottom-5 w-[58%] h-[78%] rounded-2xl sm:rounded-3xl bg-[#0b2f8f]" />
+              <div aria-hidden="true" className="absolute right-0 top-0 lg:-top-5 w-[30%] h-[42%] rounded-2xl sm:rounded-3xl bg-[#f7861c]" />
 
-              {/* Clickable Description Overlay */}
-              <AnimatePresence>
-                {showImgDesc && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="absolute inset-0 bg-black/80 flex flex-col justify-center items-center text-center p-6 backdrop-blur-sm z-20"
-                  >
-                    <h3 className="text-white text-lg sm:text-xl font-bold mb-3 uppercase tracking-wider">Empowering Institutions</h3>
-                    <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-semibold">
-                      Guided by our core pillars of Study, Discipline, Respect, and Dream—we build technologies that enable excellence today and success tomorrow.
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div
+                className="relative rounded-2xl sm:rounded-3xl bg-white p-1.5 sm:p-2 shadow-[0_24px_50px_-20px_rgba(11,42,107,.45)] group cursor-pointer lg:flex-1 lg:flex lg:flex-col"
+                onClick={() => setShowImgDesc(!showImgDesc)}
+              >
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[16/10] lg:aspect-auto lg:flex-1 lg:min-h-[320px]">
+                  <img
+                    src={receptionImage}
+                    alt="Arvion Technologies office reception with company logo"
+                    loading="lazy"
+                    className="w-full h-full object-cover object-[52%_45%] transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  {/* Clickable Description Overlay */}
+                  <AnimatePresence>
+                    {showImgDesc && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-black/80 flex flex-col justify-center items-center text-center p-6 backdrop-blur-sm z-20"
+                      >
+                        <h3 className="text-white text-lg sm:text-xl font-bold mb-3 uppercase tracking-wider">Empowering Institutions</h3>
+                        <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-semibold">
+                          Guided by our core pillars of Study, Discipline, Respect, and Dream—we build technologies that enable excellence today and success tomorrow.
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
             </motion.div>
 
           </div>
@@ -244,8 +251,8 @@ const About = ({ isSinglePage }) => {
         {/* Standalone About page: full set of sections */}
         {!isSinglePage && (
           <>
-            <WhoWeAre />
             <VisionMissionValues />
+            <WhoWeAre />
             <WhatWeDo />
             <WhyChooseArvion />
             <Journey />

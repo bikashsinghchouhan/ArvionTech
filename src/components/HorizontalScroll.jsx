@@ -165,6 +165,7 @@ const HorizontalScroll = () => {
                 showBreadcrumb={false}
                 headingAs="h2"
                 wideInset
+                featureCard={service.featureCard}
               />
             </div>
           ))}

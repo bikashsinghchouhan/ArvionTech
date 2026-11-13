@@ -156,11 +156,13 @@ export const VisionMissionValues = () => (
         desc="Where we are heading, how we get there, and the principles behind every project we take on."
       />
 
-      <motion.div {...reveal} variants={stagger} className="grid md:grid-cols-2 gap-5 sm:gap-6">
+      <motion.div {...reveal} variants={stagger} className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
         <PurposeCard Icon={Target} label="Our Vision" text={visionMission.vision} points={visionMission.visionPoints}
           tone={{ icon: 'from-[#fff1e3] to-[#ffe2c7] text-[#f47b14]', bar: 'bg-[#f47b14]', glow: 'from-[#fff3e8]', check: 'text-[#f47b14]' }} />
         <PurposeCard Icon={Rocket} label="Our Mission" text={visionMission.mission} points={visionMission.missionPoints}
           tone={{ icon: 'from-[#eaf2ff] to-[#d7e6ff] text-[#2563eb]', bar: 'bg-[#2563eb]', glow: 'from-[#eef4ff]', check: 'text-[#2563eb]' }} />
+        <PurposeCard Icon={ShieldCheck} label="Our Values" text={visionMission.values} points={visionMission.valuesPoints}
+          tone={{ icon: 'from-[#f3edff] to-[#e4d8ff] text-[#7c3aed]', bar: 'bg-[#7c3aed]', glow: 'from-[#f5f0ff]', check: 'text-[#7c3aed]' }} />
       </motion.div>
 
       <motion.h3 {...reveal} variants={fadeUp} className="mt-12 sm:mt-14 mb-6 text-center text-lg sm:text-xl font-extrabold text-[#0b1f4d]">

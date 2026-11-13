@@ -20,9 +20,35 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, delay },
 });
 
+// Feature card: navy header with icon + title, green-tick list (e.g. PAYROLL card on the home slider)
+const FeatureCard = ({ title, Icon, points, className = '' }) => (
+  <div className={`rounded-2xl bg-white/95 backdrop-blur-md p-3.5 shadow-[0_24px_50px_-20px_rgba(11,42,107,.45)] border border-white ring-1 ring-slate-900/5 ${className}`}>
+    <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1747a6] via-[#11409d] to-[#0c2f79] px-3.5 py-2.5 text-white shadow-md">
+      <div className="relative z-10 flex items-center gap-2.5">
+        <span className="w-7 h-7 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
+          {Icon && <Icon className="text-[13px]" />}
+        </span>
+        <span className="text-[15px] font-black tracking-wider uppercase">{title}</span>
+      </div>
+      <svg aria-hidden="true" className="absolute bottom-0 right-0 w-20 h-5 pointer-events-none" viewBox="0 0 80 20" fill="none">
+        <path d="M0 20 Q 50 18, 80 0 L 80 20 Z" fill="#FF7A00" />
+      </svg>
+    </div>
+    <ul className="mt-3 space-y-2 px-1 pb-1">
+      {points.map((pt) => (
+        <li key={pt} className="flex items-center gap-2.5">
+          <FaCheckCircle className="flex-shrink-0 text-[15px] text-[#10B981]" />
+          <span className="text-[13.5px] font-semibold text-[#0B1B3D] leading-snug">{pt}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 // Optional (used by the home page slider): showBreadcrumb, headingAs ('h1' | 'h2'),
-// wideInset (extra side padding so slider arrows don't cover the text), secondary.to (router link).
-const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, imageWidth = 828, imageHeight = 568, board, primary, secondary, points, showBreadcrumb = true, headingAs: Heading = 'h1', wideInset = false }) => (
+// wideInset (extra side padding so slider arrows don't cover the text), secondary.to (router link),
+// featureCard { title, Icon, points } (card over the top-right of the photo; under it on small screens).
+const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, imageWidth = 828, imageHeight = 568, board, primary, secondary, points, showBreadcrumb = true, headingAs: Heading = 'h1', wideInset = false, featureCard }) => (
   <section className="relative w-full overflow-hidden bg-gradient-to-r from-[#e8f1ff] via-[#f4f8ff] to-[#eef4ff] pt-16 border-b border-blue-100 lg:min-h-[calc(100svh-38px)] lg:flex lg:flex-col">
     {/* Soft background shapes */}
     <div aria-hidden="true" className="pointer-events-none absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-blue-200/40 blur-3xl" />
@@ -62,6 +88,15 @@ const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, ima
         )}
       </div>
     </div>
+
+    {featureCard && (
+      <motion.div
+        initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}
+        className="hidden lg:block absolute z-20 top-[calc(4rem+6%)] right-[3%] xl:right-[5%] w-[330px] xl:w-[360px]"
+      >
+        <FeatureCard {...featureCard} />
+      </motion.div>
+    )}
 
     <div className={`relative z-10 w-full px-4 sm:px-6 ${wideInset ? 'lg:px-24 xl:px-28' : 'lg:px-10 xl:px-16 2xl:px-24'} lg:flex-1 lg:flex lg:flex-col`}>
       {/* Breadcrumb */}
@@ -148,6 +183,7 @@ const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, ima
           >
             <img src={image} alt={imageAlt} width={imageWidth} height={imageHeight} className="block w-full h-auto rounded-xl" />
           </motion.div>
+          {featureCard && <FeatureCard {...featureCard} className="lg:hidden" />}
 
           {/* Key points card: floats over the right edge of the photo on large screens.
               Skipped when no points are passed (the illustration already shows them). */}

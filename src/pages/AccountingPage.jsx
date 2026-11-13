@@ -3,14 +3,15 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   FaBookOpen, FaFileInvoiceDollar, FaChartPie, FaChartLine,
-  FaCheckCircle, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt,
-  FaChevronDown, FaRegQuestionCircle, FaCalendarAlt, FaArrowRight,
-  FaUserTie, FaClock, FaShieldAlt, FaHeadset, FaLaptop, FaCalculator
+  FaCheckCircle, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCalendarAlt, FaArrowRight,
+  FaUserTie, FaClock, FaShieldAlt, FaHeadset, FaLaptop, FaCalculator,
+  FaChartBar, FaLayerGroup, FaLock
 } from 'react-icons/fa';
 
 import TestimonialSection from '../components/TestimonialSection';
+import FaqSection from '../components/FaqSection';
 import heroIllustration from '../assets/service-heroes/accounting-hero.webp';
-import heroImg from '../assets/service-accounting.webp';
+import benefitsImg from '../assets/service-heroes/accounting-benefits.webp'; // sharper 2048px copy for the benefits section
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -197,7 +198,7 @@ const AccountingPage = () => {
               {/* 4 Feature Badges in a Row */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-lg mb-8"
+                className="flex flex-wrap gap-2 sm:gap-2.5 w-full mb-8"
               >
                 {[
                   { title1: 'Expert', title2: 'Team', icon: <FaLaptop />, bg: 'bg-blue-50', text: 'text-blue-600' },
@@ -205,12 +206,12 @@ const AccountingPage = () => {
                   { title1: 'Data', title2: 'Security', icon: <FaShieldAlt />, bg: 'bg-blue-50', text: 'text-blue-600' },
                   { title1: 'Dedicated', title2: 'Support', icon: <FaHeadset />, bg: 'bg-orange-50', text: 'text-[#FF7A00]' }
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-white rounded-2xl p-3 border border-slate-200/70 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-                    <div className={`w-9 h-9 rounded-xl ${item.bg} ${item.text} flex items-center justify-center text-sm mb-2`}>
+                  <div key={idx} className="bg-white/90 rounded-xl pl-1.5 pr-3 py-1.5 border border-slate-200/70 shadow-sm flex items-center gap-2.5 hover:shadow-md hover:border-blue-100 transition-all">
+                    <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.text} flex items-center justify-center text-sm flex-shrink-0`}>
                       {item.icon}
                     </div>
-                    <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
-                      {item.title1}<br />{item.title2}
+                    <span className="text-[13px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
+                      {item.title1} {item.title2}
                     </span>
                   </div>
                 ))}
@@ -343,78 +344,83 @@ const AccountingPage = () => {
       </section>
 
       {/* 4. BENEFITS LIST */}
-      <section className="py-8 md:py-10 px-4 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <motion.div className="flex-1" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-            <h2 className="text-3xl font-bold text-[#0d1b2a] mb-6 uppercase tracking-tight">Unlock Key Benefits</h2>
-            <p className="text-slate-500 mb-8 font-medium leading-relaxed">
+      <section className="relative w-full bg-[#f8fafd] px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-10 sm:pb-12 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* Pill sits above both columns so the photo lines up with the heading */}
+          <span className="mb-5 inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#ffece0] text-[#f2700f] text-[13px] sm:text-[14px] font-extrabold uppercase tracking-wide">
+            <span aria-hidden="true" className="w-[3px] h-4 rounded-full bg-[#f2700f]" /> Why Choose Us
+          </span>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-14 items-center lg:items-stretch">
+
+          {/* Left: heading + benefit cards */}
+          <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+            <h2 className="text-[30px] sm:text-[38px] lg:text-[42px] font-black text-[#0b2a6b] tracking-tight leading-[1.1] uppercase">
+              Unlock Key <span className="text-[#f2700f]">Benefits</span>
+            </h2>
+            <span aria-hidden="true" className="mt-4 mb-6 block w-20 h-1 rounded-full bg-[#f2700f]" />
+            <p className="text-[15px] sm:text-[17px] text-slate-600 leading-relaxed mb-8 max-w-2xl">
               Our accounting services provide the financial intelligence you need to navigate challenges and seize opportunities with confidence.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {benefits.map((benefit, idx) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-orange-200 transition-all group"
+                  transition={{ delay: idx * 0.08 }}
+                  className="flex items-center gap-4 bg-white px-5 py-5 rounded-2xl shadow-[0_8px_24px_-14px_rgba(11,42,107,.25)] border border-slate-100 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-14px_rgba(11,42,107,.3)] transition-all"
                 >
-                  <div className="w-10 h-10 rounded-full bg-green-50 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 group-hover:text-white transition-colors">
-                    <FaCheckCircle className="text-lg" />
-                  </div>
-                  <span className="text-sm md:text-base text-slate-700 font-bold">{benefit}</span>
+                  <span className="w-11 h-11 rounded-full bg-[#e7f8ee] flex items-center justify-center flex-shrink-0">
+                    <FaCheckCircle className="text-[20px] text-[#16a34a]" />
+                  </span>
+                  <span className="text-[15px] sm:text-[17px] text-[#0b2a6b] font-bold leading-snug">{benefit}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
-          <motion.div className="flex-1" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img src={heroImg} alt="Accountant reviewing financial statements and reports for a business" loading="lazy" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#0d1b2a]/60 to-transparent"></div>
+
+          {/* Right: framed photo with navy (bottom-left) and orange (top-right) accent blocks */}
+          <motion.div
+            className="relative w-full max-w-2xl mx-auto px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-6 lg:py-0 lg:flex lg:flex-col"
+            initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+          >
+            <div aria-hidden="true" className="absolute left-0 bottom-0 lg:-bottom-5 w-[42%] h-[72%] rounded-2xl sm:rounded-3xl bg-[#0b2f8f]" />
+            <div aria-hidden="true" className="absolute right-0 top-0 lg:-top-5 w-[30%] h-[42%] rounded-2xl sm:rounded-3xl bg-[#f7861c]" />
+            <div className="relative rounded-2xl sm:rounded-3xl bg-white p-1.5 sm:p-2 shadow-[0_24px_50px_-20px_rgba(11,42,107,.45)] lg:flex-1 lg:flex lg:flex-col">
+              <div className="rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-auto lg:flex-1 lg:min-h-[320px]">
+                <img
+                  src={benefitsImg}
+                  alt="Accounting experts reviewing financial reports on a laptop"
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                />
+              </div>
             </div>
           </motion.div>
+          </div>
         </div>
       </section>
 
       {/* FAQ SECTION */}
-      <section className="py-8 md:py-10 px-4 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-orange-500 rounded-full mb-6">
-            <FaRegQuestionCircle className="text-3xl" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] mb-4 uppercase tracking-tight">Frequently Asked Questions</h2>
-          <p className="text-slate-500 font-medium">Common questions about our accounting services and processes.</p>
-        </div>
-
-        <div className="space-y-4">
-          {[
-            { q: "What accounting software do you support?", a: "We are proficient in a wide range of leading accounting platforms including QuickBooks, Xero, Zoho Books, and Tally." },
-            { q: "How often will I receive financial reports?", a: "We provide detailed financial reports on a monthly basis. However, we can also customize reporting frequency (weekly or quarterly) based on your specific business needs." },
-            { q: "Are your accounting services compliant with tax laws?", a: "Yes, our team of experts stays completely up-to-date with all local, state, and federal tax regulations to ensure 100% compliance and avoid any penalties." },
-            { q: "Can you help with historical cleanup of my books?", a: "Absolutely. We offer catch-up and cleanup services to organize your past financial records, reconcile accounts, and bring your books entirely up to date." },
-            { q: "How secure is my financial data?", a: "We take data security very seriously. We use enterprise-grade encryption, secure servers, and strict access controls to ensure your sensitive financial information is always protected." }
-          ].map((faq, index) => {
-            return (
-              <details key={index} className="group border border-slate-200 rounded-2xl bg-white shadow-sm [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-slate-50 hover:bg-slate-100 transition-colors rounded-2xl">
-                  <span className="font-bold text-slate-800 text-base">{faq.q}</span>
-                  <FaChevronDown className="text-slate-400 group-open:rotate-180 transition-transform duration-300" />
-                </summary>
-                <div className="px-6 py-5 text-slate-600 bg-white border-t border-slate-100 text-sm md:text-base leading-relaxed rounded-b-2xl">
-                  {faq.a}
-                </div>
-              </details>
-            );
-          })}
-        </div>
-      </section>
+      <FaqSection
+        desc="Common questions about our accounting services and processes."
+        items={[
+          { Icon: FaLaptop, q: "What accounting software do you support?", a: "We are proficient in a wide range of leading accounting platforms including QuickBooks, Xero, Zoho Books, and Tally." },
+          { Icon: FaChartBar, q: "How often will I receive financial reports?", a: "We provide detailed financial reports on a monthly basis. However, we can also customize reporting frequency (weekly or quarterly) based on your specific business needs." },
+          { Icon: FaShieldAlt, q: "Are your accounting services compliant with tax laws?", a: "Yes, our team of experts stays completely up-to-date with all local, state, and federal tax regulations to ensure 100% compliance and avoid any penalties." },
+          { Icon: FaLayerGroup, q: "Can you help with historical cleanup of my books?", a: "Absolutely. We offer catch-up and cleanup services to organize your past financial records, reconcile accounts, and bring your books entirely up to date." },
+          { Icon: FaLock, q: "How secure is my financial data?", a: "We take data security very seriously. We use enterprise-grade encryption, secure servers, and strict access controls to ensure your sensitive financial information is always protected." },
+        ]}
+      />
 
       {/* 5. TESTIMONIALS */}
       <TestimonialSection />
 
       {/* 6. CTA / CONTACT SECTION */}
-      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden mt-6 md:mt-8 bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
+      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
         {/* Soft decorative shapes (same style as the "Why Arvion" section) */}
         <div aria-hidden="true" className="pointer-events-none absolute -top-16 left-[8%] w-72 h-72 rounded-[40%] bg-white/[0.05] rotate-12" />
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 right-[6%] w-80 h-80 rounded-full bg-white/[0.04]" />
