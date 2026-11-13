@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import HorizontalScroll from '../components/HorizontalScroll';
-import FeaturesSection from '../components/FeaturesSection';
+import CoreServicesSection from '../components/CoreServicesSection';
 import AboutUs from './AboutUs';
 import Services from './Services';
 import ContactUs from './ContactUs';
@@ -33,9 +33,9 @@ const OnePageHome = () => {
         Arvion Technologies – School Management ERP, Payroll Outsourcing, Accounting and Statutory Registration Services in Bangalore, India
       </h1>
       {/* Home Section (Slider + Stats/Features) */}
-      <div id="home" className="mt-2 sm:mt-4 scroll-mt-16 w-full">
+      <div id="home" className="scroll-mt-16 w-full">
         <HorizontalScroll />
-        <FeaturesSection />
+        <CoreServicesSection />
       </div>
 
       {/* About Us Section */}

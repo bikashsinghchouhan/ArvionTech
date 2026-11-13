@@ -12,10 +12,10 @@ import {
 import TestimonialSection from '../components/TestimonialSection';
 import schoolErpMobile from '../assets/school-erp-mobile.webp';
 import schoolErpHero from '../assets/school-erp-hero.webp';
-import portalAdmin from '../assets/portals/admin.webp';
-import portalTeacher from '../assets/portals/teacher.webp';
-import portalStudent from '../assets/portals/student.webp';
-import portalParent from '../assets/portals/parent.webp';
+import portalAdmin from '../assets/portals/admin-portal.webp';
+import portalTeacher from '../assets/portals/teacher-portal.webp';
+import portalStudent from '../assets/portals/student-portal.webp';
+import portalParent from '../assets/portals/parent-portal.webp';
 
 // --- CONFIGURATION ---
 import { pageConfig } from '../configurations/SchoolManagementConfig';
@@ -235,7 +235,7 @@ const SchoolManagement = () => {
         <div aria-hidden="true" className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full bg-blue-200/40 blur-3xl" />
         <div aria-hidden="true" className="pointer-events-none absolute bottom-[-6rem] left-[28%] w-96 h-48 rounded-full bg-sky-200/40 blur-3xl" />
 
-        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 relative z-10 lg:flex-1 lg:flex lg:flex-col">
+        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 relative z-10 lg:flex-1 lg:flex lg:flex-col">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-4 sm:pt-5 text-[13px] sm:text-sm text-slate-500">
             <Link to="/" className="hover:text-[#0f2a6b] focus:outline-none focus-visible:underline">Home</Link>
@@ -247,10 +247,10 @@ const SchoolManagement = () => {
 
           <div className="grid lg:grid-cols-2 items-center lg:flex-1">
             {/* Left content */}
-            <div className="grid gap-4 sm:gap-5 pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-8 lg:pb-14 min-w-0 lg:pr-6">
+            <div className="grid gap-4 sm:gap-5 pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-8 lg:pb-14 min-w-0 lg:pr-6 text-center lg:text-left justify-items-center lg:justify-items-start">
               <motion.span
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 w-max max-w-full bg-white border border-blue-100 text-[#0f2a6b] text-xs sm:text-[13px] font-semibold px-3 py-1.5 rounded-full shadow-sm"
+                className="inline-flex items-center gap-2 w-max max-w-full text-[#0f2a6b] text-[13px] sm:text-sm font-bold uppercase tracking-[0.08em]"
               >
                 <span className="w-2 h-2 rounded-full bg-[#ffc727]" /> Arvion School ERP
               </motion.span>
@@ -271,17 +271,17 @@ const SchoolManagement = () => {
 
               <motion.div
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-                className="flex flex-wrap gap-3 sm:gap-4 mt-1"
+                className="flex flex-nowrap justify-center lg:justify-start gap-2.5 sm:gap-4 mt-1"
               >
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-bold text-sm sm:text-[15px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 px-3.5 sm:px-6 rounded-lg text-[13px] bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-bold sm:text-[15px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
                 >
                   <FaCalendarCheck /> Book a Free Demo
                 </Link>
                 <a
                   href="#features"
-                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold text-sm sm:text-[15px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 px-3.5 sm:px-6 rounded-lg text-[13px] bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold sm:text-[15px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
                 >
                   Explore Modules <FaArrowRight className="text-xs" />
                 </a>
@@ -290,7 +290,7 @@ const SchoolManagement = () => {
               {/* Assurance badges */}
               <motion.ul
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-2 sm:mt-3 grid grid-cols-2 sm:flex sm:flex-wrap gap-x-5 gap-y-2.5 text-[13px] sm:text-sm font-medium text-slate-700"
+                className="mt-2 sm:mt-3 grid grid-cols-2 sm:flex sm:flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2.5 text-[13px] sm:text-sm font-medium text-slate-700 text-left"
               >
                 {[
                   [<FaShieldAlt />, "100% Compliance"],
@@ -580,8 +580,8 @@ const SchoolManagement = () => {
                   <img
                     src={p.image}
                     alt={`${p.title} user`}
-                    width="198"
-                    height="264"
+                    width="600"
+                    height="800"
                     loading="lazy"
                     className="block w-full h-full min-h-[150px] sm:min-h-[176px] object-cover object-top rounded-lg transition-transform duration-500 group-hover:scale-[1.03]"
                   />
@@ -1012,7 +1012,7 @@ const SchoolManagement = () => {
       <section id="faq" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-t border-slate-200 scroll-mt-20">
         <SectionHeader eyebrow="FAQ" title="Frequently Asked Questions" desc="Can't find your answer? Talk to our ERP team." />
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1.6fr] gap-8 sm:gap-10 lg:gap-12 xl:gap-14 items-start">
-          <div className="grid gap-5 sm:gap-6 content-start lg:sticky lg:top-24">
+          <div className="grid gap-5 sm:gap-6 content-start order-2 lg:order-1 lg:sticky lg:top-24">
             <div className={`${CARD} p-5 sm:p-6 grid gap-4`}>
               <div className="flex gap-3 text-[14.5px] text-slate-600">
                 <FaPhoneAlt className="text-[#FF8000] mt-1 flex-shrink-0" />
@@ -1032,7 +1032,7 @@ const SchoolManagement = () => {
             </div>
           </div>
 
-          <div className="border-t border-slate-200">
+          <div className="order-1 lg:order-2 border-t border-slate-200">
             {schoolFaqs.map((faq, idx) => {
               const isActive = activeFaq === idx;
               return (
@@ -1063,14 +1063,14 @@ const SchoolManagement = () => {
       <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#0B1B3D] text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.4fr_1fr] gap-6 sm:gap-8 items-center">
           <motion.div {...reveal} variants={fadeUpVariant} className="grid gap-4">
-            <h2 className="text-[26px] sm:text-3xl md:text-4xl xl:text-[44px] font-bold leading-tight tracking-tight text-balance">Ready to Transform Your Institution?</h2>
-            <p className="text-base sm:text-lg text-blue-200/90 max-w-[56ch] leading-relaxed">
+            <h2 className="text-[21px] sm:text-3xl md:text-4xl xl:text-[44px] font-bold leading-tight tracking-tight sm:text-balance">Ready to Transform Your Institution?</h2>
+            <p className="text-[14px] sm:text-lg text-blue-200/90 max-w-[56ch] leading-relaxed">
               Talk to our team to explore how our School ERP can simplify operations, improve visibility, and create a more connected educational experience.
             </p>
           </motion.div>
-          <motion.div {...reveal} variants={fadeUpVariant} className="flex flex-col sm:flex-row gap-3 lg:justify-end">
-            <Link to="/contact" className={BTN_PRIMARY}>Request a Demo</Link>
-            <Link to="/contact" className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg border border-white/30 hover:border-white hover:bg-white/10 text-white font-semibold text-[15px] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-white/30">
+          <motion.div {...reveal} variants={fadeUpVariant} className="flex flex-row gap-2.5 sm:gap-3 lg:justify-end">
+            <Link to="/contact" className={`${BTN_PRIMARY} flex-1 sm:flex-none !h-10 sm:!h-12 !px-3 sm:!px-6 !text-[13px] sm:!text-[15px] whitespace-nowrap`}>Request a Demo</Link>
+            <Link to="/contact" className="flex-1 sm:flex-none whitespace-nowrap inline-flex items-center justify-center gap-2 h-10 sm:h-12 px-3 sm:px-6 rounded-lg border border-white/30 hover:border-white hover:bg-white/10 text-white font-semibold text-[13px] sm:text-[15px] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-white/30">
               Contact Our Team
             </Link>
           </motion.div>

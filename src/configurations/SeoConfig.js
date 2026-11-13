@@ -2,6 +2,7 @@
 // Used by <Seo /> (meta tags), scripts/prerender.js (static HTML) and the sitemap.
 
 import { schoolFaqs } from './SchoolFaqs';
+import { blogPosts, faqGroups } from './ResourcesConfig';
 
 export const SITE_URL = 'https://arviontechnologies.com';
 export const SITE_NAME = 'Arvion Technologies';
@@ -204,6 +205,64 @@ export const seoRoutes = [
         breadcrumb([['Home', '/'], ['Contact', '/contact']]),
       ],
     },
+  },
+  {
+    path: '/blog',
+    title: 'Blog & Articles | School ERP, Payroll & Compliance Guides | Arvion',
+    description: 'Practical guides on school management software, payroll compliance, GST registration and bookkeeping from the Arvion Technologies team.',
+    priority: '0.6',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        { '@type': 'Blog', url: `${SITE_URL}/blog`, name: 'Arvion Technologies Blog', publisher: orgRef },
+        breadcrumb([['Home', '/'], ['Blog', '/blog']]),
+      ],
+    },
+  },
+  ...blogPosts.map((p) => ({
+    path: `/blog/${p.slug}`,
+    title: `${p.title} | Arvion Technologies`,
+    description: p.excerpt,
+    priority: '0.5',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        { '@type': 'Article', headline: p.title, description: p.excerpt, url: `${SITE_URL}/blog/${p.slug}`, author: orgRef, publisher: orgRef, articleSection: p.category },
+        breadcrumb([['Home', '/'], ['Blog', '/blog'], [p.title, `/blog/${p.slug}`]]),
+      ],
+    },
+  })),
+  {
+    path: '/downloads',
+    title: 'Downloads | Brochures, Guides & Checklists | Arvion Technologies',
+    description: 'School ERP brochure, plan comparison, payroll compliance calendar and business checklists from Arvion Technologies.',
+    priority: '0.4',
+  },
+  {
+    path: '/faqs',
+    title: 'FAQs | School ERP, Payroll, Registrations & Accounting | Arvion',
+    description: 'Answers to common questions about Arvion School ERP, payroll outsourcing, statutory registrations and accounting services.',
+    priority: '0.6',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'FAQPage',
+          mainEntity: faqGroups.flatMap((g) => g.items).map(({ q, a }) => ({
+            '@type': 'Question',
+            name: q,
+            acceptedAnswer: { '@type': 'Answer', text: a },
+          })),
+        },
+        breadcrumb([['Home', '/'], ['FAQs', '/faqs']]),
+      ],
+    },
+  },
+  {
+    path: '/case-studies',
+    title: 'Case Studies | How Arvion Helps Schools & Businesses',
+    description: 'How Arvion Technologies helps schools and businesses with ERP rollouts, payroll, company registrations and bookkeeping.',
+    priority: '0.5',
   },
   {
     path: '/privacy-policy',

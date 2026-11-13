@@ -77,7 +77,7 @@ const About = ({ isSinglePage }) => {
               <div aria-hidden="true" className="pointer-events-none absolute top-6 left-[28%] w-64 h-64 rounded-[40%] bg-white/[0.06] rotate-12" />
               <div aria-hidden="true" className="pointer-events-none absolute top-[40%] -left-20 w-48 h-64 rounded-[45%] bg-white/[0.05]" />
 
-              <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:flex-1 lg:flex lg:flex-col">
+              <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 lg:flex-1 lg:flex lg:flex-col">
                 {/* Breadcrumb: pinned to the top of the hero */}
                 <nav aria-label="Breadcrumb" className="flex items-center gap-2 pt-4 sm:pt-5 text-[13px] sm:text-sm text-white/80">
                   <FaHome className="text-[13px]" aria-hidden="true" />
@@ -87,7 +87,7 @@ const About = ({ isSinglePage }) => {
                 </nav>
 
                 <div className="lg:flex-1 lg:flex lg:items-center">
-                <div className="w-full lg:w-[40%] pt-6 pb-10 sm:pt-8 sm:pb-12 lg:pt-6 lg:pb-16 xl:pb-20 grid gap-4 sm:gap-5">
+                <div className="w-full lg:w-[40%] pt-6 pb-10 sm:pt-8 sm:pb-12 lg:pt-6 lg:pb-16 xl:pb-20 grid gap-4 sm:gap-5 text-center lg:text-left justify-items-center lg:justify-items-start">
                   <motion.span
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
                     className="mt-2 inline-flex items-center gap-2 w-max max-w-full bg-white/10 border border-white/15 text-white text-xs sm:text-[13px] font-semibold px-3.5 py-1.5 rounded-full"
@@ -117,7 +117,7 @@ const About = ({ isSinglePage }) => {
 
                   <motion.div
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-                    className="flex flex-wrap gap-3 sm:gap-4 mt-2"
+                    className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mt-2"
                   >
                     <Link
                       to="/contact"
@@ -166,7 +166,7 @@ const About = ({ isSinglePage }) => {
               <span className="inline-block self-start px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-[#ff7f32] bg-orange-50 border border-orange-100 mb-4 shadow-sm">
                 About Our Company
               </span>
-              <Heading className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0d1b2a] tracking-tight leading-tight mb-4 font-sans uppercase">
+              <Heading className="text-2xl sm:text-3xl font-black text-[#0d1b2a] tracking-tight leading-tight mb-4 font-sans uppercase">
                 About Arvion Technologies
               </Heading>
               <h2 className="text-lg font-bold text-[#ff7f32] tracking-wide mb-6 uppercase">
@@ -279,7 +279,7 @@ const About = ({ isSinglePage }) => {
                 </span>
                 <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />
               </div>
-              <h2 className="mt-4 sm:mt-5 text-[28px] sm:text-4xl lg:text-[44px] font-extrabold text-[#0b1f4d] tracking-tight leading-tight">
+              <h2 className="mt-4 sm:mt-5 text-2xl sm:text-3xl font-extrabold text-[#0b1f4d] tracking-tight leading-tight">
                 The <span className="text-[#f7861c]">Values</span> That Guide Us
               </h2>
               <p className="mt-3 sm:mt-4 max-w-2xl text-[15px] sm:text-[17px] text-slate-600 leading-relaxed">

@@ -7,7 +7,7 @@ import {
   CheckCircle2, School, Users, FileBadge, Calculator, ArrowRight, Handshake, Scale, Lock, Expand,
   GraduationCap, Headset, Code2, Wallet, Flag, Sparkles, Quote, Phone, Mail, CalendarCheck, Linkedin,
 } from 'lucide-react';
-import officeImage from '../../assets/about-office.webp';
+import officeImage from '../../assets/about-office-hd.webp';
 import {
   aboutContact, whoWeAre, visionMission, coreValues, whatWeDo, whyChoose, journey,
   leaders, leadershipTeams, leadershipMessage,
@@ -63,10 +63,10 @@ export const WhoWeAre = () => (
           <img
             src={officeImage}
             alt="Arvion Technologies team working in the office"
-            width="1196"
-            height="820"
+            width="1264"
+            height="848"
             loading="lazy"
-            className="block w-full h-auto aspect-[1196/820] object-cover object-[90%_40%] rounded-xl lg:absolute lg:inset-2.5 lg:w-[calc(100%-1.25rem)] lg:h-[calc(100%-1.25rem)] lg:aspect-auto"
+            className="block w-full h-auto aspect-[1264/848] object-cover object-center rounded-xl lg:absolute lg:inset-2.5 lg:w-[calc(100%-1.25rem)] lg:h-[calc(100%-1.25rem)] lg:aspect-auto"
           />
         </div>
 

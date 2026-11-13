@@ -8,6 +8,7 @@ import {
 import '../csssection/HorizontalScroll.css'; // Retained but not used for classes
 
 import { services } from '../configurations/HorizontalScrollConfig';
+import ServiceHero from './ServiceHero';
 
 const HorizontalScroll = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -140,80 +141,31 @@ const HorizontalScroll = () => {
         >
           {extendedServices.map((service, index) => (
             <div
-              className="w-full flex-shrink-0 flex items-center justify-center bg-cover bg-center bg-no-repeat relative h-[55vh] min-h-[400px] sm:h-[70vh] sm:min-h-[500px] lg:h-screen lg:min-h-[650px] box-border"
-              style={{ backgroundImage: `url(${service.image})` }}
+              className="w-full flex-shrink-0 relative box-border"
               key={index}
+              onMouseEnter={() => {
+                if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+                  setIsHovering(true);
+                }
+              }}
+              onMouseLeave={() => setIsHovering(false)}
             >
-              {/* Stronger gradient overlay for text readability & button contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/40 z-0" />
-
-              {/* 🔹 Centered Foreground Content Panel */}
-              <div 
-                className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-12 box-border text-white flex flex-col items-center text-center pt-24 pb-16 sm:py-24 lg:py-28"
-                onMouseEnter={() => {
-                  if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
-                    setIsHovering(true);
-                  }
-                }}
-                onMouseLeave={() => setIsHovering(false)}
-              >
-
-                {/* Badge (Pill Styled) */}
-                <span className="inline-flex items-center px-3 py-0.5 rounded-full text-[9px] font-bold bg-[#ff7f32]/30 border border-[#ff7f32]/45 text-orange-200 uppercase tracking-widest mb-3 sm:mb-4 backdrop-blur-md">
-                  {service.badge}
-                </span>
-
-                {/* Title */}
-                <h2 className="text-xl sm:text-2xl md:text-3.5xl lg:text-4xl font-extrabold tracking-tight leading-tight text-white mb-2 sm:mb-3 drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] max-w-3xl font-sans">
-                  {service.title}
-                </h2>
-
-                {/* Subtitle / Category */}
-                <p className="text-[9px] sm:text-[11px] lg:text-xs font-bold text-[#feb47b] uppercase tracking-widest mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                  {service.category}
-                </p>
-
-                {/* Professional Description */}
-                <p className="text-[10px] sm:text-[13px] md:text-sm text-slate-100/95 leading-relaxed mb-5 sm:mb-6 max-w-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                  {service.description}
-                </p>
-
-                {/* Centered Small Stats List - Hidden on mobile for clutter-free responsive view */}
-                <div className="hidden sm:flex flex-wrap justify-center gap-4 mb-6 max-w-3xl">
-                  {service.stats.map((stat, statIndex) => (
-                    <div
-                      className="inline-flex items-center gap-2 bg-black/40 hover:bg-black/55 border border-white/10 hover:border-white/20 px-3.5 py-2 rounded-xl backdrop-blur-md transition-all duration-300"
-                      key={statIndex}
-                    >
-                      <span className="text-[#ff7f32] text-xs">
-                        {stat.icon}
-                      </span>
-                      <span className="text-[11px] sm:text-xs font-semibold text-white leading-none">
-                        {stat.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Double CTA Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
-                  <button
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#ea580c] to-[#c2410c] hover:opacity-95 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-base cursor-pointer"
-                    onClick={() => navigate('/contact')}
-                  >
-                    Contact Us
-                  </button>
-
-                  <button
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-base cursor-pointer"
-                    onClick={() => navigate(service.path)}
-                  >
-                    Explore Solutions <FaArrowRight className="text-[10px] sm:text-xs transition-transform duration-300" />
-                  </button>
-                </div>
-
-              </div>
-
+              {/* Same hero section as the service page (text left, photo right) */}
+              <ServiceHero
+                crumb={service.hero.crumb}
+                title={service.hero.title}
+                subtitle={service.hero.subtitle}
+                description={service.hero.description}
+                image={service.image}
+                imageAlt={service.hero.imageAlt}
+                imageWidth={service.hero.imageWidth}
+                imageHeight={service.hero.imageHeight}
+                primary={{ label: 'Request Demo', to: '/contact' }}
+                secondary={{ label: service.hero.secondaryLabel, to: service.path }}
+                showBreadcrumb={false}
+                headingAs="h2"
+                wideInset
+              />
             </div>
           ))}
         </div>
@@ -221,13 +173,15 @@ const HorizontalScroll = () => {
 
       {/* Slide Navigation Arrows */}
       <button
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-[#ff7f32] text-white p-3.5 rounded-full transition-all duration-300 focus:outline-none hidden md:flex items-center justify-center shadow-md hover:scale-110 z-20 cursor-pointer backdrop-blur-sm border border-white/10"
+        className="absolute left-6 top-[calc(50%+2rem)] -translate-y-1/2 bg-white/90 hover:bg-[#ff7f32] text-[#0f2a6b] hover:text-white p-3.5 rounded-full transition-all duration-300 focus:outline-none hidden md:flex items-center justify-center shadow-md hover:scale-110 z-20 cursor-pointer border border-blue-100"
+        aria-label="Previous slide"
         onClick={handlePrev}
       >
         <FaChevronLeft size={18} />
       </button>
       <button
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-[#ff7f32] text-white p-3.5 rounded-full transition-all duration-300 focus:outline-none hidden md:flex items-center justify-center shadow-md hover:scale-110 z-20 cursor-pointer backdrop-blur-sm border border-white/10"
+        className="absolute right-6 top-[calc(50%+2rem)] -translate-y-1/2 bg-white/90 hover:bg-[#ff7f32] text-[#0f2a6b] hover:text-white p-3.5 rounded-full transition-all duration-300 focus:outline-none hidden md:flex items-center justify-center shadow-md hover:scale-110 z-20 cursor-pointer border border-blue-100"
+        aria-label="Next slide"
         onClick={handleNext}
       >
         <FaChevronRight size={18} />
@@ -241,7 +195,8 @@ const HorizontalScroll = () => {
           return (
             <button
               key={idx}
-              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${idx === activeIndex ? 'w-8 bg-[#ff7f32]' : 'w-2.5 bg-white/40 hover:bg-white/80'}`}
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${idx === activeIndex ? 'w-8 bg-[#ff7f32]' : 'w-2.5 bg-[#0f2a6b]/25 hover:bg-[#0f2a6b]/50'}`}
+              aria-label={`Go to slide ${idx + 1}`}
               onClick={() => {
                 pauseAutoScroll();
                 setCurrentIndex(idx + 1);

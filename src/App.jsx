@@ -21,6 +21,11 @@ const RegistrationsPage = lazy(() => import('./pages/RegistrationsPage'));
 const AccountingPage = lazy(() => import('./pages/AccountingPage'));
 const PayrollPage = lazy(() => import('./pages/PayrollPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const BlogPage = lazy(() => import('./pages/resources/BlogPage'));
+const BlogPostPage = lazy(() => import('./pages/resources/BlogPostPage'));
+const DownloadsPage = lazy(() => import('./pages/resources/DownloadsPage'));
+const FaqsPage = lazy(() => import('./pages/resources/FaqsPage'));
+const CaseStudiesPage = lazy(() => import('./pages/resources/CaseStudiesPage'));
 const TermsOfServicePage = lazy(() => import('./pages/TermsOfServicePage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
@@ -46,12 +51,19 @@ function App() {
 
             {/* Dedicated Service Page Routes */}
             <Route path="/services/school-management" element={<SchoolManagement />} />
-            <Route path="/services/outsourcing" element={<OutsourcingPage />} />
+            <Route path="/services/outsourcing" element={<PayrollPage />} />
             <Route path="/services/statutory-registrations" element={<RegistrationsPage />} />
             <Route path="/services/accounting" element={<AccountingPage />} />
             <Route path="/services/payroll" element={<PayrollPage />} />
 
             {/* Legal Page Routes */}
+            {/* Resources */}
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="/downloads" element={<DownloadsPage />} />
+            <Route path="/faqs" element={<FaqsPage />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
 

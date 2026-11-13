@@ -69,10 +69,10 @@ const navItems = [
     key: 'resources',
     label: 'Resources',
     children: [
-      { name: 'Blog & Articles', comingSoon: true, icon: Newspaper },
-      { name: 'Downloads', comingSoon: true, icon: Download },
-      { name: 'FAQs', path: `${ERP}#faq`, icon: HelpCircle },
-      { name: 'Case Studies', comingSoon: true, icon: ClipboardList },
+      { name: 'Blog & Articles', path: '/blog', icon: Newspaper },
+      { name: 'Downloads', path: '/downloads', icon: Download },
+      { name: 'FAQs', path: '/faqs', icon: HelpCircle },
+      { name: 'Case Studies', path: '/case-studies', icon: ClipboardList },
     ],
   },
   { key: 'pricing', label: 'Pricing', path: `${ERP}#plans` },
@@ -164,7 +164,7 @@ const Header = () => {
     if (item.key === 'pricing') return pathname === ERP && hash === '#plans';
     if (item.key === 'features') return pathname === ERP && hash === '#features';
     if (item.key === 'portals') return pathname === ERP && hash === '#portals';
-    if (item.key === 'resources') return pathname === ERP && hash === '#faq';
+    if (item.key === 'resources') return ['/blog', '/downloads', '/faqs', '/case-studies'].some((p) => pathname.startsWith(p));
     if (item.key === 'products') return pathname === ERP && !['#plans', '#features', '#portals', '#faq'].includes(hash);
     if (item.match) return item.match(pathname);
     return pathname.startsWith(item.path);
@@ -177,18 +177,22 @@ const Header = () => {
 
   const renderChild = (child, onDone) => {
     const Icon = child.icon;
+    // Highlight the item for the page we are on (path, plus hash when the item has one)
+    const [childPath, childHash] = (child.path || '').split('#');
+    const current = !child.comingSoon && !!childPath && pathname === childPath
+      && (childHash ? hash === `#${childHash}` : !hash);
     const inner = (
       <>
-        <span className="flex-shrink-0 w-8 h-8 rounded-md bg-blue-50 text-[#1747a6] flex items-center justify-center transition-colors group-hover/item:bg-[#1747a6] group-hover/item:text-white">
+        <span className={`flex-shrink-0 w-8 h-8 rounded-md flex items-center justify-center transition-colors ${current ? 'bg-[#1747a6] text-white' : 'bg-blue-50 text-[#1747a6] group-hover/item:bg-[#1747a6] group-hover/item:text-white'}`}>
           <Icon size={16} strokeWidth={2} />
         </span>
         <span className="flex flex-col text-left">
-          <span className="text-[13px] font-semibold text-slate-800 leading-snug group-hover/item:text-[#1747a6]">{child.name}</span>
+          <span className={`text-[13px] font-semibold leading-snug ${current ? 'text-[#1747a6]' : 'text-slate-800 group-hover/item:text-[#1747a6]'}`}>{child.name}</span>
           {child.desc && <span className="text-[11px] text-slate-500 leading-snug">{child.desc}</span>}
         </span>
       </>
     );
-    const cls = 'group/item flex items-center gap-3 w-full px-3 py-2 rounded-lg hover:bg-blue-50/70 transition-colors no-underline';
+    const cls = `group/item flex items-center gap-3 w-full px-3 py-2 rounded-lg transition-colors no-underline ${current ? 'bg-blue-50' : 'hover:bg-blue-50/70'}`;
     if (child.comingSoon) {
       return (
         <button key={child.name} type="button" className={`${cls} cursor-pointer`} onClick={() => { onDone?.(); openComingSoon(); }}>
@@ -197,7 +201,7 @@ const Header = () => {
       );
     }
     return (
-      <a key={child.name} href={child.path} className={cls} onClick={(e) => { onDone?.(); go(e, child.path); }}>
+      <a key={child.name} href={child.path} className={cls} aria-current={current ? 'page' : undefined} onClick={(e) => { onDone?.(); go(e, child.path); }}>
         {inner}
       </a>
     );
