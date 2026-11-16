@@ -123,7 +123,7 @@ const ContactUs = ({ isSinglePage }) => {
 
       // Send lead notification to Arvion Team - email.js
       const response = await emailjs.send(
-        'service_g06n1sw',  // Service ID  -of-  arviontechnologies@gmail.com
+        'service_m83bvm2',  // Service ID  -of-  sales@arviontechnologies.com (Hostinger SMTP)
         'template_x3fltm2', // Admin Notification Template ID -contact us template id
         templateParams,
         'UaWGHyhF3HEaur86A' // Public Key
@@ -151,7 +151,7 @@ const ContactUs = ({ isSinglePage }) => {
       try {
         // Sends the confirmation email to the user using your Auto-Reply template
         const autoReplyResponse = await emailjs.send(
-          'service_g06n1sw',
+          'service_m83bvm2',
           'template_vbrxf4w',
           autoReplyParams,
           'UaWGHyhF3HEaur86A'

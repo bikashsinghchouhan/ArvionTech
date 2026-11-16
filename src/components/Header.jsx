@@ -173,6 +173,7 @@ const Header = () => {
   const navLinkClass = (active) =>
     `relative flex items-center gap-1.5 h-[38px] px-2.5 xl:px-3.5 text-[13px] xl:text-[14px] font-semibold whitespace-nowrap transition-colors cursor-pointer select-none
      after:absolute after:left-2 after:right-2 after:bottom-0 after:h-[3px] after:rounded-t after:bg-[#ffc727] after:transition-transform after:duration-300 after:origin-center
+     outline-none focus-visible:text-[#ffc727] focus-visible:after:scale-x-100
      ${active ? 'text-[#ffc727] after:scale-x-100' : 'text-white hover:text-[#ffc727] after:scale-x-0 hover:after:scale-x-100'}`;
 
   const renderChild = (child, onDone) => {
@@ -286,7 +287,7 @@ const Header = () => {
                   return (
                     <li key={item.key}>
                       <a href={item.path} onClick={(e) => go(e, item.path)} className={`${navLinkClass(active)} no-underline`}>
-                        {Icon && <Icon size={16} className={active ? 'fill-[#ffc727]' : ''} />}
+                        {Icon && <Icon size={16} />}
                         {item.label}
                       </a>
                     </li>

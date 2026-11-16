@@ -6,7 +6,8 @@ import {
   FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCalendarAlt, FaArrowRight, FaUserTie,
   FaClock, FaHeadset, FaFileAlt, FaBalanceScale, FaIndustry, FaUtensils, FaRocket, FaStore,
   FaUsers, FaHandshake, FaSignature, FaCertificate,
-  FaComments, FaFileUpload, FaPaperPlane, FaCheckDouble, FaLaptopCode, FaIdCard, FaHome, FaBell, FaSearch
+  FaComments, FaFileUpload, FaPaperPlane, FaCheckDouble, FaLaptopCode, FaIdCard, FaHome, FaBell, FaSearch,
+  FaExchangeAlt, FaHandHoldingHeart, FaLink, FaMapMarkedAlt, FaLayerGroup, FaUsersCog, FaClipboardList, FaBook
 } from 'react-icons/fa';
 
 // Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
@@ -541,6 +542,26 @@ const RegistrationsPage = () => {
           { when: '12+ months', what: 'Trademark Registration', detail: 'Through examination, publication and approval' },
         ]}
         note="Timelines are typical, not guaranteed. Government processing times vary."
+      />
+
+      {/* CORPORATE SECRETARIAL & ROC COMPLIANCE */}
+      <ChecklistGroups
+        pill="After Incorporation"
+        title="Corporate Secretarial and"
+        highlight="ROC Compliance"
+        desc="Registration is only the start. We handle the routine and event-based compliance every company faces under the Companies Act, 2013."
+        groups={[
+          { Icon: FaSearch, heading: 'Secretarial Audit and Due Diligence', items: ['Support in conducting secretarial audits', 'Due diligence reports for corporate transactions and compliance reviews'] },
+          { Icon: FaExchangeAlt, heading: 'Corporate Actions and Restructuring', items: ['Share split and duplicate share certificates', 'Issue of bonus shares', 'Buy-back of shares', 'Strike-off of a company from the ROC'] },
+          { Icon: FaHandHoldingHeart, heading: 'CSR Compliance', items: ['Calculation of CSR obligation', 'CSR reports and annual action plans', 'Filing of Form CSR-2 and ongoing support'] },
+          { Icon: FaLink, heading: 'Charges and ROC Filings', items: ['Creation, modification and satisfaction of charges', 'Filing of the related e-forms with the ROC'] },
+          { Icon: FaMapMarkedAlt, heading: 'Registered Office and Structural Changes', items: ['Shifting the registered office outside local limits, within the same state and ROC', 'Changes in directors, auditors, company name and registered office'] },
+          { Icon: FaLayerGroup, heading: 'Share Capital and Demat', items: ['Dematerialisation of shares', 'Obtaining ISIN as per depository norms', 'PAS-6 filing and share capital reconciliation'] },
+          { Icon: FaUsersCog, heading: 'Meetings and Minutes', items: ['Notices, agendas and minutes for Board and Committee meetings', 'Annual General Meetings (AGM)', 'Extraordinary General Meetings (EGM)'] },
+          { Icon: FaClipboardList, heading: 'Statutory Filings and Annual Compliance', items: ['AOC-4 / AOC-4 XBRL and MGT-7', 'DPT-3, MSME-1 and MGT-14', 'ADT-1 / ADT-3, DIR-12 and INC-22', 'RUN name applications and KYC compliance'] },
+          { Icon: FaBook, heading: 'Statutory Registers and Records', items: ['Register of Members', 'Register of Share Transfers', 'Register of Directors and Key Managerial Personnel', 'Other mandatory statutory records'] },
+        ]}
+        note="Hands-on experience with the MCA portal and ROC procedures, for timely and accurate filings. Tell us your needs and we will tailor the scope."
       />
 
       {/* WHAT YOU GET */}
