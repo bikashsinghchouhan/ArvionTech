@@ -8,7 +8,7 @@ import {
   ChevronDown, CircleCheck,
 } from 'lucide-react';
 
-const fadeUp = { hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } } };
+const fadeUp = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const inView = { initial: 'hidden', whileInView: 'visible', viewport: { once: true, amount: 0.2 } };
 
@@ -51,10 +51,10 @@ export const ComplianceGrid = () => (
       {/* Flex-wrap so the second row (2 cards) stays centred under the first (3 cards) */}
       <motion.ul {...inView} variants={stagger} className="flex flex-wrap justify-center gap-4 sm:gap-5 list-none m-0 p-0">
         {complianceItems.map(({ Icon, title, desc }) => (
-          <motion.li
+          <motion.li whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
             key={title}
             variants={fadeUp}
-            className="group w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)] rounded-2xl bg-[#f8faff] ring-1 ring-slate-200/80 p-6 sm:p-7 text-center hover:bg-white hover:ring-orange-200 hover:shadow-[0_14px_32px_-20px_rgba(15,42,107,.4)] hover:-translate-y-1 transition-all duration-300"
+            className="group w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)] rounded-2xl bg-[#f8faff] ring-1 ring-slate-200/80 p-6 sm:p-7 text-center hover:bg-white hover:ring-orange-200 hover:shadow-[0_14px_32px_-20px_rgba(15,42,107,.4)] transition-[box-shadow,border-color,background-color,color] duration-300"
           >
             <span className="mx-auto w-14 h-14 rounded-2xl bg-white ring-1 ring-orange-100 text-[#FF7A00] shadow-sm flex items-center justify-center group-hover:bg-[#FF7A00] group-hover:text-white transition-colors duration-300">
               <Icon className="w-7 h-7" strokeWidth={1.8} aria-hidden="true" />

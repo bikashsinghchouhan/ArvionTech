@@ -75,13 +75,13 @@ const CoreServicesSection = () => (
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
         {services.map(({ title, desc, icon: Icon, Art, cta, path, theme }, i) => (
-          <motion.article
+          <motion.article whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
             key={path}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.45, delay: i * 0.08 }}
-            className={`group flex flex-col items-center text-center rounded-2xl border bg-gradient-to-b ${theme.card} p-5 sm:p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
+            className={`group flex flex-col items-center text-center rounded-2xl border bg-gradient-to-b ${theme.card} p-5 sm:p-6 shadow-sm hover:shadow-xl transition-[box-shadow,border-color,background-color,color] duration-300`}
           >
             <Icon aria-hidden="true" className={`text-[34px] ${theme.accent}`} />
 

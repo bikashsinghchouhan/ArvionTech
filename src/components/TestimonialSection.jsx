@@ -4,8 +4,8 @@ import { FaChevronLeft, FaChevronRight, FaQuoteLeft, FaStar, FaUsers } from 'rea
 import { testimonialsData } from '../configurations/TestimonialsConfig';
 
 const fadeUpVariant = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
 };
 
 const staggerContainer = {
@@ -142,10 +142,10 @@ const TestimonialSection = () => {
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
           >
             {testimonialsData.map((testi, idx) => (
-              <motion.figure
+              <motion.figure whileHover={{ y: -2, transition: { duration: 0.25, ease: 'easeOut' } }}
                 key={idx}
                 variants={fadeUpVariant}
-                className="m-0 bg-white p-5 sm:p-6 rounded-2xl border-l-[3px] border-[#f7861c] shadow-[0_10px_28px_-18px_rgba(11,42,107,.3)] hover:shadow-[0_16px_34px_-18px_rgba(11,42,107,.35)] hover:-translate-y-0.5 transition-all w-[84vw] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] flex-shrink-0 snap-center flex flex-col"
+                className="m-0 bg-white p-5 sm:p-6 rounded-2xl border-l-[3px] border-[#f7861c] shadow-[0_10px_28px_-18px_rgba(11,42,107,.3)] hover:shadow-[0_16px_34px_-18px_rgba(11,42,107,.35)] transition-[box-shadow,border-color,background-color,color] w-[84vw] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] flex-shrink-0 snap-center flex flex-col"
               >
                 <div className="flex items-center justify-between mb-3">
                   <FaQuoteLeft className="text-[#f2700f] text-2xl" aria-hidden="true" />

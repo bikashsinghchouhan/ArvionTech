@@ -19,8 +19,8 @@ import { ComplianceGrid, HrRecordsShowcase, EmployeeBenefits } from '../componen
 import heroIllustration from '../assets/service-heroes/payroll.webp';
 
 const fadeUpVariant = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
 };
 
 const staggerContainer = {
@@ -282,7 +282,7 @@ const PayrollPage = () => {
               <motion.a
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }}
                 href="tel:+919535764655"
-                className="inline-flex items-center gap-3.5 bg-white border border-slate-200/80 rounded-2xl pl-2.5 pr-6 py-2.5 shadow-sm hover:shadow-md transition-all hover:border-orange-200"
+                className="inline-flex items-center gap-3.5 bg-white border border-slate-200/80 rounded-2xl pl-2.5 pr-6 py-2.5 shadow-sm hover:shadow-md transition-[box-shadow,border-color,background-color,color] hover:border-orange-200"
               >
                 <div className="w-11 h-11 rounded-xl bg-[#FF7A00] text-white flex items-center justify-center text-lg flex-shrink-0 shadow-sm">
                   <FaPhoneAlt />
@@ -390,7 +390,7 @@ const PayrollPage = () => {
             <motion.li
               key={title}
               variants={fadeUpVariant}
-              className="group rounded-2xl bg-white ring-1 ring-slate-200/80 shadow-[0_10px_30px_-24px_rgba(15,42,107,.45)] hover:ring-orange-200 hover:shadow-[0_18px_40px_-24px_rgba(15,42,107,.45)] transition-all duration-300 overflow-hidden"
+              className="group rounded-2xl bg-white ring-1 ring-slate-200/80 shadow-[0_10px_30px_-24px_rgba(15,42,107,.45)] hover:ring-orange-200 hover:shadow-[0_18px_40px_-24px_rgba(15,42,107,.45)] transition-[box-shadow,border-color,background-color,color] duration-300 overflow-hidden"
             >
               <div className="flex items-center gap-3.5 px-5 sm:px-6 py-4 bg-gradient-to-r from-[#f4f8fe] to-white border-b border-slate-100">
                 <span className={`w-11 h-11 rounded-xl ${tone} text-white flex items-center justify-center flex-shrink-0 shadow-md transition-transform duration-300 group-hover:scale-105`}>

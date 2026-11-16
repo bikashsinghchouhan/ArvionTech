@@ -25,8 +25,8 @@ const About = ({ isSinglePage }) => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
   };
 
   const stats = [
@@ -308,10 +308,10 @@ const About = ({ isSinglePage }) => {
                 { title: 'Reliability', desc: 'Consistently delivering tax-compliant, secure records that guarantee clean and audit-ready bookkeeping.', Icon: ShieldCheck, tone: { icon: 'from-[#f3edff] to-[#e6dcff] text-[#7c3aed]', bar: 'bg-[#7c3aed]', wave: '#7c3aed', glow: 'from-[#f5f0ff]' } },
                 { title: 'Impact', desc: 'Empowering school and office operations with digital billing structures and automated tax calculations.', Icon: Rocket, tone: { icon: 'from-[#e8f8ee] to-[#d3f1de] text-[#16a34a]', bar: 'bg-[#22c55e]', wave: '#22c55e', glow: 'from-[#ecfaf1]' } },
               ].map(({ title, desc, Icon, tone }) => (
-                <motion.div
+                <motion.div whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
                   key={title}
                   variants={itemVariants}
-                  className="group relative overflow-hidden bg-white rounded-2xl border border-slate-200/70 shadow-[0_6px_20px_-12px_rgba(15,42,107,.18)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.28)] hover:-translate-y-1 transition-all duration-300 p-6 sm:p-7 pb-12 sm:pb-14"
+                  className="group relative overflow-hidden bg-white rounded-2xl border border-slate-200/70 shadow-[0_6px_20px_-12px_rgba(15,42,107,.18)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.28)] transition-[box-shadow,border-color,background-color,color] duration-300 p-6 sm:p-7 pb-12 sm:pb-14"
                 >
                   {/* Soft tinted curve in the top-right corner */}
                   <div aria-hidden="true" className={`pointer-events-none absolute -top-10 -right-16 w-48 h-48 rounded-full bg-gradient-to-bl ${tone.glow} to-transparent opacity-90`} />

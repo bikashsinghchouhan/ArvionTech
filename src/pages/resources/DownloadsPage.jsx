@@ -30,10 +30,10 @@ const DownloadsPage = () => (
       <div className="max-w-7xl mx-auto">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {downloads.map((d, i) => (
-            <motion.div
+            <motion.div whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
               key={d.key}
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="flex gap-4 bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.3)] hover:-translate-y-1 transition-all duration-300"
+              className="flex gap-4 bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.3)] transition-[box-shadow,border-color,background-color,color] duration-300"
             >
               <span className="w-14 h-16 flex-shrink-0 rounded-xl bg-red-50 text-red-500 flex flex-col items-center justify-center">
                 <FaFilePdf className="text-2xl" />

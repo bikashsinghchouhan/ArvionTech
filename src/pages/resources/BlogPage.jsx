@@ -52,10 +52,10 @@ const BlogPage = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
             {posts.map((post, i) => (
-              <motion.article
+              <motion.article whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
                 key={post.slug}
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group flex flex-col bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.3)] hover:-translate-y-1 transition-all duration-300"
+                className="group flex flex-col bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.3)] transition-[box-shadow,border-color,background-color,color] duration-300"
               >
                 <div className={`h-2 bg-gradient-to-r ${categoryBar[post.category] || 'from-slate-300 to-slate-400'}`} />
                 <div className="flex flex-col flex-1 p-5 sm:p-6">

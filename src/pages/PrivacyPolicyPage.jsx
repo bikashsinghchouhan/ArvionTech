@@ -65,7 +65,7 @@ const PrivacyPolicyPage = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl border border-slate-100  hover:border-blue-500/30 transition-all duration-300 group md:col-span-2"
+            className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl border border-slate-100  hover:border-blue-500/30 transition-[box-shadow,border-color,background-color,color] duration-300 group md:col-span-2"
           >
             <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
               <FaDatabase size={28} />
@@ -83,7 +83,7 @@ const PrivacyPolicyPage = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl  border border-slate-100  hover:border-green-500/30 transition-all duration-300 group"
+            className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl  border border-slate-100  hover:border-green-500/30 transition-[box-shadow,border-color,background-color,color] duration-300 group"
           >
             <div className="w-14 h-14 rounded-2xl bg-green-50 text-green-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
               <FaChartPie size={28} />
@@ -102,7 +102,7 @@ const PrivacyPolicyPage = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl  border border-slate-100  hover:border-orange-500/30 transition-all duration-300 group"
+            className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl  border border-slate-100  hover:border-orange-500/30 transition-[box-shadow,border-color,background-color,color] duration-300 group"
           >
             <div className="w-14 h-14 rounded-2xl bg-orange-50 text-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
               <FaShareAlt size={28} />
@@ -115,7 +115,7 @@ const PrivacyPolicyPage = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl  border border-slate-100  hover:border-purple-500/30 transition-all duration-300 group md:col-span-2"
+            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl  border border-slate-100  hover:border-purple-500/30 transition-[box-shadow,border-color,background-color,color] duration-300 group md:col-span-2"
           >
             <div className="w-14 h-14 rounded-2xl bg-purple-50 text-purple-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300">
               <FaLock size={28} />

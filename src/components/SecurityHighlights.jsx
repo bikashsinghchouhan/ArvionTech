@@ -9,7 +9,7 @@ const ICONS = [ShieldCheck, UserCog, DatabaseBackup, Cloud, KeyRound];
 
 const reveal = { initial: 'hidden', whileInView: 'visible', viewport: { once: true, amount: 0.2 } };
 const list = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
-const item = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } } };
+const item = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
 
 const SecurityHighlights = ({
   variant = 'light',

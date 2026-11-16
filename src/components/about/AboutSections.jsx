@@ -15,8 +15,8 @@ import {
 } from '../../configurations/AboutConfig';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const reveal = { initial: 'hidden', whileInView: 'visible', viewport: { once: true, amount: 0.15 } };
@@ -174,7 +174,7 @@ export const VisionMissionValues = () => (
           const tone = valueStyles[i % valueStyles.length];
           const Icon = tone.Icon;
           return (
-            <motion.div key={title} variants={fadeUp} className={`${CARD} group relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.28)] transition-all duration-300 p-6 sm:p-7 pb-12 sm:pb-14`}>
+            <motion.div whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }} key={title} variants={fadeUp} className={`${CARD} group relative overflow-hidden hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.28)] transition-[box-shadow,border-color,background-color,color] duration-300 p-6 sm:p-7 pb-12 sm:pb-14`}>
               <div aria-hidden="true" className={`pointer-events-none absolute -top-10 -right-16 w-48 h-48 rounded-full bg-gradient-to-bl ${tone.glow} to-transparent`} />
               <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 w-[62%] h-12" viewBox="0 0 200 48" preserveAspectRatio="none">
                 <path d="M0,48 C80,46 150,36 200,6 L200,48 Z" fill={tone.wave} opacity="0.12" />
@@ -256,10 +256,10 @@ export const WhatWeDo = () => (
         {whatWeDo.map(({ key, vertical, title, desc, points, path }) => {
           const { Icon, Art, accent, icon, card, pill } = serviceStyles[key];
           return (
-            <motion.div
+            <motion.div whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
               key={key}
               variants={fadeUp}
-              className={`group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-gradient-to-r ${card} shadow-[0_10px_28px_-18px_rgba(15,42,107,.3)] hover:-translate-y-1 hover:shadow-[0_18px_36px_-18px_rgba(15,42,107,.35)] transition-all duration-300`}
+              className={`group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-gradient-to-r ${card} shadow-[0_10px_28px_-18px_rgba(15,42,107,.3)] hover:shadow-[0_18px_36px_-18px_rgba(15,42,107,.35)] transition-[box-shadow,border-color,background-color,color] duration-300`}
             >
               <div aria-hidden="true" className="absolute left-0 top-0 bottom-0 w-1" style={{ background: accent }} />
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-6 sm:p-7 sm:pr-4">

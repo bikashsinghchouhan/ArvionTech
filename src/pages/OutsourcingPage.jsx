@@ -29,8 +29,8 @@ import ServiceHero from '../components/ServiceHero';
 import heroIllustration from '../assets/service-heroes/payroll.webp';
 
 const fadeUpVariant = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
 };
 
 const staggerContainer = {
@@ -84,7 +84,7 @@ const OutsourcingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="p-6 border border-slate-200 rounded-2xl hover:shadow-xl hover:border-blue-200 transition-all group"
+                className="p-6 border border-slate-200 rounded-2xl hover:shadow-xl hover:border-blue-200 transition-[box-shadow,border-color,background-color,color] group"
               >
                 <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   {service.icon}

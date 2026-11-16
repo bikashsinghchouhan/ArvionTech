@@ -14,8 +14,8 @@ import heroIllustration from '../assets/service-heroes/accounting-hero.webp';
 import benefitsImg from '../assets/service-heroes/accounting-benefits.webp'; // sharper 2048px copy for the benefits section
 
 const fadeUpVariant = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
 };
 
 const staggerContainer = {
@@ -221,7 +221,7 @@ const AccountingPage = () => {
               <motion.a
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }}
                 href="tel:+919535764655"
-                className="inline-flex items-center gap-3.5 bg-white border border-slate-200/80 rounded-2xl pl-2.5 pr-6 py-2.5 shadow-sm hover:shadow-md transition-all hover:border-orange-200"
+                className="inline-flex items-center gap-3.5 bg-white border border-slate-200/80 rounded-2xl pl-2.5 pr-6 py-2.5 shadow-sm hover:shadow-md transition-[box-shadow,border-color,background-color,color] hover:border-orange-200"
               >
                 <div className="w-11 h-11 rounded-xl bg-[#FF7A00] text-white flex items-center justify-center text-lg flex-shrink-0 shadow-sm">
                   <FaPhoneAlt />
@@ -325,10 +325,10 @@ const AccountingPage = () => {
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
           >
             {detailedFeatures.map((feat, index) => (
-              <motion.div 
+              <motion.div whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }} 
                 key={index} 
                 variants={fadeUpVariant}
-                className="bg-[#f8f9fa] p-8 rounded-2xl border border-slate-100 hover:border-orange-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start"
+                className="bg-[#f8f9fa] p-8 rounded-2xl border border-slate-100 hover:border-orange-200 hover:shadow-xl transition-[box-shadow,border-color,background-color,color] duration-300 flex flex-col items-start"
               >
                 <div className="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center mb-6 shadow-sm">
                   {feat.icon}
@@ -365,13 +365,13 @@ const AccountingPage = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {benefits.map((benefit, idx) => (
-                <motion.div
+                <motion.div whileHover={{ y: -2, transition: { duration: 0.25, ease: 'easeOut' } }}
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.08 }}
-                  className="flex items-center gap-4 bg-white px-5 py-5 rounded-2xl shadow-[0_8px_24px_-14px_rgba(11,42,107,.25)] border border-slate-100 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-14px_rgba(11,42,107,.3)] transition-all"
+                  className="flex items-center gap-4 bg-white px-5 py-5 rounded-2xl shadow-[0_8px_24px_-14px_rgba(11,42,107,.25)] border border-slate-100 hover:shadow-[0_14px_30px_-14px_rgba(11,42,107,.3)] transition-[box-shadow,border-color,background-color,color]"
                 >
                   <span className="w-11 h-11 rounded-full bg-[#e7f8ee] flex items-center justify-center flex-shrink-0">
                     <FaCheckCircle className="text-[20px] text-[#16a34a]" />

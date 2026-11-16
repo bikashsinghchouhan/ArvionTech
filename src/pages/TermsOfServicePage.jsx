@@ -65,7 +65,7 @@ const TermsOfServicePage = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-md border border-slate-100 hover:shadow-2xl hover:border-[#ff7f32]/30 transition-all duration-300 group"
+            className="bg-white p-8 rounded-xl shadow-md border border-slate-100 hover:shadow-2xl hover:border-[#ff7f32]/30 transition-[box-shadow,border-color,background-color,color] duration-300 group"
           >
             <div className="w-14 h-14 rounded-2xl bg-orange-50 text-[#ff7f32] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#ff7f32] group-hover:text-white transition-all duration-300">
               <FaUserTie size={28} />
@@ -78,7 +78,7 @@ const TermsOfServicePage = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="bg-white p-8 rounded-xl shadow-md border border-slate-100 hover:shadow-2xl hover:border-[#ff7f32]/30 transition-all duration-300 group"
+            className="bg-white p-8 rounded-xl shadow-md border border-slate-100 hover:shadow-2xl hover:border-[#ff7f32]/30 transition-[box-shadow,border-color,background-color,color] duration-300 group"
           >
             <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
               <FaLightbulb size={28} />
@@ -91,7 +91,7 @@ const TermsOfServicePage = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-md border border-slate-100 hover:shadow-2xl hover:border-[#ff7f32]/30 transition-all duration-300 group"
+            className="bg-white p-8 rounded-xl shadow-md border border-slate-100 hover:shadow-2xl hover:border-[#ff7f32]/30 transition-[box-shadow,border-color,background-color,color] duration-300 group"
           >
             <div className="w-14 h-14 rounded-2xl bg-purple-50 text-purple-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300">
               <FaExclamationTriangle size={28} />
@@ -104,7 +104,7 @@ const TermsOfServicePage = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="bg-white p-8 rounded-xl shadow-md border border-slate-100 hover:shadow-2xl hover:border-[#ff7f32]/30 transition-all duration-300 group"
+            className="bg-white p-8 rounded-xl shadow-md border border-slate-100 hover:shadow-2xl hover:border-[#ff7f32]/30 transition-[box-shadow,border-color,background-color,color] duration-300 group"
           >
             <div className="w-14 h-14 rounded-2xl bg-green-50 text-green-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
               <FaEdit size={28} />

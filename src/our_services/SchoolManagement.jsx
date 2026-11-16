@@ -23,8 +23,8 @@ import { pageConfig } from '../configurations/SchoolManagementConfig';
 import { schoolFaqs } from '../configurations/SchoolFaqs';
 
 const fadeUpVariant = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
 };
 
 const staggerContainer = {
@@ -395,7 +395,7 @@ const SchoolManagement = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2, delay: (idx % 8) * 0.025 }}
                       style={{ order: idx }}
-                      className={`bg-white border rounded-xl transition-all duration-200 ${isActive ? 'border-[#FF8000] shadow-md' : 'border-slate-200 hover:border-slate-300'
+                      className={`bg-white border rounded-xl transition-[box-shadow,border-color,background-color,color] duration-200 ${isActive ? 'border-[#FF8000] shadow-md' : 'border-slate-200 hover:border-slate-300'
                         }`}
                     >
                       <button
@@ -494,10 +494,10 @@ const SchoolManagement = () => {
               { title: "Dedicated 24/7 Support", desc: "Experience worry-free operations with our dedicated success team. We provide full implementation training and reliable round-the-clock technical assistance.", icon: <FaHeadset />, tone: "bg-[#fff4d9] text-[#f5a50b]", wave: "#fbbf24" },
               { title: "Seamless Integration", desc: "Connect seamlessly with your existing tools. Our API-first platform integrates effortlessly with biometric devices, accounting software, and payment gateways.", icon: <FaShareAlt />, tone: "bg-[#ffe4ee] text-[#e83e7c]", wave: "#ec4899" },
             ].map((feature) => (
-              <motion.article
+              <motion.article whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
                 key={feature.title}
                 variants={fadeUpVariant}
-                className="group relative overflow-hidden bg-white/90 rounded-2xl border border-slate-200/80 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.3)] hover:-translate-y-1 transition-all duration-300 p-6 sm:p-7 pb-10 sm:pb-11"
+                className="group relative overflow-hidden bg-white/90 rounded-2xl border border-slate-200/80 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_14px_30px_-16px_rgba(15,42,107,.3)] transition-[box-shadow,border-color,background-color,color] duration-300 p-6 sm:p-7 pb-10 sm:pb-11"
               >
                 {/* Coloured swoosh in the bottom-right corner */}
                 <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 w-[48%] h-12" viewBox="0 0 200 48" preserveAspectRatio="none">
@@ -563,10 +563,10 @@ const SchoolManagement = () => {
                 btn: 'border-emerald-500 text-emerald-700 hover:bg-emerald-600 hover:text-white', ring: 'ring-emerald-100',
               },
             ].map((p) => (
-              <motion.article
+              <motion.article whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
                 key={p.key}
                 variants={fadeUpVariant}
-                className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-br ${p.card} p-3.5 sm:p-5 flex flex-row gap-3.5 sm:gap-6 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_16px_34px_-18px_rgba(15,42,107,.32)] hover:-translate-y-1 transition-all duration-300`}
+                className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-br ${p.card} p-3.5 sm:p-5 flex flex-row gap-3.5 sm:gap-6 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_16px_34px_-18px_rgba(15,42,107,.32)] transition-[box-shadow,border-color,background-color,color] duration-300`}
               >
                 <div className={`relative flex-shrink-0 w-[104px] min-[400px]:w-28 sm:w-40 lg:w-44 self-stretch rounded-xl overflow-hidden bg-white p-1 ring-2 sm:ring-4 ${p.ring} shadow-md`}>
                   {p.image ? (
@@ -777,7 +777,7 @@ const SchoolManagement = () => {
                   <motion.article
                     key={plan.name}
                     variants={fadeUpVariant}
-                    className={`relative bg-white rounded-xl sm:rounded-2xl overflow-hidden flex flex-col transition-all duration-300 ${plan.popular
+                    className={`relative bg-white rounded-xl sm:rounded-2xl overflow-hidden flex flex-col transition-[box-shadow,border-color,background-color,color] duration-300 ${plan.popular
                         ? 'border-2 border-[#FF8000] shadow-md sm:shadow-xl shadow-orange-500/10 md:col-span-2 lg:col-span-1'
                         : 'border border-slate-200 shadow-sm hover:shadow-lg hover:border-[#FF8000]'
                       }`}

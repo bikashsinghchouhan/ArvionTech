@@ -54,8 +54,8 @@ const Services = ({ isSinglePage }) => {
     };
 
     const cardVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+        hidden: { opacity: 0, y: 16 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
     };
 
     return (
@@ -84,8 +84,8 @@ const Services = ({ isSinglePage }) => {
                         viewport={{ once: true, margin: "-100px" }}
                     >
                         {servicesData.map((service) => (
-                            <motion.div
-                                className="bg-white hover:bg-slate-50/50 p-6 sm:p-7 rounded-2xl border border-slate-200 shadow-md hover:border-orange-300 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-default"
+                            <motion.div whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
+                                className="bg-white hover:bg-slate-50/50 p-6 sm:p-7 rounded-2xl border border-slate-200 shadow-md hover:border-orange-300 hover:shadow-2xl transition-[box-shadow,border-color,background-color,color] duration-300 flex flex-col justify-between group cursor-default"
                                 key={service.id}
                                 variants={cardVariants}
                             >
