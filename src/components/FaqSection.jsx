@@ -1,4 +1,4 @@
-// FAQ section: pill + heading (highlighted word with underline swoosh), FAQ illustration on the left,
+// FAQ section: pill + heading (highlighted word with underline), FAQ illustration on the left,
 // accordion on the right where each question has its own icon. The first item starts open.
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -83,16 +83,6 @@ const FaqIllustration = () => (
  */
 const FaqSection = ({ before = 'Frequently Asked ', highlight = 'Questions', desc, items }) => (
   <section id="faq" className="relative w-full overflow-hidden scroll-mt-24 bg-gradient-to-b from-[#f6f9ff] to-white px-4 sm:px-6 lg:px-8 pt-6 pb-12 sm:pt-7 sm:pb-14">
-    {/* corner decorations */}
-    <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-[34%] max-w-[420px] h-auto" viewBox="0 0 560 170" fill="none">
-      <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
-      <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
-    </svg>
-    {/* bottom-right: same swoosh as top-left, turned 180° */}
-    <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 w-[34%] max-w-[420px] h-auto rotate-180" viewBox="0 0 560 170" fill="none">
-      <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
-      <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
-    </svg>
 
     <div className="relative max-w-7xl mx-auto">
       {/* Heading */}

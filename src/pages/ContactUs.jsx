@@ -123,10 +123,10 @@ const ContactUs = ({ isSinglePage }) => {
 
       // Send lead notification to Arvion Team - email.js
       const response = await emailjs.send(
-        'service_mkucjek',  // Service ID
-        'template_u3wagyg', // Admin Notification Template ID
+        'service_g06n1sw',  // Service ID  -of-  arviontechnologies@gmail.com
+        'template_x3fltm2', // Admin Notification Template ID -contact us template id
         templateParams,
-        'vkUKK6w4C-sc4pRUo' // Public Key
+        'UaWGHyhF3HEaur86A' // Public Key
       );
 
       // 2. Send Professional Thank You / Confirmation Email to the user who filled the form
@@ -151,10 +151,10 @@ const ContactUs = ({ isSinglePage }) => {
       try {
         // Sends the confirmation email to the user using your Auto-Reply template
         const autoReplyResponse = await emailjs.send(
-          'service_mkucjek',
-          'template_oazqn2n',
+          'service_g06n1sw',
+          'template_vbrxf4w',
           autoReplyParams,
-          'vkUKK6w4C-sc4pRUo'
+          'UaWGHyhF3HEaur86A'
         );
         console.log("Auto-reply sent successfully:", autoReplyResponse);
       } catch (autoReplyErr) {

@@ -9,8 +9,10 @@ import {
   FaTimes, FaUserGraduate, FaUserTie, FaSignOutAlt, FaFolderOpen, FaThLarge, FaBook, FaFileInvoiceDollar, FaBoxes,
   FaIdBadge, FaClipboardList, FaLayerGroup, FaUserFriends, FaWallet, FaUserPlus, FaFileAlt, FaBell, FaReceipt, FaHourglassHalf, FaVolumeMute, FaUnlock, FaColumns, FaCalendarCheck, FaShareAlt
 } from 'react-icons/fa';
-import TestimonialSection from '../components/TestimonialSection';
+// Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
+// import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
+import { TimeBackSection, SwitchingSection, ParentExperience } from '../components/school/SchoolExtras';
 import schoolErpMobile from '../assets/school-erp-mobile.webp';
 import schoolErpHero from '../assets/school-erp-hero.webp';
 import portalAdmin from '../assets/portals/admin-portal.webp';
@@ -457,7 +459,7 @@ const SchoolManagement = () => {
 
       {/* WHY CHOOSE US SECTION */}
       <section className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full bg-gradient-to-b from-[#f5f8ff] via-white to-[#f7f9ff]">
-        {/* Background decoration: soft blue waves at the top corners and bottom, thin orange curve bottom-right */}
+        {/* Background decoration: soft blue waves at the top corners and bottom */}
         <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-full h-40 sm:h-56" viewBox="0 0 1440 220" preserveAspectRatio="none">
           <path d="M0,0 H460 C380,40 250,70 0,64 Z" fill="#e3ecfb" opacity="0.7" />
           <path d="M1440,0 V150 C1330,110 1260,60 1180,0 Z" fill="#e3ecfb" opacity="0.6" />
@@ -465,7 +467,6 @@ const SchoolManagement = () => {
         <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 w-full h-20 sm:h-28" viewBox="0 0 1440 120" preserveAspectRatio="none">
           <path d="M0,70 C200,50 360,90 520,120 L0,120 Z" fill="#dbe6fa" opacity="0.7" />
           <path d="M900,120 C1080,40 1260,20 1440,40 L1440,120 Z" fill="#fde7d6" opacity="0.55" />
-          <path d="M760,120 C980,40 1220,10 1440,30" fill="none" stroke="#f7941d" strokeWidth="2" opacity="0.8" />
         </svg>
 
         <div className="relative max-w-7xl mx-auto">
@@ -610,6 +611,9 @@ const SchoolManagement = () => {
         </div>
       </section>
 
+      {/* PARENT EXPERIENCE */}
+      <ParentExperience />
+
       {/* BEFORE / AFTER: one switch flips all items between "Without ERP" and "With Arvion" */}
       <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto">
@@ -682,6 +686,9 @@ const SchoolManagement = () => {
           </p>
         </div>
       </section>
+
+      {/* GIVE YOUR STAFF THEIR TIME BACK */}
+      <TimeBackSection />
 
       {/* PLANS */}
       <section id="plans" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200 scroll-mt-20">
@@ -955,15 +962,6 @@ const SchoolManagement = () => {
 
       {/* HOW IMPLEMENTATION WORKS */}
       <section id="process" className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20 bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
-        {/* Corner swooshes (same as testimonials / FAQ) */}
-        <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-[34%] max-w-[420px] h-auto" viewBox="0 0 560 170" fill="none">
-          <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
-          <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
-        </svg>
-        <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 w-[34%] max-w-[420px] h-auto rotate-180" viewBox="0 0 560 170" fill="none">
-          <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
-          <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
-        </svg>
 
         <div className="relative max-w-6xl mx-auto">
           {/* Heading: pill with side lines + highlighted words with underline */}
@@ -1016,6 +1014,9 @@ const SchoolManagement = () => {
         </div>
       </section>
 
+      {/* SWITCHING FROM EXCEL OR ANOTHER ERP */}
+      <SwitchingSection />
+
       {/* WHY SCHOOLS CHOOSE OUR ERP */}
       <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto">
@@ -1040,7 +1041,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* TESTIMONIALS */}
-      <TestimonialSection />
+      {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* FAQ SECTION */}
       <FaqSection

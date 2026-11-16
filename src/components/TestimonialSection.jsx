@@ -74,16 +74,6 @@ const TestimonialSection = () => {
 
   return (
     <section className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full mx-auto bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
-      {/* Soft waves + orange swooshes in the corners */}
-      <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-[45%] max-w-[560px] h-auto" viewBox="0 0 560 170" fill="none">
-        <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
-        <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
-      </svg>
-      {/* bottom-right: same swoosh as top-left, turned 180° */}
-      <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 w-[45%] max-w-[560px] h-auto rotate-180" viewBox="0 0 560 170" fill="none">
-        <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
-        <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
-      </svg>
 
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-10 flex flex-col items-center">

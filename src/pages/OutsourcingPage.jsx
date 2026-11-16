@@ -24,7 +24,8 @@ import {
   FaCheck
 } from 'react-icons/fa';
 
-import TestimonialSection from '../components/TestimonialSection';
+// Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
+// import TestimonialSection from '../components/TestimonialSection';
 import ServiceHero from '../components/ServiceHero';
 import heroIllustration from '../assets/service-heroes/payroll.webp';
 
@@ -260,7 +261,7 @@ const OutsourcingPage = () => {
 
 
       {/* 4. TESTIMONIALS */}
-      <TestimonialSection />
+      {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* 5. CTA / CONTACT SECTION */}
       <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden mt-6 md:mt-8">

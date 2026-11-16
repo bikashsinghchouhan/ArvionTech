@@ -146,7 +146,6 @@ export const VisionMissionValues = () => (
     <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 w-full h-24 sm:h-32" viewBox="0 0 1440 160" preserveAspectRatio="none">
       <path d="M0,96 C240,40 480,40 720,92 C960,144 1200,150 1440,96 L1440,160 L0,160 Z" fill="#dbe7fb" opacity="0.55" />
       <path d="M0,124 C300,84 560,92 820,126 C1060,156 1260,150 1440,118 L1440,160 L0,160 Z" fill="#c9dbf7" opacity="0.55" />
-      <path d="M560,150 C860,138 1120,96 1440,38" fill="none" stroke="#f7941d" strokeWidth="2" opacity="0.85" />
     </svg>
 
     <div className="relative max-w-6xl mx-auto">
@@ -221,14 +220,6 @@ const serviceStyles = {
 
 export const WhatWeDo = () => (
   <section className={`${SECTION} bg-gradient-to-b from-[#f5f8fe] to-[#f8fafd]`}>
-    {/* soft corner waves */}
-    <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-[34%] max-w-[420px] h-auto" viewBox="0 0 560 170" fill="none">
-      <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
-    </svg>
-    <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 w-[34%] max-w-[420px] h-auto rotate-180" viewBox="0 0 560 170" fill="none">
-      <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
-      <path d="M0 120 C90 115 170 80 250 40 C290 20 330 6 380 0 L330 0 C280 10 230 30 180 55 C110 92 50 108 0 112 Z" fill="#f7861c" />
-    </svg>
 
     <div className="relative max-w-7xl mx-auto">
       {/* Heading: pill with side lines + underlined highlight */}

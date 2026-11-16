@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import receptionImage from '../assets/about-reception.webp';
 import { Link } from 'react-router-dom';
 import { Lightbulb, UsersRound, ShieldCheck, Rocket } from 'lucide-react';
-import TestimonialSection from '../components/TestimonialSection';
+// Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
+// import TestimonialSection from '../components/TestimonialSection';
 import { WhoWeAre, VisionMissionValues, WhatWeDo, WhyChooseArvion, Journey, Leadership, FinalCTA } from '../components/about/AboutSections';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -257,7 +258,7 @@ const About = ({ isSinglePage }) => {
             <WhyChooseArvion />
             <Journey />
             <Leadership />
-            <TestimonialSection />
+            {/* <TestimonialSection /> (hidden for now, kept for future use) */}
             <FinalCTA />
           </>
         )}
@@ -267,13 +268,12 @@ const About = ({ isSinglePage }) => {
           <>
         {/* 3. Core Values Section */}
         <section className={`relative overflow-hidden w-full box-border px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#f7faff] via-white to-[#f3f7ff] ${isSinglePage ? 'pt-8 sm:pt-10 pb-8 sm:pb-10' : 'pt-8 sm:pt-10 pb-8 sm:pb-10'}`}>
-          {/* Background decoration: soft corner glow, dot grid, bottom waves with an orange line */}
+          {/* Background decoration: soft corner glow, dot grid, bottom waves */}
           <div aria-hidden="true" className="pointer-events-none absolute -top-24 -left-24 w-[420px] h-[300px] rounded-full bg-blue-100/40 blur-3xl" />
           <div aria-hidden="true" className="pointer-events-none hidden sm:block absolute top-6 right-6 lg:right-10 w-20 h-14 opacity-70 bg-[radial-gradient(#b9cdf0_1.6px,transparent_1.6px)] [background-size:14px_14px]" />
           <svg aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 w-full h-24 sm:h-32" viewBox="0 0 1440 160" preserveAspectRatio="none">
             <path d="M0,96 C240,40 480,40 720,92 C960,144 1200,150 1440,96 L1440,160 L0,160 Z" fill="#dbe7fb" opacity="0.55" />
             <path d="M0,124 C300,84 560,92 820,126 C1060,156 1260,150 1440,118 L1440,160 L0,160 Z" fill="#c9dbf7" opacity="0.55" />
-            <path d="M560,150 C860,138 1120,96 1440,38" fill="none" stroke="#f7941d" strokeWidth="2" opacity="0.85" />
           </svg>
 
           <div className="relative max-w-6xl mx-auto">

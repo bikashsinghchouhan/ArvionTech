@@ -5,7 +5,8 @@ import CoreServicesSection from '../components/CoreServicesSection';
 import AboutUs from './AboutUs';
 import Services from './Services';
 import ContactUs from './ContactUs';
-import TestimonialSection from '../components/TestimonialSection';
+// Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
+// import TestimonialSection from '../components/TestimonialSection';
 import { WhyChooseArvion } from '../components/about/AboutSections';
 import { HowItWorks } from '../components/home/HomeSections';
 import FaqSection from '../components/FaqSection';
@@ -76,10 +77,11 @@ const OnePageHome = () => {
         <Services isSinglePage={true} />
       </div>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section (hidden for now, kept for future use)
       <div id="testimonials" className="w-full">
         <TestimonialSection />
       </div>
+      */}
 
       {/* FAQ */}
       <FaqSection

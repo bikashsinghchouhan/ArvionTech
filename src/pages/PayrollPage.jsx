@@ -10,9 +10,11 @@ import {
 import {
   Factory, Laptop, GraduationCap, Hospital, Store, Building2, Building,
   Users, CalendarDays, ShieldCheck, FileText, Network, BarChart3,
+  Calculator, ClipboardCheck, Stamp, ReceiptIndianRupee, Landmark, ChevronRight,
 } from 'lucide-react';
 
-import TestimonialSection from '../components/TestimonialSection';
+// Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
+// import TestimonialSection from '../components/TestimonialSection';
 import SecurityHighlights from '../components/SecurityHighlights';
 import FaqSection from '../components/FaqSection';
 import { ComplianceGrid, HrRecordsShowcase, EmployeeBenefits } from '../components/payroll/PayrollSections';
@@ -85,12 +87,16 @@ const PayrollPage = () => {
     },
   ];
 
+  // "Our Payroll Process": the 8-step monthly cycle, in order
   const processSteps = [
-    { step: '01', title: 'Input Collection', desc: 'Secure upload of monthly attendance, new joinees, exits, and one-time variable incentives.' },
-    { step: '02', title: 'Computation & Audit', desc: 'Calculation of gross-to-net salaries, statutory deductions, tax withholdings, and loan recoveries.' },
-    { step: '03', title: 'Management Review', desc: 'Detailed variance reports and preview registers shared with your finance team for sign-off.' },
-    { step: '04', title: 'Salary Disbursement', desc: 'Bank upload files generated for single-click salary crediting into employee accounts.' },
-    { step: '05', title: 'Payslips & Statutory Filing', desc: 'Digital payslip distribution and filing of monthly PF, ESI, PT, and quarterly TDS challans.' }
+    { Icon: FileText, title: 'Collect & Validate Employee Data', desc: 'New joiners, exits and employee master data checked before the cycle starts.', tone: 'bg-blue-50 text-blue-600 ring-blue-100' },
+    { Icon: CalendarDays, title: 'Receive Attendance & Payroll Inputs', desc: 'Attendance, leave, overtime and one-time variable pay collected securely.', tone: 'bg-emerald-50 text-emerald-600 ring-emerald-100' },
+    { Icon: Calculator, title: 'Calculate Salary & Statutory Dues', desc: 'Gross-to-net pay worked out with PF, ESI, PT, LWF and TDS.', tone: 'bg-orange-50 text-[#e8730c] ring-orange-100' },
+    { Icon: ClipboardCheck, title: 'Verify & Review Payroll', desc: 'Variance checks and a preview register prepared by our team.', tone: 'bg-violet-50 text-violet-600 ring-violet-100' },
+    { Icon: Stamp, title: 'Client Approval', desc: 'Your finance team reviews the register and signs off before payout.', tone: 'bg-rose-50 text-rose-600 ring-rose-100' },
+    { Icon: ReceiptIndianRupee, title: 'Generate Payslip & Process Payment', desc: 'Bank transfer files and payslips issued on schedule.', tone: 'bg-green-50 text-green-600 ring-green-100' },
+    { Icon: Landmark, title: 'Statutory Filing & Compliance', desc: 'Monthly challans and returns filed by their due dates.', tone: 'bg-sky-50 text-sky-700 ring-sky-100' },
+    { Icon: BarChart3, title: 'Deliver Reports & MIS', desc: 'Salary register, statutory reports and MIS shared every month.', tone: 'bg-indigo-50 text-indigo-600 ring-indigo-100' },
   ];
 
   const faqs = [
@@ -501,39 +507,52 @@ const PayrollPage = () => {
         </div>
       </section>
 
-      {/* 3. OUR PROCESS SECTION */}
-      <section id="process" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50">
+      {/* 3. OUR PAYROLL PROCESS: 8 steps. One row with arrows on large screens,
+          4 + 4 on tablets, a numbered vertical list on phones. */}
+      <section id="process" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#1747a6] text-xs font-bold uppercase tracking-wider mb-4">
-              Streamlined Monthly Cadence
+              Our Payroll Process
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight mb-4">
-              How Arvion Manages Your Monthly Payroll
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
+              How Arvion Runs Your Payroll, <span className="text-[#FF7A00]">Every Month</span>
             </h2>
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-              A transparent, 5-stage workflow ensuring zero errors, on-time salary credit, and verified compliance every month.
+              A transparent 8-step cycle, from employee data to final reports, with your approval before any salary is paid.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
-            {processSteps.map((step, idx) => (
-              <motion.div
-                key={idx}
+          <motion.ol
+            variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }}
+            className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-8 gap-y-6 sm:gap-y-8 gap-x-4 list-none m-0 p-0"
+          >
+            {processSteps.map(({ Icon, title, desc, tone }, i) => (
+              <motion.li
+                key={title}
                 variants={fadeUpVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-orange-300 transition-colors"
+                className="relative flex sm:flex-col items-start sm:items-center gap-4 sm:gap-0 sm:text-center"
               >
-                <div>
-                  <span className="text-3xl font-black text-[#FF7A00] block mb-3 font-mono">{step.step}</span>
-                  <h4 className="text-base font-bold text-[#0B1B3D] mb-2">{step.title}</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{step.desc}</p>
+                {/* Arrow to the next step (tablet: within each row of 4; desktop: whole row) */}
+                {i < processSteps.length - 1 && (
+                  <ChevronRight
+                    aria-hidden="true"
+                    className={`hidden ${i % 4 === 3 ? 'lg:block' : 'sm:block'} absolute top-[22px] -right-[14px] w-5 h-5 text-slate-400`}
+                  />
+                )}
+                <span className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-full ring-4 ${tone} flex items-center justify-center flex-shrink-0 shadow-sm`}>
+                  <Icon className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.9} aria-hidden="true" />
+                  <span className="absolute -bottom-1.5 -right-1.5 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 sm:-bottom-3 w-6 h-6 rounded-full bg-[#1747a6] text-white text-[12px] font-extrabold flex items-center justify-center ring-2 ring-[#f4f8fe]">
+                    {i + 1}
+                  </span>
+                </span>
+                <div className="min-w-0 sm:mt-5">
+                  <h3 className="text-[15px] sm:text-sm font-bold text-[#0B1B3D] leading-snug">{title}</h3>
+                  <p className="mt-1 text-[13px] sm:text-xs text-slate-600 leading-relaxed">{desc}</p>
                 </div>
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </motion.ol>
         </div>
       </section>
 
@@ -569,7 +588,7 @@ const PayrollPage = () => {
       />
 
       {/* 5. TESTIMONIALS */}
-      <TestimonialSection />
+      {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* 6. FINAL CTA BANNER */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden">

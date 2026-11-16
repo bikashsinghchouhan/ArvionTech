@@ -4,13 +4,18 @@ import { Link } from 'react-router-dom';
 import {
   FaBuilding, FaStamp, FaGlobe, FaShieldAlt, FaCheckCircle,
   FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCalendarAlt, FaArrowRight, FaUserTie,
-  FaClock, FaHeadset, FaFileAlt, FaBalanceScale
+  FaClock, FaHeadset, FaFileAlt, FaBalanceScale, FaIndustry, FaUtensils, FaRocket, FaStore,
+  FaUsers, FaHandshake, FaSignature, FaCertificate,
+  FaComments, FaFileUpload, FaPaperPlane, FaCheckDouble, FaLaptopCode, FaIdCard, FaHome, FaBell, FaSearch
 } from 'react-icons/fa';
 
-import TestimonialSection from '../components/TestimonialSection';
+// Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
+// import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
+import { ProcessSteps, NeedsGuide, ChecklistGroups, DueDates, MistakesGrid } from '../components/ServiceSections';
+import { CompareTable, RegistrationFinder } from '../components/ServiceTools';
 import heroIllustration from '../assets/service-heroes/statutory-hero.webp';
-import heroImg from '../assets/service-registrations.webp';
+import benefitsImg from '../assets/service-heroes/statutory-benefits.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 16 },
@@ -46,6 +51,54 @@ const RegistrationsPage = () => {
       title: 'Trademark & IP Registration',
       description: 'Protect your brand identity, logos, and intellectual property with official trademarking. We manage the comprehensive search, application, and registration process to safeguard your most valuable assets from infringement and build a strong, defensible brand.',
       icon: <FaShieldAlt className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'udyam-registration',
+      title: 'MSME / Udyam Registration',
+      description: 'Get your business recognised as a Micro, Small or Medium Enterprise on the government Udyam portal. Registration is free and paperless, using Aadhaar, PAN and GSTIN details. It opens the door to priority-sector bank loans, collateral-free credit schemes, protection against delayed buyer payments and preference in government tenders.',
+      icon: <FaIndustry className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'fssai-licence',
+      title: 'FSSAI Food Licence',
+      description: 'Every business that makes, stores, packs, sells or delivers food needs FSSAI registration or a licence. We assess whether you need basic registration, a state licence or a central licence based on your turnover and activity, prepare the application on the FoSCoS portal and follow up until the licence is issued.',
+      icon: <FaUtensils className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'startup-india',
+      title: 'Startup India (DPIIT) Recognition',
+      description: 'Eligible companies, LLPs and registered partnerships up to 10 years old can apply for DPIIT recognition as a startup. We prepare your innovation write-up and supporting documents. Recognition helps you apply for tax benefits, self-certify labour and environmental compliances, and access government funding and tender relaxations.',
+      icon: <FaRocket className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'shop-establishment-pt',
+      title: 'Shop & Establishment and Professional Tax',
+      description: 'Shops, offices and commercial establishments must register under their state’s Shop & Establishment Act, usually soon after starting operations. Employers in states that levy Professional Tax must also register to deduct and pay PT on salaries. We handle both registrations and keep your renewals and returns on time.',
+      icon: <FaStore className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'pf-esi-registration',
+      title: 'PF & ESI Registration',
+      description: 'Establishments with 20 or more employees must register with EPFO for Provident Fund, and those with 10 or more employees in covered areas must register with ESIC for health insurance. We obtain your employer codes, link your employees and set you up for monthly contributions and returns.',
+      icon: <FaUsers className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'partnership-proprietorship',
+      title: 'Partnership & Proprietorship Setup',
+      description: 'Starting small? We draft the partnership deed and register your firm with the state Registrar of Firms, which lets the firm enforce its contracts in court. For sole proprietors, we build your business identity through GST, Udyam or Shop Act registration and help you open a current account.',
+      icon: <FaHandshake className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'dsc-din',
+      title: 'Digital Signature (DSC) & DIN',
+      description: 'Directors and authorised signatories need a Class 3 Digital Signature Certificate to sign MCA, GST and income tax filings online. Every company director also needs a Director Identification Number (DIN). We arrange the DSC through a licensed certifying authority and apply for the DIN.',
+      icon: <FaSignature className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'trade-licence',
+      title: 'Trade Licence',
+      description: 'Most municipal corporations require a trade licence before you run a shop, restaurant, workshop or other commercial activity in their area. We check what your local body requires, prepare the application with your premises documents and track it until the licence is issued and renewed.',
+      icon: <FaCertificate className="text-[#ff7f32] text-3xl" />
     },
   ];
 
@@ -351,6 +404,38 @@ const RegistrationsPage = () => {
         </div>
       </section>
 
+      {/* HOW IT WORKS */}
+      <ProcessSteps
+        title="Registered in"
+        highlight="4 Simple Steps"
+        desc="You focus on your business. We handle the forms, portals and follow-ups."
+        steps={[
+          { Icon: FaComments, title: 'Tell Us About Your Business', desc: 'Share your business type, location and plans. We tell you exactly which registrations apply to you.' },
+          { Icon: FaFileUpload, title: 'Share Your Documents', desc: 'We send a checklist made for your case, then review every document before filing to avoid rejections.' },
+          { Icon: FaPaperPlane, title: 'We File and Follow Up', desc: 'Our experts prepare and file the application on the government portal and respond to any queries raised.' },
+          { Icon: FaCheckDouble, title: 'Receive Your Certificate', desc: 'You get your registration certificate along with reminders for renewals and the returns that follow.' },
+        ]}
+      />
+
+      {/* WHICH REGISTRATIONS DO YOU NEED */}
+      <NeedsGuide
+        pill="Find Your Fit"
+        title="Which Registrations Does"
+        highlight="Your Business Need?"
+        desc="Common registrations by type of business. Your exact list depends on your state, turnover and activity."
+        items={[
+          { Icon: FaRocket, who: 'New Startup', note: 'Tech or product company', needs: ['Company Incorporation', 'DSC & DIN', 'GST Registration', 'Startup India (DPIIT)', 'Trademark'] },
+          { Icon: FaUtensils, who: 'Restaurant or Food Business', note: 'Cafe, cloud kitchen, food brand', needs: ['FSSAI Licence', 'GST Registration', 'Shop & Establishment', 'Trade Licence'] },
+          { Icon: FaGlobe, who: 'Importer or Exporter', note: 'Cross-border trade', needs: ['Import Export Code (IEC)', 'GST Registration', 'Udyam Registration', 'Company or LLP'] },
+          { Icon: FaStore, who: 'Retail Shop or Trader', note: 'Store, showroom, wholesale', needs: ['GST Registration', 'Shop & Establishment', 'Trade Licence', 'Udyam Registration'] },
+          { Icon: FaUsers, who: 'Growing Team', note: 'Hiring employees', needs: ['PF Registration', 'ESI Registration', 'Professional Tax', 'Shop & Establishment'] },
+          { Icon: FaLaptopCode, who: 'Freelancer or Consultant', note: 'Sole proprietor', needs: ['Proprietorship Setup', 'Udyam Registration', 'GST Registration', 'Professional Tax'] },
+        ]}
+      />
+
+      {/* REGISTRATION FINDER (interactive) */}
+      <RegistrationFinder />
+
       {/* 4. BENEFITS LIST */}
       <section className="py-8 md:py-10 px-4 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12">
@@ -377,14 +462,113 @@ const RegistrationsPage = () => {
               ))}
             </div>
           </motion.div>
-          <motion.div className="flex-1" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img src={heroImg} alt="Business registration documents for GST, PF, ESI and statutory compliance" loading="lazy" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#0d1b2a]/60 to-transparent"></div>
+          {/* Right: framed photo with navy and orange accent blocks */}
+          <motion.div
+            className="relative w-full max-w-2xl mx-auto px-4 pt-4 pb-4 sm:px-6 sm:pt-5 sm:pb-6 lg:py-0 lg:flex lg:flex-col flex-1"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <div aria-hidden="true" className="absolute left-0 bottom-0 lg:-bottom-5 w-[42%] h-[72%] rounded-2xl sm:rounded-3xl bg-[#0b2f8f]" />
+            <div aria-hidden="true" className="absolute right-0 top-0 lg:-top-5 w-[30%] h-[34%] sm:h-[42%] rounded-2xl sm:rounded-3xl bg-[#f7861c]" />
+            <div className="relative rounded-2xl sm:rounded-3xl bg-white p-1.5 sm:p-2 shadow-[0_24px_50px_-20px_rgba(11,42,107,.45)] lg:flex-1 lg:flex lg:flex-col">
+              <div className="rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-auto lg:flex-1 lg:min-h-[320px]">
+                <img
+                  src={benefitsImg}
+                  alt="Business registration and statutory compliance experts advising a corporate client"
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                />
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* BUSINESS STRUCTURE COMPARISON */}
+      <CompareTable
+        pill="Choose Right"
+        title="Private Limited vs LLP vs"
+        highlight="Proprietorship"
+        desc="The structure you pick decides your liability, taxes, compliance and ability to raise funds."
+        columns={[
+          { name: 'Private Limited Company', tag: 'Best for startups raising funds' },
+          { name: 'LLP', tag: 'Best for professional and service firms' },
+          { name: 'Sole Proprietorship', tag: 'Best for testing a small idea' },
+        ]}
+        rows={[
+          { label: 'Owners needed', values: ['At least 2 directors and 2 shareholders', 'At least 2 designated partners', '1 owner'] },
+          { label: 'Owner liability', values: ['Limited to share capital', 'Limited to agreed contribution', 'Unlimited: personal assets are at risk'] },
+          { label: 'Separate legal entity', values: ['Yes', 'Yes', 'No'] },
+          { label: 'Raising investment', values: ['Easiest: can issue shares to investors', 'Harder: cannot issue shares', 'Not possible'] },
+          { label: 'Income tax', values: ['Company rates, with a 22% option', 'Flat 30%', 'Individual slab rates'] },
+          { label: 'Audit', values: ['Statutory audit every year', 'Only above ₹40 lakh turnover or ₹25 lakh contribution', 'Tax audit only above the turnover limit'] },
+          { label: 'Yearly compliance', values: ['High: board meetings, AGM, AOC-4, MGT-7', 'Moderate: Form 8 and Form 11', 'Low: income tax and GST returns'] },
+          { label: 'Governing law', values: ['Companies Act, 2013', 'LLP Act, 2008', 'No separate law'] },
+        ]}
+        note="Tax rates exclude surcharge and cess. We help you pick the right structure for your plans."
+      />
+
+      {/* DOCUMENTS CHECKLIST */}
+      <ChecklistGroups
+        pill="Be Ready"
+        title="Documents to"
+        highlight="Keep Ready"
+        desc="Most registrations need a mix of the documents below. Having them ready can save days."
+        groups={[
+          { Icon: FaIdCard, heading: 'Owners, Partners or Directors', items: ['PAN card', 'Aadhaar card', 'Passport-size photograph', 'Mobile number and email ID', 'Recent bank statement or utility bill as address proof'] },
+          { Icon: FaHome, heading: 'Business Premises', items: ['Rent or lease agreement, or ownership proof', 'NOC from the property owner', 'Latest electricity, water or property tax bill', 'Photos of the premises (for some licences)'] },
+          { Icon: FaBuilding, heading: 'Business Entity', items: ['Incorporation certificate or partnership deed', 'PAN of the business', 'Cancelled cheque or bank statement', 'Board resolution or authorisation letter for the signatory'] },
+        ]}
+        note="The exact list depends on the registration. We share a checklist made for your case before we start."
+      />
+
+      {/* TYPICAL TIMELINES */}
+      <DueDates
+        pill="Plan Ahead"
+        title="How Long Does"
+        highlight="It Take?"
+        desc="Typical timelines once your documents are complete."
+        rows={[
+          { when: 'Same day', what: 'MSME / Udyam Registration', detail: 'Online, Aadhaar-based and free' },
+          { when: '1–3 days', what: 'Import Export Code (IEC)', detail: 'Applied online on the DGFT portal' },
+          { when: '1–2 days', what: 'Digital Signature (DSC)', detail: 'After identity verification' },
+          { when: '7–30 days', what: 'GST Registration', detail: 'Longer if the officer raises a query or visits the premises' },
+          { when: '7–15 days', what: 'Company Incorporation', detail: 'Name approval, filing and certificate' },
+          { when: '7–60 days', what: 'FSSAI Registration / Licence', detail: 'Basic registration is quicker than a state or central licence' },
+          { when: '1–2 days', what: 'Trademark Application', detail: 'You can use the ™ symbol once filed' },
+          { when: '12+ months', what: 'Trademark Registration', detail: 'Through examination, publication and approval' },
+        ]}
+        note="Timelines are typical, not guaranteed. Government processing times vary."
+      />
+
+      {/* WHAT YOU GET */}
+      <ChecklistGroups
+        pill="Why Arvion"
+        title="What You Get"
+        highlight="With Every Registration"
+        groups={[
+          { Icon: FaSearch, heading: 'Before Filing', items: ['A review of which registrations apply to you', 'A document checklist for your business', 'Clear timelines before we begin'] },
+          { Icon: FaPaperPlane, heading: 'During Filing', items: ['Applications prepared and filed by experts', 'Replies to department queries', 'Status updates by phone and email'] },
+          { Icon: FaBell, heading: 'After Approval', items: ['Digital copies of all certificates', 'Reminders for renewals and returns', 'Help with the compliances that follow'] },
+        ]}
+      />
+
+      {/* COMMON MISTAKES */}
+      <MistakesGrid
+        title="Common Registration"
+        highlight="Mistakes"
+        desc="Small errors cause rejections, delays and penalties. Here is how to avoid them."
+        items={[
+          { mistake: 'Choosing the wrong business structure', fix: 'Compare a company, LLP and proprietorship on funding plans, liability and compliance before you register.' },
+          { mistake: 'Names or addresses that do not match', fix: 'Keep your name and address the same across PAN, Aadhaar, bank records and rent agreement.' },
+          { mistake: 'Picking a brand name without a search', fix: 'Run a trademark search before you print, build a website or launch.' },
+          { mistake: 'Starting operations before licences', fix: 'Get mandatory licences such as FSSAI and the trade licence before you open for business.' },
+          { mistake: 'Forgetting filings after registration', fix: 'GST returns are due even in months with no sales, and companies must file annual ROC returns.' },
+          { mistake: 'Missing licence renewals', fix: 'Track expiry dates for FSSAI, trade licence and other renewable licences well in advance.' },
+        ]}
+      />
 
       {/* FAQ SECTION */}
       <FaqSection
@@ -399,7 +583,7 @@ const RegistrationsPage = () => {
       />
 
       {/* 5. TESTIMONIALS */}
-      <TestimonialSection />
+      {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* 6. CTA / CONTACT SECTION */}
       <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">

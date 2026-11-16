@@ -5,11 +5,15 @@ import {
   FaBookOpen, FaFileInvoiceDollar, FaChartPie, FaChartLine,
   FaCheckCircle, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCalendarAlt, FaArrowRight,
   FaUserTie, FaClock, FaShieldAlt, FaHeadset, FaLaptop, FaCalculator,
-  FaChartBar, FaLayerGroup, FaLock
+  FaChartBar, FaLayerGroup, FaLock, FaReceipt, FaPercent, FaFileSignature, FaLandmark,
+  FaComments, FaSync, FaRocket, FaStore, FaSchool, FaLaptopCode, FaShoppingCart, FaBuilding
 } from 'react-icons/fa';
 
-import TestimonialSection from '../components/TestimonialSection';
+// Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
+// import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
+import { ProcessSteps, NeedsGuide, ChecklistGroups, DueDates, MistakesGrid, ToolsStrip } from '../components/ServiceSections';
+import { CompareTable } from '../components/ServiceTools';
 import heroIllustration from '../assets/service-heroes/accounting-hero.webp';
 import benefitsImg from '../assets/service-heroes/accounting-benefits.webp'; // sharper 2048px copy for the benefits section
 
@@ -29,24 +33,52 @@ const staggerContainer = {
 const AccountingPage = () => {
   const detailedFeatures = [
     { 
+      id: 'bookkeeping',
       title: 'Bookkeeping & General Ledger', 
       description: 'Maintain accurate and up-to-date records of all your financial transactions, including sales, purchases, and payments. Our meticulous bookkeeping ensures your general ledger is always balanced and audit-ready.', 
       icon: <FaBookOpen className="text-[#ff7f32] text-3xl" /> 
     },
     { 
+      id: 'financial-statements',
       title: 'Financial Statement Preparation', 
       description: 'Generate key financial reports, including the balance sheet, income statement, and cash flow statement. These documents provide a clear and accurate picture of your company’s financial health.', 
       icon: <FaFileInvoiceDollar className="text-[#ff7f32] text-3xl" /> 
     },
     { 
+      id: 'expense-management',
       title: 'Expense Management & Tracking', 
       description: 'Track and categorize all your business expenses to optimize your budget and identify potential savings. We provide tools and reports to help you manage spending and improve your bottom line.', 
       icon: <FaChartPie className="text-[#ff7f32] text-3xl" /> 
     },
     { 
+      id: 'budgeting-forecasting',
       title: 'Budgeting & Financial Forecasting', 
       description: 'Plan for the future with data-driven financial forecasting and strategic budgeting. We help you set realistic financial goals and create a roadmap to achieve them, ensuring long-term stability and growth.', 
-      icon: <FaChartLine className="text-[#ff7f32] text-3xl" /> 
+      icon: <FaChartLine className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'gst-returns',
+      title: 'GST Return Filing',
+      description: 'We file your GSTR-1 (outward supplies) and GSTR-3B (summary return and tax payment) every month, or quarterly under the QRMP scheme, along with the annual return where it applies. We also reconcile your purchases with GSTR-2B so you claim the correct input tax credit and avoid notices.',
+      icon: <FaReceipt className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'tds-returns',
+      title: 'TDS Computation & Returns',
+      description: 'We calculate TDS on salaries, rent, professional fees and contractor payments, track deposit dates and file quarterly returns in Form 24Q, 26Q or 27Q. Returns are due by 31 July, 31 October, 31 January and 31 May. We also issue TDS certificates to employees and vendors.',
+      icon: <FaPercent className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'income-tax-returns',
+      title: 'Income Tax Return Filing',
+      description: 'We prepare and file income tax returns for companies, LLPs, firms, proprietors and individuals. This covers computing taxable income, matching it with Form 26AS and AIS, paying advance tax on time and coordinating with your auditor where a tax audit applies.',
+      icon: <FaFileSignature className="text-[#ff7f32] text-3xl" />
+    },
+    {
+      id: 'roc-compliance',
+      title: 'ROC Annual Compliance',
+      description: 'Companies must file financial statements in Form AOC-4 within 30 days of the AGM and the annual return in Form MGT-7 within 60 days. LLPs file Form 11 and Form 8 every year. We prepare these filings and board documents so you avoid daily late fees and director disqualification.',
+      icon: <FaLandmark className="text-[#ff7f32] text-3xl" />
     },
   ];
 
@@ -321,19 +353,20 @@ const AccountingPage = () => {
           </div>
 
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8"
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
           >
             {detailedFeatures.map((feat, index) => (
               <motion.div whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }} 
-                key={index} 
+                key={index}
+                id={feat.id}
                 variants={fadeUpVariant}
-                className="bg-[#f8f9fa] p-8 rounded-2xl border border-slate-100 hover:border-orange-200 hover:shadow-xl transition-[box-shadow,border-color,background-color,color] duration-300 flex flex-col items-start"
+                className="bg-[#f8f9fa] p-5 sm:p-8 rounded-2xl border border-slate-100 hover:border-orange-200 hover:shadow-xl transition-[box-shadow,border-color,background-color,color] duration-300 flex flex-col items-start"
               >
-                <div className="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center mb-6 shadow-sm">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-orange-50 rounded-xl flex items-center justify-center mb-4 sm:mb-6 shadow-sm">
                   {feat.icon}
                 </div>
-                <h3 className="text-lg font-bold text-[#0d1b2a] mb-3 leading-tight">{feat.title}</h3>
+                <h3 className="text-base sm:text-lg font-bold text-[#0d1b2a] mb-2 sm:mb-3 leading-tight">{feat.title}</h3>
                 <p className="text-xs text-slate-500 leading-relaxed font-medium">
                   {feat.description}
                 </p>
@@ -342,6 +375,38 @@ const AccountingPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* HOW IT WORKS */}
+      <ProcessSteps
+        title="Getting Started is"
+        highlight="Simple"
+        desc="From messy spreadsheets to clean, compliant books in four steps."
+        steps={[
+          { Icon: FaComments, title: 'Understand Your Business', desc: 'We learn how you sell, buy and pay, and list every filing your business needs.' },
+          { Icon: FaSync, title: 'Set Up or Clean Up', desc: 'We set up your books in Tally, Zoho Books, QuickBooks or Xero and catch up on any backlog.' },
+          { Icon: FaBookOpen, title: 'Monthly Books and Filings', desc: 'Transactions are recorded and reconciled, and GST, TDS and other returns are filed on time.' },
+          { Icon: FaChartBar, title: 'Reports You Can Use', desc: 'Every month you get a profit and loss, balance sheet and cash flow view to plan your next move.' },
+        ]}
+      />
+
+      {/* COMPLIANCE CALENDAR */}
+      <DueDates
+        pill="Never Miss a Deadline"
+        title="Your Compliance"
+        highlight="Calendar"
+        desc="Key due dates for most Indian businesses. We track them so you do not pay late fees."
+        rows={[
+          { when: '7th monthly', what: 'TDS / TCS payment', detail: 'Tax deducted in the previous month (March: by 30 April)' },
+          { when: '11th monthly', what: 'GSTR-1', detail: 'Outward supplies, for monthly filers' },
+          { when: '15th monthly', what: 'PF and ESI contributions', detail: 'Employer and employee share for the previous month' },
+          { when: '20th monthly', what: 'GSTR-3B', detail: 'Summary return and GST payment, for monthly filers' },
+          { when: '15 Jun, Sep, Dec, Mar', what: 'Advance tax instalments', detail: 'For businesses and individuals with tax above the limit' },
+          { when: '31 Jul, Oct, Jan, May', what: 'TDS returns', detail: 'Quarterly Forms 24Q, 26Q and 27Q' },
+          { when: '31 December', what: 'GSTR-9 annual return', detail: 'For taxpayers above the annual turnover limit' },
+          { when: 'After the AGM', what: 'AOC-4 and MGT-7', detail: 'Company financial statements and annual return' },
+        ]}
+        note="Dates follow current rules. The government sometimes extends deadlines, and we track every change for you."
+      />
 
       {/* 4. BENEFITS LIST */}
       <section className="relative w-full bg-[#f8fafd] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 overflow-hidden">
@@ -404,6 +469,82 @@ const AccountingPage = () => {
         </div>
       </section>
 
+      {/* WHO WE WORK WITH */}
+      <NeedsGuide
+        pill="Who We Help"
+        title="Accounting Built for"
+        highlight="Your Business"
+        desc="Every business has different books. Here is what we usually handle for each."
+        items={[
+          { Icon: FaRocket, who: 'Startups', note: 'Early and growth stage', needs: ['Bookkeeping', 'GST Returns', 'TDS', 'ROC Filings', 'Investor Reports'] },
+          { Icon: FaStore, who: 'Small Businesses and Traders', note: 'Shops, distributors, services', needs: ['Bookkeeping', 'GST Returns', 'Income Tax Return', 'Cash Flow'] },
+          { Icon: FaSchool, who: 'Schools and Institutions', note: 'K-12, colleges, coaching', needs: ['Fee Accounting', 'Salary TDS', 'Audit Support', 'Budgeting'] },
+          { Icon: FaShoppingCart, who: 'E-commerce Sellers', note: 'Marketplaces and own store', needs: ['Settlement Reconciliation', 'GST Returns', 'TCS Credit', 'Inventory'] },
+          { Icon: FaLaptopCode, who: 'Professionals and Freelancers', note: 'Consultants, doctors, creators', needs: ['Income Tax Return', 'Advance Tax', 'GST Returns', 'Expense Tracking'] },
+          { Icon: FaBuilding, who: 'Companies and LLPs', note: 'Private limited, LLP, OPC', needs: ['Financial Statements', 'Statutory Audit Support', 'ROC Filings', 'TDS Returns'] },
+        ]}
+      />
+
+      {/* WHAT YOU GET */}
+      <ChecklistGroups
+        pill="Why Arvion"
+        title="What You Get"
+        highlight="Every Month"
+        groups={[
+          { Icon: FaBookOpen, heading: 'Clean Books', items: ['Every sale, purchase and expense recorded', 'Bank and card accounts reconciled', 'Receivables and payables tracked'] },
+          { Icon: FaReceipt, heading: 'Timely Filings', items: ['GST returns with input credit matched', 'TDS payments and quarterly returns', 'Reminders before every due date'] },
+          { Icon: FaChartLine, heading: 'Clear Reports', items: ['Profit and loss statement', 'Balance sheet and cash flow view', 'Expense breakdown by category'] },
+        ]}
+      />
+
+      {/* DIY vs IN-HOUSE vs ARVION */}
+      <CompareTable
+        pill="Compare Options"
+        title="Do It Yourself, Hire, or"
+        highlight="Outsource?"
+        desc="See how outsourcing to Arvion compares with the other ways of keeping your books."
+        columns={[
+          { name: 'Do It Yourself', tag: 'Owner keeps the books' },
+          { name: 'Full-Time Accountant', tag: 'In-house hire' },
+          { name: 'Arvion Accounting', tag: 'Outsourced team', highlight: true },
+        ]}
+        rows={[
+          { label: 'Your time', values: ['Hours every week', 'Supervising and reviewing', 'Only reviewing reports'] },
+          { label: 'Tax rule updates', values: ['You track them yourself', 'Depends on one person', 'A team that tracks every change'] },
+          { label: 'Deadlines', values: ['Easy to miss', 'Depends on the accountant', 'Calendar with reminders'] },
+          { label: 'Leave and exits', values: ['Work stops', 'Gap until a replacement joins', 'Team-based, no gaps'] },
+          { label: 'Reports', values: ['Rarely prepared', 'Varies by person', 'Monthly P&L, balance sheet and cash flow'] },
+          { label: 'Cost', values: ['Your own time', 'Fixed salary and benefits', 'Monthly fee for only the services you need'] },
+        ]}
+      />
+
+      {/* SOFTWARE AND PORTALS */}
+      <ToolsStrip
+        pill="Tools We Use"
+        title="Software and Portals"
+        highlight="We Work With"
+        desc="We work in the software you already use and file directly on the government portals."
+        groups={[
+          { Icon: FaLaptop, heading: 'Accounting Software', items: ['Tally Prime', 'Zoho Books', 'QuickBooks', 'Xero', 'Excel / Google Sheets'] },
+          { Icon: FaLandmark, heading: 'Government Portals', items: ['GST Portal', 'Income Tax e-Filing', 'TRACES', 'MCA', 'EPFO', 'ESIC'] },
+        ]}
+      />
+
+      {/* COMMON MISTAKES */}
+      <MistakesGrid
+        title="Accounting Mistakes That"
+        highlight="Cost Money"
+        desc="These everyday slips lead to lost credits, interest and late fees."
+        items={[
+          { mistake: 'Mixing personal and business spending', fix: 'Use a separate business bank account and card so every transaction is easy to classify.' },
+          { mistake: 'Claiming GST credit without matching', fix: 'Reconcile purchases with GSTR-2B every month so you claim only the credit your suppliers have reported.' },
+          { mistake: 'Paying TDS late', fix: 'Deposit TDS by the 7th of the next month. Late payment attracts interest for every month of delay.' },
+          { mistake: 'Updating books only at year end', fix: 'Record and reconcile monthly so errors are caught early and tax filing is quick.' },
+          { mistake: 'Losing bills and receipts', fix: 'Scan or photograph every bill and attach it to the entry, so expenses hold up in a tax review.' },
+          { mistake: 'No backup of accounting data', fix: 'Back up your books regularly, or use cloud software that keeps copies for you.' },
+        ]}
+      />
+
       {/* FAQ SECTION */}
       <FaqSection
         desc="Common questions about our accounting services and processes."
@@ -412,12 +553,15 @@ const AccountingPage = () => {
           { Icon: FaChartBar, q: "How often will I receive financial reports?", a: "We provide detailed financial reports on a monthly basis. However, we can also customize reporting frequency (weekly or quarterly) based on your specific business needs." },
           { Icon: FaShieldAlt, q: "Are your accounting services compliant with tax laws?", a: "Yes, our team of experts stays completely up-to-date with all local, state, and federal tax regulations to ensure 100% compliance and avoid any penalties." },
           { Icon: FaLayerGroup, q: "Can you help with historical cleanup of my books?", a: "Absolutely. We offer catch-up and cleanup services to organize your past financial records, reconcile accounts, and bring your books entirely up to date." },
+          { Icon: FaReceipt, q: "Which GST returns does my business need to file?", a: "Most regular taxpayers file GSTR-1 for sales and GSTR-3B for the tax summary and payment, monthly or quarterly under the QRMP scheme. Composition dealers follow a separate, simpler filing cycle. We set up the right calendar for your registration type." },
+          { Icon: FaPercent, q: "What happens if a TDS return is filed late?", a: "A late fee is charged for every day of delay until the return is filed, capped at the TDS amount for that quarter. Further penalties and interest can apply for late deposit or non-filing, so we file before each quarterly due date." },
+          { Icon: FaLandmark, q: "Does a company with no business activity still need ROC filings?", a: "Yes. Every registered company must hold its AGM and file its financial statements and annual return with the ROC each year, even with zero revenue. Missed filings attract daily late fees and can lead to director disqualification." },
           { Icon: FaLock, q: "How secure is my financial data?", a: "We take data security very seriously. We use enterprise-grade encryption, secure servers, and strict access controls to ensure your sensitive financial information is always protected." },
         ]}
       />
 
       {/* 5. TESTIMONIALS */}
-      <TestimonialSection />
+      {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* 6. CTA / CONTACT SECTION */}
       <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
