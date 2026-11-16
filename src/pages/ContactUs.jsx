@@ -7,12 +7,31 @@ import { FaSquarePhone, FaSquarePhoneFlip } from "react-icons/fa6";
 import emailjs from '@emailjs/browser';
 import { pageConfig } from '../configurations/SchoolManagementConfig';
 
+// 30-minute meeting slots, 09:00 to 20:00 (24-hour "HH:MM").
+const TIME_SLOTS = Array.from({ length: 23 }, (_, i) => {
+  const mins = 9 * 60 + i * 30;
+  return `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
+});
+
+const toMinutes = (t) => {
+  const [h, m] = t.split(':').map(Number);
+  return h * 60 + m;
+};
+
+// "2026-11-16" -> "Mon 16-11-2026"
+const formatMeetingDate = (iso) => {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-').map(Number);
+  const weekday = new Date(y, m - 1, d).toLocaleDateString('en-GB', { weekday: 'short' });
+  return `${weekday} ${String(d).padStart(2, '0')}-${String(m).padStart(2, '0')}-${y}`;
+};
+
 const ContactUs = ({ isSinglePage }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '', email: '', company: '', phone: '',
     services: [], studentRange: '', schoolPlan: '', outsourcingTeamSize: '', registrationType: '', accountingVolume: '',
-    date: '', timeSlot: '', privacyPolicy: false,
+    date: '', startTime: '', endTime: '', privacyPolicy: false,
   });
 
   // State for validation
@@ -76,8 +95,36 @@ const ContactUs = ({ isSinglePage }) => {
 
   // Check if Step 3 is completely valid to enable button
   const isStep3Valid = () => {
-    return formData.date && formData.timeSlot && formData.privacyPolicy;
+    return formData.date && formData.startTime && formData.endTime && formData.privacyPolicy;
   };
+
+  // Start times on the chosen date; past slots are hidden when the date is today.
+  const availableStartTimes = (() => {
+    const slots = TIME_SLOTS.slice(0, -1);
+    if (formData.date !== today) return slots;
+    const now = new Date();
+    const nowMins = now.getHours() * 60 + now.getMinutes();
+    return slots.filter((t) => toMinutes(t) > nowMins);
+  })();
+
+  const availableEndTimes = formData.startTime
+    ? TIME_SLOTS.filter((t) => toMinutes(t) > toMinutes(formData.startTime))
+    : [];
+
+  const handleDateChange = (e) => {
+    const date = e.target.value;
+    setFormData((prev) => ({ ...prev, date, startTime: '', endTime: '' }));
+  };
+
+  const handleStartTimeChange = (e) => {
+    const startTime = e.target.value;
+    // Default to a 30-minute meeting.
+    const next = TIME_SLOTS.find((t) => toMinutes(t) === toMinutes(startTime) + 30) || '';
+    setFormData((prev) => ({ ...prev, startTime, endTime: next }));
+  };
+
+  const meetingDate = formatMeetingDate(formData.date);
+  const meetingTime = formData.startTime && formData.endTime ? `${formData.startTime} - ${formData.endTime}` : '';
 
   const handleNext = () => {
     // Double check validation before moving
@@ -102,7 +149,7 @@ const ContactUs = ({ isSinglePage }) => {
     try {
       // 1. Parameters for Admin Lead Notification
       const templateParams = {
-        Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${formData.date} at ${formData.timeSlot}.`,
+        Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${meetingDate} at ${meetingTime}.`,
         Name: formData.name,
         Email: formData.email,
         to_name: formData.name,
@@ -117,8 +164,8 @@ const ContactUs = ({ isSinglePage }) => {
         Outsourcing_Team_Size: formData.outsourcingTeamSize || "N/A",
         Registration_Type: formData.registrationType || "N/A",
         Accounting_Volume: formData.accountingVolume || "N/A",
-        Meeting_Date: formData.date,
-        Meeting_Time: formData.timeSlot
+        Meeting_Date: meetingDate,
+        Meeting_Time: meetingTime
       };
 
       // Send lead notification to Arvion Team - email.js
@@ -141,11 +188,11 @@ const ContactUs = ({ isSinglePage }) => {
         name: formData.name,
         Name: formData.name,
         Main_Service: selectedService,
-        Meeting_Date: formData.date,
-        Meeting_Time: formData.timeSlot,
+        Meeting_Date: meetingDate,
+        Meeting_Time: meetingTime,
         Company: formData.company || "your organization",
         Subject: "Thank You for Reaching Out to Arvion Technologies - We'll Be in Touch Shortly!",
-        Message: `Dear ${formData.name},\n\nThank you for contacting Arvion Technologies! We have received your inquiry regarding our ${selectedService} solutions.\n\nOur team has noted your requested consultation for ${formData.date} at ${formData.timeSlot}. One of our domain specialists will review your requirements and get in touch with you shortly to confirm your session.\n\nIf you have any urgent questions or need immediate assistance, please feel free to reply directly to this email or call us at +91 9535764655.\n\nWarm regards,\nClient Success Team\nArvion Technologies Pvt Ltd\nwww.arviontechnologies.com`
+        Message: `Dear ${formData.name},\n\nThank you for contacting Arvion Technologies! We have received your inquiry regarding our ${selectedService} solutions.\n\nOur team has noted your requested consultation for ${meetingDate} at ${meetingTime}. One of our domain specialists will review your requirements and get in touch with you shortly to confirm your session.\n\nIf you have any urgent questions or need immediate assistance, please feel free to reply directly to this email or call us at +91 9535764655.\n\nWarm regards,\nClient Success Team\nArvion Technologies Pvt Ltd\nwww.arviontechnologies.com`
       };
 
       try {
@@ -525,28 +572,53 @@ const ContactUs = ({ isSinglePage }) => {
                 </div>
                 <p className="step-description text-xs text-[#555] mb-4 leading-relaxed font-semibold">Select a date and a time slot that works best for you. We will confirm the final meeting details via email.</p>
 
-                <div className="mb-4">
-                  <label className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Preferred Date</label>
-                  <input
-                    type="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    className={`date-input w-full px-3 py-3 border rounded-xl text-[15px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
-                    min={today}
-                  />
-                </div>
+                {meetingDate && (
+                  <div className="mb-4 pb-3 border-b border-[#d5dbe5] text-[16px] font-semibold text-[#0b1f4d]">
+                    {meetingDate}{meetingTime && <span> {meetingTime}</span>}
+                  </div>
+                )}
 
-                <div className="mb-4">
-                  <label className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Preferred Time to Call</label>
-                  <input
-                    type="text"
-                    name="timeSlot"
-                    value={formData.timeSlot}
-                    onChange={handleChange}
-                    placeholder="e.g., 10:00 AM - 11:00 AM"
-                    className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[15px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32]"
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr_1fr] gap-3 mb-4">
+                  <div>
+                    <label htmlFor="meetingDate" className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Start date</label>
+                    <input
+                      id="meetingDate"
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={handleDateChange}
+                      className={`date-input w-full px-3 py-3 border rounded-xl text-[15px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      min={today}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="meetingStart" className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Start time</label>
+                    <select
+                      id="meetingStart"
+                      name="startTime"
+                      value={formData.startTime}
+                      onChange={handleStartTimeChange}
+                      disabled={!formData.date}
+                      className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[15px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
+                    >
+                      <option value="">{formData.date && availableStartTimes.length === 0 ? 'No slots left' : '--:--'}</option>
+                      {availableStartTimes.map((t) => <option key={t} value={t}>{t}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="meetingEnd" className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">End time</label>
+                    <select
+                      id="meetingEnd"
+                      name="endTime"
+                      value={formData.endTime}
+                      onChange={handleChange}
+                      disabled={!formData.startTime}
+                      className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[15px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
+                    >
+                      <option value="">--:--</option>
+                      {availableEndTimes.map((t) => <option key={t} value={t}>{t}</option>)}
+                    </select>
+                  </div>
                 </div>
 
                 <div className="privacy-policy-group flex items-start gap-2 mt-4 mb-4">
