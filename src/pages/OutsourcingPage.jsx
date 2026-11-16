@@ -275,14 +275,14 @@ const OutsourcingPage = () => {
           </motion.h2>
           <motion.p
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-base md:text-lg text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-lg text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
             Let's discuss how our global talent pool can provide the momentum your business needs.
           </motion.p>
 
           <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-10 mb-8 md:mb-12"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-10 mb-8"
           >
             <div className="w-full text-center flex justify-center">
               <p className="text-slate-200 text-xs md:text-sm font-medium leading-relaxed max-w-2xl text-center">

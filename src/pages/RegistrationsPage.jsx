@@ -323,7 +323,7 @@ const RegistrationsPage = () => {
       {/* 3. FEATURES GRID */}
       <section id="services" className="scroll-mt-20 py-8 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 sm:mb-10">
             <h2 className="text-3xl font-bold text-[#0d1b2a] uppercase tracking-tight">A Closer Look at Our Features</h2>
             <div className="w-24 h-1 bg-[#ff7f32] mx-auto mt-4 rounded-full"></div>
           </div>
@@ -416,14 +416,14 @@ const RegistrationsPage = () => {
           </motion.h2>
           <motion.p
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-base md:text-lg text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-lg text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
             Contact us today to ensure your corporate entity is fully compliant.
           </motion.p>
 
           <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-10 mb-8 md:mb-12"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-10 mb-8"
           >
             <div className="w-full text-center flex justify-center">
               <p className="text-slate-200 text-xs md:text-sm font-medium leading-relaxed max-w-2xl text-center">

@@ -85,7 +85,7 @@ const FeaturesSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading with Accent Badge */}
-        <div className="flex flex-col items-center text-center mb-12 md:mb-16">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-10">
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-[#ff7f32] bg-orange-50 border border-orange-100 mb-3 shadow-sm">
             Core Modules
           </span>

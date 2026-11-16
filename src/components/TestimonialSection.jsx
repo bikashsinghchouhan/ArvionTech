@@ -73,7 +73,7 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden pt-12 pb-10 sm:pt-16 sm:pb-12 px-4 sm:px-6 w-full mx-auto bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
+    <section className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full mx-auto bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
       {/* Soft waves + orange swooshes in the corners */}
       <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-[45%] max-w-[560px] h-auto" viewBox="0 0 560 170" fill="none">
         <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
@@ -86,7 +86,7 @@ const TestimonialSection = () => {
       </svg>
 
       <div className="relative max-w-7xl mx-auto">
-        <div className="text-center mb-8 sm:mb-10 md:mb-12 flex flex-col items-center">
+        <div className="text-center mb-8 sm:mb-10 flex flex-col items-center">
           <motion.span
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ffe9d6] border border-[#ffd3ad] text-[#e8730c] text-[13px] sm:text-[14px] font-extrabold"

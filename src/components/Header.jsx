@@ -61,8 +61,8 @@ const navItems = [
     children: [
       { name: 'Administrator Portal', path: `${ERP}#portals`, icon: UserCog },
       { name: 'Teacher Portal', path: `${ERP}#portals`, icon: School },
+      { name: 'Staff Portal', path: `${ERP}#portals`, icon: UsersRound },
       { name: 'Student Portal', path: `${ERP}#portals`, icon: GraduationCap },
-      { name: 'Parent Portal', path: `${ERP}#portals`, icon: UsersRound },
     ],
   },
   {
@@ -357,7 +357,7 @@ const Header = () => {
               transition={{ type: 'tween', duration: 0.3, ease: 'circOut' }}
               className="fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-white shadow-2xl z-[70] flex flex-col lg:hidden"
             >
-              <div className="flex items-center justify-between px-5 h-16 bg-gradient-to-r from-[#0e3c96] to-[#1747a6] text-white flex-shrink-0">
+              <div className="flex items-center justify-between px-5 h-16 bg-gradient-to-r from-[#f7861c] to-[#f2700f] text-white flex-shrink-0">
                 <span className="text-[15px] font-extrabold tracking-wide">Arvion Technologies</span>
                 <button type="button" onClick={() => setIsMenuOpen(false)} aria-label="Close menu" className="p-2 rounded-full hover:bg-white/15 cursor-pointer">
                   <X size={18} />

@@ -1,6 +1,6 @@
 /* === Base styles (apply to all) === */
 .interactive-services-v2 {
-  padding: 120px 0;
+  padding: 56px 0;
 background-color: #F2784B;
   background: linear-gradient(-45deg, #ff7e5f, #feb47b, #ff9966, #ff9972);
   background-size: 400% 400%;
@@ -211,7 +211,7 @@ background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
 
 /* === Mobile Styles === */
 @media (max-width: 768px) {
-  .interactive-services-v2 { padding: 60px 0; }
+  .interactive-services-v2 { padding: 40px 0; }
   .card-wrapper-v2 { padding: 0 5%; }
   .service-card-v2 { height: 250px; } /* Fixed height for mobile consistency */
   .prev-v2 { left: -10px; }

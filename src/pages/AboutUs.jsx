@@ -152,7 +152,7 @@ const About = ({ isSinglePage }) => {
 
         {/* 1b. Compact hero used when embedded in the home page */}
         {isSinglePage && (
-        <section className="relative w-full box-border bg-white px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <section className="relative w-full box-border bg-white px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-14 items-center lg:items-stretch">
 
             {/* Left: text */}
@@ -181,13 +181,13 @@ const About = ({ isSinglePage }) => {
 
             {/* Right: framed photo with navy (bottom-left) and orange (top-right) accent blocks */}
             <motion.div
-              className="relative w-full max-w-2xl mx-auto px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-6 lg:py-0 lg:flex lg:flex-col"
+              className="relative w-full max-w-2xl mx-auto px-4 pt-4 pb-4 sm:px-6 sm:pt-5 sm:pb-6 lg:py-0 lg:flex lg:flex-col"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.15 }}
             >
               <div aria-hidden="true" className="absolute left-0 bottom-0 lg:-bottom-5 w-[58%] h-[78%] rounded-2xl sm:rounded-3xl bg-[#0b2f8f]" />
-              <div aria-hidden="true" className="absolute right-0 top-0 lg:-top-5 w-[30%] h-[42%] rounded-2xl sm:rounded-3xl bg-[#f7861c]" />
+              <div aria-hidden="true" className="absolute right-0 top-0 lg:-top-5 w-[30%] h-[34%] sm:h-[42%] rounded-2xl sm:rounded-3xl bg-[#f7861c]" />
 
               <div
                 className="relative rounded-2xl sm:rounded-3xl bg-white p-1.5 sm:p-2 shadow-[0_24px_50px_-20px_rgba(11,42,107,.45)] group cursor-pointer lg:flex-1 lg:flex lg:flex-col"
@@ -266,7 +266,7 @@ const About = ({ isSinglePage }) => {
         {isSinglePage && (
           <>
         {/* 3. Core Values Section */}
-        <section className={`relative overflow-hidden w-full box-border px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#f7faff] via-white to-[#f3f7ff] ${isSinglePage ? 'pt-8 sm:pt-10 pb-14 sm:pb-16' : 'pt-8 sm:pt-10 pb-14 sm:pb-16'}`}>
+        <section className={`relative overflow-hidden w-full box-border px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#f7faff] via-white to-[#f3f7ff] ${isSinglePage ? 'pt-8 sm:pt-10 pb-8 sm:pb-10' : 'pt-8 sm:pt-10 pb-8 sm:pb-10'}`}>
           {/* Background decoration: soft corner glow, dot grid, bottom waves with an orange line */}
           <div aria-hidden="true" className="pointer-events-none absolute -top-24 -left-24 w-[420px] h-[300px] rounded-full bg-blue-100/40 blur-3xl" />
           <div aria-hidden="true" className="pointer-events-none hidden sm:block absolute top-6 right-6 lg:right-10 w-20 h-14 opacity-70 bg-[radial-gradient(#b9cdf0_1.6px,transparent_1.6px)] [background-size:14px_14px]" />
@@ -278,7 +278,7 @@ const About = ({ isSinglePage }) => {
 
           <div className="relative max-w-6xl mx-auto">
             {/* Heading */}
-            <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
+            <div className="flex flex-col items-center text-center mb-8 sm:mb-10">
               <div className="flex items-center gap-3 sm:gap-4">
                 <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />
                 <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">
@@ -334,7 +334,7 @@ const About = ({ isSinglePage }) => {
         </section>
 
         {/* 4. Quote / Mission Vision Section */}
-        <section className={isSinglePage ? "py-8 sm:py-10 bg-white w-full box-border px-4 sm:px-6 lg:px-8 border-t border-slate-100" : "py-10 sm:py-12 bg-white w-full box-border px-4 sm:px-6 lg:px-8 border-t border-slate-100"}>
+        <section className={isSinglePage ? "py-8 sm:py-10 bg-white w-full box-border px-4 sm:px-6 lg:px-8 border-t border-slate-100" : "py-8 sm:py-10 bg-white w-full box-border px-4 sm:px-6 lg:px-8 border-t border-slate-100"}>
           <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
             <span className="text-[#ff7f32] opacity-25 text-5xl mb-6">
               <FaQuoteLeft />

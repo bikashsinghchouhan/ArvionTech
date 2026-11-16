@@ -201,7 +201,7 @@ const ContactUs = ({ isSinglePage }) => {
   // ---------------- RENDER SUCCESS VIEW ----------------
   if (isSubmitted) {
     return (
-      <div className={isSinglePage ? "py-16 bg-[#f8f9fa] w-full flex items-center justify-center box-border px-4" : "contact-page-v2"}>
+      <div className={isSinglePage ? "py-8 sm:py-10 bg-[#f8f9fa] w-full flex items-center justify-center box-border px-4" : "contact-page-v2"}>
         <motion.div className="success-message" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
           <FaCheckCircle className="success-icon" />
           <h2>Thank You!</h2>
@@ -217,7 +217,7 @@ const ContactUs = ({ isSinglePage }) => {
   }
 
   return (
-    <div className={isSinglePage ? "relative overflow-hidden pt-10 pb-12 sm:pt-14 sm:pb-20 bg-gradient-to-b from-[#f3f7fd] to-white w-full flex flex-col items-center justify-center box-border px-0 sm:px-4" : "tw-contact-page min-h-screen bg-[#f0f2f5] p-0 pt-16 sm:p-10 sm:pt-[120px] flex flex-col items-center justify-start sm:justify-center box-border"}>
+    <div className={isSinglePage ? "relative overflow-hidden pt-10 pb-10 sm:pt-12 sm:pb-12 bg-gradient-to-b from-[#f3f7fd] to-white w-full flex flex-col items-center justify-center box-border px-0 sm:px-4" : "tw-contact-page min-h-screen bg-[#f0f2f5] p-0 pt-16 sm:p-10 sm:pt-[120px] flex flex-col items-center justify-start sm:justify-center box-border"}>
 
       {!isSinglePage && (
         <h1 className="sr-only">Contact Arvion Technologies – Book a Free Consultation</h1>

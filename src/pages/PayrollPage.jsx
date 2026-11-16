@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   FaArrowRight, FaCalendarAlt, FaUserTie, FaBolt, FaShieldAlt,
-  FaHeadset, FaPhoneAlt, FaCheckCircle, FaFileInvoiceDollar,
-  FaCalculator, FaUniversity, FaReceipt, FaChartBar, FaChevronDown,
-  FaRegQuestionCircle, FaClock
+  FaHeadset, FaPhoneAlt, FaCheckCircle, FaClock,
+  FaBuilding, FaMapMarkedAlt, FaFileInvoice, FaLock, FaExchangeAlt
 } from 'react-icons/fa';
 
+import {
+  Factory, Laptop, GraduationCap, Hospital, Store, Building2, Building,
+  Users, CalendarDays, ShieldCheck, FileText, Network, BarChart3,
+} from 'lucide-react';
+
 import TestimonialSection from '../components/TestimonialSection';
+import SecurityHighlights from '../components/SecurityHighlights';
+import FaqSection from '../components/FaqSection';
+import { ComplianceGrid, HrRecordsShowcase, EmployeeBenefits } from '../components/payroll/PayrollSections';
 import heroIllustration from '../assets/service-heroes/payroll.webp';
 
 const fadeUpVariant = {
@@ -24,44 +31,58 @@ const staggerContainer = {
   }
 };
 
+// "Coverage Includes": everything handled in a monthly payroll cycle, shown as a two-column checklist
+const coverageItems = [
+  'Salary Structure & Component Setup',
+  'Attendance, Leave & LOP Calculation',
+  'Arrear, Recovery & Revisions',
+  'Bonus, Incentive & Reimbursements',
+  'Full & Final Settlement',
+  'PF, ESI, PT, LWF & TDS Compliance',
+  'Income Tax Declaration & Form 16',
+  'Payroll Reconciliation & Audit Support',
+  'Payroll Registers & Statutory Reports',
+  'Employee Helpdesk & Query Resolution',
+];
+
+// "Who Can Use Our Service?": each industry with the payroll need we solve for it
+const industries = [
+  { Icon: Factory, name: 'Manufacturing', desc: 'Shift wages, overtime, contract labour and factory compliance (PF, ESI, LWF) calculated accurately every month.', tone: 'bg-orange-50 text-[#e8730c] ring-orange-100' },
+  { Icon: Laptop, name: 'IT & Software', desc: 'Flexible CTC structures, variable pay, flexi benefits and investment declarations for TDS handled end to end.', tone: 'bg-blue-50 text-[#1d6ff2] ring-blue-100' },
+  { Icon: GraduationCap, name: 'Educational Institutions', desc: 'Payroll for teaching and non-teaching staff, grade-wise pay scales, arrears and contract staff.', tone: 'bg-violet-50 text-violet-600 ring-violet-100' },
+  { Icon: Hospital, name: 'Healthcare & Hospitals', desc: 'Rotating shifts, night and on-call allowances for doctors, nurses and support staff.', tone: 'bg-rose-50 text-rose-600 ring-rose-100' },
+  { Icon: Store, name: 'Retail & Services', desc: 'Staff across many outlets and states, frequent joiners and exits, sales incentives and state-wise PT.', tone: 'bg-amber-50 text-amber-600 ring-amber-100' },
+  { Icon: Building2, name: 'SMEs & Startups', desc: 'Compliant payroll from your first hire, without building an in-house payroll team.', tone: 'bg-emerald-50 text-emerald-600 ring-emerald-100' },
+  { Icon: Building, name: 'Corporate Organisations', desc: 'Multi-entity, multi-state payroll with approvals, audit-ready registers and management reports.', tone: 'bg-sky-50 text-sky-600 ring-sky-100' },
+];
+
 const PayrollPage = () => {
-  const [activeFaq, setActiveFaq] = useState(null);
-
-  const toggleFaq = (idx) => {
-    setActiveFaq(activeFaq === idx ? null : idx);
-  };
-
-  const detailedFeatures = [
+  // "Our End-to-End Payroll Service Modules": six modules, each with four inclusions
+  const serviceModules = [
     {
-      title: 'Automated Gross-to-Net Computation',
-      description: 'Error-free calculation of basic pay, HRA, special allowances, overtime, incentives, and attendance-based deductions based on company policies.',
-      icon: <FaCalculator className="text-[#FF7A00] text-3xl" />
+      Icon: Users, title: 'Employee Payroll Management', tone: 'bg-blue-600',
+      points: ['Employee master creation and maintenance', 'Salary structure, CTC and component setup', 'New joining, updates and exits', 'Salary revisions and history management'],
     },
     {
-      title: 'Statutory Compliance (PF, ESI, PT, TDS)',
-      description: 'End-to-end deduction and filing for Provident Fund, Employee State Insurance, Professional Tax, TDS withholding, and Labor Welfare Fund.',
-      icon: <FaShieldAlt className="text-[#FF7A00] text-3xl" />
+      Icon: CalendarDays, title: 'Monthly Payroll Processing', tone: 'bg-emerald-600',
+      points: ['Monthly salary calculation and processing', 'Attendance, leave, overtime and LOP calculation', 'Incentives, bonus, arrears and recovery', 'Full & final settlement on exit'],
     },
     {
-      title: 'Digital Payslip Generation & Distribution',
-      description: 'Automated generation and encrypted delivery of branded digital payslips directly to employee inboxes and self-service portals.',
-      icon: <FaFileInvoiceDollar className="text-[#FF7A00] text-3xl" />
+      Icon: ShieldCheck, title: 'Statutory Compliance', tone: 'bg-violet-600',
+      points: ['PF, ESI, PT, LWF and other applicable compliance', 'TDS on salary and income tax compliance', 'Income tax declarations, investment proofs and Form 16', 'Preparation of statutory returns and filing support'],
     },
     {
-      title: 'Income Tax Declarations & Form 16',
-      description: 'Seamless verification of investment proofs, tax regime selection (Old vs New), quarterly TDS returns, and one-click Form 16 generation.',
-      icon: <FaReceipt className="text-[#FF7A00] text-3xl" />
+      Icon: FileText, title: 'Payslip & Employee Services', tone: 'bg-[#FF7A00]',
+      points: ['Monthly payslip generation and distribution', 'Form 16 and annual salary statements', 'Reimbursement processing and settlements', 'Employee payroll query and support'],
     },
     {
-      title: 'Direct Bank Transfer Payout Files',
-      description: 'Pre-formatted NEFT/RTGS bank disbursement files compatible with all major Indian banks for seamless on-time salary processing.',
-      icon: <FaUniversity className="text-[#FF7A00] text-3xl" />
+      Icon: Network, title: 'Employee Lifecycle Management', tone: 'bg-[#1747a6]',
+      points: ['End-to-end employee lifecycle support', 'Promotions, transfers and role changes', 'Salary structure and component updates', 'Resignation, exit and full & final settlement'],
     },
     {
-      title: 'Comprehensive MIS & Audit Reports',
-      description: 'Executive dashboards, salary registers, variance analysis, head-count reports, and audit-ready compliance summaries.',
-      icon: <FaChartBar className="text-[#FF7A00] text-3xl" />
-    }
+      Icon: BarChart3, title: 'Payroll Reports & MIS', tone: 'bg-indigo-600',
+      points: ['Monthly salary register and payroll statements', 'Department-wise and employee-wise reports', 'PF, ESI, PT, TDS and statutory reports', 'Payroll cost analysis and management MIS'],
+    },
   ];
 
   const processSteps = [
@@ -74,22 +95,27 @@ const PayrollPage = () => {
 
   const faqs = [
     {
+      Icon: FaBuilding,
       q: 'What types of businesses can use Arvion Payroll Outsourcing?',
       a: 'We support schools, colleges, educational trusts, startups, SMEs, and enterprise companies across India with custom pay structures and multi-state compliance.'
     },
     {
+      Icon: FaMapMarkedAlt,
       q: 'How do you handle multi-state Professional Tax (PT) and regional labor laws?',
       a: 'Our compliance engine is updated regularly with state-specific PT slabs, LWF rates, and local statutory amendments across all Indian states and Union Territories.'
     },
     {
+      Icon: FaFileInvoice,
       q: 'Can employees access their payslips and tax computation sheets online?',
       a: 'Yes! Employees receive password-protected digital payslips via email and can view historical payslips, tax sheets, and Form 16 via our self-service portal.'
     },
     {
+      Icon: FaLock,
       q: 'How is employee salary and banking data protected?',
       a: 'We enforce enterprise-grade 256-bit SSL encryption, strict role-based access control (RBAC), daily automated backups, and non-disclosure privacy agreements.'
     },
     {
+      Icon: FaExchangeAlt,
       q: 'How long does it take to transition our existing payroll to Arvion?',
       a: 'A typical migration takes between 3 to 7 working days, including historical salary data import, employee master setup, and parallel run verification.'
     }
@@ -342,43 +368,143 @@ const PayrollPage = () => {
       </section>
 
       {/* 2. DETAILED FEATURES GRID */}
-      <section id="features" className="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto bg-white">
-        <div className="text-center max-w-3xl mx-auto mb-14">
+      <section id="features" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white">
+        <div className="max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#FF7A00] text-xs font-bold uppercase tracking-wider mb-4">
-            Comprehensive Capabilities
+            Service Modules
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight mb-4">
-            Everything Your Payroll Demands, Perfectly Handled
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
+            Our End-to-End <span className="text-[#FF7A00]">Payroll Service Modules</span>
           </h2>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-            From monthly gross-to-net calculations to complex multi-state statutory filings, our specialist team takes total ownership of your payroll administration.
+            A complete, integrated payroll outsourcing service that manages the entire employee lifecycle, payroll processing and compliance.
           </p>
         </div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-          variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
+        <motion.ul
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 list-none m-0 p-0"
+          variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
         >
-          {detailedFeatures.map((feat, idx) => (
-            <motion.div
-              key={idx}
+          {serviceModules.map(({ Icon, title, tone, points }) => (
+            <motion.li
+              key={title}
               variants={fadeUpVariant}
-              className="bg-[#f8faff] rounded-2xl p-7 border border-slate-200/70 hover:border-orange-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-start"
+              className="group rounded-2xl bg-white ring-1 ring-slate-200/80 shadow-[0_10px_30px_-24px_rgba(15,42,107,.45)] hover:ring-orange-200 hover:shadow-[0_18px_40px_-24px_rgba(15,42,107,.45)] transition-all duration-300 overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center mb-5 shadow-sm">
-                {feat.icon}
+              <div className="flex items-center gap-3.5 px-5 sm:px-6 py-4 bg-gradient-to-r from-[#f4f8fe] to-white border-b border-slate-100">
+                <span className={`w-11 h-11 rounded-xl ${tone} text-white flex items-center justify-center flex-shrink-0 shadow-md transition-transform duration-300 group-hover:scale-105`}>
+                  <Icon className="w-[22px] h-[22px]" strokeWidth={2} aria-hidden="true" />
+                </span>
+                <h3 className="text-[17px] sm:text-lg font-bold text-[#0B1B3D] leading-snug">{title}</h3>
               </div>
-              <h3 className="text-lg font-bold text-[#0B1B3D] mb-3 leading-snug">{feat.title}</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">{feat.description}</p>
-            </motion.div>
+              <ul className="px-5 sm:px-6 py-4 sm:py-5 grid gap-2.5 list-none m-0">
+                {points.map((pt) => (
+                  <li key={pt} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-slate-700 leading-snug">
+                    <FaCheckCircle className="mt-0.5 flex-shrink-0 text-emerald-500" aria-hidden="true" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </motion.li>
           ))}
-        </motion.div>
+        </motion.ul>
+        </div>
+      </section>
+
+      {/* COVERAGE INCLUDES: two-column checklist of everything in the monthly cycle */}
+      <section id="coverage" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50 scroll-mt-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#FF7A00] text-xs font-bold uppercase tracking-wider mb-4">
+              End-to-End Payroll
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight mb-4">
+              Coverage Includes
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              Every part of your monthly payroll, from salary setup to statutory filing and employee queries.
+            </p>
+          </div>
+
+          <motion.ul
+            variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+            // Column flow from sm: items 1-5 fill the left column, 6-10 the right (same order as the list)
+            className="grid sm:grid-cols-2 sm:grid-rows-5 sm:grid-flow-col gap-x-8 gap-y-1 rounded-2xl bg-white ring-1 ring-slate-200/80 shadow-[0_12px_32px_-22px_rgba(15,42,107,.35)] p-5 sm:p-8 list-none m-0"
+          >
+            {coverageItems.map((label) => (
+              <motion.li
+                key={label}
+                variants={fadeUpVariant}
+                className="flex items-center gap-3 py-2.5 border-b border-slate-100 last:border-b-0 sm:[&:nth-child(5)]:border-b-0"
+              >
+                <FaCheckCircle className="flex-shrink-0 text-emerald-500 text-lg" aria-hidden="true" />
+                <span className="text-[15px] sm:text-base font-semibold text-[#0B1B3D]">{label}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+      </section>
+
+      {/* WHO CAN USE OUR SERVICE: industries and the payroll need we solve for each */}
+      <section id="industries" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white scroll-mt-24">
+        {/* Editorial layout, no cards: intro on the left, industries as an open list on the right
+            separated by hairlines. The 8th cell is a "don't see yours?" prompt so the grid is even. */}
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)] gap-8 lg:gap-14">
+          <div className="lg:sticky lg:top-28 self-start text-center lg:text-left">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#1747a6] text-xs font-bold uppercase tracking-wider mb-4">
+              Industries We Serve
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
+              Who Can Use Our <span className="text-[#FF7A00]">Service?</span>
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+              Every industry pays its people differently. We handle the payroll rules that matter to yours.
+            </p>
+            <div aria-hidden="true" className="hidden lg:block mt-6 w-16 h-1 rounded-full bg-gradient-to-r from-[#FF7A00] to-[#ffb36b]" />
+          </div>
+
+          <motion.ul
+            variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }}
+            className="grid sm:grid-cols-2 gap-x-10 list-none m-0 p-0 border-t border-slate-200"
+          >
+            {industries.map(({ Icon, name, desc, tone }) => (
+              <motion.li
+                key={name}
+                variants={fadeUpVariant}
+                className="group flex gap-4 py-5 sm:py-6 border-b border-slate-200"
+              >
+                <span className={`w-11 h-11 rounded-xl ring-1 ${tone} flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5`}>
+                  <Icon className="w-[22px] h-[22px]" strokeWidth={1.9} aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-[17px] font-bold text-[#0B1B3D] leading-snug">{name}</h3>
+                  <p className="mt-1 text-sm text-slate-600 leading-relaxed">{desc}</p>
+                </div>
+              </motion.li>
+            ))}
+            <motion.li variants={fadeUpVariant} className="flex items-center py-5 sm:py-6 border-b border-slate-200">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-3 text-[#1747a6] font-bold focus:outline-none focus-visible:underline"
+              >
+                <span className="w-11 h-11 rounded-xl border-2 border-dashed border-blue-200 flex items-center justify-center flex-shrink-0 group-hover:border-[#1747a6] transition-colors">
+                  <FaArrowRight className="text-sm" aria-hidden="true" />
+                </span>
+                <span>
+                  Don&apos;t see your industry?
+                  <span className="block text-sm font-medium text-slate-500 group-hover:text-[#1747a6] transition-colors">Talk to our payroll team</span>
+                </span>
+              </Link>
+            </motion.li>
+          </motion.ul>
+        </div>
       </section>
 
       {/* 3. OUR PROCESS SECTION */}
-      <section id="process" className="py-16 sm:py-20 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50">
+      <section id="process" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#1747a6] text-xs font-bold uppercase tracking-wider mb-4">
               Streamlined Monthly Cadence
             </span>
@@ -411,54 +537,48 @@ const PayrollPage = () => {
         </div>
       </section>
 
-      {/* 4. FAQ ACCORDION */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-[#FF7A00] rounded-2xl mb-4 shadow-sm">
-            <FaRegQuestionCircle className="text-2xl" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] mb-4 tracking-tight">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-slate-600 text-base font-medium">
-            Everything you need to know about outsourcing your payroll to Arvion.
-          </p>
-        </div>
+      {/* STATUTORY COMPLIANCE: PT, labour laws, LWF, PF, ESI */}
+      <ComplianceGrid />
 
-        <div className="space-y-4">
-          {faqs.map((faq, idx) => {
-            const isOpen = activeFaq === idx;
-            return (
-              <div key={idx} className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-sm transition-colors">
-                <button
-                  onClick={() => toggleFaq(idx)}
-                  className="w-full flex justify-between items-center px-6 py-5 text-left font-bold text-[#0B1B3D] text-base sm:text-lg focus:outline-none hover:bg-slate-50 transition-colors"
-                >
-                  <span>{faq.q}</span>
-                  <FaChevronDown className={`flex-shrink-0 text-slate-400 text-sm ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#FF7A00]' : ''}`} />
-                </button>
-                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <div className="px-6 pb-5 pt-0 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100">
-                    {faq.a}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      {/* HR RECORDS & DOCUMENTS (accordion, visual on the right) */}
+      <HrRecordsShowcase />
+
+      {/* EMPLOYEE BENEFITS (accordion, visual on the left) */}
+      <EmployeeBenefits />
+
+      {/* SECURITY & CLOUD: payroll data protection */}
+      <SecurityHighlights
+        id="security"
+        variant="light"
+        tint
+        title="Your Payroll Data, Secured"
+        desc="Salary and employee records are confidential. Here is how we keep them safe."
+        items={[
+          { title: 'Secure Employee & Salary Data', desc: 'Payroll records kept private and protected.' },
+          { title: 'Role-Based Permissions', desc: 'Only authorised people see salary details.' },
+          { title: 'Data Backups', desc: 'Regular backups so no payroll record is lost.' },
+          { title: 'Cloud Accessibility', desc: 'Registers, payslips and reports on any device.' },
+          { title: 'Secure Authentication', desc: 'Protected logins for your HR and finance team.' },
+        ]}
+      />
+
+      {/* 4. FAQ (shared design: illustration left, accordion right) */}
+      <FaqSection
+        desc="Everything you need to know about outsourcing your payroll to Arvion."
+        items={faqs}
+      />
 
       {/* 5. TESTIMONIALS */}
       <TestimonialSection />
 
       {/* 6. FINAL CTA BANNER */}
-      <section className="py-20 sm:py-24 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden mt-10">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-3xl sm:text-5xl font-extrabold mb-6 tracking-tight">
             Ready for Effortless, 100% Compliant Payroll?
           </h2>
-          <p className="text-lg sm:text-xl text-blue-100/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-blue-100/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Schedule a free consultation with our payroll experts to explore how Arvion can simplify your salary operations, ensure compliance, and save your team valuable hours every month.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">

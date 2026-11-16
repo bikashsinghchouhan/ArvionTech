@@ -315,7 +315,7 @@ const AccountingPage = () => {
       {/* 3. FEATURES GRID */}
       <section id="services" className="scroll-mt-20 py-8 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 sm:mb-10">
             <h2 className="text-3xl font-bold text-[#0d1b2a] uppercase tracking-tight">A Closer Look at Our Features</h2>
             <div className="w-24 h-1 bg-[#ff7f32] mx-auto mt-4 rounded-full"></div>
           </div>
@@ -344,7 +344,7 @@ const AccountingPage = () => {
       </section>
 
       {/* 4. BENEFITS LIST */}
-      <section className="relative w-full bg-[#f8fafd] px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-10 sm:pb-12 overflow-hidden">
+      <section className="relative w-full bg-[#f8fafd] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* Pill sits above both columns so the photo lines up with the heading */}
           <span className="mb-5 inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#ffece0] text-[#f2700f] text-[13px] sm:text-[14px] font-extrabold uppercase tracking-wide">
@@ -384,11 +384,11 @@ const AccountingPage = () => {
 
           {/* Right: framed photo with navy (bottom-left) and orange (top-right) accent blocks */}
           <motion.div
-            className="relative w-full max-w-2xl mx-auto px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-6 lg:py-0 lg:flex lg:flex-col"
+            className="relative w-full max-w-2xl mx-auto px-4 pt-4 pb-4 sm:px-6 sm:pt-5 sm:pb-6 lg:py-0 lg:flex lg:flex-col"
             initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
           >
             <div aria-hidden="true" className="absolute left-0 bottom-0 lg:-bottom-5 w-[42%] h-[72%] rounded-2xl sm:rounded-3xl bg-[#0b2f8f]" />
-            <div aria-hidden="true" className="absolute right-0 top-0 lg:-top-5 w-[30%] h-[42%] rounded-2xl sm:rounded-3xl bg-[#f7861c]" />
+            <div aria-hidden="true" className="absolute right-0 top-0 lg:-top-5 w-[30%] h-[34%] sm:h-[42%] rounded-2xl sm:rounded-3xl bg-[#f7861c]" />
             <div className="relative rounded-2xl sm:rounded-3xl bg-white p-1.5 sm:p-2 shadow-[0_24px_50px_-20px_rgba(11,42,107,.45)] lg:flex-1 lg:flex lg:flex-col">
               <div className="rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-auto lg:flex-1 lg:min-h-[320px]">
                 <img
@@ -434,14 +434,14 @@ const AccountingPage = () => {
           </motion.h2>
           <motion.p 
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-base md:text-lg text-slate-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-lg text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
             Let's discuss how our accounting services can provide the clarity your business needs.
           </motion.p>
           
           <motion.div 
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-10 mb-8 md:mb-12"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-10 mb-8"
           >
             <div className="w-full text-center flex justify-center">
               <p className="text-slate-200 text-xs md:text-sm font-medium leading-relaxed max-w-2xl text-center">

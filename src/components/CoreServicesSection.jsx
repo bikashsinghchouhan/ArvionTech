@@ -62,7 +62,7 @@ const services = [
 ];
 
 const CoreServicesSection = () => (
-  <section id="features" className="scroll-mt-24 py-10 sm:py-14 px-4 sm:px-6 lg:px-10 bg-white">
+  <section id="features" className="scroll-mt-24 py-8 sm:py-10 px-4 sm:px-6 lg:px-10 bg-white">
     <div className="max-w-7xl mx-auto">
       {/* Heading with side lines */}
       <div className="flex items-center justify-center gap-4 mb-8 sm:mb-10">

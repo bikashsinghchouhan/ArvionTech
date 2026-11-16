@@ -2,20 +2,21 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  FaCheckCircle, FaTimesCircle, FaMobileAlt, FaMoneyBillWave, FaEnvelope, FaMapMarkerAlt,
-  FaPhoneAlt, FaPlus, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck,
-  FaChevronDown, FaPlayCircle, FaSearch, FaLock, FaUsers, FaServer, FaCodeBranch, FaCube, FaExpandArrowsAlt, FaSitemap,
+  FaCheckCircle, FaTimesCircle, FaMobileAlt, FaMoneyBillWave,
+  FaSchool, FaCreditCard, FaChalkboardTeacher, FaRocket, FaPlus, FaChartLine, FaClipboardCheck, FaBookOpen, FaBusAlt, FaBullhorn, FaUserCheck,
+  FaChevronDown, FaPlayCircle, FaSearch, FaLock, FaUsers, FaServer, FaCube, FaUserShield, FaUsersCog, FaDatabase, FaCloud, FaExpandArrowsAlt, FaSitemap,
   FaShieldAlt, FaSlidersH, FaHeadset, FaDesktop, FaSyncAlt, FaCalendarAlt, FaBuilding, FaChartBar, FaCrown, FaArrowRight,
   FaTimes, FaUserGraduate, FaUserTie, FaSignOutAlt, FaFolderOpen, FaThLarge, FaBook, FaFileInvoiceDollar, FaBoxes,
-  FaIdBadge, FaClipboardList, FaCopy, FaLayerGroup, FaUserFriends, FaWallet, FaUserPlus, FaFileAlt, FaBell, FaReceipt, FaHourglassHalf, FaVolumeMute, FaUnlock, FaColumns, FaCalendarCheck, FaShareAlt
+  FaIdBadge, FaClipboardList, FaLayerGroup, FaUserFriends, FaWallet, FaUserPlus, FaFileAlt, FaBell, FaReceipt, FaHourglassHalf, FaVolumeMute, FaUnlock, FaColumns, FaCalendarCheck, FaShareAlt
 } from 'react-icons/fa';
 import TestimonialSection from '../components/TestimonialSection';
+import FaqSection from '../components/FaqSection';
 import schoolErpMobile from '../assets/school-erp-mobile.webp';
 import schoolErpHero from '../assets/school-erp-hero.webp';
 import portalAdmin from '../assets/portals/admin-portal.webp';
 import portalTeacher from '../assets/portals/teacher-portal.webp';
+import portalStaff from '../assets/portals/staff-portal.webp';
 import portalStudent from '../assets/portals/student-portal.webp';
-import portalParent from '../assets/portals/parent-portal.webp';
 
 // --- CONFIGURATION ---
 import { pageConfig } from '../configurations/SchoolManagementConfig';
@@ -138,19 +139,17 @@ const beforeAfterRows = [
 
 const norm = (s) => s.trim().toLowerCase();
 
+// One icon per FAQ, in the same order as schoolFaqs (cycles if more questions are added)
+const SCHOOL_FAQ_ICONS = [FaSchool, FaUsers, FaSlidersH, FaSitemap, FaCreditCard, FaDatabase, FaUserShield, FaChalkboardTeacher, FaRocket];
+
 const SchoolManagement = () => {
   const [activeFeature, setActiveFeature] = useState(null);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [featureSearch, setFeatureSearch] = useState("");
-  const [activeFaq, setActiveFaq] = useState(0);
   const [planView, setPlanView] = useState("summary");
-  const [emailCopied, setEmailCopied] = useState(false);
   const [showAfter, setShowAfter] = useState(true);
 
-  const toggleFaq = (index) => {
-    setActiveFaq(activeFaq === index ? null : index);
-  };
   const featuresEndRef = useRef(null);
   const featuresTopRef = useRef(null);
   const plansViewRef = useRef(null);
@@ -173,14 +172,6 @@ const SchoolManagement = () => {
       }, 10);
     }
     setShowAllFeatures(!showAllFeatures);
-  };
-
-  const copyEmail = () => {
-    const email = pageConfig.contact.email;
-    navigator.clipboard?.writeText(email).then(() => {
-      setEmailCopied(true);
-      setTimeout(() => setEmailCopied(false), 2000);
-    }).catch(() => { });
   };
 
   const categories = [
@@ -465,7 +456,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* WHY CHOOSE US SECTION */}
-      <section className="relative overflow-hidden py-10 sm:py-12 px-4 sm:px-6 w-full bg-gradient-to-b from-[#f5f8ff] via-white to-[#f7f9ff]">
+      <section className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full bg-gradient-to-b from-[#f5f8ff] via-white to-[#f7f9ff]">
         {/* Background decoration: soft blue waves at the top corners and bottom, thin orange curve bottom-right */}
         <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-full h-40 sm:h-56" viewBox="0 0 1440 220" preserveAspectRatio="none">
           <path d="M0,0 H460 C380,40 250,70 0,64 Z" fill="#e3ecfb" opacity="0.7" />
@@ -559,16 +550,17 @@ const SchoolManagement = () => {
                 btn: 'border-violet-500 text-violet-700 hover:bg-violet-600 hover:text-white', ring: 'ring-violet-100',
               },
               {
+                key: 'staff', title: 'Staff Portal', audience: 'For non-teaching staff', image: portalStaff, icon: FaIdBadge,
+                points: ['Fees, admissions & front office', 'Library, transport & inventory', 'Leave, payslips & HR records'],
+                card: 'from-[#fff3ea] to-[#fffaf6] border-orange-100', tag: 'bg-orange-100/80 text-[#c2560c]', check: 'text-[#f26b0f]',
+                btn: 'border-[#f26b0f] text-[#c2560c] hover:bg-[#f26b0f] hover:text-white', ring: 'ring-orange-100',
+                iconPanel: 'from-[#ffe4cf] to-[#fff4ea] text-[#f26b0f]',
+              },
+              {
                 key: 'student', title: 'Student Portal', audience: 'For students', image: portalStudent,
                 points: ['Timetable & attendance', 'Results & report card', 'Fee details & notices'],
                 card: 'from-[#ecf9f1] to-[#f7fdf9] border-emerald-100', tag: 'bg-emerald-100/70 text-emerald-700', check: 'text-emerald-600',
                 btn: 'border-emerald-500 text-emerald-700 hover:bg-emerald-600 hover:text-white', ring: 'ring-emerald-100',
-              },
-              {
-                key: 'parent', title: 'Parent Portal', audience: 'For parents & guardians', image: portalParent,
-                points: ["Child's academic progress", 'Attendance & fee status', 'School communication'],
-                card: 'from-[#fff3ea] to-[#fffaf6] border-orange-100', tag: 'bg-orange-100/80 text-[#c2560c]', check: 'text-[#f26b0f]',
-                btn: 'border-[#f26b0f] text-[#c2560c] hover:bg-[#f26b0f] hover:text-white', ring: 'ring-orange-100',
               },
             ].map((p) => (
               <motion.article
@@ -577,14 +569,23 @@ const SchoolManagement = () => {
                 className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-br ${p.card} p-3.5 sm:p-5 flex flex-row gap-3.5 sm:gap-6 shadow-[0_6px_22px_-14px_rgba(15,42,107,.22)] hover:shadow-[0_16px_34px_-18px_rgba(15,42,107,.32)] hover:-translate-y-1 transition-all duration-300`}
               >
                 <div className={`relative flex-shrink-0 w-[104px] min-[400px]:w-28 sm:w-40 lg:w-44 self-stretch rounded-xl overflow-hidden bg-white p-1 ring-2 sm:ring-4 ${p.ring} shadow-md`}>
-                  <img
-                    src={p.image}
-                    alt={`${p.title} user`}
-                    width="600"
-                    height="800"
-                    loading="lazy"
-                    className="block w-full h-full min-h-[150px] sm:min-h-[176px] object-cover object-top rounded-lg transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt={`${p.title} user`}
+                      width="600"
+                      height="800"
+                      loading="lazy"
+                      className="block w-full h-full min-h-[150px] sm:min-h-[176px] object-cover object-top rounded-lg transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden="true"
+                      className={`flex w-full h-full min-h-[150px] sm:min-h-[176px] items-center justify-center rounded-lg bg-gradient-to-br ${p.iconPanel} transition-transform duration-500 group-hover:scale-[1.03]`}
+                    >
+                      <p.icon className="text-5xl sm:text-6xl" />
+                    </div>
+                  )}
                 </div>
                 <div className="flex flex-col min-w-0 py-1">
                   <span className={`self-start rounded-full px-2.5 py-0.5 text-[11px] sm:text-xs font-bold ${p.tag}`}>{p.audience}</span>
@@ -928,15 +929,16 @@ const SchoolManagement = () => {
 
           <motion.div {...reveal} variants={fadeUpVariant} className={`${CARD} p-5 sm:p-7 grid gap-4 sm:gap-5 content-start`}>
             <div className="grid gap-1.5">
-              <h2 className="text-xl sm:text-[22px] font-bold">Built with Security at the Core</h2>
-              <p className="text-slate-600 text-sm sm:text-[15px]">Your institutional data is protected by enterprise-grade security protocols and strict access controls.</p>
+              <h2 className="text-xl sm:text-[22px] font-bold">Security &amp; Cloud Technology</h2>
+              <p className="text-slate-600 text-sm sm:text-[15px]">Your school&apos;s data stays private, backed up and available on any device.</p>
             </div>
             <div>
               {[
-                { title: "JWT Authentication", icon: <FaLock />, desc: "Secure token-based login for all users." },
-                { title: "Role-Based Access", icon: <FaUsers />, desc: "Granular permission controls (RBAC)." },
-                { title: "Tenant Data Isolation", icon: <FaServer />, desc: "Strict separation of multi-school data." },
-                { title: "Secure API Access", icon: <FaCodeBranch />, desc: "Encrypted data transmission." }
+                { title: "Secure Student Information", icon: <FaUserShield />, desc: "Student records kept private and protected." },
+                { title: "Role-Based Permissions", icon: <FaUsersCog />, desc: "Each user sees only what their role allows." },
+                { title: "Data Backups", icon: <FaDatabase />, desc: "Automatic backups so no record is ever lost." },
+                { title: "Cloud Accessibility", icon: <FaCloud />, desc: "Use the ERP from any device, anywhere." },
+                { title: "Secure Authentication", icon: <FaLock />, desc: "Protected logins for every user." }
               ].map((sec, idx) => (
                 <div key={sec.title} className={`flex items-center gap-3 sm:gap-3.5 py-3 sm:py-3.5 ${idx !== 0 ? 'border-t border-slate-100' : ''}`}>
                   <IconBox size="sm" tone="green">{sec.icon}</IconBox>
@@ -952,7 +954,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* HOW IMPLEMENTATION WORKS */}
-      <section id="process" className="relative overflow-hidden py-12 sm:py-14 px-4 sm:px-6 w-full scroll-mt-20 bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
+      <section id="process" className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20 bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
         {/* Corner swooshes (same as testimonials / FAQ) */}
         <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-[34%] max-w-[420px] h-auto" viewBox="0 0 560 170" fill="none">
           <path d="M0 0 H380 C300 40 200 70 120 110 C70 135 30 150 0 170 Z" fill="#e8f0fc" />
@@ -965,7 +967,7 @@ const SchoolManagement = () => {
 
         <div className="relative max-w-6xl mx-auto">
           {/* Heading: pill with side lines + highlighted words with underline */}
-          <motion.div variants={fadeUpVariant} {...reveal} className="flex flex-col items-center text-center mb-10 sm:mb-12">
+          <motion.div variants={fadeUpVariant} {...reveal} className="flex flex-col items-center text-center mb-8 sm:mb-10">
             <div className="flex items-center gap-3 sm:gap-4">
               <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
               <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">
@@ -1041,55 +1043,10 @@ const SchoolManagement = () => {
       <TestimonialSection />
 
       {/* FAQ SECTION */}
-      <section id="faq" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-t border-slate-200 scroll-mt-20">
-        <SectionHeader eyebrow="FAQ" title="Frequently Asked Questions" desc="Can't find your answer? Talk to our ERP team." />
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1.6fr] gap-8 sm:gap-10 lg:gap-12 xl:gap-14 items-start">
-          <div className="grid gap-5 sm:gap-6 content-start order-2 lg:order-1 lg:sticky lg:top-24">
-            <div className={`${CARD} p-5 sm:p-6 grid gap-4`}>
-              <div className="flex gap-3 text-[14.5px] text-slate-600">
-                <FaPhoneAlt className="text-[#FF8000] mt-1 flex-shrink-0" />
-                <span>Phone<br /><a href={`tel:${pageConfig.contact.phone.replace(/\s/g, '')}`} className="font-semibold text-[#0B1B3D] hover:underline">{pageConfig.contact.phone}</a></span>
-              </div>
-              <div className="flex gap-3 text-[14.5px] text-slate-600">
-                <FaEnvelope className="text-[#FF8000] mt-1 flex-shrink-0" />
-                <span className="min-w-0">Email<br /><a href={`mailto:${pageConfig.contact.email}`} className="font-semibold text-[#0B1B3D] hover:underline break-all">{pageConfig.contact.email}</a></span>
-              </div>
-              <div className="flex gap-3 text-[14.5px] text-slate-600">
-                <FaMapMarkerAlt className="text-[#FF8000] mt-1 flex-shrink-0" />
-                <span>{pageConfig.contact.address}</span>
-              </div>
-              <button type="button" onClick={copyEmail} className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg border border-slate-300 bg-white hover:border-slate-400 text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">
-                {emailCopied ? <><FaCheckCircle className="text-emerald-500" /> Email copied</> : <><FaCopy /> Copy email address</>}
-              </button>
-            </div>
-          </div>
-
-          <div className="order-1 lg:order-2 border-t border-slate-200">
-            {schoolFaqs.map((faq, idx) => {
-              const isActive = activeFaq === idx;
-              return (
-                <div key={faq.q} className="border-b border-slate-200">
-                  <button
-                    type="button"
-                    onClick={() => toggleFaq(idx)}
-                    aria-expanded={isActive}
-                    aria-controls={`faq-panel-${idx}`}
-                    className="w-full flex justify-between items-center gap-4 py-4 sm:py-5 px-1 text-left font-semibold text-[15px] sm:text-[16.5px] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-300 rounded"
-                  >
-                    {faq.q}
-                    <FaPlus className={`flex-shrink-0 text-sm transition-transform duration-200 ${isActive ? 'rotate-45 text-[#FF8000]' : 'text-slate-400'}`} />
-                  </button>
-                  <div id={`faq-panel-${idx}`} className={`grid transition-all duration-300 ease-in-out ${isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                    <div className="overflow-hidden">
-                      <p className="px-1 pb-4 sm:pb-5 text-[15px] sm:text-base text-slate-600 leading-relaxed max-w-[62ch]">{faq.a}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <FaqSection
+        desc="Can't find your answer? Talk to our ERP team."
+        items={schoolFaqs.map((f, i) => ({ ...f, Icon: SCHOOL_FAQ_ICONS[i % SCHOOL_FAQ_ICONS.length] }))}
+      />
 
       {/* FINAL CTA SECTION */}
       <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#0B1B3D] text-white">

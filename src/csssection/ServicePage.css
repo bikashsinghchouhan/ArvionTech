@@ -52,7 +52,7 @@
 
 /* 2. Intro Section Styling */
 .service-intro {
-  padding: 80px 0;
+  padding: 48px 0;
   background-color: #fff;
   text-align: center;
 }
@@ -73,7 +73,7 @@
 
 /* Detailed Features Showcase Section */
 .detailed-features-section {
-  padding: 80px 0;
+  padding: 48px 0;
   background-color: #f8f9fa;
 }
 
@@ -122,7 +122,7 @@
 
 /* Benefits Section Styling */
 .service-benefits-section {
-  padding: 80px 0;
+  padding: 48px 0;
   background-color: #fff;
 }
 
@@ -176,7 +176,7 @@
 
 /* CTA Section Styling */
 .service-cta {
-  padding: 80px 0;
+  padding: 48px 0;
   background-color: #0d1b2a;
   color: white;
 }

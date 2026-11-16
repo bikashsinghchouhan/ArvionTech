@@ -1,7 +1,7 @@
-// Home page sections: "How it works" and a short FAQ.
+// Home page section: "How it works".
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CalendarCheck, Settings2, GraduationCap, Rocket, ChevronDown } from 'lucide-react';
+import { CalendarCheck, Settings2, GraduationCap, Rocket } from 'lucide-react';
 
 const reveal = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 } };
 
@@ -31,7 +31,7 @@ const steps = [
 ];
 
 export const HowItWorks = () => (
-  <section id="how-it-works" className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-14 bg-[#f6f9ff]">
+  <section id="how-it-works" className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-10 bg-[#f6f9ff]">
     <div className="max-w-6xl mx-auto">
       <Heading
         eyebrow="How It Works"
@@ -65,57 +65,6 @@ export const HowItWorks = () => (
           </motion.li>
         ))}
       </ol>
-    </div>
-  </section>
-);
-
-/* --------------------------------------------------------------------- FAQ */
-const faqs = [
-  {
-    q: 'What services does Arvion offer?',
-    a: 'School Management ERP, Payroll Outsourcing, Statutory Registrations and Accounting Services – software and the services around it, from one team.',
-  },
-  {
-    q: 'Can we see the School ERP before we decide?',
-    a: 'Yes. Book a free demo and we will walk you through the modules that matter for your school.',
-  },
-  {
-    q: 'Will you help us move our existing data?',
-    a: 'Yes. Onboarding is guided: we configure the system, migrate your data and train your staff before you go live.',
-  },
-  {
-    q: 'Is our data secure?',
-    a: 'Role-based access, encrypted data and automated backups keep your records safe.',
-  },
-  {
-    q: 'Which languages does your support team speak?',
-    a: 'Our Bengaluru team answers in English, Hindi and Kannada.',
-  },
-];
-
-export const HomeFAQ = () => (
-  <section id="faq" className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-14 bg-white">
-    <div className="max-w-3xl mx-auto">
-      <Heading eyebrow="FAQ" before="Frequently asked " highlight="questions" />
-
-      <div className="flex flex-col gap-3">
-        {faqs.map(({ q, a }, i) => (
-          <motion.details
-            key={q}
-            {...reveal}
-            transition={{ duration: 0.4, delay: i * 0.05 }}
-            className="group rounded-2xl border border-slate-200 bg-white shadow-sm open:shadow-md open:border-blue-100 transition-shadow"
-          >
-            <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 text-left [&::-webkit-details-marker]:hidden">
-              <span className="text-[15px] sm:text-[16px] font-bold text-[#0f2a6b]">{q}</span>
-              <span className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 text-[#1747a6] flex items-center justify-center transition-transform duration-300 group-open:rotate-180">
-                <ChevronDown size={18} />
-              </span>
-            </summary>
-            <p className="px-5 sm:px-6 pb-5 -mt-1 text-[14px] sm:text-[15px] text-slate-600 leading-relaxed">{a}</p>
-          </motion.details>
-        ))}
-      </div>
     </div>
   </section>
 );
