@@ -17,7 +17,7 @@ export const blogPosts = [
       {
         heading: 'Start with the problems you want to solve',
         paragraphs: [
-          'Before comparing vendors, list the tasks that take your staff the most time today: fee collection and reminders, attendance registers, report cards, timetables or parent communication. A good ERP should remove those first.',
+          'Before comparing vendors, list the tasks that take your staff the most time today: fee collection and reminders, attendance registers, report cards, timetables or school communication. A good ERP should remove those first.',
           'Ask each vendor to demo your real workflows, not a generic tour. If a module cannot handle your fee structure or grading pattern, it will create work instead of saving it.',
         ],
       },
@@ -29,13 +29,13 @@ export const blogPosts = [
           'Fee management with instalments, concessions, late fines and online payment',
           'Examinations, marks entry, grading and report cards',
           'Timetable, transport, library and inventory if your school needs them',
-          'Notices and alerts to parents by SMS, email and app',
+          'Notices and alerts to students and staff by SMS, email and app',
         ],
       },
       {
         heading: 'Look at roles and data security',
         paragraphs: [
-          'Principals, teachers, accountants, parents and students should each see only what their role allows. Ask how access is controlled, how data is backed up, and who can export student records.',
+          'Principals, teachers, accountants and students should each see only what their role allows. Ask how access is controlled, how data is backed up, and who can export student records.',
           'For multi-branch schools, confirm that each campus keeps its own data while management gets a combined view.',
         ],
       },
@@ -245,7 +245,7 @@ export const caseStudies = [
       'Set up online fee payment with automatic receipts and reminders',
       'Trained office staff and teachers campus by campus',
     ],
-    outcome: 'Management sees admissions, collections and attendance across all campuses on one dashboard, and parents receive fee reminders and notices automatically.',
+    outcome: 'Management sees admissions, collections and attendance across all campuses on one dashboard, and fee reminders and notices go out automatically.',
   },
   {
     key: 'startup-payroll',

@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaChevronDown } from 'react-icons/fa';
+import Eyebrow from './ui/Eyebrow';
 
 const reveal = { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 } };
 
@@ -82,20 +83,13 @@ const FaqIllustration = () => (
  *  items: [{ q, a, Icon }]
  */
 const FaqSection = ({ before = 'Frequently Asked ', highlight = 'Questions', desc, items }) => (
-  <section id="faq" className="relative w-full overflow-hidden scroll-mt-24 bg-gradient-to-b from-[#f6f9ff] to-white px-4 sm:px-6 lg:px-8 pt-6 pb-12 sm:pt-7 sm:pb-14">
+  <section id="faq" className="relative w-full overflow-hidden scroll-mt-24 bg-gradient-to-b from-[#f6f9ff] to-white px-4 sm:px-6 lg:px-8 pt-6 pb-8 sm:pt-7 sm:pb-14">
 
     <div className="relative max-w-7xl mx-auto">
       {/* Heading */}
       <motion.div {...reveal} transition={{ duration: 0.5 }} className="flex flex-col items-center text-center mb-8 sm:mb-10">
-        <div className="flex items-center gap-4">
-          <span aria-hidden="true" className="w-10 sm:w-16 h-[2px] rounded-full bg-[#f7941d]/80" />
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ffe9d6] border border-[#ffd3ad] text-[#e8730c] text-[15px] font-extrabold">
-            <span className="w-6 h-6 rounded-full bg-[#f2700f] text-white flex items-center justify-center text-[14px] font-black">?</span>
-            FAQ
-          </span>
-          <span aria-hidden="true" className="w-10 sm:w-16 h-[2px] rounded-full bg-[#f7941d]/80" />
-        </div>
-        <h2 className="mt-4 text-[28px] sm:text-[38px] lg:text-[44px] font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
+        <Eyebrow>FAQ</Eyebrow>
+        <h2 className="mt-4 text-heading font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
           {before}
           <span className="relative inline-block text-[#f2700f]">
             {highlight}
@@ -104,7 +98,7 @@ const FaqSection = ({ before = 'Frequently Asked ', highlight = 'Questions', des
             </svg>
           </span>
         </h2>
-        {desc && <p className="mt-5 text-[15px] sm:text-[18px] text-slate-600">{desc}</p>}
+        {desc && <p className="mt-5 text-[14px] sm:text-[15.5px] text-slate-600">{desc}</p>}
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.4fr] gap-10 lg:gap-12 items-center">
@@ -125,13 +119,13 @@ const FaqSection = ({ before = 'Frequently Asked ', highlight = 'Questions', des
             >
               <summary className="flex items-center gap-4 cursor-pointer list-none px-4 sm:px-6 py-4 [&::-webkit-details-marker]:hidden">
                 <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-[#eef3fd] text-[#1f5fbf] group-open:bg-[#ffe3c7] group-open:text-[#f2700f] transition-colors">
-                  {Icon && <Icon className="text-[18px] sm:text-[20px]" />}
+                  {Icon && <Icon className="text-[17px] sm:text-[18.5px]" />}
                 </span>
-                <span className="flex-1 text-[15px] sm:text-[18px] font-bold text-[#0b1f4d] leading-snug">{q}</span>
+                <span className="flex-1 text-[13.5px] sm:text-[15.5px] font-bold text-[#0b1f4d] leading-snug">{q}</span>
                 <FaChevronDown className="flex-shrink-0 text-slate-500 group-open:text-[#f2700f] group-open:rotate-180 transition-transform duration-300" />
               </summary>
               <div className="mx-4 sm:mx-6 border-t border-[#f7c9a0]/70" />
-              <p className="px-4 sm:px-6 pt-3 pb-5 text-[14px] sm:text-[16px] text-slate-600 leading-relaxed">{a}</p>
+              <p className="px-4 sm:px-6 pt-3 pb-5 text-[13px] sm:text-[14px] text-slate-600 leading-relaxed">{a}</p>
             </motion.details>
           ))}
         </div>

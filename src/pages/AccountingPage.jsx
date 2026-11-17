@@ -13,9 +13,10 @@ import {
 // import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
 import RelatedServices from '../components/RelatedServices';
-import { ProcessSteps, NeedsGuide, ChecklistGroups, DueDates, MistakesGrid, ToolsStrip } from '../components/ServiceSections';
+import { ProcessSteps, NeedsGuide, ChecklistGroups, DueDates, MistakesGrid } from '../components/ServiceSections';
 import { CompareTable } from '../components/ServiceTools';
 import heroIllustration from '../assets/service-heroes/accounting-hero.webp';
+import Eyebrow from '../components/ui/Eyebrow';
 import benefitsImg from '../assets/service-heroes/accounting-benefits.webp'; // sharper 2048px copy for the benefits section
 
 const fadeUpVariant = {
@@ -144,7 +145,7 @@ const AccountingPage = () => {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </span>
-                  <span className="text-[11px] xl:text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
+                  <span className="text-[11px] xl:text-[11px] font-semibold text-[#0B1B3D] leading-tight">
                     {item}
                   </span>
                 </li>
@@ -183,7 +184,7 @@ const AccountingPage = () => {
               {/* Main Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
-                className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-4 relative"
+                className="text-3xl sm:text-4xl lg:text-[37px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-4 relative"
               >
                 Accounting <span className="text-[#FF7A00] relative inline-block">
                   Services
@@ -244,7 +245,7 @@ const AccountingPage = () => {
                     <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.text} flex items-center justify-center text-sm flex-shrink-0`}>
                       {item.icon}
                     </div>
-                    <span className="text-[13px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
+                    <span className="text-[12px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
                       {item.title1} {item.title2}
                     </span>
                   </div>
@@ -315,7 +316,7 @@ const AccountingPage = () => {
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </span>
-                      <span className="text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
+                      <span className="text-[11px] font-semibold text-[#0B1B3D] leading-tight">
                         {item}
                       </span>
                     </li>
@@ -337,9 +338,9 @@ const AccountingPage = () => {
       </section>
 
       {/* 2. INTRO SECTION */}
-      <section className="py-8 md:py-10 px-4 max-w-5xl mx-auto text-center">
+      <section className="py-6 md:py-10 px-4 max-w-5xl mx-auto text-center">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0d1b2a] mb-6 uppercase tracking-tight">Your Partner in Financial Accuracy</h2>
+          <h2 className="text-heading font-extrabold text-[#0b1f4d] mb-6 tracking-tight">Your Partner in <span className="text-[#f2700f]">Financial Accuracy</span></h2>
           <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-4xl mx-auto font-medium">
             Maintain pristine financial records and gain critical business insights with our end-to-end accounting services. From daily bookkeeping to financial forecasting, our team ensures your finances are accurate, compliant, and organized, giving you the clarity to make informed decisions.
           </p>
@@ -347,10 +348,10 @@ const AccountingPage = () => {
       </section>
 
       {/* 3. FEATURES GRID */}
-      <section id="services" className="scroll-mt-20 py-8 md:py-10 px-4 bg-white">
+      <section id="services" className="scroll-mt-20 py-6 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-10">
-            <h2 className="text-3xl font-bold text-[#0d1b2a] uppercase tracking-tight">A Closer Look at Our Features</h2>
+            <h2 className="text-heading font-extrabold text-[#0b1f4d] tracking-tight">A Closer Look at <span className="text-[#f2700f]">Our Features</span></h2>
             <div className="w-24 h-1 bg-[#ff7f32] mx-auto mt-4 rounded-full"></div>
           </div>
 
@@ -368,7 +369,7 @@ const AccountingPage = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 bg-orange-50 rounded-xl flex items-center justify-center mb-4 sm:mb-6 shadow-sm">
                   {feat.icon}
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#0d1b2a] mb-2 sm:mb-3 leading-tight">{feat.title}</h3>
+                <h3 className="text-card-title font-bold text-[#0d1b2a] mb-2 sm:mb-3 leading-tight">{feat.title}</h3>
                 <p className="text-xs text-slate-500 leading-relaxed font-medium">
                   {feat.description}
                 </p>
@@ -411,22 +412,20 @@ const AccountingPage = () => {
       />
 
       {/* 4. BENEFITS LIST */}
-      <section className="relative w-full bg-[#f8fafd] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 overflow-hidden">
+      <section className="relative w-full bg-[#f8fafd] px-4 sm:px-6 lg:px-8 py-6 sm:py-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* Pill sits above both columns so the photo lines up with the heading */}
-          <span className="mb-5 inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#ffece0] text-[#f2700f] text-[13px] sm:text-[14px] font-extrabold uppercase tracking-wide">
-            <span aria-hidden="true" className="w-[3px] h-4 rounded-full bg-[#f2700f]" /> Why Choose Us
-          </span>
+          <Eyebrow className="mb-5">Why Choose Us</Eyebrow>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-14 items-center lg:items-stretch">
 
           {/* Left: heading + benefit cards */}
           <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <h2 className="text-[30px] sm:text-[38px] lg:text-[42px] font-black text-[#0b2a6b] tracking-tight leading-[1.1] uppercase">
+            <h2 className="text-heading font-extrabold text-[#0b1f4d] tracking-tight leading-tight">
               Unlock Key <span className="text-[#f2700f]">Benefits</span>
             </h2>
             <span aria-hidden="true" className="mt-4 mb-6 block w-20 h-1 rounded-full bg-[#f2700f]" />
-            <p className="text-[15px] sm:text-[17px] text-slate-600 leading-relaxed mb-8 max-w-2xl">
+            <p className="text-[14px] sm:text-[16.5px] text-slate-600 leading-relaxed mb-8 max-w-2xl">
               Our accounting services provide the financial intelligence you need to navigate challenges and seize opportunities with confidence.
             </p>
 
@@ -441,9 +440,9 @@ const AccountingPage = () => {
                   className="flex items-center gap-4 bg-white px-5 py-5 rounded-2xl shadow-[0_8px_24px_-14px_rgba(11,42,107,.25)] border border-slate-100 hover:shadow-[0_14px_30px_-14px_rgba(11,42,107,.3)] transition-[box-shadow,border-color,background-color,color]"
                 >
                   <span className="w-11 h-11 rounded-full bg-[#e7f8ee] flex items-center justify-center flex-shrink-0">
-                    <FaCheckCircle className="text-[20px] text-[#16a34a]" />
+                    <FaCheckCircle className="text-[17.5px] text-[#16a34a]" />
                   </span>
-                  <span className="text-[15px] sm:text-[17px] text-[#0b2a6b] font-bold leading-snug">{benefit}</span>
+                  <span className="text-[14px] sm:text-[16.5px] text-[#0b2a6b] font-bold leading-snug">{benefit}</span>
                 </motion.div>
               ))}
             </div>
@@ -520,18 +519,6 @@ const AccountingPage = () => {
         ]}
       />
 
-      {/* SOFTWARE AND PORTALS */}
-      <ToolsStrip
-        pill="Tools We Use"
-        title="Software and Portals"
-        highlight="We Work With"
-        desc="We work in the software you already use and file directly on the government portals."
-        groups={[
-          { Icon: FaLaptop, heading: 'Accounting Software', items: ['Tally Prime', 'Zoho Books', 'QuickBooks', 'Xero', 'Excel / Google Sheets'] },
-          { Icon: FaLandmark, heading: 'Government Portals', items: ['GST Portal', 'Income Tax e-Filing', 'TRACES', 'MCA', 'EPFO', 'ESIC'] },
-        ]}
-      />
-
       {/* COMMON MISTAKES */}
       <MistakesGrid
         title="Accounting Mistakes That"
@@ -568,7 +555,7 @@ const AccountingPage = () => {
       {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* 6. CTA / CONTACT SECTION */}
-      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
+      <section className="relative py-6 md:py-10 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
         {/* Soft decorative shapes (same style as the "Why Arvion" section) */}
         <div aria-hidden="true" className="pointer-events-none absolute -top-16 left-[8%] w-72 h-72 rounded-[40%] bg-white/[0.05] rotate-12" />
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 right-[6%] w-80 h-80 rounded-full bg-white/[0.04]" />
@@ -576,7 +563,7 @@ const AccountingPage = () => {
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           <motion.h2 
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4 uppercase tracking-tight"
+            className="text-heading font-extrabold text-white mb-2 md:mb-4 tracking-tight"
           >
             Ready to Take Control of Your Finances?
           </motion.h2>

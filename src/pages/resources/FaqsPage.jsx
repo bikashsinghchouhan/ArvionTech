@@ -37,12 +37,12 @@ const FaqsPage = () => {
             value={query}
             onChange={(e) => { setQuery(e.target.value); setOpen(null); }}
             placeholder="Search questions, e.g. GST or payslips"
-            className="flex-1 bg-transparent outline-none text-[15px] text-[#0b1b3d] placeholder:text-slate-400"
+            className="flex-1 bg-transparent outline-none text-[14px] text-[#0b1b3d] placeholder:text-slate-400"
           />
         </label>
       </ResourceHero>
 
-      <section className="py-8 sm:py-10 px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
+      <section className="py-6 sm:py-10 px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[240px_minmax(0,1fr)] gap-6 lg:gap-10 items-start">
           {/* Topic filter */}
           <nav aria-label="FAQ topics" className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-1 lg:sticky lg:top-24">
@@ -81,13 +81,13 @@ const FaqsPage = () => {
                           onClick={() => setOpen(isOpen ? null : id)}
                           className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer"
                         >
-                          <span className="font-bold text-[15px] sm:text-base text-[#0b1b3d]">{it.q}</span>
+                          <span className="font-bold text-[14px] sm:text-base text-[#0b1b3d]">{it.q}</span>
                           <FaChevronDown className={`flex-shrink-0 text-sm text-[#1747a6] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                         </button>
                         <AnimatePresence initial={false}>
                           {isOpen && (
                             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                              <p className="px-5 pb-5 text-[15px] text-slate-600 leading-relaxed">{it.a}</p>
+                              <p className="px-5 pb-5 text-[14px] text-slate-600 leading-relaxed">{it.a}</p>
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -100,7 +100,7 @@ const FaqsPage = () => {
 
             <div className="rounded-2xl bg-gradient-to-br from-[#0a2766] to-[#14409a] text-white px-6 py-7 sm:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-xl font-extrabold">Still have a question?</h2>
+                <h2 className="text-xl font-extrabold">Still have a <span className="text-[#ffb366]">question?</span></h2>
                 <p className="mt-1 text-white/80 text-sm">Our team replies within one working day.</p>
               </div>
               <Link to="/contact" className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white font-bold text-sm flex-shrink-0">

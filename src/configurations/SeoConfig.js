@@ -29,7 +29,7 @@ const SERVICES = {
     name: 'School Management ERP Software',
     serviceType: 'School management software',
     description:
-      'Cloud school ERP for admissions, fee management, attendance, exams and report cards, timetable, transport and library, with parent, student and teacher portals and a mobile app.',
+      'Cloud school ERP for admissions, fee management, attendance, exams and report cards, timetable, transport and library, with student and teacher portals and a mobile app.',
   },
   payroll: {
     path: '/services/outsourcing',
@@ -186,7 +186,7 @@ const schoolErpApp = {
     'Timetable management',
     'Library and inventory management',
     'Transport management',
-    'Parent, student and teacher portals',
+    'Student and teacher portals',
     'SMS, WhatsApp and app notifications',
     'Teacher payroll processing',
   ],
@@ -268,7 +268,7 @@ export const seoRoutes = [
     path: '/services/school-management',
     title: 'School Management Software & ERP in India | Arvion School ERP',
     description:
-      'Cloud school ERP software for admissions, fees, attendance, exams and report cards, with parent, teacher and student apps. Book a free demo for your school in India.',
+      'Cloud school ERP software for admissions, fees, attendance, exams and report cards, with student and teacher apps. Book a free demo for your school in India.',
     priority: '0.9',
     schema: servicePage('school', [schoolErpApp]),
   },

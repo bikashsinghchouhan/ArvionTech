@@ -2,23 +2,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CalendarCheck, Settings2, GraduationCap, Rocket } from 'lucide-react';
+import Eyebrow from '../ui/Eyebrow';
 
 const reveal = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 } };
 
 // Pill with side lines + title (one word highlighted) + optional line of text, same look as other home sections
 const Heading = ({ eyebrow, before, highlight, after = '', desc }) => (
   <motion.div {...reveal} transition={{ duration: 0.5 }} className="flex flex-col items-center text-center max-w-3xl mx-auto mb-9 sm:mb-11">
-    <div className="flex items-center gap-3 sm:gap-4">
-      <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />
-      <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">
-        {eyebrow}
-      </span>
-      <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />
-    </div>
-    <h2 className="mt-4 text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <h2 className="mt-4 text-heading font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
       {before}<span className="text-[#f7861c]">{highlight}</span>{after}
     </h2>
-    {desc && <p className="mt-3 text-[15px] sm:text-[17px] leading-relaxed text-slate-600">{desc}</p>}
+    {desc && <p className="mt-3 text-[14px] sm:text-[16.5px] leading-relaxed text-slate-600">{desc}</p>}
   </motion.div>
 );
 
@@ -31,7 +26,7 @@ const steps = [
 ];
 
 export const HowItWorks = () => (
-  <section id="how-it-works" className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-10 bg-[#f6f9ff]">
+  <section id="how-it-works" className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 bg-[#f6f9ff]">
     <div className="max-w-6xl mx-auto">
       <Heading
         eyebrow="How It Works"
@@ -54,13 +49,13 @@ export const HowItWorks = () => (
           >
             <span className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white flex items-center justify-center shadow-lg shadow-orange-500/25 ring-4 ring-[#f6f9ff]">
               <Icon size={26} strokeWidth={2} />
-              <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#0f2a6b] text-white text-[12px] font-extrabold flex items-center justify-center ring-2 ring-[#f6f9ff]">
+              <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#0f2a6b] text-white text-[11.5px] font-extrabold flex items-center justify-center ring-2 ring-[#f6f9ff]">
                 {i + 1}
               </span>
             </span>
             <div className="mt-4 w-full bg-white rounded-2xl border border-slate-200/70 shadow-[0_6px_20px_-12px_rgba(15,42,107,.18)] px-5 py-5 flex-1">
-              <h3 className="text-[17px] font-extrabold text-[#0f2a6b]">{title}</h3>
-              <p className="mt-1.5 text-[14px] text-slate-600 leading-relaxed">{desc}</p>
+              <h3 className="text-card-title font-extrabold text-[#0f2a6b]">{title}</h3>
+              <p className="mt-1.5 text-card-desc text-slate-600 leading-relaxed">{desc}</p>
             </div>
           </motion.li>
         ))}

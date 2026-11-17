@@ -20,7 +20,7 @@ export const services = [
     imagePosition: 'object-[70%_center]',
     path: '/services/school-management',
     // Content of the matching service page hero (used by the home slider)
-    hero: { crumb: 'School ERP', title: 'School ERP Software', subtitle: 'Smarter Schools & Stronger Institutions', description: 'End-to-end school management software to run admissions, academics, attendance, fees, exams and parent communication – all in one place.', imageAlt: 'Teacher and students using Arvion School ERP on a laptop', imageWidth: 1376, imageHeight: 768, secondaryLabel: 'Explore Modules' },
+    hero: { crumb: 'School ERP', title: 'School ERP Software', subtitle: 'Smarter Schools & Stronger Institutions', description: 'End-to-end school management software to run admissions, academics, attendance, fees, exams and school communication – all in one place.', imageAlt: 'Teacher and students using Arvion School ERP on a laptop', imageWidth: 1376, imageHeight: 768, secondaryLabel: 'Explore Modules' },
     stats: [
       { icon: <FaCalendarAlt />, text: 'Effortless Scheduling' },
       { icon: <FaCheckCircle />, text: 'Automated Attendance' },

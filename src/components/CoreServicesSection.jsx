@@ -62,13 +62,13 @@ const services = [
 ];
 
 const CoreServicesSection = () => (
-  <section id="features" className="scroll-mt-24 py-8 sm:py-10 px-4 sm:px-6 lg:px-10 bg-white">
+  <section id="features" className="scroll-mt-24 py-6 sm:py-10 px-4 sm:px-6 lg:px-10 bg-white">
     <div className="max-w-7xl mx-auto">
       {/* Heading with side lines */}
       <div className="flex items-center justify-center gap-4 mb-8 sm:mb-10">
         <span aria-hidden="true" className="hidden sm:block h-[3px] w-16 lg:w-24 rounded-full bg-gradient-to-r from-transparent to-[#f7941d]" />
-        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0f2a6b] text-center">
-          Our Core Services
+        <h2 className="text-heading font-extrabold tracking-tight text-[#0b1f4d] text-center">
+          Our Core <span className="text-[#f2700f]">Services</span>
         </h2>
         <span aria-hidden="true" className="hidden sm:block h-[3px] w-16 lg:w-24 rounded-full bg-gradient-to-l from-transparent to-[#f7941d]" />
       </div>
@@ -83,13 +83,13 @@ const CoreServicesSection = () => (
             transition={{ duration: 0.45, delay: i * 0.08 }}
             className={`group flex flex-col items-center text-center rounded-2xl border bg-gradient-to-b ${theme.card} p-5 sm:p-6 shadow-sm hover:shadow-xl transition-[box-shadow,border-color,background-color,color] duration-300`}
           >
-            <Icon aria-hidden="true" className={`text-[34px] ${theme.accent}`} />
+            <Icon aria-hidden="true" className={`text-[25px] ${theme.accent}`} />
 
-            <h3 className="mt-3 text-[20px] sm:text-[22px] font-extrabold leading-tight text-[#0f2a6b]">
+            <h3 className="mt-3 text-card-title font-extrabold leading-tight text-[#0f2a6b]">
               {title[0]}<br />{title[1]}
             </h3>
 
-            <p className="mt-2 text-[14px] text-slate-700 leading-snug max-w-[220px]">
+            <p className="mt-2 text-card-desc text-slate-700 leading-snug max-w-[220px]">
               {desc}
             </p>
 
@@ -99,7 +99,7 @@ const CoreServicesSection = () => (
 
             <Link
               to={path}
-              className={`mt-5 inline-flex items-center justify-center gap-2 w-full h-11 rounded-lg border-2 bg-white font-bold text-[14px] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 ${theme.button}`}
+              className={`mt-5 inline-flex items-center justify-center gap-2 w-full h-11 rounded-lg border-2 bg-white font-bold text-[13px] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 ${theme.button}`}
             >
               {cta} <FaArrowRight className="text-xs" />
             </Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  FaMobileAlt, FaWhatsapp, FaGlobe, FaMoneyBillWave,
+  FaMobileAlt, FaWhatsapp, FaMoneyBillWave,
   FaChartLine, FaClipboardCheck, FaBookOpen, FaCheckCircle,
   FaMapMarker, FaBookReader, FaBusAlt, FaBullhorn, FaUserCheck
 } from 'react-icons/fa';
@@ -191,11 +191,10 @@ export const pageConfig = {
 
 
   modules: [
-    { title: "Mobile App for Parents/student", price: "₹20/student", icon: <FaMobileAlt size={24} /> },
+    { title: "Mobile App for Students", price: "₹20/student", icon: <FaMobileAlt size={24} /> },
     { title: "Mobile App for Staff", price: "₹10,000/yr", icon: <FaMobileAlt size={24} /> },
     { title: "WhatsApp API Integration", price: "₹5,000/yr", icon: <FaWhatsapp size={24} /> },
-    { title: "Payment Gateway Integration", price: "₹2,000/yr", icon: <FaMoneyBillWave size={24} /> },
-    { title: "Domain Registration", price: "₹899/yr", icon: <FaGlobe size={24} /> }
+    { title: "Payment Gateway Integration", price: "₹2,000/yr", icon: <FaMoneyBillWave size={24} /> }
   ],
 
 
@@ -229,12 +228,12 @@ export const pageConfig = {
     {
       title: "User management",
       category: "Core Administration",
-      desc: "Centralize account administration for school leaders, teachers, administrative staff, students, and parents. Easily create credentials, configure login methods, manage password resets, and track active sessions."
+      desc: "Centralize account administration for school leaders, teachers, administrative staff and students. Easily create credentials, configure login methods, manage password resets, and track active sessions."
     },
     {
       title: "Notifications",
       category: "Core Administration",
-      desc: "Broadcast instant circulars, emergency alerts, holiday announcements, fee reminders, and event notices to parents, teachers, and students via SMS, automated emails, and mobile push notifications."
+      desc: "Broadcast instant circulars, emergency alerts, holiday announcements, fee reminders, and event notices to teachers, students and staff via SMS, automated emails, and mobile push notifications."
     },
     {
       title: "Holiday",
@@ -279,7 +278,7 @@ export const pageConfig = {
     {
       title: "Access restriction",
       category: "Core Administration",
-      desc: "Enforce strict role-based access control (RBAC). Ensure that teachers, accountants, clerks, and parents can only view and modify the exact data permitted by their specific roles and authorization levels."
+      desc: "Enforce strict role-based access control (RBAC). Ensure that teachers, accountants, clerks and students can only view and modify the exact data permitted by their specific roles and authorization levels."
     },
     {
       title: "Dashboard",
@@ -354,7 +353,7 @@ export const pageConfig = {
     {
       title: "Assignment Management",
       category: "Advanced Enterprise Modules",
-      desc: "Enable teachers to publish homework, assignments, and reading materials online with due dates. Students and parents can access tasks, submit work digitally, and receive teacher feedback."
+      desc: "Enable teachers to publish homework, assignments, and reading materials online with due dates. Students can access tasks, submit work digitally, and receive teacher feedback."
     },
     {
       title: "Inventory Management",
@@ -383,8 +382,8 @@ export const pageConfig = {
   appFeaturesLeft: [
     { title: "Dashboard Management", desc: "Customize and manage different dashboard on different modules.", icon: <FaChartLine className="text-blue-500 text-3xl" /> },
     { title: "Attendance Entry", desc: "Manage and view user's attendance with a detailed report.", icon: <FaClipboardCheck className="text-blue-500 text-3xl" /> },
-    { title: "Homework Entry", desc: "Add, View and Check Homework by teachers and students/Parents.", icon: <FaBookOpen className="text-blue-500 text-3xl" /> },
-    { title: "Fee Management", desc: "View and Check Fee by students/parents.", icon: <FaMoneyBillWave className="text-blue-500 text-3xl" /> },
+    { title: "Homework Entry", desc: "Add, View and Check Homework by teachers and students.", icon: <FaBookOpen className="text-blue-500 text-3xl" /> },
+    { title: "Fee Management", desc: "View and Check Fee by students.", icon: <FaMoneyBillWave className="text-blue-500 text-3xl" /> },
     { title: "Timetable Entry", desc: "Automated timetable for every class and sections.", icon: <FaCheckCircle className="text-blue-500 text-3xl" /> }
   ],
 
@@ -393,9 +392,9 @@ export const pageConfig = {
   appFeaturesRight: [
     { title: "Location View", desc: "Separate location entries for students, teachers and other staffs", icon: <FaMapMarker className="text-blue-500 text-3xl" /> },
     { title: "Library Management", desc: "To manage available books, its issues and returns", icon: <FaBookReader className="text-blue-500 text-3xl" /> },
-    { title: "Vehicle Tracking", desc: "Parents can be worry-free by tracking their children's vehicle status", icon: <FaBusAlt className="text-blue-500 text-3xl" /> },
-    { title: "Circular", desc: "Ease of communication with Student/Parent", icon: <FaBullhorn className="text-blue-500 text-3xl" /> },
-    { title: "Student Tracking", desc: "Parents/Teachers can keep eye on their children activities", icon: <FaUserCheck className="text-blue-500 text-3xl" /> }
+    { title: "Vehicle Tracking", desc: "Track the school vehicle status in real time", icon: <FaBusAlt className="text-blue-500 text-3xl" /> },
+    { title: "Circular", desc: "Ease of communication with students", icon: <FaBullhorn className="text-blue-500 text-3xl" /> },
+    { title: "Student Tracking", desc: "Teachers can keep an eye on student activities", icon: <FaUserCheck className="text-blue-500 text-3xl" /> }
   ],
 
 
@@ -406,7 +405,7 @@ export const pageConfig = {
   testimonials: [
     { name: "Dr. Sharma", role: "Principal, Sunrise Public School", text: "The Arvion ERP has transformed how we manage our day-to-day operations. The attendance and fee modules are incredibly intuitive and have saved us countless hours.", rating: 5 },
     { name: "Mr. Verma", role: "Director, Excellence Academy", text: "Having a centralized dashboard for all our administrative tasks is a game changer. Our teachers can now focus more on teaching rather than paperwork.", rating: 5 },
-    { name: "Mrs. Gupta", role: "Head of Administration", text: "The automated timetable and exam management features are flawless. Parents are also very happy with the real-time notifications.", rating: 4 },
+    { name: "Mrs. Gupta", role: "Head of Administration", text: "The automated timetable and exam management features are flawless. Staff and students love the real-time notifications.", rating: 4 },
     { name: "Mr. Singh", role: "IT Coordinator", text: "The face-based attendance system is incredibly accurate and fast. It completely eliminated proxy attendance in our institution.", rating: 5 },
     { name: "Ms. Patel", role: "Finance Manager", text: "Fee collection used to be a nightmare. Now, with automated reminders and instant receipts, our revenue tracking is seamless and error-free.", rating: 5 }
   ]

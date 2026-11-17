@@ -165,24 +165,24 @@ const HorizontalScroll = () => {
                   <span className="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-[#ff7f32]/30 border border-[#ff7f32]/50 text-orange-100 mb-3 backdrop-blur-sm">
                     {service.badge}
                   </span>
-                  <h2 className="text-[26px] sm:text-[32px] font-extrabold leading-tight tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] mb-2">
+                  <h2 className="text-[19px] sm:text-[25px] font-extrabold leading-tight tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] mb-2">
                     {service.title}
                   </h2>
-                  <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-widest text-[#feb47b] mb-5 sm:mb-3">
+                  <p className="text-[11px] sm:text-[11.5px] font-bold uppercase tracking-widest text-[#feb47b] mb-5 sm:mb-3">
                     {service.category}
                   </p>
-                  <p className="hidden sm:block text-[15px] text-slate-100 leading-relaxed mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                  <p className="hidden sm:block text-[14px] text-slate-100 leading-relaxed mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     {service.description}
                   </p>
                   <div className="w-full grid grid-cols-2 gap-3">
                     <button
-                      className="w-full h-12 px-2 rounded-xl bg-gradient-to-r from-[#ea580c] to-[#c2410c] text-white font-bold text-[14px] sm:text-[15px] whitespace-nowrap shadow-lg cursor-pointer"
+                      className="w-full h-12 px-2 rounded-xl bg-gradient-to-r from-[#ea580c] to-[#c2410c] text-white font-bold text-[13px] sm:text-[14.5px] whitespace-nowrap shadow-lg cursor-pointer"
                       onClick={() => navigate('/contact')}
                     >
                       Contact Us
                     </button>
                     <button
-                      className="w-full h-12 px-2 rounded-xl bg-white/10 border border-white/25 text-white font-bold text-[14px] sm:text-[15px] whitespace-nowrap backdrop-blur-sm inline-flex items-center justify-center gap-1.5 cursor-pointer"
+                      className="w-full h-12 px-2 rounded-xl bg-white/10 border border-white/25 text-white font-bold text-[13px] sm:text-[14.5px] whitespace-nowrap backdrop-blur-sm inline-flex items-center justify-center gap-1.5 cursor-pointer"
                       onClick={() => navigate(service.path)}
                     >
                       Explore Solutions <FaArrowRight className="text-xs" />

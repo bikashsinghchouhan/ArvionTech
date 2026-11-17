@@ -33,7 +33,7 @@ const BlogPage = () => {
         description="Practical guides on school management, payroll, compliance and accounting from the Arvion team."
       />
 
-      <section className="py-8 sm:py-10 px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
+      <section className="py-6 sm:py-10 px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
         <div className="max-w-7xl mx-auto">
           <div role="tablist" aria-label="Filter articles by topic" className="flex flex-wrap gap-2 mb-6 sm:mb-8">
             {categories.map((c) => (
@@ -66,7 +66,7 @@ const BlogPage = () => {
                   <h2 className="mt-4 text-lg font-extrabold text-[#0b1b3d] leading-snug group-hover:text-[#1747a6] transition-colors">
                     <Link to={`/blog/${post.slug}`} className="focus:outline-none focus-visible:underline">{post.title}</Link>
                   </h2>
-                  <p className="mt-2 text-[14px] text-slate-600 leading-relaxed">{post.excerpt}</p>
+                  <p className="mt-2 text-[13px] text-slate-600 leading-relaxed">{post.excerpt}</p>
                   <Link to={`/blog/${post.slug}`} className="mt-auto pt-5 inline-flex items-center gap-2 text-sm font-bold text-[#1747a6] w-max" aria-label={`Read: ${post.title}`}>
                     Read article <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
                   </Link>

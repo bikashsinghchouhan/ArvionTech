@@ -6,6 +6,7 @@ import '../csssection/ContactUs.css';
 import { FaSquarePhone, FaSquarePhoneFlip } from "react-icons/fa6";
 import emailjs from '@emailjs/browser';
 import { pageConfig } from '../configurations/SchoolManagementConfig';
+import Eyebrow from '../components/ui/Eyebrow';
 
 // 30-minute meeting slots, 09:00 to 20:00 (24-hour "HH:MM").
 const TIME_SLOTS = Array.from({ length: 23 }, (_, i) => {
@@ -273,14 +274,8 @@ const ContactUs = ({ isSinglePage }) => {
       {isSinglePage && (
         <div className="text-center mb-8 md:mb-10 max-w-3xl mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col items-center">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
-              <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[12px] sm:text-[14px] font-extrabold uppercase tracking-[0.1em]">
-                Contact Us
-              </span>
-              <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
-            </div>
-            <h2 className="mt-4 text-[30px] sm:text-[40px] lg:text-[46px] font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
+            <Eyebrow>Contact Us</Eyebrow>
+            <h2 className="mt-4 text-heading font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
               Get in{' '}
               <span className="relative inline-block text-[#f2700f]">
                 Touch
@@ -295,7 +290,7 @@ const ContactUs = ({ isSinglePage }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mt-5 text-slate-600 leading-relaxed text-[15px] sm:text-[18px]"
+            className="mt-5 text-slate-600 leading-relaxed text-[14px] sm:text-[17.5px]"
           >
             Ready to transform your operations? Reach out to us for a tailored consultation and discover how Arvion Technologies can drive your growth.
           </motion.p>
@@ -334,20 +329,20 @@ const ContactUs = ({ isSinglePage }) => {
                 </React.Fragment>
               ))}
             </div>
-            <h2 className="text-[30px] lg:text-[34px] font-extrabold mb-3 leading-tight text-white">{stepContent[step - 1].title}</h2>
-            <p className="text-[16px] leading-[1.6] text-white/85">{stepContent[step - 1].description}</p>
+            <h2 className="text-[22.5px] lg:text-[27px] font-extrabold mb-3 leading-tight text-white">{stepContent[step - 1].title}</h2>
+            <p className="text-[15px] leading-[1.6] text-white/85">{stepContent[step - 1].description}</p>
             <div className="tw-contact-info-block mt-8 pt-7 border-t border-white/20 text-white">
-              <p className="font-extrabold text-[13px] mb-5 uppercase tracking-[0.14em] text-white">Or contact us directly:</p>
+              <p className="font-extrabold text-[12px] mb-5 uppercase tracking-[0.14em] text-white">Or contact us directly:</p>
               <div className="flex flex-col gap-4">
-                <a href="mailto:sales@arviontechnologies.com" className="group text-white hover:text-[#ffc08a] transition-colors flex items-center gap-4 text-[16px]" title="Email Us">
+                <a href="mailto:sales@arviontechnologies.com" className="group text-white hover:text-[#ffc08a] transition-colors flex items-center gap-4 text-[15px]" title="Email Us">
                   <span className="w-11 h-11 rounded-lg bg-white/15 group-hover:bg-white/25 flex items-center justify-center flex-shrink-0 transition-colors"><FaEnvelope className="text-lg" /></span>
                   <span>sales@arviontechnologies.com</span>
                 </a>
-                <a href="tel:+919535764655" className="group text-white hover:text-[#ffc08a] transition-colors flex items-center gap-4 text-[16px]" title="Call Us">
+                <a href="tel:+919535764655" className="group text-white hover:text-[#ffc08a] transition-colors flex items-center gap-4 text-[15px]" title="Call Us">
                   <span className="w-11 h-11 rounded-lg bg-white/15 group-hover:bg-white/25 flex items-center justify-center flex-shrink-0 transition-colors"><FaSquarePhoneFlip className="text-lg" /></span>
                   <span>+91 9535764655</span>
                 </a>
-                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="group text-white hover:text-[#ffc08a] transition-colors flex items-center gap-4 text-[16px]" title="WhatsApp Us">
+                <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer" className="group text-white hover:text-[#ffc08a] transition-colors flex items-center gap-4 text-[15px]" title="WhatsApp Us">
                   <span className="w-11 h-11 rounded-lg bg-white/15 group-hover:bg-white/25 flex items-center justify-center flex-shrink-0 transition-colors"><FaWhatsapp className="text-lg text-[#4ade80]" /></span>
                   <span>+91 9535764655</span>
                 </a>
@@ -377,14 +372,14 @@ const ContactUs = ({ isSinglePage }) => {
                 <div className="flex items-center gap-4 mb-7">
                   <span className="w-14 h-14 rounded-2xl bg-[#fff1e3] text-[#f2700f] flex items-center justify-center flex-shrink-0"><FaUser className="text-xl" /></span>
                   <div>
-                    <h3 className="text-[20px] sm:text-[26px] font-extrabold text-[#0b1f4d] leading-tight">Your Contact Information</h3>
+                    <h3 className="text-card-title font-extrabold text-[#0b1f4d] leading-tight">Your Contact Information</h3>
                     <span aria-hidden="true" className="mt-2 block w-16 h-[3px] rounded-full bg-[#f2700f]" />
                   </div>
                 </div>
 
                 {/* Name Input with Error Styling */}
                 <div className="tw-input-group relative mb-5">
-                  <label className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Full Name <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                  <label className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Full Name <span className="text-[#e53e3e] ml-[1px]">*</span></label>
                   <div className="relative">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm z-[1]">
                       <FaUser />
@@ -392,7 +387,7 @@ const ContactUs = ({ isSinglePage }) => {
                     <input
                       type="text"
                       name="name"
-                      className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[15px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.name ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.name ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                       placeholder="e.g., John Doe"
                       value={formData.name}
                       onChange={handleChange}
@@ -403,13 +398,13 @@ const ContactUs = ({ isSinglePage }) => {
 
                 {/* Service Select with Error Styling */}
                 <div className="tw-input-group relative mb-5">
-                  <label className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Service <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                  <label className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Service <span className="text-[#e53e3e] ml-[1px]">*</span></label>
                   <div className="relative">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm z-[1]">
                       <FaBriefcase />
                     </div>
                     <select
-                      className={`tw-select-input w-full pl-11 pr-3 py-3 border rounded-xl text-[15px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.selectedService ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`tw-select-input w-full pl-11 pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.selectedService ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                       value={selectedService}
                       onChange={(e) => {
                         const value = e.target.value;
@@ -430,7 +425,7 @@ const ContactUs = ({ isSinglePage }) => {
                 {/* Company Name (Conditional) with Error Styling */}
                 {selectedService && (
                   <div className="tw-input-group relative mb-5">
-                    <label className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">
+                    <label className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">
                       {selectedService === "School Management Service" ? "School Name" : "Company Name"}{" "}
                       <span className="text-[#e53e3e] ml-[1px]">*</span>
                     </label>
@@ -441,7 +436,7 @@ const ContactUs = ({ isSinglePage }) => {
                       <input
                         type="text"
                         name="company"
-                        className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[15px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.company ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                        className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.company ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                         placeholder={selectedService === "School Management Service" ? "e.g., Bright Future School" : "e.g., Arvion Technologies"}
                         value={formData.company}
                         onChange={handleChange}
@@ -454,13 +449,13 @@ const ContactUs = ({ isSinglePage }) => {
 
 
                 <div className="tw-input-group relative mb-5">
-                  <label className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Phone Number <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                  <label className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Phone Number <span className="text-[#e53e3e] ml-[1px]">*</span></label>
                   <div className="relative">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm z-[1]">
                       {/* <FaPhone /> */}
                       <FaSquarePhone size={18} />
                     </div>
-                    <div className="absolute left-[40px] top-1/2 -translate-y-1/2 text-slate-700 text-[15px] font-bold z-[1] select-none border-r border-[#d5dbe5] pr-2.5">
+                    <div className="absolute left-[40px] top-1/2 -translate-y-1/2 text-slate-700 text-[14px] font-bold z-[1] select-none border-r border-[#d5dbe5] pr-2.5">
                       +91
                     </div>
                     <input
@@ -471,14 +466,14 @@ const ContactUs = ({ isSinglePage }) => {
                       value={formData.phone}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`w-full pl-[84px] pr-3 py-3 border rounded-xl text-[15px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.phone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`w-full pl-[84px] pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.phone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                     />
                   </div>
                   {fieldErrors.phone && formData.phone && <p className="text-[10px] text-[#ff4d4d] mt-1 font-semibold">Please enter a valid 10-digit number</p>}
                 </div>
 
                 <div className="tw-input-group relative mb-5">
-                  <label className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Work Email <span className="text-[#e53e3e] ml-[1px]">*</span></label>
+                  <label className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Work Email <span className="text-[#e53e3e] ml-[1px]">*</span></label>
                   <div className="relative">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm z-[1]">
                       <FaEnvelope />
@@ -486,7 +481,7 @@ const ContactUs = ({ isSinglePage }) => {
                     <input
                       type="email"
                       name="email"
-                      className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[15px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                       placeholder="e.g., john.doe@company.com"
                       value={formData.email}
                       onChange={handleChange}
@@ -500,7 +495,7 @@ const ContactUs = ({ isSinglePage }) => {
 
                 {/* Next Button */}
                 <button
-                  className="tw-nav-btn px-7 py-3.5 rounded-xl font-bold text-[16px] transition-all duration-300 flex items-center justify-center gap-2 bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white self-end hover:brightness-105 shadow-lg shadow-orange-500/25 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer"
+                  className="tw-nav-btn px-7 py-3.5 rounded-xl font-bold text-[15px] transition-all duration-300 flex items-center justify-center gap-2 bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white self-end hover:brightness-105 shadow-lg shadow-orange-500/25 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer"
                   onClick={handleNext}
                   disabled={!isStep1Valid()}
                 >
@@ -514,7 +509,7 @@ const ContactUs = ({ isSinglePage }) => {
                 <div className="flex items-center gap-4 mb-7">
                   <span className="w-14 h-14 rounded-2xl bg-[#fff1e3] text-[#f2700f] flex items-center justify-center flex-shrink-0"><FaBriefcase className="text-xl" /></span>
                   <div>
-                    <h3 className="text-[20px] sm:text-[26px] font-extrabold text-[#0b1f4d] leading-tight">Which services are you interested in?</h3>
+                    <h3 className="text-card-title font-extrabold text-[#0b1f4d] leading-tight">Which services are you interested in?</h3>
                     <span aria-hidden="true" className="mt-2 block w-16 h-[3px] rounded-full bg-[#f2700f]" />
                   </div>
                 </div>
@@ -555,8 +550,8 @@ const ContactUs = ({ isSinglePage }) => {
                 </div>
 
                 <div className="form-nav-buttons flex justify-between mt-8">
-                  <button className="tw-nav-btn bg-white border border-[#d5dbe5] text-[#0b1f4d] px-6 py-3.5 rounded-xl font-bold text-[15px] transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
-                  <button className="tw-nav-btn bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white px-7 py-3.5 rounded-xl font-bold text-[16px] shadow-lg shadow-orange-500/25 transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] cursor-pointer" onClick={handleNext}>Next Step <FaArrowRight /></button>
+                  <button className="tw-nav-btn bg-white border border-[#d5dbe5] text-[#0b1f4d] px-6 py-3.5 rounded-xl font-bold text-[14px] transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
+                  <button className="tw-nav-btn bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white px-7 py-3.5 rounded-xl font-bold text-[15px] shadow-lg shadow-orange-500/25 transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] cursor-pointer" onClick={handleNext}>Next Step <FaArrowRight /></button>
                 </div>
               </motion.div>
             )}
@@ -566,54 +561,54 @@ const ContactUs = ({ isSinglePage }) => {
                 <div className="flex items-center gap-4 mb-7">
                   <span className="w-14 h-14 rounded-2xl bg-[#fff1e3] text-[#f2700f] flex items-center justify-center flex-shrink-0"><FaCalendarAlt className="text-xl" /></span>
                   <div>
-                    <h3 className="text-[20px] sm:text-[26px] font-extrabold text-[#0b1f4d] leading-tight">Book a Preferred Date &amp; Time</h3>
+                    <h3 className="text-card-title font-extrabold text-[#0b1f4d] leading-tight">Book a Preferred Date &amp; Time</h3>
                     <span aria-hidden="true" className="mt-2 block w-16 h-[3px] rounded-full bg-[#f2700f]" />
                   </div>
                 </div>
                 <p className="step-description text-xs text-[#555] mb-4 leading-relaxed font-semibold">Select a date and a time slot that works best for you. We will confirm the final meeting details via email.</p>
 
                 {meetingDate && (
-                  <div className="mb-4 pb-3 border-b border-[#d5dbe5] text-[16px] font-semibold text-[#0b1f4d]">
+                  <div className="mb-4 pb-3 border-b border-[#d5dbe5] text-[15px] font-semibold text-[#0b1f4d]">
                     {meetingDate}{meetingTime && <span> {meetingTime}</span>}
                   </div>
                 )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr_1fr] gap-3 mb-4">
                   <div>
-                    <label htmlFor="meetingDate" className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Start date</label>
+                    <label htmlFor="meetingDate" className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Start date</label>
                     <input
                       id="meetingDate"
                       type="date"
                       name="date"
                       value={formData.date}
                       onChange={handleDateChange}
-                      className={`date-input w-full px-3 py-3 border rounded-xl text-[15px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`date-input w-full px-3 py-3 border rounded-xl text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                       min={today}
                     />
                   </div>
                   <div>
-                    <label htmlFor="meetingStart" className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Start time</label>
+                    <label htmlFor="meetingStart" className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Start time</label>
                     <select
                       id="meetingStart"
                       name="startTime"
                       value={formData.startTime}
                       onChange={handleStartTimeChange}
                       disabled={!formData.date}
-                      className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[15px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
+                      className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
                     >
                       <option value="">{formData.date && availableStartTimes.length === 0 ? 'No slots left' : '--:--'}</option>
                       {availableStartTimes.map((t) => <option key={t} value={t}>{t}</option>)}
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="meetingEnd" className="block text-[12px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">End time</label>
+                    <label htmlFor="meetingEnd" className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">End time</label>
                     <select
                       id="meetingEnd"
                       name="endTime"
                       value={formData.endTime}
                       onChange={handleChange}
                       disabled={!formData.startTime}
-                      className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[15px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
+                      className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
                     >
                       <option value="">--:--</option>
                       {availableEndTimes.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -627,10 +622,10 @@ const ContactUs = ({ isSinglePage }) => {
                 </div>
 
                 <div className="form-nav-buttons flex justify-between mt-8">
-                  <button className="tw-nav-btn bg-white border border-[#d5dbe5] text-[#0b1f4d] px-6 py-3.5 rounded-xl font-bold text-[15px] transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
+                  <button className="tw-nav-btn bg-white border border-[#d5dbe5] text-[#0b1f4d] px-6 py-3.5 rounded-xl font-bold text-[14px] transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
 
                   <button
-                    className="tw-nav-btn bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white px-7 py-3.5 rounded-xl font-bold text-[16px] shadow-lg shadow-orange-500/25 transition-all duration-300 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer"
+                    className="tw-nav-btn bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white px-7 py-3.5 rounded-xl font-bold text-[15px] shadow-lg shadow-orange-500/25 transition-all duration-300 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer"
                     onClick={handleSubmit}
                     disabled={isSubmitting || !isStep3Valid()}
                   >

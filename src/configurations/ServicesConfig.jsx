@@ -6,7 +6,7 @@ export const servicesData = [
         id: 'school',
         icon: <FaSchool />,
         title: 'School Management System',
-        summary: 'An integrated ERP solution to manage all academic, administrative, and parent-teacher communication workflows seamlessly.',
+        summary: 'An integrated ERP solution to manage all academic, administrative, and school communication workflows seamlessly.',
         features: ['Student Information profiles', 'Real-time daily attendance log', 'Conflict-free scheduling algorithm', 'Digital grading report cards'],
         path: '/services/school-management',
     },

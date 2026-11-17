@@ -7,6 +7,7 @@ import {
   FolderOpen, FileText, UserPlus, HeartPulse, Landmark, Headset,
   ChevronDown, CircleCheck,
 } from 'lucide-react';
+import Eyebrow from '../ui/Eyebrow';
 
 const fadeUp = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
@@ -15,17 +16,11 @@ const inView = { initial: 'hidden', whileInView: 'visible', viewport: { once: tr
 // Same heading pattern as the other Payroll sections: pill, title (one part highlighted), line of text
 const SectionHeading = ({ pill, pillTone = 'orange', before = '', highlight, after = '', desc }) => (
   <motion.div {...inView} variants={fadeUp} className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-    <span
-      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border ${
-        pillTone === 'blue' ? 'bg-blue-100/70 border-blue-200 text-[#1747a6]' : 'bg-orange-50 border-orange-200 text-[#FF7A00]'
-      }`}
-    >
-      {pill}
-    </span>
-    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight leading-tight mb-4">
+    <Eyebrow className="mb-4">{pill}</Eyebrow>
+    <h2 className="text-heading font-extrabold text-[#0B1B3D] tracking-tight leading-tight mb-4">
       {before}<span className="text-[#FF7A00]">{highlight}</span>{after}
     </h2>
-    {desc && <p className="text-slate-600 text-base sm:text-lg leading-relaxed">{desc}</p>}
+    {desc && <p className="text-slate-600 text-base sm:text-[16.5px] leading-relaxed">{desc}</p>}
   </motion.div>
 );
 
@@ -39,7 +34,7 @@ const complianceItems = [
 ];
 
 export const ComplianceGrid = () => (
-  <section id="compliance" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white scroll-mt-24">
+  <section id="compliance" className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-white scroll-mt-24">
     <div className="max-w-6xl mx-auto">
       <SectionHeading
         pill="Statutory Compliance"
@@ -59,8 +54,8 @@ export const ComplianceGrid = () => (
             <span className="mx-auto w-14 h-14 rounded-2xl bg-white ring-1 ring-orange-100 text-[#FF7A00] shadow-sm flex items-center justify-center group-hover:bg-[#FF7A00] group-hover:text-white transition-colors duration-300">
               <Icon className="w-7 h-7" strokeWidth={1.8} aria-hidden="true" />
             </span>
-            <h3 className="mt-4 text-lg font-bold text-[#0B1B3D] leading-snug">{title}</h3>
-            <p className="mt-2 text-sm text-slate-600 leading-relaxed">{desc}</p>
+            <h3 className="mt-4 text-card-title font-bold text-[#0B1B3D] leading-snug">{title}</h3>
+            <p className="mt-2 text-card-desc text-slate-600 leading-relaxed">{desc}</p>
           </motion.li>
         ))}
       </motion.ul>
@@ -79,7 +74,7 @@ const AccordionShowcase = ({ id, heading, items, tint = false, panelSide = 'righ
   return (
     <section
       id={id}
-      className={`py-8 sm:py-10 px-4 sm:px-6 w-full scroll-mt-24 ${tint ? 'bg-[#f4f8fe] border-y border-blue-50' : 'bg-white'}`}
+      className={`py-6 sm:py-10 px-4 sm:px-6 w-full scroll-mt-24 ${tint ? 'bg-[#f4f8fe] border-y border-blue-50' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto">
         <SectionHeading {...heading} />
@@ -111,7 +106,7 @@ const AccordionShowcase = ({ id, heading, items, tint = false, panelSide = 'righ
                       className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
                     >
                       <div className="overflow-hidden">
-                        <p className="px-5 sm:px-6 pb-5 pl-[4.375rem] sm:pl-[4.625rem] text-sm sm:text-[15px] text-slate-600 leading-relaxed">{desc}</p>
+                        <p className="px-5 sm:px-6 pb-5 pl-[4.375rem] sm:pl-[4.625rem] text-sm sm:text-[14.5px] text-slate-600 leading-relaxed">{desc}</p>
                       </div>
                     </div>
                   </li>

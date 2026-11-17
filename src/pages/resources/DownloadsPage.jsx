@@ -26,7 +26,7 @@ const DownloadsPage = () => (
       description="Product brochures and practical checklists for school management, payroll, compliance and accounting."
     />
 
-    <section className="py-8 sm:py-10 px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
+    <section className="py-6 sm:py-10 px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
       <div className="max-w-7xl mx-auto">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {downloads.map((d, i) => (
@@ -41,7 +41,7 @@ const DownloadsPage = () => (
               </span>
               <div className="flex flex-col min-w-0">
                 <span className={`self-start rounded-full px-2.5 py-0.5 text-[11px] font-bold ${tone[d.category] || tone.Company}`}>{d.category}</span>
-                <h2 className="mt-2 text-[17px] font-extrabold text-[#0b1b3d] leading-snug">{d.title}</h2>
+                <h2 className="mt-2 text-[16px] font-extrabold text-[#0b1b3d] leading-snug">{d.title}</h2>
                 <p className="mt-1 text-sm text-slate-600 leading-relaxed">{d.desc}</p>
                 {d.file ? (
                   <a href={d.file} download className="mt-4 inline-flex items-center gap-2 self-start h-10 px-4 rounded-lg bg-[#1747a6] hover:bg-[#0f2a6b] text-white font-bold text-sm transition-colors">
@@ -59,10 +59,10 @@ const DownloadsPage = () => (
 
         <div className="mt-8 sm:mt-10 rounded-2xl bg-gradient-to-br from-[#0a2766] to-[#14409a] text-white px-6 py-7 sm:px-10 sm:py-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div>
-            <h2 className="text-xl sm:text-2xl font-extrabold">Looking for something specific?</h2>
+            <h2 className="text-xl sm:text-2xl font-extrabold">Looking for something <span className="text-[#ffb366]">specific?</span></h2>
             <p className="mt-1 text-white/80 text-sm sm:text-base">Tell us what you need and we'll send the right material, or walk you through it on a call.</p>
           </div>
-          <Link to="/contact" className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white font-bold text-[15px] shadow-lg shadow-orange-900/30 flex-shrink-0">
+          <Link to="/contact" className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white font-bold text-[14px] shadow-lg shadow-orange-900/30 flex-shrink-0">
             Contact us <FaArrowRight className="text-xs" />
           </Link>
         </div>

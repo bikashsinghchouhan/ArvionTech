@@ -169,7 +169,7 @@ const RegistrationsPage = () => {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </span>
-                  <span className="text-[11px] xl:text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
+                  <span className="text-[11px] xl:text-[11px] font-semibold text-[#0B1B3D] leading-tight">
                     {item}
                   </span>
                 </li>
@@ -209,7 +209,7 @@ const RegistrationsPage = () => {
               {/* Main Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
-                className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-4 relative"
+                className="text-3xl sm:text-4xl lg:text-[37px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-4 relative"
               >
                 Statutory <span className="text-[#FF7A00] relative inline-block">
                   Registrations
@@ -270,7 +270,7 @@ const RegistrationsPage = () => {
                     <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.text} flex items-center justify-center text-sm flex-shrink-0`}>
                       {item.icon}
                     </div>
-                    <span className="text-[13px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
+                    <span className="text-[12px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
                       {item.title1} {item.title2}
                     </span>
                   </div>
@@ -345,7 +345,7 @@ const RegistrationsPage = () => {
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </span>
-                      <span className="text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
+                      <span className="text-[11px] font-semibold text-[#0B1B3D] leading-tight">
                         {item}
                       </span>
                     </li>
@@ -367,9 +367,9 @@ const RegistrationsPage = () => {
       </section>
 
       {/* 2. INTRO SECTION */}
-      <section className="py-8 md:py-10 px-4 max-w-5xl mx-auto text-center">
+      <section className="py-6 md:py-10 px-4 max-w-5xl mx-auto text-center">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0d1b2a] mb-6 uppercase tracking-tight">Navigate Compliance with Confidence</h2>
+          <h2 className="text-heading font-extrabold text-[#0b1f4d] mb-6 tracking-tight">Navigate Compliance with <span className="text-[#f2700f]">Confidence</span></h2>
           <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-4xl mx-auto font-medium">
             Ensure your business is built on a solid legal foundation with our expert statutory registration services. We guide you through the complexities of company incorporation, GST registration, and more, allowing you to launch and operate your business with confidence.
           </p>
@@ -377,10 +377,10 @@ const RegistrationsPage = () => {
       </section>
 
       {/* 3. FEATURES GRID */}
-      <section id="services" className="scroll-mt-20 py-8 md:py-10 px-4 bg-white">
+      <section id="services" className="scroll-mt-20 py-6 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-10">
-            <h2 className="text-3xl font-bold text-[#0d1b2a] uppercase tracking-tight">A Closer Look at Our Features</h2>
+            <h2 className="text-heading font-extrabold text-[#0b1f4d] tracking-tight">A Closer Look at <span className="text-[#f2700f]">Our Features</span></h2>
             <div className="w-24 h-1 bg-[#ff7f32] mx-auto mt-4 rounded-full"></div>
           </div>
 
@@ -397,7 +397,7 @@ const RegistrationsPage = () => {
                 <div className="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center mb-6 shadow-sm">
                   {feat.icon}
                 </div>
-                <h3 className="text-lg font-bold text-[#0d1b2a] mb-3 leading-tight">{feat.title}</h3>
+                <h3 className="text-card-title font-bold text-[#0d1b2a] mb-3 leading-tight">{feat.title}</h3>
                 <p className="text-xs text-slate-500 leading-relaxed font-medium">
                   {feat.description}
                 </p>
@@ -440,10 +440,10 @@ const RegistrationsPage = () => {
       <RegistrationFinder />
 
       {/* 4. BENEFITS LIST */}
-      <section className="py-8 md:py-10 px-4 max-w-7xl mx-auto">
+      <section className="py-6 md:py-10 px-4 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <motion.div className="flex-1" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-            <h2 className="text-3xl font-bold text-[#0d1b2a] mb-6 uppercase tracking-tight">Unlock Key Benefits</h2>
+            <h2 className="text-heading font-extrabold text-[#0b1f4d] mb-6 tracking-tight">Unlock Key <span className="text-[#f2700f]">Benefits</span></h2>
             <p className="text-slate-500 mb-8 font-medium leading-relaxed">
               We handle the paperwork and legal complexities so you can focus on scaling your business operations globally.
             </p>
@@ -611,7 +611,7 @@ const RegistrationsPage = () => {
       {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* 6. CTA / CONTACT SECTION */}
-      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
+      <section className="relative py-6 md:py-10 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a]">
         {/* Soft decorative shapes (same style as the "Why Arvion" section) */}
         <div aria-hidden="true" className="pointer-events-none absolute -top-16 left-[8%] w-72 h-72 rounded-[40%] bg-white/[0.05] rotate-12" />
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 right-[6%] w-80 h-80 rounded-full bg-white/[0.04]" />
@@ -619,7 +619,7 @@ const RegistrationsPage = () => {
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4 uppercase tracking-tight"
+            className="text-heading font-extrabold text-white mb-2 md:mb-4 tracking-tight"
           >
             Ready to Formalize Your Business?
           </motion.h2>

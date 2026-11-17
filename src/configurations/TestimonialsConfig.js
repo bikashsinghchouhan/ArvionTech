@@ -16,7 +16,7 @@ export const testimonialsData = [
   {
     name: "Mrs. Gupta",
     role: "Head of Administration",
-    text: "The automated timetable and exam management features are flawless. Parents are also very happy with the real-time notifications.",
+    text: "The automated timetable and exam management features are flawless. Staff and students love the real-time notifications.",
     rating: 4
   },
   {

@@ -4,6 +4,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, UserCog, DatabaseBackup, Cloud, KeyRound } from 'lucide-react';
+import HighlightTitle from './ui/HighlightTitle';
+import Eyebrow from './ui/Eyebrow';
 
 const ICONS = [ShieldCheck, UserCog, DatabaseBackup, Cloud, KeyRound];
 
@@ -26,7 +28,7 @@ const SecurityHighlights = ({
     <section
       id={id}
       aria-labelledby={id ? `${id}-title` : undefined}
-      className={`relative overflow-hidden w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-10 scroll-mt-24 ${
+      className={`relative overflow-hidden w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 scroll-mt-24 ${
         dark ? 'bg-gradient-to-br from-[#0a2766] via-[#0e3480] to-[#14409a] text-white' : tint ? 'bg-[#f4f8fe] border-y border-blue-50' : 'bg-white'
       }`}
     >
@@ -39,21 +41,15 @@ const SecurityHighlights = ({
 
       <div className="relative max-w-7xl mx-auto">
         <motion.div {...reveal} variants={item} className="text-center max-w-2xl mx-auto mb-7 sm:mb-8">
-          <span
-            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-[0.12em] ${
-              dark ? 'bg-white/10 text-[#ffb46b] ring-1 ring-white/15' : 'bg-blue-50 text-[#1747a6] ring-1 ring-blue-100'
-            }`}
-          >
-            <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" /> {eyebrow}
-          </span>
+          <Eyebrow tone={dark ? 'dark' : 'light'}>{eyebrow}</Eyebrow>
           <h2
             id={id ? `${id}-title` : undefined}
-            className={`mt-3 text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight ${dark ? 'text-white' : 'text-[#0B1B3D]'}`}
+            className={`mt-3 text-heading font-extrabold tracking-tight leading-tight ${dark ? 'text-white' : 'text-[#0B1B3D]'}`}
           >
-            {title}
+            <HighlightTitle title={title} className={dark ? 'text-[#ffb366]' : 'text-[#f2700f]'} />
           </h2>
           {desc && (
-            <p className={`mt-2.5 text-[15px] sm:text-base leading-relaxed ${dark ? 'text-blue-100/85' : 'text-slate-600'}`}>{desc}</p>
+            <p className={`mt-2.5 text-[14px] sm:text-base leading-relaxed ${dark ? 'text-blue-100/85' : 'text-slate-600'}`}>{desc}</p>
           )}
         </motion.div>
 
@@ -82,8 +78,8 @@ const SecurityHighlights = ({
                 >
                   <Icon className="w-5 h-5" strokeWidth={2} aria-hidden="true" />
                 </span>
-                <h3 className={`mt-3 text-[15px] font-bold leading-snug ${dark ? 'text-white' : 'text-[#0B1B3D]'}`}>{t}</h3>
-                <p className={`mt-1 text-[13px] leading-relaxed ${dark ? 'text-blue-100/75' : 'text-slate-600'}`}>{d}</p>
+                <h3 className={`mt-3 text-[14px] font-bold leading-snug ${dark ? 'text-white' : 'text-[#0B1B3D]'}`}>{t}</h3>
+                <p className={`mt-1 text-[12px] leading-relaxed ${dark ? 'text-blue-100/75' : 'text-slate-600'}`}>{d}</p>
               </motion.li>
             );
           })}

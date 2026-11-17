@@ -13,6 +13,7 @@ import {
   aboutContact, whoWeAre, visionMission, coreValues, whatWeDo, whyChoose, journey,
   leaders, leadershipTeams, leadershipMessage,
 } from '../../configurations/AboutConfig';
+import Eyebrow from '../ui/Eyebrow';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -21,7 +22,7 @@ const fadeUp = {
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const reveal = { initial: 'hidden', whileInView: 'visible', viewport: { once: true, amount: 0.15 } };
 
-const SECTION = 'relative overflow-hidden w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-10';
+const SECTION = 'relative overflow-hidden w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10';
 
 // Shared heading: pill with side lines, title with one highlighted word, optional subtitle
 const SectionHeading = ({ eyebrow, before, highlight, after, desc, dark = false, align = 'center' }) => (
@@ -30,18 +31,12 @@ const SectionHeading = ({ eyebrow, before, highlight, after, desc, dark = false,
     variants={fadeUp}
     className={`flex flex-col ${align === 'center' ? 'items-center text-center mx-auto' : 'items-start text-left'} max-w-3xl mb-9 sm:mb-11`}
   >
-    <div className="flex items-center gap-3 sm:gap-4">
-      {align === 'center' && <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />}
-      <span className={`px-4 sm:px-5 py-1.5 rounded-full text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em] ${dark ? 'bg-white/10 text-[#ffb366] border border-white/15' : 'bg-[#ffe9d6] text-[#e8730c]'}`}>
-        {eyebrow}
-      </span>
-      <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />
-    </div>
-    <h2 className={`mt-4 text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight ${dark ? 'text-white' : 'text-[#0b1f4d]'}`}>
+    <Eyebrow tone={dark ? 'dark' : 'light'}>{eyebrow}</Eyebrow>
+    <h2 className={`mt-4 text-heading font-extrabold tracking-tight leading-tight ${dark ? 'text-white' : 'text-[#0b1f4d]'}`}>
       {before}<span className="text-[#f7861c]">{highlight}</span>{after}
     </h2>
     {desc && (
-      <p className={`mt-3 text-[15px] sm:text-[17px] leading-relaxed ${dark ? 'text-white/75' : 'text-slate-600'}`}>{desc}</p>
+      <p className={`mt-3 text-[14px] sm:text-[16.5px] leading-relaxed ${dark ? 'text-white/75' : 'text-slate-600'}`}>{desc}</p>
     )}
   </motion.div>
 );
@@ -75,7 +70,7 @@ export const WhoWeAre = () => (
         <div className="absolute -bottom-6 right-4 sm:right-8 flex items-center gap-3 bg-white rounded-xl border border-slate-200/70 shadow-[0_12px_30px_-14px_rgba(15,42,107,.45)] px-4 py-3">
           <span className="w-10 h-10 rounded-lg bg-[#fff1e3] text-[#f47b14] flex items-center justify-center"><MapPin size={19} /></span>
           <span className="leading-tight">
-            <span className="block text-[14px] font-bold text-[#0b1f4d]">Made in Bengaluru</span>
+            <span className="block text-[13px] font-bold text-[#0b1f4d]">Made in Bengaluru</span>
             <span className="block text-xs text-slate-500">Serving clients across India</span>
           </span>
         </div>
@@ -90,7 +85,7 @@ export const WhoWeAre = () => (
           highlight="schools"
           after=" and businesses"
         />
-        <motion.div {...reveal} variants={stagger} className="-mt-4 grid gap-4 text-[15px] sm:text-[16px] text-slate-600 leading-relaxed">
+        <motion.div {...reveal} variants={stagger} className="-mt-4 grid gap-4 text-[14px] sm:text-[15.5px] text-slate-600 leading-relaxed">
           {whoWeAre.paragraphs.map((p) => <motion.p key={p.slice(0, 20)} variants={fadeUp}>{p}</motion.p>)}
         </motion.div>
         <motion.ul {...reveal} variants={stagger} className="mt-7 grid grid-cols-1 min-[440px]:grid-cols-2 gap-3 sm:gap-4">
@@ -100,8 +95,8 @@ export const WhoWeAre = () => (
               <motion.li key={key} variants={fadeUp} className="flex items-start gap-3 rounded-xl border border-slate-200/70 bg-[#f7faff] px-4 py-3.5 shadow-[0_4px_14px_-10px_rgba(15,42,107,.25)]">
                 <span className="w-10 h-10 rounded-lg bg-white text-[#1747a6] border border-blue-100 flex items-center justify-center flex-shrink-0"><Icon size={19} /></span>
                 <span className="leading-snug min-w-0">
-                  <span className="block text-[14px] font-bold text-[#0b1f4d]">{title}</span>
-                  <span className="block text-[13px] text-slate-500">{text}</span>
+                  <span className="block text-[13px] font-bold text-[#0b1f4d]">{title}</span>
+                  <span className="block text-[12px] text-slate-500">{text}</span>
                 </span>
               </motion.li>
             );
@@ -126,12 +121,12 @@ const PurposeCard = ({ Icon, label, text, points, tone }) => (
     <div aria-hidden="true" className={`pointer-events-none absolute -top-16 -right-16 w-56 h-56 rounded-full bg-gradient-to-bl ${tone.glow} to-transparent`} />
     <div className="relative flex items-center gap-4">
       <span className={`w-14 h-14 rounded-xl bg-gradient-to-br ${tone.icon} flex items-center justify-center flex-shrink-0`}><Icon size={28} strokeWidth={1.8} /></span>
-      <h3 className="text-2xl font-extrabold text-[#0b1f4d]">{label}</h3>
+      <h3 className="text-card-title font-extrabold text-[#0b1f4d]">{label}</h3>
     </div>
-    <p className="relative mt-5 text-[16px] sm:text-[17px] text-slate-700 leading-relaxed">{text}</p>
+    <p className="relative mt-5 text-card-desc text-slate-700 leading-relaxed">{text}</p>
     <ul className="relative mt-5 flex flex-wrap gap-2">
       {points.map((pt) => (
-        <li key={pt} className="inline-flex items-center gap-1.5 rounded-full bg-slate-50 border border-slate-200/70 px-3 py-1 text-[13px] text-slate-700">
+        <li key={pt} className="inline-flex items-center gap-1.5 rounded-full bg-slate-50 border border-slate-200/70 px-3 py-1 text-[12px] text-slate-700">
           <CheckCircle2 size={14} className={tone.check} /> {pt}
         </li>
       ))}
@@ -184,7 +179,7 @@ export const VisionMissionValues = () => (
               </span>
               <h4 className="relative mt-5 text-xl font-extrabold text-[#0b1f4d]">{title}</h4>
               <span aria-hidden="true" className={`relative block mt-3 w-10 h-1 rounded-full ${tone.bar}`} />
-              <p className="relative mt-4 text-[14px] sm:text-[15px] text-slate-600 leading-relaxed">{desc}</p>
+              <p className="relative mt-4 text-[13px] sm:text-[14.5px] text-slate-600 leading-relaxed">{desc}</p>
             </motion.div>
           );
         })}
@@ -224,12 +219,8 @@ export const WhatWeDo = () => (
     <div className="relative max-w-7xl mx-auto">
       {/* Heading: pill with side lines + underlined highlight */}
       <motion.div {...reveal} variants={fadeUp} className="flex flex-col items-center text-center mb-9 sm:mb-11">
-        <div className="flex items-center gap-3 sm:gap-4">
-          <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
-          <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">What We Do</span>
-          <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
-        </div>
-        <h2 className="mt-4 text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
+        <Eyebrow>What We Do</Eyebrow>
+        <h2 className="mt-4 text-heading font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
           Four practice areas.{' '}
           <span className="relative inline-block text-[#f2700f]">
             One partner.
@@ -238,7 +229,7 @@ export const WhatWeDo = () => (
             </svg>
           </span>
         </h2>
-        <p className="mt-4 text-[15px] sm:text-[17px] leading-relaxed text-slate-600 max-w-3xl">
+        <p className="mt-4 text-[14px] sm:text-[16.5px] leading-relaxed text-slate-600 max-w-3xl">
           Software and services that cover the everyday operations of a school or a business, delivered by one team.
         </p>
       </motion.div>
@@ -261,17 +252,17 @@ export const WhatWeDo = () => (
                       <Icon size={26} strokeWidth={2} />
                     </span>
                     <div className="min-w-0">
-                      <span className="block text-[12px] font-extrabold uppercase tracking-[0.16em]" style={{ color: accent }}>{vertical}</span>
-                      <h3 className="text-[22px] sm:text-[24px] font-extrabold text-[#0b1f4d] leading-tight">{title}</h3>
+                      <span className="block text-[11.5px] font-extrabold uppercase tracking-[0.16em]" style={{ color: accent }}>{vertical}</span>
+                      <h3 className="text-card-title font-extrabold text-[#0b1f4d] leading-tight">{title}</h3>
                     </div>
                   </div>
-                  <p className="mt-4 text-[14px] sm:text-[15px] text-slate-700 leading-relaxed">{desc}</p>
+                  <p className="mt-4 text-card-desc text-slate-700 leading-relaxed">{desc}</p>
                   <ul className="mt-4 flex flex-wrap gap-2">
                     {points.map((pt) => (
-                      <li key={pt} className={`rounded-full border px-3 py-1 text-[12px] sm:text-[13px] font-semibold ${pill}`}>{pt}</li>
+                      <li key={pt} className={`rounded-full border px-3 py-1 text-[11.5px] sm:text-[12.5px] font-semibold ${pill}`}>{pt}</li>
                     ))}
                   </ul>
-                  <Link to={path} className="mt-5 inline-flex items-center gap-2 text-[15px] font-extrabold w-max focus:outline-none focus-visible:underline" style={{ color: accent }}>
+                  <Link to={path} className="mt-5 inline-flex items-center gap-2 text-[14px] font-extrabold w-max focus:outline-none focus-visible:underline" style={{ color: accent }}>
                     Learn more <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
@@ -310,8 +301,8 @@ export const WhyChooseArvion = () => (
           return (
             <motion.div key={key} variants={fadeUp} className="group rounded-2xl bg-white/[0.06] border border-white/10 p-6 hover:bg-white/[0.1] transition-colors duration-300">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white flex items-center justify-center shadow-lg shadow-orange-900/30"><Icon size={22} /></span>
-              <h3 className="mt-4 text-lg font-bold text-white">{title}</h3>
-              <p className="mt-2 text-[14px] sm:text-[15px] text-white/75 leading-relaxed">{desc}</p>
+              <h3 className="mt-4 text-card-title font-bold text-white">{title}</h3>
+              <p className="mt-2 text-card-desc text-white/75 leading-relaxed">{desc}</p>
             </motion.div>
           );
         })}
@@ -348,8 +339,8 @@ export const Journey = () => (
                 <span className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.1em] ${last ? 'bg-[#ffe9d6] text-[#e8730c]' : 'bg-blue-50 text-[#1747a6]'}`}>
                   {year || label}
                 </span>
-                <h3 className="mt-2 text-[16px] sm:text-[17px] font-bold text-[#0b1f4d] leading-snug">{title}</h3>
-                <p className="mt-1.5 text-[13px] sm:text-sm text-slate-600 leading-relaxed">{desc}</p>
+                <h3 className="mt-2 text-[15px] sm:text-[16.5px] font-bold text-[#0b1f4d] leading-snug">{title}</h3>
+                <p className="mt-1.5 text-[12px] sm:text-sm text-slate-600 leading-relaxed">{desc}</p>
               </div>
             </motion.li>
           );
@@ -384,7 +375,7 @@ export const Leadership = () => (
                   : <span className="w-20 h-20 rounded-full bg-[#1747a6] text-white text-2xl font-extrabold flex items-center justify-center">{initialsOf(name)}</span>}
               </div>
               <div className="p-5">
-                <h3 className="text-lg font-extrabold text-[#0b1f4d]">{name}</h3>
+                <h3 className="text-card-title font-extrabold text-[#0b1f4d]">{name}</h3>
                 <p className="text-sm text-slate-500">{role}</p>
                 {linkedin && (
                   <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn`} className="mt-3 inline-flex w-9 h-9 rounded-full bg-blue-50 text-[#1747a6] items-center justify-center hover:bg-[#1747a6] hover:text-white transition-colors">
@@ -402,8 +393,8 @@ export const Leadership = () => (
             return (
               <motion.div key={key} variants={fadeUp} className={`${CARD} p-6 text-center`}>
                 <span className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-[#eaf2ff] to-[#d7e6ff] text-[#1747a6] flex items-center justify-center ring-4 ring-blue-50"><Icon size={26} strokeWidth={1.8} /></span>
-                <h3 className="mt-4 text-lg font-extrabold text-[#0b1f4d]">{title}</h3>
-                <p className="mt-2 text-[14px] text-slate-600 leading-relaxed">{desc}</p>
+                <h3 className="mt-4 text-card-title font-extrabold text-[#0b1f4d]">{title}</h3>
+                <p className="mt-2 text-card-desc text-slate-600 leading-relaxed">{desc}</p>
               </motion.div>
             );
           })}
@@ -414,7 +405,7 @@ export const Leadership = () => (
       <motion.figure {...reveal} variants={fadeUp} className="relative mt-10 sm:mt-12 rounded-2xl bg-gradient-to-r from-[#f7faff] to-white border border-slate-200/70 px-6 py-8 sm:px-12 sm:py-10 overflow-hidden">
         <div aria-hidden="true" className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#f7941d] to-[#1747a6]" />
         <Quote aria-hidden="true" size={56} className="absolute right-6 top-4 text-[#f7941d]/15" />
-        <blockquote className="relative text-[17px] sm:text-xl lg:text-[22px] text-[#0b1f4d] font-semibold leading-relaxed">
+        <blockquote className="relative text-[16px] sm:text-xl lg:text-[20.5px] text-[#0b1f4d] font-semibold leading-relaxed">
           “{leadershipMessage.quote}”
         </blockquote>
         <figcaption className="mt-5 flex items-center gap-3 text-sm font-bold text-slate-600">
@@ -438,17 +429,17 @@ export const FinalCTA = () => (
 
       <div className="relative grid lg:grid-cols-[1.4fr_1fr] gap-8 items-center">
         <div>
-          <h2 className="text-[26px] sm:text-[34px] lg:text-[38px] font-extrabold leading-tight">
+          <h2 className="text-heading font-extrabold leading-tight">
             Let's build something <span className="text-[#ffb366]">great together</span>
           </h2>
-          <p className="mt-3 text-[15px] sm:text-[17px] text-white/80 leading-relaxed max-w-xl">
+          <p className="mt-3 text-[14px] sm:text-[16.5px] text-white/80 leading-relaxed max-w-xl">
             Tell us about your school or business. We'll show you how Arvion can save your team time and keep you compliant.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 sm:gap-4">
-            <Link to="/contact" className="inline-flex items-center gap-2.5 h-12 px-6 sm:px-7 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] hover:brightness-105 text-white font-bold text-[15px] shadow-lg shadow-orange-900/30 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300">
+            <Link to="/contact" className="inline-flex items-center gap-2.5 h-12 px-6 sm:px-7 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] hover:brightness-105 text-white font-bold text-[14px] shadow-lg shadow-orange-900/30 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300">
               <CalendarCheck size={18} /> Book a Free Demo
             </Link>
-            <Link to="/contact" className="inline-flex items-center gap-2.5 h-12 px-6 sm:px-7 rounded-lg bg-white hover:bg-blue-50 text-[#0f2a6b] font-bold text-[15px] shadow-lg shadow-black/15 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200">
+            <Link to="/contact" className="inline-flex items-center gap-2.5 h-12 px-6 sm:px-7 rounded-lg bg-white hover:bg-blue-50 text-[#0f2a6b] font-bold text-[14px] shadow-lg shadow-black/15 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200">
               Contact Us <ArrowRight size={17} />
             </Link>
           </div>
@@ -458,14 +449,14 @@ export const FinalCTA = () => (
             <span className="w-11 h-11 rounded-lg bg-white/10 text-[#ffb366] flex items-center justify-center"><Phone size={20} /></span>
             <span className="leading-tight">
               <span className="block text-xs text-white/60">Call us</span>
-              <span className="block text-[15px] sm:text-base font-bold">{aboutContact.phone}</span>
+              <span className="block text-[14px] sm:text-base font-bold">{aboutContact.phone}</span>
             </span>
           </a>
           <a href={`mailto:${aboutContact.email}`} className="flex items-center gap-4 rounded-xl bg-white/[0.07] border border-white/10 px-5 py-4 hover:bg-white/[0.12] transition-colors">
             <span className="w-11 h-11 rounded-lg bg-white/10 text-[#ffb366] flex items-center justify-center"><Mail size={20} /></span>
             <span className="leading-tight min-w-0">
               <span className="block text-xs text-white/60">Email us</span>
-              <span className="block text-[15px] sm:text-base font-bold break-all">{aboutContact.email}</span>
+              <span className="block text-[14px] sm:text-base font-bold break-all">{aboutContact.email}</span>
             </span>
           </a>
         </div>

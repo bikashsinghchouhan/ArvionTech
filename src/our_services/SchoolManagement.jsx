@@ -13,7 +13,7 @@ import {
 // import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
 import RelatedServices from '../components/RelatedServices';
-import { TimeBackSection, SwitchingSection, ParentExperience } from '../components/school/SchoolExtras';
+import { TimeBackSection, SwitchingSection, StudentExperience } from '../components/school/SchoolExtras';
 import schoolErpMobile from '../assets/school-erp-mobile.webp';
 import schoolErpHero from '../assets/school-erp-hero.webp';
 import portalAdmin from '../assets/portals/admin-portal.webp';
@@ -24,6 +24,8 @@ import portalStudent from '../assets/portals/student-portal.webp';
 // --- CONFIGURATION ---
 import { pageConfig } from '../configurations/SchoolManagementConfig';
 import { schoolFaqs } from '../configurations/SchoolFaqs';
+import HighlightTitle from '../components/ui/HighlightTitle';
+import Eyebrow from '../components/ui/Eyebrow';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 16 },
@@ -38,20 +40,18 @@ const staggerContainer = {
 const reveal = { initial: "hidden", whileInView: "visible", viewport: { once: true, amount: 0.15 } };
 
 // Shared building blocks so every section uses the same header, card and button styles
-const BTN_PRIMARY = "inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-[#FF8000] hover:bg-[#E67300] text-white font-semibold text-sm sm:text-[15px] shadow-md shadow-orange-500/25 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300";
-const BTN_SECONDARY = "inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-white border border-slate-300 hover:border-slate-400 text-[#0B1B3D] font-semibold text-sm sm:text-[15px] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200";
+const BTN_PRIMARY = "inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-[#FF8000] hover:bg-[#E67300] text-white font-semibold text-sm sm:text-[14.5px] shadow-md shadow-orange-500/25 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300";
+const BTN_SECONDARY = "inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-white border border-slate-300 hover:border-slate-400 text-[#0B1B3D] font-semibold text-sm sm:text-[14.5px] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200";
 const CARD = "bg-white border border-slate-200 rounded-xl sm:rounded-2xl";
 
 // Section headings are centered across the whole page
 const SectionHeader = ({ eyebrow, title, desc, center = true, className = "mb-7 sm:mb-8 md:mb-10" }) => (
   <motion.div {...reveal} variants={fadeUpVariant} className={`grid gap-2.5 sm:gap-3 max-w-2xl ${className} ${center ? 'mx-auto text-center justify-items-center' : ''}`}>
     {eyebrow && (
-      <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-[0.12em] text-[#E67300]">
-        <span className="w-5 h-0.5 rounded bg-[#FF8000]" />{eyebrow}
-      </span>
+      <Eyebrow>{eyebrow}</Eyebrow>
     )}
-    <h2 className="text-[22px] sm:text-3xl lg:text-4xl font-bold text-[#0B1B3D] leading-tight tracking-tight text-balance">{title}</h2>
-    {desc && <p className="text-slate-600 text-sm sm:text-base lg:text-[17px] leading-relaxed">{desc}</p>}
+    <h2 className="text-heading font-extrabold text-[#0b1f4d] leading-tight tracking-tight text-balance"><HighlightTitle title={title} /></h2>
+    {desc && <p className="text-slate-600 text-sm sm:text-base lg:text-[16.5px] leading-relaxed">{desc}</p>}
   </motion.div>
 );
 
@@ -127,12 +127,12 @@ const beforeAfterRows = [
     solution: "Digital examination system", solutionDesc: "Teachers enter marks once. Grades, report cards and merit lists are generated automatically.", solutionIcon: <FaFileAlt />
   },
   {
-    problem: "Poor communication", problemDesc: "Circulars get lost in school diaries and scattered WhatsApp groups. Parents miss key dates.", problemIcon: <FaVolumeMute />,
+    problem: "Poor communication", problemDesc: "Circulars get lost in school diaries and scattered WhatsApp groups. Students and staff miss key dates.", problemIcon: <FaVolumeMute />,
     solution: "Notifications and announcements", solutionDesc: "Send circulars, holiday notices, alerts and fee reminders by SMS, email and app notification.", solutionIcon: <FaBell />
   },
   {
     problem: "Permission issues", problemDesc: "Either everyone can see everything, or nobody can find what they need.", problemIcon: <FaUnlock />,
-    solution: "Role-Based Access Control", solutionDesc: "Each person sees only what their role allows: principal, teacher, accountant, parent or student.", solutionIcon: <FaShieldAlt />
+    solution: "Role-Based Access Control", solutionDesc: "Each person sees only what their role allows: principal, teacher, accountant or student.", solutionIcon: <FaShieldAlt />
   },
   {
     problem: "Multiple branches", problemDesc: "Each campus keeps its own records, so management has no combined view.", problemIcon: <FaColumns />,
@@ -231,7 +231,7 @@ const SchoolManagement = () => {
 
         <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 relative z-10 lg:flex-1 lg:flex lg:flex-col">
           {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-4 sm:pt-5 text-[13px] sm:text-sm text-slate-500">
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-4 sm:pt-5 text-[12px] sm:text-sm text-slate-500">
             <Link to="/" className="hover:text-[#0f2a6b] focus:outline-none focus-visible:underline">Home</Link>
             <span aria-hidden="true" className="text-slate-300">/</span>
             <Link to="/services" className="hover:text-[#0f2a6b] focus:outline-none focus-visible:underline">Services</Link>
@@ -244,23 +244,23 @@ const SchoolManagement = () => {
             <div className="grid gap-4 sm:gap-5 pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-8 lg:pb-14 min-w-0 lg:pr-6 text-center lg:text-left justify-items-center lg:justify-items-start">
               <motion.span
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 w-max max-w-full text-[#0f2a6b] text-[13px] sm:text-sm font-bold uppercase tracking-[0.08em]"
+                className="inline-flex items-center gap-2 w-max max-w-full text-[#0f2a6b] text-[12px] sm:text-sm font-bold uppercase tracking-[0.08em]"
               >
                 <span className="w-2 h-2 rounded-full bg-[#ffc727]" /> Arvion School ERP
               </motion.span>
 
               <motion.h1
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
-                className="text-[28px] sm:text-[38px] lg:text-[38px] xl:text-[42px] font-extrabold leading-[1.15] tracking-[-0.02em] text-[#0f2a6b] text-balance"
+                className="text-[21px] sm:text-[30px] lg:text-[30px] xl:text-[33.5px] font-extrabold leading-[1.15] tracking-[-0.02em] text-[#0f2a6b] text-balance"
               >
                 Complete School ERP for Smarter Schools &amp; Stronger Institutions
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-[15px] sm:text-lg text-slate-800 max-w-xl leading-relaxed"
+                className="text-[14px] sm:text-lg text-slate-800 max-w-xl leading-relaxed"
               >
-                End-to-end school management software to run admissions, academics, attendance, fees, exams and parent communication &ndash; all in one place.
+                End-to-end school management software to run admissions, academics, attendance, fees, exams and school communication &ndash; all in one place.
               </motion.p>
 
               <motion.div
@@ -269,13 +269,13 @@ const SchoolManagement = () => {
               >
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 px-3.5 sm:px-6 rounded-lg text-[13px] bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-bold sm:text-[15px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 px-3.5 sm:px-6 rounded-lg text-[12px] bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-bold sm:text-[14.5px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
                 >
                   <FaCalendarCheck /> Book a Free Demo
                 </Link>
                 <a
                   href="#features"
-                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 px-3.5 sm:px-6 rounded-lg text-[13px] bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold sm:text-[15px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 px-3.5 sm:px-6 rounded-lg text-[12px] bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold sm:text-[14.5px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
                 >
                   Explore Modules <FaArrowRight className="text-xs" />
                 </a>
@@ -284,7 +284,7 @@ const SchoolManagement = () => {
               {/* Assurance badges */}
               <motion.ul
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-2 sm:mt-3 grid grid-cols-2 sm:flex sm:flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2.5 text-[13px] sm:text-sm font-medium text-slate-700 text-left"
+                className="mt-2 sm:mt-3 grid grid-cols-2 sm:flex sm:flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2.5 text-[12px] sm:text-sm font-medium text-slate-700 text-left"
               >
                 {[
                   [<FaShieldAlt />, "100% Compliance"],
@@ -318,7 +318,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* FEATURES OVERVIEW */}
-      <section id="features" ref={featuresTopRef} className="py-8 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20">
+      <section id="features" ref={featuresTopRef} className="py-6 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             eyebrow={`${pageConfig.featureSuite.length}+ Powerful Modules`}
@@ -340,7 +340,7 @@ const SchoolManagement = () => {
                       setSelectedCategory(cat.value);
                       setShowAllFeatures(false);
                     }}
-                    className={`inline-flex items-center justify-between sm:justify-start gap-2 min-h-[40px] px-3 py-1.5 rounded-lg text-[13px] sm:text-sm font-semibold text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${active ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
+                    className={`inline-flex items-center justify-between sm:justify-start gap-2 min-h-[40px] px-3 py-1.5 rounded-lg text-[12px] sm:text-sm font-semibold text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${active ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
                       }`}
                   >
                     {cat.label}
@@ -359,7 +359,7 @@ const SchoolManagement = () => {
                 aria-label="Search modules"
                 value={featureSearch}
                 onChange={(e) => setFeatureSearch(e.target.value)}
-                className="w-full h-11 sm:h-12 pl-10 pr-11 text-[15px] bg-white border border-slate-300 rounded-lg placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition [&::-webkit-search-cancel-button]:hidden"
+                className="w-full h-11 sm:h-12 pl-10 pr-11 text-[14px] bg-white border border-slate-300 rounded-lg placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition [&::-webkit-search-cancel-button]:hidden"
               />
               {featureSearch && (
                 <button
@@ -412,7 +412,7 @@ const SchoolManagement = () => {
                           {featureIcons[norm(feature.title)] || <FaCube />}
                         </IconBox>
                         <span className="grid gap-0.5 min-w-0 flex-1">
-                          <span className={`font-bold text-[15px] sm:text-[15.5px] ${isActive ? 'text-[#E67300]' : 'text-[#0B1B3D]'}`}>{feature.title}</span>
+                          <span className={`font-bold text-[14px] sm:text-[15px] ${isActive ? 'text-[#E67300]' : 'text-[#0B1B3D]'}`}>{feature.title}</span>
                           <span className="text-xs text-slate-500">{feature.category}</span>
                         </span>
                         <FaChevronDown className={`flex-shrink-0 text-sm transition-transform duration-200 ${isActive ? 'rotate-180 text-[#FF8000]' : 'text-slate-400'}`} />
@@ -422,7 +422,7 @@ const SchoolManagement = () => {
                         className={`grid transition-all duration-300 ease-in-out ${isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
                       >
                         <div className="overflow-hidden">
-                          <p className="px-3.5 sm:px-4 pb-4 sm:pl-16 text-slate-600 leading-relaxed text-sm sm:text-[14.5px]">{feature.desc}</p>
+                          <p className="px-3.5 sm:px-4 pb-4 sm:pl-16 text-slate-600 leading-relaxed text-sm sm:text-[14px]">{feature.desc}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -459,7 +459,7 @@ const SchoolManagement = () => {
       </section>
 
       {/* WHY CHOOSE US SECTION */}
-      <section className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full bg-gradient-to-b from-[#f5f8ff] via-white to-[#f7f9ff]">
+      <section className="relative overflow-hidden py-6 sm:py-10 px-4 sm:px-6 w-full bg-gradient-to-b from-[#f5f8ff] via-white to-[#f7f9ff]">
         {/* Background decoration: soft blue waves at the top corners and bottom */}
         <svg aria-hidden="true" className="pointer-events-none absolute top-0 left-0 w-full h-40 sm:h-56" viewBox="0 0 1440 220" preserveAspectRatio="none">
           <path d="M0,0 H460 C380,40 250,70 0,64 Z" fill="#e3ecfb" opacity="0.7" />
@@ -473,16 +473,12 @@ const SchoolManagement = () => {
         <div className="relative max-w-7xl mx-auto">
           {/* Heading */}
           <motion.div {...reveal} variants={fadeUpVariant} className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <span className="inline-flex items-center gap-3 rounded-full bg-[#ffeadb] px-5 py-1.5 text-[12px] sm:text-[14px] font-extrabold uppercase tracking-[0.06em] text-[#f26b0f]">
-              <span aria-hidden="true" className="w-4 sm:w-5 h-0.5 rounded bg-[#f26b0f]" />
-              Why Arvion
-              <span aria-hidden="true" className="w-4 sm:w-5 h-0.5 rounded bg-[#f26b0f]" />
-            </span>
-            <h2 className="mt-4 text-[26px] sm:text-4xl lg:text-[44px] font-extrabold text-[#0B1B3D] tracking-tight leading-tight">
+            <Eyebrow>Why Arvion</Eyebrow>
+            <h2 className="mt-4 text-heading font-extrabold text-[#0B1B3D] tracking-tight leading-tight">
               Why Choose Our <span className="text-[#f26b0f]">School ERP?</span>
             </h2>
-            <p className="mt-3 sm:mt-4 text-[15px] sm:text-[17px] text-slate-600 leading-relaxed">
-              We go beyond basic administration. Our platform is a comprehensive ecosystem designed to transform how your educational institution operates, empowering educators, engaging parents, and driving student success.
+            <p className="mt-3 sm:mt-4 text-[14px] sm:text-[16.5px] text-slate-600 leading-relaxed">
+              We go beyond basic administration. Our platform is a comprehensive ecosystem designed to transform how your educational institution operates, empowering educators, engaging students, and driving student success.
             </p>
           </motion.div>
 
@@ -490,10 +486,10 @@ const SchoolManagement = () => {
           <motion.div variants={staggerContainer} {...reveal} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
             {[
               { title: "100% Cloud-Based & Secure", desc: "Access your school's data securely from anywhere. Our cloud infrastructure features enterprise-grade encryption and automated backups to ensure complete data protection.", icon: <FaServer />, tone: "bg-[#e3eeff] text-[#1d5fe0]", wave: "#1d6ff2" },
-              { title: "Intuitive & User-Friendly", desc: "Designed for effortless navigation. Teachers, admins, and parents can use the system immediately, requiring zero technical training or complex onboarding.", icon: <FaDesktop />, tone: "bg-[#ffece0] text-[#f26b0f]", wave: "#f26b0f" },
+              { title: "Intuitive & User-Friendly", desc: "Designed for effortless navigation. Teachers, admins and students can use the system immediately, requiring zero technical training or complex onboarding.", icon: <FaDesktop />, tone: "bg-[#ffece0] text-[#f26b0f]", wave: "#f26b0f" },
               { title: "Highly Customizable & Scalable", desc: "From small schools to large university groups, our modular architecture adapts and scales seamlessly as your educational institution expands over time.", icon: <FaExpandArrowsAlt />, tone: "bg-[#efe9ff] text-[#8b5cf6]", wave: "#8b5cf6" },
               { title: "Real-Time Analytics & Reporting", desc: "Empower decision-making with instant, actionable insights. Monitor student performance, financial health, and staff productivity through an advanced dashboard.", icon: <FaChartBar />, tone: "bg-[#e3f7ea] text-[#22a855]", wave: "#2fbf5f" },
-              { title: "Dedicated 24/7 Support", desc: "Experience worry-free operations with our dedicated success team. We provide full implementation training and reliable round-the-clock technical assistance.", icon: <FaHeadset />, tone: "bg-[#fff4d9] text-[#f5a50b]", wave: "#fbbf24" },
+              { title: "Dedicated Support", desc: "Experience worry-free operations with our dedicated success team. We provide full implementation training and reliable technical assistance.", icon: <FaHeadset />, tone: "bg-[#fff4d9] text-[#f5a50b]", wave: "#fbbf24" },
               { title: "Seamless Integration", desc: "Connect seamlessly with your existing tools. Our API-first platform integrates effortlessly with biometric devices, accounting software, and payment gateways.", icon: <FaShareAlt />, tone: "bg-[#ffe4ee] text-[#e83e7c]", wave: "#ec4899" },
             ].map((feature) => (
               <motion.article whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
@@ -506,11 +502,11 @@ const SchoolManagement = () => {
                   <path d="M0,48 C90,47 160,38 200,0 L200,48 Z" fill={feature.wave} opacity="0.1" />
                   <path d="M60,48 C130,46 178,30 200,6 L200,48 Z" fill={feature.wave} />
                 </svg>
-                <span className={`relative inline-flex w-14 h-14 sm:w-[60px] sm:h-[60px] rounded-xl items-center justify-center text-2xl sm:text-[28px] transition-transform duration-300 group-hover:scale-105 ${feature.tone}`}>
+                <span className={`relative inline-flex w-14 h-14 sm:w-[60px] sm:h-[60px] rounded-xl items-center justify-center text-2xl sm:text-[22.5px] transition-transform duration-300 group-hover:scale-105 ${feature.tone}`}>
                   {feature.icon}
                 </span>
-                <h3 className="relative mt-4 text-[18px] sm:text-[20px] lg:text-[21px] font-extrabold text-[#0B1B3D] leading-snug">{feature.title}</h3>
-                <p className="relative mt-2 text-[14px] sm:text-[15px] text-slate-600 leading-relaxed">{feature.desc}</p>
+                <h3 className="relative mt-4 text-card-title font-extrabold text-[#0B1B3D] leading-snug">{feature.title}</h3>
+                <p className="relative mt-2 text-card-desc text-slate-600 leading-relaxed">{feature.desc}</p>
               </motion.article>
             ))}
           </motion.div>
@@ -518,21 +514,17 @@ const SchoolManagement = () => {
       </section>
 
       {/* USER PORTALS: one dedicated portal per role */}
-      <section id="portals" className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full bg-white scroll-mt-20">
+      <section id="portals" className="relative overflow-hidden py-6 sm:py-10 px-4 sm:px-6 w-full bg-white scroll-mt-20">
         <div aria-hidden="true" className="pointer-events-none hidden sm:block absolute top-8 right-8 w-24 h-16 opacity-60 bg-[radial-gradient(#b9cdf0_1.6px,transparent_1.6px)] [background-size:14px_14px]" />
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-blue-50 blur-2xl" />
 
         <div className="relative max-w-7xl mx-auto">
           <motion.div {...reveal} variants={fadeUpVariant} className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <span className="inline-flex items-center gap-3 rounded-full bg-[#ffeadb] px-5 py-1.5 text-[12px] sm:text-[14px] font-extrabold uppercase tracking-[0.06em] text-[#f26b0f]">
-              <span aria-hidden="true" className="w-4 sm:w-5 h-0.5 rounded bg-[#f26b0f]" />
-              User Portals
-              <span aria-hidden="true" className="w-4 sm:w-5 h-0.5 rounded bg-[#f26b0f]" />
-            </span>
-            <h2 className="mt-4 text-[26px] sm:text-4xl lg:text-[44px] font-extrabold text-[#0B1B3D] tracking-tight leading-tight">
+            <Eyebrow>User Portals</Eyebrow>
+            <h2 className="mt-4 text-heading font-extrabold text-[#0B1B3D] tracking-tight leading-tight">
               One Platform, <span className="text-[#f26b0f]">Four Portals</span>
             </h2>
-            <p className="mt-3 sm:mt-4 text-[15px] sm:text-[17px] text-slate-600 leading-relaxed">
+            <p className="mt-3 sm:mt-4 text-[14px] sm:text-[16.5px] text-slate-600 leading-relaxed">
               Dedicated interfaces for every stakeholder in the school ecosystem, on web and mobile.
             </p>
           </motion.div>
@@ -585,23 +577,23 @@ const SchoolManagement = () => {
                       aria-hidden="true"
                       className={`flex w-full h-full min-h-[150px] sm:min-h-[176px] items-center justify-center rounded-lg bg-gradient-to-br ${p.iconPanel} transition-transform duration-500 group-hover:scale-[1.03]`}
                     >
-                      <p.icon className="text-5xl sm:text-6xl" />
+                      <p.icon className="text-4xl sm:text-5xl" />
                     </div>
                   )}
                 </div>
                 <div className="flex flex-col min-w-0 py-1">
                   <span className={`self-start rounded-full px-2.5 py-0.5 text-[11px] sm:text-xs font-bold ${p.tag}`}>{p.audience}</span>
-                  <h3 className="mt-2 text-[19px] sm:text-[22px] font-extrabold text-[#0B1B3D] leading-tight">{p.title}</h3>
+                  <h3 className="mt-2 text-card-title font-extrabold text-[#0B1B3D] leading-tight">{p.title}</h3>
                   <ul className="mt-3 mb-4 grid gap-2">
                     {p.points.map((pt) => (
-                      <li key={pt} className="flex items-center gap-2.5 text-[14px] sm:text-[15px] text-slate-700">
+                      <li key={pt} className="flex items-center gap-2.5 text-card-desc text-slate-700">
                         <FaCheckCircle className={`flex-shrink-0 ${p.check}`} /> {pt}
                       </li>
                     ))}
                   </ul>
                   <Link
                     to="/contact"
-                    className={`mt-auto self-start inline-flex items-center gap-2 rounded-lg border-2 bg-white px-4 py-2 text-[14px] font-bold transition-colors ${p.btn} focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200`}
+                    className={`mt-auto self-start inline-flex items-center gap-2 rounded-lg border-2 bg-white px-4 py-2 text-[13px] font-bold transition-colors ${p.btn} focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200`}
                   >
                     View Demo <FaArrowRight className="text-xs" />
                   </Link>
@@ -612,11 +604,11 @@ const SchoolManagement = () => {
         </div>
       </section>
 
-      {/* PARENT EXPERIENCE */}
-      <ParentExperience />
+      {/* STUDENT APP */}
+      <StudentExperience />
 
       {/* BEFORE / AFTER: one switch flips all items between "Without ERP" and "With Arvion" */}
-      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
+      <section className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             eyebrow="Before and after"
@@ -630,7 +622,7 @@ const SchoolManagement = () => {
                 type="button"
                 aria-pressed={!showAfter}
                 onClick={() => setShowAfter(false)}
-                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] px-2 sm:px-3 rounded-lg sm:rounded-xl text-[13px] sm:text-[15px] font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${!showAfter ? 'bg-white text-red-500 shadow-sm' : 'text-slate-500 hover:text-[#0B1B3D]'
+                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] px-2 sm:px-3 rounded-lg sm:rounded-xl text-[12px] sm:text-[14.5px] font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${!showAfter ? 'bg-white text-red-500 shadow-sm' : 'text-slate-500 hover:text-[#0B1B3D]'
                   }`}
               >
                 <FaTimesCircle /> Without ERP
@@ -639,7 +631,7 @@ const SchoolManagement = () => {
                 type="button"
                 aria-pressed={showAfter}
                 onClick={() => setShowAfter(true)}
-                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] px-2 sm:px-3 rounded-lg sm:rounded-xl text-[13px] sm:text-[15px] font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 ${showAfter ? 'bg-[#FF8000] text-white shadow-md shadow-orange-500/30' : 'text-slate-500 hover:text-[#0B1B3D]'
+                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] px-2 sm:px-3 rounded-lg sm:rounded-xl text-[12px] sm:text-[14.5px] font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 ${showAfter ? 'bg-[#FF8000] text-white shadow-md shadow-orange-500/30' : 'text-slate-500 hover:text-[#0B1B3D]'
                   }`}
               >
                 <FaCheckCircle /> With Arvion
@@ -666,10 +658,10 @@ const SchoolManagement = () => {
                   {showAfter ? row.solutionIcon : row.problemIcon}
                 </span>
                 <div className="min-w-0">
-                  <h3 className={`font-bold text-[14.5px] sm:text-base leading-snug ${showAfter ? 'text-[#0B1B3D]' : 'text-slate-600'}`}>
+                  <h3 className={`font-bold text-[13.5px] sm:text-base leading-snug ${showAfter ? 'text-[#0B1B3D]' : 'text-slate-600'}`}>
                     {showAfter ? row.solution : row.problem}
                   </h3>
-                  <p className="mt-1 text-[13px] sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-1 text-[12px] sm:text-sm text-slate-600 leading-relaxed">
                     {showAfter ? row.solutionDesc : row.problemDesc}
                   </p>
                 </div>
@@ -677,7 +669,7 @@ const SchoolManagement = () => {
             ))}
           </motion.div>
 
-          <p className={`mt-5 sm:mt-6 flex items-center justify-center gap-2 text-[13px] sm:text-[15px] text-center ${showAfter ? 'text-emerald-600' : 'text-red-500'}`}>
+          <p className={`mt-5 sm:mt-6 flex items-center justify-center gap-2 text-[12px] sm:text-[14.5px] text-center ${showAfter ? 'text-emerald-600' : 'text-red-500'}`}>
             {showAfter ? <FaCheckCircle className="flex-shrink-0" /> : <FaTimesCircle className="flex-shrink-0" />}
             <span className="text-slate-600">
               {showAfter
@@ -692,7 +684,7 @@ const SchoolManagement = () => {
       <TimeBackSection />
 
       {/* PLANS */}
-      <section id="plans" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200 scroll-mt-20">
+      <section id="plans" className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             center
@@ -710,7 +702,7 @@ const SchoolManagement = () => {
                   type="button"
                   aria-pressed={planView === value}
                   onClick={() => setPlanView(value)}
-                  className={`min-h-[40px] px-2 rounded-lg text-[13px] sm:text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${planView === value ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
+                  className={`min-h-[40px] px-2 rounded-lg text-[12px] sm:text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${planView === value ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
                     }`}
                 >
                   {label}
@@ -744,17 +736,17 @@ const SchoolManagement = () => {
                       )}
                       <div className="flex items-center gap-3.5">
                         <IconBox tone={style.tone}>{style.icon}</IconBox>
-                        <h3 className="text-xl sm:text-2xl font-bold">{plan.name}</h3>
+                        <h3 className="text-card-title font-bold">{plan.name}</h3>
                       </div>
-                      <p className="text-sm sm:text-[14.5px] text-slate-600 leading-relaxed">{plan.description}</p>
+                      <p className="text-card-desc text-slate-600 leading-relaxed">{plan.description}</p>
                       <div className="flex items-baseline gap-2 py-3 sm:py-4 border-y border-slate-200">
-                        <strong className="text-[32px] sm:text-[38px] font-extrabold leading-none tabular-nums">{plan.features.included.length}</strong>
+                        <strong className="text-[23.5px] sm:text-[30px] font-extrabold leading-none tabular-nums">{plan.features.included.length}</strong>
                         <span className="text-sm text-slate-500">features included</span>
                       </div>
                       <span className="text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
                         {plan.prevName ? `Everything in ${plan.prevName}, plus` : 'Includes'}
                       </span>
-                      <ul className="grid gap-2 sm:gap-2.5 text-sm sm:text-[14.5px]">
+                      <ul className="grid gap-2 sm:gap-2.5 text-sm sm:text-[14px]">
                         {preview.map((feat) => (
                           <li key={feat} className="flex items-start gap-2.5">
                             <FaCheckCircle className="text-emerald-500 mt-1 flex-shrink-0 text-sm" />
@@ -799,14 +791,14 @@ const SchoolManagement = () => {
                     )}
 
                     <div className="p-5 sm:p-7 flex-grow">
-                      <h3 className="text-xl sm:text-2xl font-bold">
+                      <h3 className="text-card-title font-bold">
                         {plan.name}
                         {plan.popular && <span className="sr-only"> (most popular)</span>}
                       </h3>
-                      <p className="mt-1 text-[13px] sm:text-sm text-slate-500 leading-relaxed pr-10">{plan.description}</p>
+                      <p className="mt-1 text-card-desc text-slate-500 leading-relaxed pr-10">{plan.description}</p>
                       <div className={`h-1 w-full rounded-full bg-gradient-to-r ${plan.color} my-4 sm:my-5`} />
 
-                      <ul className="grid gap-2 sm:gap-2.5 text-[13px] sm:text-sm">
+                      <ul className="grid gap-2 sm:gap-2.5 text-[12px] sm:text-sm">
                         {plan.features.included.map((feat) => (
                           <li key={feat} className="flex items-start gap-2.5">
                             <FaCheckCircle className="text-emerald-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
@@ -837,16 +829,16 @@ const SchoolManagement = () => {
             {/* COMPARE: one table; no overflow clipping so the header row sticks below the fixed site header */}
             {planView === "compare" && (
               <div className={`${CARD}`}>
-                <table className="w-full table-fixed text-[13px] sm:text-[14.5px] border-separate border-spacing-0">
+                <table className="w-full table-fixed text-[12px] sm:text-[14px] border-separate border-spacing-0">
                   <colgroup>
                     <col className="w-[46%] sm:w-auto" />
                     {pageConfig.plans.map(p => <col key={p.name} className="sm:w-[18%]" />)}
                   </colgroup>
                   <thead>
                     <tr>
-                      <th scope="col" className="sticky top-12 sm:top-16 z-10 bg-slate-50 text-left px-3 sm:px-4 py-3 text-xs min-[380px]:text-[13px] sm:text-[14.5px] font-bold border-b border-slate-200 rounded-tl-xl sm:rounded-tl-2xl">Feature</th>
+                      <th scope="col" className="sticky top-12 sm:top-16 z-10 bg-slate-50 text-left px-3 sm:px-4 py-3 text-xs min-[380px]:text-[12.5px] sm:text-[14px] font-bold border-b border-slate-200 rounded-tl-xl sm:rounded-tl-2xl">Feature</th>
                       {pageConfig.plans.map((p, i) => (
-                        <th key={p.name} scope="col" className={`sticky top-12 sm:top-16 z-10 bg-slate-50 px-1 sm:px-4 py-3 text-[11px] min-[380px]:text-xs sm:text-[14.5px] font-bold text-center border-b border-slate-200 ${i === pageConfig.plans.length - 1 ? 'rounded-tr-xl sm:rounded-tr-2xl' : ''}`}>{p.name}</th>
+                        <th key={p.name} scope="col" className={`sticky top-12 sm:top-16 z-10 bg-slate-50 px-1 sm:px-4 py-3 text-[11px] min-[380px]:text-xs sm:text-[14px] font-bold text-center border-b border-slate-200 ${i === pageConfig.plans.length - 1 ? 'rounded-tr-xl sm:rounded-tr-2xl' : ''}`}>{p.name}</th>
                       ))}
                     </tr>
                   </thead>
@@ -882,13 +874,13 @@ const SchoolManagement = () => {
       </section>
 
       {/* APP FEATURES */}
-      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full overflow-hidden">
+      <section className="py-6 sm:py-10 px-4 sm:px-6 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             center
             eyebrow="Mobile app"
             title="School Software Features"
-            desc="Teachers, parents and students get the essentials on their phone."
+            desc="Teachers and students get the essentials on their phone."
           />
           {/* Same three-column layout on every screen: features | phone | features */}
           <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-2 sm:gap-4 lg:gap-8 xl:gap-10 items-stretch">
@@ -903,7 +895,7 @@ const SchoolManagement = () => {
               className="relative flex items-center justify-center pointer-events-none py-4 sm:py-6 w-[118px] min-[380px]:w-[136px] sm:w-[190px] md:w-[220px] lg:w-[280px] xl:w-[300px]"
             >
               <div className="absolute inset-0 m-auto w-3/4 h-3/4 bg-blue-500/15 rounded-full blur-2xl sm:blur-3xl -z-10" />
-              <img src={schoolErpMobile} alt="Arvion School ERP mobile app for parents, teachers and students" loading="lazy" className="w-full mix-blend-darken scale-[1.6] sm:scale-[1.45] lg:scale-[1.35]" />
+              <img src={schoolErpMobile} alt="Arvion School ERP mobile app for teachers and students" loading="lazy" className="w-full mix-blend-darken scale-[1.6] sm:scale-[1.45] lg:scale-[1.35]" />
             </motion.div>
 
             <div className="relative z-10 flex flex-col justify-around gap-4 md:gap-2">
@@ -916,18 +908,18 @@ const SchoolManagement = () => {
       </section>
 
       {/* ADD-ONS + SECURITY */}
-      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
+      <section className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 sm:gap-6">
           <motion.div {...reveal} variants={fadeUpVariant} className={`${CARD} p-5 sm:p-7 grid gap-4 sm:gap-5 content-start`}>
             <div className="grid gap-1.5">
-              <h2 className="text-xl sm:text-[22px] font-bold">Upcoming Modules & Add-ons</h2>
-              <p className="text-slate-600 text-sm sm:text-[15px]">Extend the functionality of your ERP with specialized modules.</p>
+              <h2 className="text-xl sm:text-[20.5px] font-bold text-[#0b1f4d]">Upcoming Modules &amp; <span className="text-[#f2700f]">Add-ons</span></h2>
+              <p className="text-slate-600 text-sm sm:text-[14.5px]">Extend the functionality of your ERP with specialized modules.</p>
             </div>
             <div>
               {pageConfig.modules.map((mod, idx) => (
                 <div key={mod.title} className={`flex items-center gap-3 sm:gap-3.5 py-3 sm:py-3.5 ${idx !== 0 ? 'border-t border-slate-100' : ''}`}>
                   <IconBox size="sm">{mod.icon}</IconBox>
-                  <span className="font-semibold text-[15px] sm:text-base flex-1 min-w-0">{mod.title}</span>
+                  <span className="font-semibold text-[14px] sm:text-base flex-1 min-w-0">{mod.title}</span>
                   <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#E67300] bg-orange-50 px-2 py-1 rounded-md whitespace-nowrap">Add-on</span>
                   {/* <span className="text-indigo-600 font-semibold">{mod.price}</span> */}
                 </div>
@@ -937,8 +929,8 @@ const SchoolManagement = () => {
 
           <motion.div {...reveal} variants={fadeUpVariant} className={`${CARD} p-5 sm:p-7 grid gap-4 sm:gap-5 content-start`}>
             <div className="grid gap-1.5">
-              <h2 className="text-xl sm:text-[22px] font-bold">Security &amp; Cloud Technology</h2>
-              <p className="text-slate-600 text-sm sm:text-[15px]">Your school&apos;s data stays private, backed up and available on any device.</p>
+              <h2 className="text-xl sm:text-[20.5px] font-bold text-[#0b1f4d]">Security &amp; <span className="text-[#f2700f]">Cloud Technology</span></h2>
+              <p className="text-slate-600 text-sm sm:text-[14.5px]">Your school&apos;s data stays private, backed up and available on any device.</p>
             </div>
             <div>
               {[
@@ -962,19 +954,13 @@ const SchoolManagement = () => {
       </section>
 
       {/* HOW IMPLEMENTATION WORKS */}
-      <section id="process" className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20 bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
+      <section id="process" className="relative overflow-hidden py-6 sm:py-10 px-4 sm:px-6 w-full scroll-mt-20 bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
 
         <div className="relative max-w-6xl mx-auto">
           {/* Heading: pill with side lines + highlighted words with underline */}
           <motion.div variants={fadeUpVariant} {...reveal} className="flex flex-col items-center text-center mb-8 sm:mb-10">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
-              <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">
-                Implementation
-              </span>
-              <span aria-hidden="true" className="w-8 sm:w-12 h-[2px] rounded-full bg-[#f7941d]/80" />
-            </div>
-            <h2 className="mt-4 text-[26px] sm:text-[34px] lg:text-[38px] font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
+            <Eyebrow>Implementation</Eyebrow>
+            <h2 className="mt-4 text-heading font-extrabold tracking-tight leading-tight text-[#0b1f4d]">
               From Demo to{' '}
               <span className="relative inline-block text-[#f2700f]">
                 Digital Transformation
@@ -983,12 +969,13 @@ const SchoolManagement = () => {
                 </svg>
               </span>
             </h2>
-            <p className="mt-5 text-[15px] sm:text-[17px] text-slate-600 max-w-2xl">
+            <p className="mt-5 text-[14px] sm:text-[16.5px] text-slate-600 max-w-2xl">
               A streamlined 5-step process to get your institution running on our ERP seamlessly.
             </p>
           </motion.div>
 
-          <motion.ol variants={staggerContainer} {...reveal} className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 md:gap-4 lg:gap-5 list-none m-0 p-0">
+          {/* Phones/tablets: vertical timeline (icon left, card right). Desktop: 5 columns in a row. */}
+          <motion.ol variants={staggerContainer} {...reveal} className="relative grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4 lg:gap-5 max-w-md md:max-w-none mx-auto list-none m-0 p-0">
             {/* dashed connector through the icon centres (desktop) */}
             <span aria-hidden="true" className="hidden md:block absolute top-8 left-[10%] right-[10%] h-[2px] bg-[repeating-linear-gradient(90deg,#f7941d_0_8px,transparent_8px_16px)]" />
             {[
@@ -997,17 +984,21 @@ const SchoolManagement = () => {
               { Icon: FaSlidersH, title: "Configuration", desc: "We set up modules, fee rules and grading." },
               { Icon: FaSyncAlt, title: "Data Migration & Training", desc: "We import your records and train your staff." },
               { Icon: FaPlayCircle, title: "Go Live", desc: "Your school runs on the ERP, with ongoing support." }
-            ].map(({ Icon, title, desc }, idx) => (
-              <motion.li key={title} variants={fadeUpVariant} className="relative flex flex-col items-center text-center">
-                <span className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white flex items-center justify-center shadow-lg shadow-orange-500/25 ring-4 ring-[#f6f9fe]">
-                  <Icon className="text-[22px]" aria-hidden="true" />
-                  <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#0f2a6b] text-white text-[12px] font-extrabold flex items-center justify-center ring-2 ring-[#f6f9fe] tabular-nums">
+            ].map(({ Icon, title, desc }, idx, steps) => (
+              <motion.li key={title} variants={fadeUpVariant} className="relative flex flex-row items-center gap-3 md:flex-col md:items-center md:gap-0 md:text-center">
+                {/* dashed connector down to the next icon (phones/tablets) */}
+                {idx < steps.length - 1 && (
+                  <span aria-hidden="true" className="md:hidden absolute left-[23px] top-1/2 w-[2px] h-[calc(100%+0.75rem)] bg-[repeating-linear-gradient(180deg,#f7941d_0_6px,transparent_6px_12px)]" />
+                )}
+                <span className="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white flex items-center justify-center shadow-lg shadow-orange-500/25 ring-4 ring-[#f6f9fe]">
+                  <Icon className="text-[16px] md:text-[19px]" aria-hidden="true" />
+                  <span className="absolute -top-1 -left-1 md:left-auto md:-right-1 w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#0f2a6b] text-white text-[10.5px] md:text-[11.5px] font-extrabold flex items-center justify-center ring-2 ring-[#f6f9fe] tabular-nums">
                     {idx + 1}
                   </span>
                 </span>
-                <div className="mt-4 w-full flex-1 bg-white rounded-2xl border border-slate-200 shadow-[0_1px_3px_rgba(11,42,107,.06)] px-4 py-4">
-                  <h3 className="text-[15px] lg:text-[16px] font-extrabold text-[#0f2a6b] leading-snug">{title}</h3>
-                  <p className="mt-1.5 text-[13px] lg:text-[14px] text-slate-600 leading-relaxed">{desc}</p>
+                <div className="md:mt-4 w-full flex-1 bg-white rounded-xl md:rounded-2xl border border-slate-200 shadow-[0_1px_3px_rgba(11,42,107,.06)] px-3.5 py-3 md:px-4 md:py-4">
+                  <h3 className="text-[14px] lg:text-[15.5px] font-extrabold text-[#0f2a6b] leading-snug">{title}</h3>
+                  <p className="mt-1 md:mt-1.5 text-[12px] lg:text-[13.5px] text-slate-600 leading-relaxed">{desc}</p>
                 </div>
               </motion.li>
             ))}
@@ -1019,7 +1010,7 @@ const SchoolManagement = () => {
       <SwitchingSection />
 
       {/* WHY SCHOOLS CHOOSE OUR ERP */}
-      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
+      <section className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto">
           <SectionHeader center title="Why Schools Choose Our ERP" />
           <motion.div variants={staggerContainer} {...reveal} className="grid grid-cols-1 min-[440px]:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1033,7 +1024,7 @@ const SchoolManagement = () => {
               { title: "Modern User Experience", icon: <FaDesktop /> },
               { title: "Continuous Improvements", icon: <FaSyncAlt /> }
             ].map((feature) => (
-              <motion.div key={feature.title} variants={fadeUpVariant} className="flex items-center gap-3 p-3.5 sm:p-4 border border-slate-200 rounded-xl bg-white hover:border-[#FF8000] transition-colors font-semibold text-sm sm:text-[15px]">
+              <motion.div key={feature.title} variants={fadeUpVariant} className="flex items-center gap-3 p-3.5 sm:p-4 border border-slate-200 rounded-xl bg-white hover:border-[#FF8000] transition-colors font-semibold text-sm sm:text-[14.5px]">
                 <span className="text-[#FF8000] text-xl">{feature.icon}</span>{feature.title}
               </motion.div>
             ))}
@@ -1053,17 +1044,17 @@ const SchoolManagement = () => {
       <RelatedServices current="/services/school-management" />
 
       {/* FINAL CTA SECTION */}
-      <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#0B1B3D] text-white">
+      <section className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-[#0B1B3D] text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.4fr_1fr] gap-6 sm:gap-8 items-center">
           <motion.div {...reveal} variants={fadeUpVariant} className="grid gap-4">
-            <h2 className="text-[21px] sm:text-3xl md:text-4xl xl:text-[44px] font-bold leading-tight tracking-tight sm:text-balance">Ready to Transform Your Institution?</h2>
-            <p className="text-[14px] sm:text-lg text-blue-200/90 max-w-[56ch] leading-relaxed">
+            <h2 className="text-heading font-extrabold leading-tight tracking-tight sm:text-balance">Ready to Transform <span className="text-[#ffb366]">Your Institution?</span></h2>
+            <p className="text-[13px] sm:text-lg text-blue-200/90 max-w-[56ch] leading-relaxed">
               Talk to our team to explore how our School ERP can simplify operations, improve visibility, and create a more connected educational experience.
             </p>
           </motion.div>
           <motion.div {...reveal} variants={fadeUpVariant} className="flex flex-row gap-2.5 sm:gap-3 lg:justify-end">
             <Link to="/contact" className={`${BTN_PRIMARY} flex-1 sm:flex-none !h-10 sm:!h-12 !px-3 sm:!px-6 !text-[13px] sm:!text-[15px] whitespace-nowrap`}>Request a Demo</Link>
-            <Link to="/contact" className="flex-1 sm:flex-none whitespace-nowrap inline-flex items-center justify-center gap-2 h-10 sm:h-12 px-3 sm:px-6 rounded-lg border border-white/30 hover:border-white hover:bg-white/10 text-white font-semibold text-[13px] sm:text-[15px] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-white/30">
+            <Link to="/contact" className="flex-1 sm:flex-none whitespace-nowrap inline-flex items-center justify-center gap-2 h-10 sm:h-12 px-3 sm:px-6 rounded-lg border border-white/30 hover:border-white hover:bg-white/10 text-white font-semibold text-[12px] sm:text-[14.5px] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-white/30">
               Contact Our Team
             </Link>
           </motion.div>
@@ -1084,7 +1075,7 @@ const AppFeature = ({ feat, align = "left" }) => (
   >
     <div className="hidden md:flex flex-shrink-0 w-10 h-10 lg:w-11 lg:h-11 rounded-lg lg:rounded-xl bg-blue-50 items-center justify-center [&>svg]:!text-xl">{feat.icon}</div>
     <div className="min-w-0">
-      <h3 className="font-bold leading-snug text-xs min-[380px]:text-[13px] sm:text-sm md:text-[15px] lg:text-[15.5px]">{feat.title}</h3>
+      <h3 className="font-bold leading-snug text-xs min-[380px]:text-[12.5px] sm:text-sm md:text-[14.5px] lg:text-[15px]">{feat.title}</h3>
       <p className="hidden md:block text-sm text-slate-600 mt-0.5">{feat.desc}</p>
     </div>
   </motion.div>

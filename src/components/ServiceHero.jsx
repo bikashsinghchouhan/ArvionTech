@@ -26,9 +26,9 @@ const FeatureCard = ({ title, Icon, points, className = '' }) => (
     <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1747a6] via-[#11409d] to-[#0c2f79] px-3.5 py-2.5 text-white shadow-md">
       <div className="relative z-10 flex items-center gap-2.5">
         <span className="w-7 h-7 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
-          {Icon && <Icon className="text-[13px]" />}
+          {Icon && <Icon className="text-[12px]" />}
         </span>
-        <span className="text-[15px] font-black tracking-wider uppercase">{title}</span>
+        <span className="text-[14px] font-black tracking-wider uppercase">{title}</span>
       </div>
       <svg aria-hidden="true" className="absolute bottom-0 right-0 w-20 h-5 pointer-events-none" viewBox="0 0 80 20" fill="none">
         <path d="M0 20 Q 50 18, 80 0 L 80 20 Z" fill="#FF7A00" />
@@ -37,8 +37,8 @@ const FeatureCard = ({ title, Icon, points, className = '' }) => (
     <ul className="mt-3 space-y-2 px-1 pb-1">
       {points.map((pt) => (
         <li key={pt} className="flex items-center gap-2.5">
-          <FaCheckCircle className="flex-shrink-0 text-[15px] text-[#10B981]" />
-          <span className="text-[13.5px] font-semibold text-[#0B1B3D] leading-snug">{pt}</span>
+          <FaCheckCircle className="flex-shrink-0 text-[14px] text-[#10B981]" />
+          <span className="text-[12.5px] font-semibold text-[#0B1B3D] leading-snug">{pt}</span>
         </li>
       ))}
     </ul>
@@ -101,7 +101,7 @@ const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, ima
     <div className={`relative z-10 w-full px-4 sm:px-6 ${wideInset ? 'lg:px-24 xl:px-28' : 'lg:px-10 xl:px-16 2xl:px-24'} lg:flex-1 lg:flex lg:flex-col`}>
       {/* Breadcrumb */}
       {showBreadcrumb && (
-      <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-4 sm:pt-5 text-[13px] sm:text-sm text-slate-500">
+      <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-4 sm:pt-5 text-[12px] sm:text-sm text-slate-500">
         <Link to="/" className="hover:text-[#0f2a6b] focus:outline-none focus-visible:underline">Home</Link>
         <span aria-hidden="true" className="text-slate-300">/</span>
         <Link to="/services" className="hover:text-[#0f2a6b] focus:outline-none focus-visible:underline">Services</Link>
@@ -113,38 +113,38 @@ const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, ima
       <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 lg:gap-6 items-center lg:flex-1 py-8 sm:py-10 lg:py-10">
         {/* Left: text */}
         <div className="min-w-0 lg:pr-8 text-center lg:text-left">
-          <motion.span {...fadeUp(0)} className="inline-flex items-center gap-2 rounded-full bg-white border border-blue-100 px-3.5 py-1.5 text-xs sm:text-[13px] font-semibold text-[#0f2a6b] shadow-sm">
+          <motion.span {...fadeUp(0)} className="inline-flex items-center gap-2 rounded-full bg-white border border-blue-100 px-3.5 py-1.5 text-xs sm:text-[12.5px] font-semibold text-[#0f2a6b] shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#f7941d]" /> Arvion {crumb}
           </motion.span>
           <motion.div {...fadeUp(0)} className="mt-4">
-            <Heading className="text-[32px] sm:text-[42px] xl:text-[52px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#0f2a6b]">
+            <Heading className="text-[23.5px] sm:text-[33.5px] xl:text-[37px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#0f2a6b]">
               {title}
             </Heading>
           </motion.div>
-          <motion.p {...fadeUp(0.05)} className="mt-3 text-[17px] sm:text-xl xl:text-[22px] font-bold text-[#1747a6] leading-snug">
+          <motion.p {...fadeUp(0.05)} className="mt-3 text-[15px] sm:text-lg xl:text-[18.5px] font-bold text-[#1747a6] leading-snug">
             {subtitle}
           </motion.p>
-          <motion.p {...fadeUp(0.1)} className="mt-4 text-[15px] sm:text-[17px] text-slate-700 leading-relaxed max-w-xl mx-auto lg:mx-0">
+          <motion.p {...fadeUp(0.1)} className="mt-4 text-[14px] sm:text-[16.5px] text-slate-700 leading-relaxed max-w-xl mx-auto lg:mx-0">
             {description}
           </motion.p>
           <motion.div {...fadeUp(0.15)} className="mt-6 sm:mt-7 flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4">
             <Link
               to={primary.to}
-              className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-bold text-sm sm:text-[15px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
+              className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-bold text-sm sm:text-[14.5px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
             >
               <FaCalendarCheck /> {primary.label}
             </Link>
             {secondary.to ? (
               <Link
                 to={secondary.to}
-                className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold text-sm sm:text-[15px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+                className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold text-sm sm:text-[14.5px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
               >
                 {secondary.label} <FaArrowRight className="text-xs" />
               </Link>
             ) : (
               <a
                 href={secondary.href}
-                className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold text-sm sm:text-[15px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+                className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold text-sm sm:text-[14.5px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
               >
                 {secondary.label} <FaArrowRight className="text-xs" />
               </a>
@@ -152,7 +152,7 @@ const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, ima
           </motion.div>
 
           {/* Assurance badges */}
-          <motion.ul {...fadeUp(0.2)} className="mt-7 sm:mt-8 grid grid-cols-2 sm:flex sm:flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3 text-[13px] sm:text-sm font-semibold text-slate-700 max-w-md sm:max-w-none mx-auto lg:mx-0">
+          <motion.ul {...fadeUp(0.2)} className="mt-7 sm:mt-8 grid grid-cols-2 sm:flex sm:flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3 text-[12px] sm:text-sm font-semibold text-slate-700 max-w-md sm:max-w-none mx-auto lg:mx-0">
             {badges.map(([Icon, label]) => (
               <li key={label} className="flex items-center gap-2 justify-start">
                 <span className="w-8 h-8 rounded-lg bg-white border border-blue-100 text-[#1747a6] flex items-center justify-center text-sm flex-shrink-0 shadow-sm"><Icon /></span>
@@ -170,7 +170,7 @@ const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, ima
             <span className="w-10 h-10 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white flex items-center justify-center"><FaPhoneAlt /></span>
             <span className="text-left leading-tight">
               <span className="block text-xs text-slate-500">Talk to an expert</span>
-              <span className="block text-[15px] font-bold text-[#0f2a6b]">+91 95357 64655</span>
+              <span className="block text-[14px] font-bold text-[#0f2a6b]">+91 95357 64655</span>
             </span>
           </motion.a>
         </div>
@@ -193,8 +193,8 @@ const ServiceHero = ({ crumb, title, subtitle, description, image, imageAlt, ima
           >
             <ul className="grid gap-3 sm:gap-3.5">
               {points.map((pt) => (
-                <li key={pt} className="flex items-start gap-3 text-[14px] sm:text-[15px] font-semibold text-[#0f2a6b] leading-snug">
-                  <FaCheckCircle className="flex-shrink-0 mt-0.5 text-[18px] text-[#16a34a]" /> {pt}
+                <li key={pt} className="flex items-start gap-3 text-[13px] sm:text-[14.5px] font-semibold text-[#0f2a6b] leading-snug">
+                  <FaCheckCircle className="flex-shrink-0 mt-0.5 text-[17px] text-[#16a34a]" /> {pt}
                 </li>
               ))}
             </ul>

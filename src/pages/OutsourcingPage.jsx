@@ -69,9 +69,9 @@ const OutsourcingPage = () => {
       />
 
       {/* 3. SERVICES & STATS SECTION */}
-      <section id="details" className="scroll-mt-20 py-8 md:py-10 px-4 max-w-7xl mx-auto bg-white">
+      <section id="details" className="scroll-mt-20 py-6 md:py-10 px-4 max-w-7xl mx-auto bg-white">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-4">Our Payroll Outsourcing Services</h2>
+          <h2 className="text-heading font-extrabold text-[#0b1f4d] mb-4">Our Payroll <span className="text-[#f2700f]">Outsourcing Services</span></h2>
           <p className="text-slate-500 font-medium">Comprehensive payroll solutions tailored to your business needs.</p>
         </div>
 
@@ -90,8 +90,8 @@ const OutsourcingPage = () => {
                 <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   {service.icon}
                 </div>
-                <h3 className="text-lg font-bold text-slate-800 mb-2">{service.title}</h3>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed">{service.desc}</p>
+                <h3 className="text-card-title font-bold text-slate-800 mb-2">{service.title}</h3>
+                <p className="text-card-desc text-slate-500 font-medium leading-relaxed">{service.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -126,9 +126,9 @@ const OutsourcingPage = () => {
       </section>
 
       {/* WHY CHOOSE OUR PAYROLL SYSTEM */}
-      <section className="py-8 md:py-10 bg-slate-50 px-4 max-w-7xl mx-auto rounded-3xl mb-8">
+      <section className="py-6 md:py-10 bg-slate-50 px-4 max-w-7xl mx-auto rounded-3xl mb-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-4">Why Choose Our Payroll System</h2>
+          <h2 className="text-heading font-extrabold text-[#0b1f4d] mb-4">Why Choose Our <span className="text-[#f2700f]">Payroll System</span></h2>
           <p className="text-slate-500 font-medium max-w-2xl mx-auto">
             Experience a seamless, secure, and highly efficient payroll management process built for modern businesses.
           </p>
@@ -138,31 +138,31 @@ const OutsourcingPage = () => {
             <div className="w-16 h-16 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-2xl mb-4">
               <FaCogs />
             </div>
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Automated Operations</h3>
-            <p className="text-slate-500 text-sm">Save hours every month with fully automated calculations and direct deposits.</p>
+            <h3 className="text-card-title font-bold text-slate-800 mb-2">Automated Operations</h3>
+            <p className="text-slate-500 text-card-desc">Save hours every month with fully automated calculations and direct deposits.</p>
           </div>
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
             <div className="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-2xl mb-4">
               <FaLock />
             </div>
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Enterprise-Grade Security</h3>
-            <p className="text-slate-500 text-sm">Your payroll data is protected by AES-256 encryption and stringent access controls.</p>
+            <h3 className="text-card-title font-bold text-slate-800 mb-2">Enterprise-Grade Security</h3>
+            <p className="text-slate-500 text-card-desc">Your payroll data is protected by AES-256 encryption and stringent access controls.</p>
           </div>
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
             <div className="w-16 h-16 bg-purple-50 text-purple-500 rounded-full flex items-center justify-center text-2xl mb-4">
               <FaGlobe />
             </div>
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Multi-Location Support</h3>
-            <p className="text-slate-500 text-sm">Manage payroll effortlessly across multiple branches and varying tax zones.</p>
+            <h3 className="text-card-title font-bold text-slate-800 mb-2">Multi-Location Support</h3>
+            <p className="text-slate-500 text-card-desc">Manage payroll effortlessly across multiple branches and varying tax zones.</p>
           </div>
         </div>
       </section>
 
       {/* CORE PAYROLL FEATURES */}
-      <section className="py-8 md:py-10 px-4 max-w-7xl mx-auto">
+      <section className="py-6 md:py-10 px-4 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1">
-            <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-6">Core Payroll Features</h2>
+            <h2 className="text-heading font-extrabold text-[#0b1f4d] mb-6">Core Payroll <span className="text-[#f2700f]">Features</span></h2>
             <ul className="space-y-4">
               <li className="flex items-start gap-4">
                 <div className="mt-1 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0 text-xs"><FaCheck /></div>
@@ -195,7 +195,7 @@ const OutsourcingPage = () => {
             </ul>
           </div>
           <div className="flex-1 bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-inner">
-            <h3 className="text-xl font-bold text-[#0d1b2a] mb-6">Security & Compliance Badges</h3>
+            <h3 className="text-card-title font-bold text-[#0d1b2a] mb-6">Security & Compliance Badges</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-sm border border-slate-100">
                 <FaShieldAlt className="text-3xl text-green-500 mb-2" />
@@ -216,8 +216,8 @@ const OutsourcingPage = () => {
             </div>
 
             <div className="mt-8 pt-6 border-t border-slate-200">
-              <h3 className="text-lg font-bold text-[#0d1b2a] mb-4">Awards & Certifications</h3>
-              <p className="text-sm text-slate-500">Recognized globally for excellence in payroll accuracy and data security compliance.</p>
+              <h3 className="text-card-title font-bold text-[#0d1b2a] mb-4">Awards & Certifications</h3>
+              <p className="text-card-desc text-slate-500">Recognized globally for excellence in payroll accuracy and data security compliance.</p>
             </div>
           </div>
         </div>
@@ -225,12 +225,12 @@ const OutsourcingPage = () => {
 
 
       {/* FAQ SECTION */}
-      <section className="py-8 md:py-10 px-4 max-w-4xl mx-auto">
+      <section className="py-6 md:py-10 px-4 max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-50 text-blue-500 rounded-full mb-4">
             <FaRegQuestionCircle className="text-2xl" />
           </div>
-          <h2 className="text-3xl font-extrabold text-[#0d1b2a] mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-heading font-extrabold text-[#0b1f4d] mb-4">Frequently Asked <span className="text-[#f2700f]">Questions</span></h2>
           <p className="text-slate-500 font-medium">Got questions? We've got answers to the most common queries about our payroll system.</p>
         </div>
 
@@ -264,13 +264,13 @@ const OutsourcingPage = () => {
       {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* 5. CTA / CONTACT SECTION */}
-      <section className="relative py-8 md:py-10 flex items-center justify-center overflow-hidden mt-6 md:mt-8">
+      <section className="relative py-6 md:py-10 flex items-center justify-center overflow-hidden mt-6 md:mt-8">
         <div className="absolute inset-0 z-0 bg-[#0d1b2a]"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4 uppercase tracking-tight"
+            className="text-heading font-extrabold text-white mb-2 md:mb-4 tracking-tight"
           >
             Ready to Scale Your Team?
           </motion.h2>

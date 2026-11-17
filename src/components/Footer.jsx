@@ -1,9 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { scrollToId } from '../utils/scrollToId';
 import { FaFacebookF, FaInstagram, FaYoutube, FaPhoneAlt, FaEnvelope, FaGlobe, FaChevronRight, FaWhatsapp } from 'react-icons/fa';
 import logo from '../assets/logo.webp';
 
 const Footer = () => {
+  const { pathname } = useLocation();
+
+  // Links like /services/school-management#features: when already on that page,
+  // scroll to the section even if the URL (and hash) would not change.
+  const handleSectionLink = (e, path) => {
+    const [targetPath, id] = path.split('#');
+    if (id && targetPath === pathname) {
+      e.preventDefault();
+      window.history.replaceState(window.history.state, '', path);
+      scrollToId(id);
+    }
+  };
+
   // --- CONFIGURATION ---
   // You can easily customize links, text, and paths here without digging into the JSX below.
 
@@ -45,8 +59,7 @@ const Footer = () => {
     { name: "School Management Software", path: "/services/school-management" },
     { name: "Payroll Outsourcing", path: "/services/outsourcing" },
     { name: "Statutory Registration", path: "/services/statutory-registrations" },
-    { name: "Accounting Services", path: "/services/accounting" },
-    { name: "IT Services", path: "#" }
+    { name: "Accounting Services", path: "/services/accounting" }
   ];
 
   return (
@@ -64,7 +77,7 @@ const Footer = () => {
           <Link to="/">
             <img src={logo} alt="Arvion Technologies Logo" className="h-16 object-contain mb-2" />
           </Link>
-          <p className="text-[13px] leading-relaxed text-slate-400">
+          <p className="text-[12px] leading-relaxed text-slate-400">
             Providing innovative solutions to streamline your business operations with cutting-edge technology and expert support.
           </p>
         </div>
@@ -76,7 +89,7 @@ const Footer = () => {
           <ul className="space-y-4">
             {schoolSolutions.map((item, idx) => (
               <li key={idx}>
-                <Link to={item.path} className="text-[13px] text-slate-400 hover:text-white transition-colors flex items-center gap-3 group">
+                <Link to={item.path} onClick={(e) => handleSectionLink(e, item.path)} className="text-[12px] text-slate-400 hover:text-white transition-colors flex items-center gap-3 group">
                   <FaChevronRight className="text-[10px] text-slate-500 group-hover:text-[#8b5cf6] transition-colors" /> {item.name}
                 </Link>
               </li>
@@ -91,7 +104,7 @@ const Footer = () => {
           <ul className="space-y-4">
             {ourProducts.map((item, idx) => (
               <li key={idx}>
-                <Link to={item.path} className="text-[13px] text-slate-400 hover:text-white transition-colors flex items-center gap-3 group">
+                <Link to={item.path} className="text-[12px] text-slate-400 hover:text-white transition-colors flex items-center gap-3 group">
                   <FaChevronRight className="text-[10px] text-slate-500 group-hover:text-[#8b5cf6] transition-colors" /> {item.name}
                 </Link>
               </li>
@@ -104,7 +117,7 @@ const Footer = () => {
           <h4 className="text-white text-base font-semibold mb-2">Contact Us</h4>
           <div className="w-10 h-0.5 bg-[#8b5cf6] mb-4 rounded-full"></div>
 
-          <p className="text-[13px] leading-relaxed text-slate-400">
+          <p className="text-[12px] leading-relaxed text-slate-400">
             {contactInfo.address.map((line, i) => (
               <React.Fragment key={i}>
                 {line}
@@ -113,7 +126,7 @@ const Footer = () => {
             ))}
           </p>
 
-          <div className="flex flex-col space-y-2 text-[13px] text-slate-400">
+          <div className="flex flex-col space-y-2 text-[12px] text-slate-400">
             <div className="flex items-center gap-3">
               <FaPhoneAlt className="text-slate-300" size={12} />
               <span>{contactInfo.phone}</span>
@@ -148,7 +161,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom / Legal */}
-      <div className="max-w-7xl mx-auto mt-4 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-[12px] text-slate-500 relative z-10 text-center">
+      <div className="max-w-7xl mx-auto mt-4 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-[11.5px] text-slate-500 relative z-10 text-center">
         <p>© {new Date().getFullYear()} Arvion Technologies. All Rights Reserved.</p>
         <div className="flex items-center justify-center gap-4">
           <Link to="/privacy-policy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>

@@ -171,7 +171,7 @@ const Header = () => {
   };
 
   const navLinkClass = (active) =>
-    `relative flex items-center gap-1.5 h-[38px] px-2.5 xl:px-3.5 text-[13px] xl:text-[14px] font-semibold whitespace-nowrap transition-colors cursor-pointer select-none
+    `relative flex items-center gap-1.5 h-[38px] px-2.5 xl:px-3.5 text-[12px] xl:text-[13.5px] font-semibold whitespace-nowrap transition-colors cursor-pointer select-none
      after:absolute after:left-2 after:right-2 after:bottom-0 after:h-[3px] after:rounded-t after:bg-[#ffc727] after:transition-transform after:duration-300 after:origin-center
      outline-none focus-visible:text-[#ffc727] focus-visible:after:scale-x-100
      ${active ? 'text-[#ffc727] after:scale-x-100' : 'text-white hover:text-[#ffc727] after:scale-x-0 hover:after:scale-x-100'}`;
@@ -188,7 +188,7 @@ const Header = () => {
           <Icon size={16} strokeWidth={2} />
         </span>
         <span className="flex flex-col text-left">
-          <span className={`text-[13px] font-semibold leading-snug ${current ? 'text-[#1747a6]' : 'text-slate-800 group-hover/item:text-[#1747a6]'}`}>{child.name}</span>
+          <span className={`text-[12px] font-semibold leading-snug ${current ? 'text-[#1747a6]' : 'text-slate-800 group-hover/item:text-[#1747a6]'}`}>{child.name}</span>
           {child.desc && <span className="text-[11px] text-slate-500 leading-snug">{child.desc}</span>}
         </span>
       </>
@@ -225,10 +225,10 @@ const Header = () => {
               className="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
             <span className="flex flex-col leading-none">
-              <span className="text-[22px] sm:text-[26px] font-extrabold text-[#0f2a6b] tracking-tight leading-none">
+              <span className="text-[19px] sm:text-[20.5px] font-extrabold text-[#0f2a6b] tracking-tight leading-none">
                 Arvion<sup className="text-[10px] font-bold align-super ml-0.5">®</sup>
               </span>
-              <span className="text-[10.5px] sm:text-[12.5px] font-semibold text-[#0f2a6b] whitespace-nowrap mt-0.5">
+              <span className="text-[10.5px] sm:text-[12px] font-semibold text-[#0f2a6b] whitespace-nowrap mt-0.5">
                 Technologies Private Limited
               </span>
             </span>
@@ -241,7 +241,7 @@ const Header = () => {
                 key={v.name}
                 href={v.path}
                 onClick={(e) => go(e, v.path)}
-                className={`px-5 text-[15px] font-semibold border-l border-slate-300 transition-colors no-underline ${pathname.startsWith(v.path) ? 'text-[#1747a6]' : 'text-[#0f2a6b] hover:text-[#f7941d]'}`}
+                className={`px-5 text-[14px] font-semibold border-l border-slate-300 transition-colors no-underline ${pathname.startsWith(v.path) ? 'text-[#1747a6]' : 'text-[#0f2a6b] hover:text-[#f7941d]'}`}
               >
                 {v.name}
               </a>
@@ -250,16 +250,16 @@ const Header = () => {
 
           {/* Contact + CTA */}
           <div className="flex items-center gap-3 lg:gap-5">
-            <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="hidden lg:flex items-center gap-2 text-[14px] font-semibold text-[#0f2a6b] hover:text-[#f7941d] whitespace-nowrap no-underline">
+            <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="hidden lg:flex items-center gap-2 text-[13px] font-semibold text-[#0f2a6b] hover:text-[#f7941d] whitespace-nowrap no-underline">
               <Phone size={16} className="fill-[#0f2a6b]/10" /> {CONTACT.phone}
             </a>
-            <a href={`mailto:${CONTACT.email}`} className="hidden 2xl:flex items-center gap-2 text-[14px] font-semibold text-[#0f2a6b] hover:text-[#f7941d] whitespace-nowrap no-underline">
+            <a href={`mailto:${CONTACT.email}`} className="hidden 2xl:flex items-center gap-2 text-[13px] font-semibold text-[#0f2a6b] hover:text-[#f7941d] whitespace-nowrap no-underline">
               <Mail size={16} /> {CONTACT.email}
             </a>
             <a
               href="/contact"
               onClick={(e) => go(e, '/contact')}
-              className="hidden sm:inline-flex items-center gap-2 px-4 lg:px-5 py-2.5 rounded-md bg-gradient-to-b from-[#ffa53a] to-[#f47b14] text-white text-[14px] font-bold shadow-md hover:shadow-lg hover:brightness-105 transition-all whitespace-nowrap no-underline"
+              className="hidden sm:inline-flex items-center gap-2 px-4 lg:px-5 py-2.5 rounded-md bg-gradient-to-b from-[#ffa53a] to-[#f47b14] text-white text-[13px] font-bold shadow-md hover:shadow-lg hover:brightness-105 transition-all whitespace-nowrap no-underline"
             >
               <CalendarCheck size={17} /> Request Demo
             </a>
@@ -359,7 +359,7 @@ const Header = () => {
               className="fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-white shadow-2xl z-[70] flex flex-col lg:hidden"
             >
               <div className="flex items-center justify-between px-5 h-16 bg-gradient-to-r from-[#f7861c] to-[#f2700f] text-white flex-shrink-0">
-                <span className="text-[15px] font-extrabold tracking-wide">Arvion Technologies</span>
+                <span className="text-[14px] font-extrabold tracking-wide">Arvion Technologies</span>
                 <button type="button" onClick={() => setIsMenuOpen(false)} aria-label="Close menu" className="p-2 rounded-full hover:bg-white/15 cursor-pointer">
                   <X size={18} />
                 </button>
@@ -374,7 +374,7 @@ const Header = () => {
                         key={item.key}
                         href={item.path}
                         onClick={(e) => go(e, item.path)}
-                        className={`px-3 py-2.5 rounded-lg text-[14px] font-semibold no-underline ${active ? 'bg-blue-50 text-[#1747a6]' : 'text-slate-700 hover:bg-slate-50'}`}
+                        className={`px-3 py-2.5 rounded-lg text-[13px] font-semibold no-underline ${active ? 'bg-blue-50 text-[#1747a6]' : 'text-slate-700 hover:bg-slate-50'}`}
                       >
                         {item.label}
                       </a>
@@ -387,7 +387,7 @@ const Header = () => {
                         type="button"
                         aria-expanded={open}
                         onClick={() => setOpenMobileGroup(open ? null : item.key)}
-                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] font-semibold cursor-pointer ${active ? 'text-[#1747a6]' : 'text-slate-700'} hover:bg-slate-50`}
+                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[13px] font-semibold cursor-pointer ${active ? 'text-[#1747a6]' : 'text-slate-700'} hover:bg-slate-50`}
                       >
                         {item.label}
                         <ChevronDown size={16} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
@@ -414,7 +414,7 @@ const Header = () => {
                   <span className="px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Our Verticals</span>
                   <div className="grid grid-cols-2 gap-1">
                     {verticals.map((v) => (
-                      <a key={v.name} href={v.path} onClick={(e) => go(e, v.path)} className="px-3 py-2 rounded-lg text-[13px] font-semibold text-slate-700 hover:bg-slate-50 no-underline">
+                      <a key={v.name} href={v.path} onClick={(e) => go(e, v.path)} className="px-3 py-2 rounded-lg text-[12px] font-semibold text-slate-700 hover:bg-slate-50 no-underline">
                         {v.name}
                       </a>
                     ))}
@@ -423,16 +423,16 @@ const Header = () => {
               </nav>
 
               <div className="flex-shrink-0 border-t border-slate-100 p-4 flex flex-col gap-2.5">
-                <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 text-[13px] font-semibold text-[#0f2a6b] no-underline">
+                <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 text-[12px] font-semibold text-[#0f2a6b] no-underline">
                   <Phone size={15} /> {CONTACT.phone}
                 </a>
-                <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 text-[13px] font-semibold text-[#0f2a6b] no-underline break-all">
+                <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 text-[12px] font-semibold text-[#0f2a6b] no-underline break-all">
                   <Mail size={15} /> {CONTACT.email}
                 </a>
                 <a
                   href="/contact"
                   onClick={(e) => go(e, '/contact')}
-                  className="mt-1 flex items-center justify-center gap-2 py-2.5 rounded-md bg-gradient-to-b from-[#ffa53a] to-[#f47b14] text-white text-[14px] font-bold shadow-md no-underline"
+                  className="mt-1 flex items-center justify-center gap-2 py-2.5 rounded-md bg-gradient-to-b from-[#ffa53a] to-[#f47b14] text-white text-[13px] font-bold shadow-md no-underline"
                 >
                   <CalendarCheck size={17} /> Request Demo
                 </a>

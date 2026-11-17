@@ -43,7 +43,7 @@ export const whatWeDo = [
     key: 'school',
     vertical: 'Education',
     title: 'School ERP',
-    desc: 'Cloud ERP for admissions, attendance, fees, exams, transport and parent communication, with portals for admins, teachers, students and parents.',
+    desc: 'Cloud ERP for admissions, attendance, fees, exams, transport and school communication, with portals for admins, teachers and students.',
     points: ['33+ modules', 'Web and mobile', 'Multi-branch ready'],
     path: '/services/school-management',
   },

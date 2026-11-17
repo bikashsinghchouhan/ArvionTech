@@ -8,7 +8,7 @@ const SERVICES = [
   {
     path: '/services/school-management',
     title: 'School Management ERP Software',
-    desc: 'Admissions, fees, attendance, exams and report cards with parent, teacher and student apps.',
+    desc: 'Admissions, fees, attendance, exams and report cards with student and teacher apps.',
   },
   {
     path: '/services/outsourcing',
@@ -28,12 +28,12 @@ const SERVICES = [
 ];
 
 const RelatedServices = ({ current }) => (
-  <section aria-labelledby="related-services" className="w-full bg-white px-4 sm:px-6 lg:px-8 py-10 sm:py-12 border-t border-slate-200">
+  <section aria-labelledby="related-services" className="w-full bg-white px-4 sm:px-6 lg:px-8 py-6 sm:py-12 border-t border-slate-200">
     <div className="max-w-7xl mx-auto">
-      <h2 id="related-services" className="text-[24px] sm:text-[30px] font-extrabold tracking-tight text-[#0b1f4d] text-center">
-        Related Services from Arvion Technologies
+      <h2 id="related-services" className="text-heading font-extrabold tracking-tight text-[#0b1f4d] text-center">
+        Related Services from <span className="text-[#f2700f]">Arvion Technologies</span>
       </h2>
-      <p className="mt-2 text-center text-[15px] sm:text-[16px] text-slate-600">
+      <p className="mt-2 text-center text-[14px] sm:text-[15.5px] text-slate-600">
         One Bangalore team for your school software, payroll, accounts and compliance.
       </p>
       <ul className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -43,9 +43,9 @@ const RelatedServices = ({ current }) => (
               to={s.path}
               className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-[#f8fbff] p-5 hover:border-[#f7b27a] hover:bg-[#fff7f0] transition-colors no-underline"
             >
-              <h3 className="text-[17px] font-bold text-[#0b1f4d] leading-snug">{s.title}</h3>
-              <p className="mt-2 flex-1 text-[14px] text-slate-600 leading-relaxed">{s.desc}</p>
-              <span className="mt-3 inline-flex items-center gap-2 text-[14px] font-semibold text-[#f2700f]">
+              <h3 className="text-card-title font-bold text-[#0b1f4d] leading-snug">{s.title}</h3>
+              <p className="mt-2 flex-1 text-card-desc text-slate-600 leading-relaxed">{s.desc}</p>
+              <span className="mt-3 inline-flex items-center gap-2 text-[13px] font-semibold text-[#f2700f]">
                 Learn more <FaArrowRight className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </span>
             </Link>

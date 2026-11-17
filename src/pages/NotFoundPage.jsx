@@ -10,8 +10,8 @@ const links = [
 
 const NotFoundPage = () => (
   <section className="min-h-[70vh] pt-[140px] pb-20 px-4 flex flex-col items-center justify-center text-center bg-[#f8f9fa]">
-    <p className="text-6xl font-black text-[#ff7f32] mb-4">404</p>
-    <h1 className="text-2xl md:text-4xl font-extrabold text-[#0d1b2a] mb-4 uppercase tracking-tight">
+    <p className="text-5xl font-black text-[#ff7f32] mb-4">404</p>
+    <h1 className="text-2xl md:text-3xl font-extrabold text-[#0b1f4d] mb-4 tracking-tight">
       Page Not Found
     </h1>
     <p className="text-slate-500 max-w-md mb-8">

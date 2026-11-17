@@ -73,19 +73,19 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden py-8 sm:py-10 px-4 sm:px-6 w-full mx-auto bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
+    <section className="relative overflow-hidden py-6 sm:py-10 px-4 sm:px-6 w-full mx-auto bg-gradient-to-b from-[#f4f8fe] to-[#f8fafd]">
 
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-10 flex flex-col items-center">
           <motion.span
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ffe9d6] border border-[#ffd3ad] text-[#e8730c] text-[13px] sm:text-[14px] font-extrabold"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ffe9d6] border border-[#ffd3ad] text-[#e8730c] text-[12px] sm:text-[13.5px] font-extrabold"
           >
-            <FaUsers className="text-[18px]" aria-hidden="true" /> Client Testimonials
+            <FaUsers className="text-[17px]" aria-hidden="true" /> Client Testimonials
           </motion.span>
           <motion.h2
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="mt-4 text-[26px] sm:text-[34px] lg:text-[38px] font-extrabold tracking-tight leading-tight text-[#0b1f4d]"
+            className="mt-4 text-heading font-extrabold tracking-tight leading-tight text-[#0b1f4d]"
           >
             What Our{' '}
             <span className="relative inline-block text-[#f2700f]">
@@ -97,7 +97,7 @@ const TestimonialSection = () => {
           </motion.h2>
           <motion.p
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}
-            className="mt-5 text-[15px] sm:text-[17px] text-slate-600 max-w-2xl mx-auto"
+            className="mt-5 text-[14px] sm:text-[16.5px] text-slate-600 max-w-2xl mx-auto"
           >
             Hear from businesses and organizations that trust Arvion Technologies.
           </motion.p>
@@ -139,22 +139,22 @@ const TestimonialSection = () => {
               >
                 <div className="flex items-center justify-between mb-3">
                   <FaQuoteLeft className="text-[#f2700f] text-2xl" aria-hidden="true" />
-                  <div className="flex gap-0.5 text-[14px]" role="img" aria-label={`${testi.rating} out of 5 stars`}>
+                  <div className="flex gap-0.5 text-[13px]" role="img" aria-label={`${testi.rating} out of 5 stars`}>
                     {[1, 2, 3, 4, 5].map(i => (
                       <FaStar key={i} className={i <= testi.rating ? 'text-[#f5b301]' : 'text-slate-200'} />
                     ))}
                   </div>
                 </div>
-                <blockquote className="flex-1 text-[14px] sm:text-[15px] text-slate-700 leading-relaxed mb-4">
+                <blockquote className="flex-1 text-[13px] sm:text-[14.5px] text-slate-700 leading-relaxed mb-4">
                   “{testi.text}”
                 </blockquote>
                 <figcaption className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#ffe9d6] text-[#f2700f] flex items-center justify-center text-[14px] font-extrabold" aria-hidden="true">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#ffe9d6] text-[#f2700f] flex items-center justify-center text-[13px] font-extrabold" aria-hidden="true">
                     {initials(testi.name)}
                   </span>
                   <span className="min-w-0">
-                    <span className="block font-bold text-[#0b1f4d] text-[15px]">{testi.name}</span>
-                    <span className="block text-[12.5px] text-slate-500 leading-snug">{testi.role}</span>
+                    <span className="block font-bold text-[#0b1f4d] text-[14px]">{testi.name}</span>
+                    <span className="block text-[12px] text-slate-500 leading-snug">{testi.role}</span>
                   </span>
                 </figcaption>
               </motion.figure>

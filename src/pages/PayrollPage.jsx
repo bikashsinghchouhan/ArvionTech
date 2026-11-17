@@ -18,8 +18,15 @@ import {
 import SecurityHighlights from '../components/SecurityHighlights';
 import FaqSection from '../components/FaqSection';
 import RelatedServices from '../components/RelatedServices';
-import { ComplianceGrid, HrRecordsShowcase, EmployeeBenefits } from '../components/payroll/PayrollSections';
+import { ComplianceGrid, HrRecordsShowcase } from '../components/payroll/PayrollSections';
 import heroIllustration from '../assets/service-heroes/payroll.webp';
+import modEmployee from '../assets/payroll-modules/employee-payroll.webp';
+import modProcessing from '../assets/payroll-modules/monthly-processing.webp';
+import modCompliance from '../assets/payroll-modules/statutory-compliance.webp';
+import modPayslip from '../assets/payroll-modules/payslip-services.webp';
+import modLifecycle from '../assets/payroll-modules/lifecycle.webp';
+import modReports from '../assets/payroll-modules/reports-mis.webp';
+import Eyebrow from '../components/ui/Eyebrow';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 16 },
@@ -63,27 +70,27 @@ const PayrollPage = () => {
   // "Our End-to-End Payroll Service Modules": six modules, each with four inclusions
   const serviceModules = [
     {
-      Icon: Users, title: 'Employee Payroll Management', tone: 'bg-blue-600',
+      Icon: Users, title: 'Employee Payroll Management', tone: 'bg-blue-600', image: modEmployee,
       points: ['Employee master creation and maintenance', 'Salary structure, CTC and component setup', 'New joining, updates and exits', 'Salary revisions and history management'],
     },
     {
-      Icon: CalendarDays, title: 'Monthly Payroll Processing', tone: 'bg-emerald-600',
+      Icon: CalendarDays, title: 'Monthly Payroll Processing', tone: 'bg-emerald-600', image: modProcessing,
       points: ['Monthly salary calculation and processing', 'Attendance, leave, overtime and LOP calculation', 'Incentives, bonus, arrears and recovery', 'Full & final settlement on exit'],
     },
     {
-      Icon: ShieldCheck, title: 'Statutory Compliance', tone: 'bg-violet-600',
+      Icon: ShieldCheck, title: 'Statutory Compliance', tone: 'bg-violet-600', image: modCompliance,
       points: ['PF, ESI, PT, LWF and other applicable compliance', 'TDS on salary and income tax compliance', 'Income tax declarations, investment proofs and Form 16', 'Preparation of statutory returns and filing support'],
     },
     {
-      Icon: FileText, title: 'Payslip & Employee Services', tone: 'bg-[#FF7A00]',
+      Icon: FileText, title: 'Payslip & Employee Services', tone: 'bg-[#FF7A00]', image: modPayslip,
       points: ['Monthly payslip generation and distribution', 'Form 16 and annual salary statements', 'Reimbursement processing and settlements', 'Employee payroll query and support'],
     },
     {
-      Icon: Network, title: 'Employee Lifecycle Management', tone: 'bg-[#1747a6]',
+      Icon: Network, title: 'Employee Lifecycle Management', tone: 'bg-[#1747a6]', image: modLifecycle,
       points: ['End-to-end employee lifecycle support', 'Promotions, transfers and role changes', 'Salary structure and component updates', 'Resignation, exit and full & final settlement'],
     },
     {
-      Icon: BarChart3, title: 'Payroll Reports & MIS', tone: 'bg-indigo-600',
+      Icon: BarChart3, title: 'Payroll Reports & MIS', tone: 'bg-indigo-600', image: modReports,
       points: ['Monthly salary register and payroll statements', 'Department-wise and employee-wise reports', 'PF, ESI, PT, TDS and statutory reports', 'Payroll cost analysis and management MIS'],
     },
   ];
@@ -184,7 +191,7 @@ const PayrollPage = () => {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </span>
-                  <span className="text-[11px] xl:text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
+                  <span className="text-[11px] xl:text-[11px] font-semibold text-[#0B1B3D] leading-tight">
                     {item}
                   </span>
                 </li>
@@ -223,7 +230,7 @@ const PayrollPage = () => {
               {/* Main Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
-                className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-4"
+                className="text-3xl sm:text-4xl lg:text-[37px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-4"
               >
                 Payroll <span className="text-[#FF7A00]">Outsourcing</span>
                 <span className="sr-only"> Services in Bangalore, India</span>
@@ -354,7 +361,7 @@ const PayrollPage = () => {
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </span>
-                      <span className="text-[11.5px] font-semibold text-[#0B1B3D] leading-tight">
+                      <span className="text-[11px] font-semibold text-[#0B1B3D] leading-tight">
                         {item}
                       </span>
                     </li>
@@ -376,16 +383,14 @@ const PayrollPage = () => {
       </section>
 
       {/* 2. DETAILED FEATURES GRID */}
-      <section id="features" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white">
+      <section id="features" className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-white">
         <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#FF7A00] text-xs font-bold uppercase tracking-wider mb-4">
-            Service Modules
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
+          <Eyebrow className="mb-4">Service Modules</Eyebrow>
+          <h2 className="text-heading font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
             Our End-to-End <span className="text-[#FF7A00]">Payroll Service Modules</span>
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+          <p className="text-slate-600 text-base sm:text-[16.5px] leading-relaxed">
             A complete, integrated payroll outsourcing service that manages the entire employee lifecycle, payroll processing and compliance.
           </p>
         </div>
@@ -394,21 +399,32 @@ const PayrollPage = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 list-none m-0 p-0"
           variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
         >
-          {serviceModules.map(({ Icon, title, tone, points }) => (
+          {serviceModules.map(({ Icon, title, tone, points, image }) => (
             <motion.li
               key={title}
               variants={fadeUpVariant}
-              className="group rounded-2xl bg-white ring-1 ring-slate-200/80 shadow-[0_10px_30px_-24px_rgba(15,42,107,.45)] hover:ring-orange-200 hover:shadow-[0_18px_40px_-24px_rgba(15,42,107,.45)] transition-[box-shadow,border-color,background-color,color] duration-300 overflow-hidden"
+              className="group flex flex-col rounded-2xl bg-white ring-1 ring-slate-200/80 shadow-[0_10px_30px_-24px_rgba(15,42,107,.45)] hover:ring-orange-200 hover:shadow-[0_18px_40px_-24px_rgba(15,42,107,.45)] transition-[box-shadow,border-color,background-color,color] duration-300 overflow-hidden"
             >
+              <div className="relative aspect-[523/186] overflow-hidden bg-[#f4f8fe]">
+                <img
+                  src={image}
+                  alt={`${title} – Arvion payroll outsourcing`}
+                  loading="lazy"
+                  decoding="async"
+                  width="523"
+                  height="186"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
               <div className="flex items-center gap-3.5 px-5 sm:px-6 py-4 bg-gradient-to-r from-[#f4f8fe] to-white border-b border-slate-100">
                 <span className={`w-11 h-11 rounded-xl ${tone} text-white flex items-center justify-center flex-shrink-0 shadow-md transition-transform duration-300 group-hover:scale-105`}>
                   <Icon className="w-[22px] h-[22px]" strokeWidth={2} aria-hidden="true" />
                 </span>
-                <h3 className="text-[17px] sm:text-lg font-bold text-[#0B1B3D] leading-snug">{title}</h3>
+                <h3 className="text-card-title font-bold text-[#0B1B3D] leading-snug">{title}</h3>
               </div>
               <ul className="px-5 sm:px-6 py-4 sm:py-5 grid gap-2.5 list-none m-0">
                 {points.map((pt) => (
-                  <li key={pt} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-slate-700 leading-snug">
+                  <li key={pt} className="flex items-start gap-2.5 text-sm sm:text-[14.5px] text-slate-700 leading-snug">
                     <FaCheckCircle className="mt-0.5 flex-shrink-0 text-emerald-500" aria-hidden="true" />
                     {pt}
                   </li>
@@ -421,16 +437,14 @@ const PayrollPage = () => {
       </section>
 
       {/* COVERAGE INCLUDES: two-column checklist of everything in the monthly cycle */}
-      <section id="coverage" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50 scroll-mt-24">
+      <section id="coverage" className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50 scroll-mt-24">
         <div className="max-w-5xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#FF7A00] text-xs font-bold uppercase tracking-wider mb-4">
-              End-to-End Payroll
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight mb-4">
-              Coverage Includes
+            <Eyebrow className="mb-4">End-to-End Payroll</Eyebrow>
+            <h2 className="text-heading font-extrabold text-[#0B1B3D] tracking-tight mb-4">
+              Coverage <span className="text-[#f2700f]">Includes</span>
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+            <p className="text-slate-600 text-base sm:text-[16.5px] leading-relaxed">
               Every part of your monthly payroll, from salary setup to statutory filing and employee queries.
             </p>
           </div>
@@ -447,7 +461,7 @@ const PayrollPage = () => {
                 className="flex items-center gap-3 py-2.5 border-b border-slate-100 last:border-b-0 sm:[&:nth-child(5)]:border-b-0"
               >
                 <FaCheckCircle className="flex-shrink-0 text-emerald-500 text-lg" aria-hidden="true" />
-                <span className="text-[15px] sm:text-base font-semibold text-[#0B1B3D]">{label}</span>
+                <span className="text-[14px] sm:text-base font-semibold text-[#0B1B3D]">{label}</span>
               </motion.li>
             ))}
           </motion.ul>
@@ -455,18 +469,16 @@ const PayrollPage = () => {
       </section>
 
       {/* WHO CAN USE OUR SERVICE: industries and the payroll need we solve for each */}
-      <section id="industries" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-white scroll-mt-24">
+      <section id="industries" className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-white scroll-mt-24">
         {/* Editorial layout, no cards: intro on the left, industries as an open list on the right
             separated by hairlines. The 8th cell is a "don't see yours?" prompt so the grid is even. */}
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)] gap-8 lg:gap-14">
           <div className="lg:sticky lg:top-28 self-start text-center lg:text-left">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#1747a6] text-xs font-bold uppercase tracking-wider mb-4">
-              Industries We Serve
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
+            <Eyebrow className="mb-4">Industries We Serve</Eyebrow>
+            <h2 className="text-heading font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
               Who Can Use Our <span className="text-[#FF7A00]">Service?</span>
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <p className="text-slate-600 text-base sm:text-[16.5px] leading-relaxed max-w-xl mx-auto lg:mx-0">
               Every industry pays its people differently. We handle the payroll rules that matter to yours.
             </p>
             <div aria-hidden="true" className="hidden lg:block mt-6 w-16 h-1 rounded-full bg-gradient-to-r from-[#FF7A00] to-[#ffb36b]" />
@@ -486,8 +498,8 @@ const PayrollPage = () => {
                   <Icon className="w-[22px] h-[22px]" strokeWidth={1.9} aria-hidden="true" />
                 </span>
                 <div className="min-w-0">
-                  <h3 className="text-[17px] font-bold text-[#0B1B3D] leading-snug">{name}</h3>
-                  <p className="mt-1 text-sm text-slate-600 leading-relaxed">{desc}</p>
+                  <h3 className="text-card-title font-bold text-[#0B1B3D] leading-snug">{name}</h3>
+                  <p className="mt-1 text-card-desc text-slate-600 leading-relaxed">{desc}</p>
                 </div>
               </motion.li>
             ))}
@@ -511,16 +523,14 @@ const PayrollPage = () => {
 
       {/* 3. OUR PAYROLL PROCESS: 8 steps. One row with arrows on large screens,
           4 + 4 on tablets, a numbered vertical list on phones. */}
-      <section id="process" className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50 scroll-mt-24">
+      <section id="process" className="py-6 sm:py-10 px-4 sm:px-6 w-full bg-[#f4f8fe] border-y border-blue-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#1747a6] text-xs font-bold uppercase tracking-wider mb-4">
-              Our Payroll Process
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
+            <Eyebrow className="mb-4">Our Payroll Process</Eyebrow>
+            <h2 className="text-heading font-extrabold text-[#0B1B3D] tracking-tight leading-tight text-balance mb-4">
               How Arvion Runs Your Payroll, <span className="text-[#FF7A00]">Every Month</span>
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+            <p className="text-slate-600 text-base sm:text-[16.5px] leading-relaxed">
               A transparent 8-step cycle, from employee data to final reports, with your approval before any salary is paid.
             </p>
           </div>
@@ -544,13 +554,13 @@ const PayrollPage = () => {
                 )}
                 <span className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-full ring-4 ${tone} flex items-center justify-center flex-shrink-0 shadow-sm`}>
                   <Icon className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.9} aria-hidden="true" />
-                  <span className="absolute -bottom-1.5 -right-1.5 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 sm:-bottom-3 w-6 h-6 rounded-full bg-[#1747a6] text-white text-[12px] font-extrabold flex items-center justify-center ring-2 ring-[#f4f8fe]">
+                  <span className="absolute -bottom-1.5 -right-1.5 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 sm:-bottom-3 w-6 h-6 rounded-full bg-[#1747a6] text-white text-[11.5px] font-extrabold flex items-center justify-center ring-2 ring-[#f4f8fe]">
                     {i + 1}
                   </span>
                 </span>
                 <div className="min-w-0 sm:mt-5">
-                  <h3 className="text-[15px] sm:text-sm font-bold text-[#0B1B3D] leading-snug">{title}</h3>
-                  <p className="mt-1 text-[13px] sm:text-xs text-slate-600 leading-relaxed">{desc}</p>
+                  <h3 className="text-[14px] sm:text-sm font-bold text-[#0B1B3D] leading-snug">{title}</h3>
+                  <p className="mt-1 text-[12px] sm:text-xs text-slate-600 leading-relaxed">{desc}</p>
                 </div>
               </motion.li>
             ))}
@@ -563,9 +573,6 @@ const PayrollPage = () => {
 
       {/* HR RECORDS & DOCUMENTS (accordion, visual on the right) */}
       <HrRecordsShowcase />
-
-      {/* EMPLOYEE BENEFITS (accordion, visual on the left) */}
-      <EmployeeBenefits />
 
       {/* SECURITY & CLOUD: payroll data protection */}
       <SecurityHighlights
@@ -595,13 +602,13 @@ const PayrollPage = () => {
       {/* <TestimonialSection /> (hidden for now, kept for future use) */}
 
       {/* 6. FINAL CTA BANNER */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden">
+      <section className="py-8 sm:py-16 px-4 sm:px-6 w-full bg-gradient-to-br from-[#0B1B3D] via-[#102a63] to-[#1A4B8F] text-white text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
-          <h2 className="text-3xl sm:text-5xl font-extrabold mb-6 tracking-tight">
-            Ready for Effortless, 100% Compliant Payroll?
+          <h2 className="text-heading font-extrabold mb-6 tracking-tight">
+            Ready for Effortless, <span className="text-[#ffb366]">100% Compliant Payroll?</span>
           </h2>
-          <p className="text-lg sm:text-xl text-blue-100/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-blue-100/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Schedule a free consultation with our payroll experts to explore how Arvion can simplify your salary operations, ensure compliance, and save your team valuable hours every month.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">

@@ -8,6 +8,7 @@ import schoolImg from '../assets/service-school.webp';
 import outsourcingImg from '../assets/service-outsourcing.webp';
 import registrationsImg from '../assets/service-registrations.webp';
 import accountingImg from '../assets/service-accounting.webp';
+import Eyebrow from './ui/Eyebrow';
 
 const featuresData = {
   school: {
@@ -15,7 +16,7 @@ const featuresData = {
     icon: <FaSchool />,
     description: 'A powerful ERP solution designed to streamline school management, automate processes, and enhance productivity.',
     points: [
-      { title: 'Student Portal', desc: 'Centralized database for profiles, grades, and parent communication.' },
+      { title: 'Student Portal', desc: 'Centralized database for profiles, grades, and school communication.' },
       { title: 'Smart Attendance', desc: 'Automated real-time attendance logs and instant alerts.' },
       { title: 'Timetable Automation', desc: 'Conflict-free classroom scheduling and smart teacher assignments.' },
       { title: 'Grade Analytics', desc: 'Comprehensive digital report cards and exam analysis dashboards.' }
@@ -86,11 +87,9 @@ const FeaturesSection = () => {
         
         {/* Section Heading with Accent Badge */}
         <div className="flex flex-col items-center text-center mb-8 md:mb-10">
-          <span className="inline-block px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-[#ff7f32] bg-orange-50 border border-orange-100 mb-3 shadow-sm">
-            Core Modules
-          </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] tracking-tight leading-tight max-w-2xl font-sans">
-            Features That Power Your Business
+          <Eyebrow className="mb-3">Core Modules</Eyebrow>
+          <h2 className="text-heading font-extrabold text-[#0b1f4d] tracking-tight leading-tight max-w-2xl font-sans">
+            Features That Power <span className="text-[#f2700f]">Your Business</span>
           </h2>
         </div>
 
@@ -113,7 +112,7 @@ const FeaturesSection = () => {
                   <span className={`p-2 rounded-lg flex-shrink-0 transition-colors ${isActive ? 'bg-white/20 text-white' : 'bg-orange-50 text-[#ff7f32]'}`}>
                     {featuresData[key].icon}
                   </span>
-                  <span className="text-[13px] tracking-wide uppercase">{featuresData[key].title}</span>
+                  <span className="text-[12px] tracking-wide uppercase">{featuresData[key].title}</span>
                 </button>
               );
             })}
@@ -132,10 +131,10 @@ const FeaturesSection = () => {
               >
                 {/* Card Text Content */}
                 <div className="w-full flex flex-col text-left">
-                  <h3 className="text-xl sm:text-2xl font-black text-[#0d1b2a] mb-3 font-sans uppercase tracking-wide">
+                  <h3 className="text-card-title font-black text-[#0d1b2a] mb-3 font-sans">
                     {currentService.title}
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-6 font-semibold">
+                  <p className="text-card-desc text-slate-500 leading-relaxed mb-6 font-semibold">
                     {currentService.description}
                   </p>
                   

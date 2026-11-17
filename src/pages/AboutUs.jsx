@@ -10,6 +10,7 @@ import {
   FaChartLine, FaRegClock, FaGlobe, FaCertificate, FaQuoteLeft,
   FaCalendarCheck, FaArrowRight, FaHome, FaChevronRight
 } from 'react-icons/fa';
+import Eyebrow from '../components/ui/Eyebrow';
 import '../csssection/AboutUs.css'; // Maintaining backward compatibility
 
 const About = ({ isSinglePage }) => {
@@ -79,8 +80,8 @@ const About = ({ isSinglePage }) => {
 
               <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 lg:flex-1 lg:flex lg:flex-col">
                 {/* Breadcrumb: pinned to the top of the hero */}
-                <nav aria-label="Breadcrumb" className="flex items-center gap-2 pt-4 sm:pt-5 text-[13px] sm:text-sm text-white/80">
-                  <FaHome className="text-[13px]" aria-hidden="true" />
+                <nav aria-label="Breadcrumb" className="flex items-center gap-2 pt-4 sm:pt-5 text-[12px] sm:text-sm text-white/80">
+                  <FaHome className="text-[12px]" aria-hidden="true" />
                   <Link to="/" className="hover:text-white focus:outline-none focus-visible:underline">Home</Link>
                   <FaChevronRight className="text-[9px] text-white/60" aria-hidden="true" />
                   <span className="font-semibold text-white" aria-current="page">About Us</span>
@@ -90,14 +91,14 @@ const About = ({ isSinglePage }) => {
                 <div className="w-full lg:w-[40%] pt-6 pb-10 sm:pt-8 sm:pb-12 lg:pt-6 lg:pb-16 xl:pb-20 grid gap-4 sm:gap-5 text-center lg:text-left justify-items-center lg:justify-items-start">
                   <motion.span
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-                    className="mt-2 inline-flex items-center gap-2 w-max max-w-full bg-white/10 border border-white/15 text-white text-xs sm:text-[13px] font-semibold px-3.5 py-1.5 rounded-full"
+                    className="mt-2 inline-flex items-center gap-2 w-max max-w-full bg-white/10 border border-white/15 text-white text-xs sm:text-[12.5px] font-semibold px-3.5 py-1.5 rounded-full"
                   >
                     <span className="w-2 h-2 rounded-full bg-[#f7941d]" /> About Our Company
                   </motion.span>
 
                   <motion.h1
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
-                    className="text-[32px] sm:text-[44px] lg:text-[46px] xl:text-[54px] font-extrabold leading-[1.1] tracking-[-0.02em] text-white"
+                    className="text-[23.5px] sm:text-[30px] lg:text-[36.5px] xl:text-[37px] font-extrabold leading-[1.1] tracking-[-0.02em] text-white"
                   >
                     About Arvion<br />
                     <span className="relative inline-block">
@@ -110,7 +111,7 @@ const About = ({ isSinglePage }) => {
 
                   <motion.p
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-                    className="mt-2 text-[15px] sm:text-[17px] text-white/85 max-w-xl leading-relaxed"
+                    className="mt-2 text-[14px] sm:text-[16.5px] text-white/85 max-w-xl leading-relaxed"
                   >
                     Arvion Technologies Private Limited is a technology-driven company providing software products and business services for educational institutions and organisations.
                   </motion.p>
@@ -121,13 +122,13 @@ const About = ({ isSinglePage }) => {
                   >
                     <Link
                       to="/contact"
-                      className="inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] hover:brightness-105 text-white font-bold text-sm sm:text-[15px] shadow-lg shadow-orange-900/30 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300"
+                      className="inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] hover:brightness-105 text-white font-bold text-sm sm:text-[14.5px] shadow-lg shadow-orange-900/30 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300"
                     >
                       <FaCalendarCheck /> Book a Free Demo
                     </Link>
                     <Link
                       to="/services"
-                      className="inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-white hover:bg-blue-50 text-[#0f2a6b] font-bold text-sm sm:text-[15px] shadow-lg shadow-black/15 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+                      className="inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-white hover:bg-blue-50 text-[#0f2a6b] font-bold text-sm sm:text-[14.5px] shadow-lg shadow-black/15 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
                     >
                       Explore Our Solutions <FaArrowRight className="text-xs" />
                     </Link>
@@ -153,7 +154,7 @@ const About = ({ isSinglePage }) => {
 
         {/* 1b. Compact hero used when embedded in the home page */}
         {isSinglePage && (
-        <section className="relative w-full box-border bg-white px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <section className="relative w-full box-border bg-white px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-14 items-center lg:items-stretch">
 
             {/* Left: text */}
@@ -164,18 +165,18 @@ const About = ({ isSinglePage }) => {
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
 
-              <Heading className="text-[28px] sm:text-[36px] lg:text-[32px] xl:text-[38px] font-black text-[#0b2a6b] tracking-tight leading-[1.1] uppercase font-sans">
+              <Heading className="text-[21px] sm:text-[29px] lg:text-[25px] xl:text-[30px] font-black text-[#0b2a6b] tracking-tight leading-[1.1] uppercase font-sans">
                 About Arvion <span className="text-[#f2700f]">Technologies</span>
               </Heading>
-              <h2 className="mt-4 text-[17px] sm:text-[21px] font-medium text-slate-600 tracking-wide uppercase">
+              <h2 className="mt-4 text-[16px] sm:text-[19.5px] font-medium text-slate-600 tracking-wide uppercase">
                 Driving Innovation, Empowering Businesses.
               </h2>
               <span aria-hidden="true" className="mt-5 mb-7 block w-16 sm:w-20 h-1 rounded-full bg-[#f2700f]" />
 
-              <p className="text-[15px] sm:text-[17px] text-slate-600 leading-[1.75] mb-5">
+              <p className="text-[14px] sm:text-[16.5px] text-slate-600 leading-[1.75] mb-5">
                 Founded on the principle of simplifying complex business processes, Arvion Technologies Private Limited is a technology partner for educational institutions, businesses, and growing organizations across India. Our mission is to empower organizations by leveraging cutting-edge technology to enhance efficiency, ensure growth, and maintain compliance.
               </p>
-              <p className="text-[15px] sm:text-[17px] text-slate-600 leading-[1.75]">
+              <p className="text-[14px] sm:text-[16.5px] text-slate-600 leading-[1.75]">
                 Our team of experienced professionals brings together deep industry expertise and a passion for problem-solving. We believe in building strong partnerships with our clients, understanding their unique challenges, and delivering solutions that not only meet but exceed their expectations.
               </p>
             </motion.div>
@@ -211,8 +212,8 @@ const About = ({ isSinglePage }) => {
                         exit={{ opacity: 0 }}
                         className="absolute inset-0 bg-black/80 flex flex-col justify-center items-center text-center p-6 backdrop-blur-sm z-20"
                       >
-                        <h3 className="text-white text-lg sm:text-xl font-bold mb-3 uppercase tracking-wider">Empowering Institutions</h3>
-                        <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-semibold">
+                        <h3 className="text-white text-card-title font-bold mb-3">Empowering Institutions</h3>
+                        <p className="text-slate-200 text-card-desc leading-relaxed font-semibold">
                           Guided by our core pillars of Study, Discipline, Respect, and Dream—we build technologies that enable excellence today and success tomorrow.
                         </p>
                       </motion.div>
@@ -267,7 +268,7 @@ const About = ({ isSinglePage }) => {
         {isSinglePage && (
           <>
         {/* 3. Core Values Section */}
-        <section className={`relative overflow-hidden w-full box-border px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#f7faff] via-white to-[#f3f7ff] ${isSinglePage ? 'pt-8 sm:pt-10 pb-8 sm:pb-10' : 'pt-8 sm:pt-10 pb-8 sm:pb-10'}`}>
+        <section className={`relative overflow-hidden w-full box-border px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#f7faff] via-white to-[#f3f7ff] ${isSinglePage ? 'pt-6 sm:pt-10 pb-6 sm:pb-10' : 'pt-6 sm:pt-10 pb-6 sm:pb-10'}`}>
           {/* Background decoration: soft corner glow, dot grid, bottom waves */}
           <div aria-hidden="true" className="pointer-events-none absolute -top-24 -left-24 w-[420px] h-[300px] rounded-full bg-blue-100/40 blur-3xl" />
           <div aria-hidden="true" className="pointer-events-none hidden sm:block absolute top-6 right-6 lg:right-10 w-20 h-14 opacity-70 bg-[radial-gradient(#b9cdf0_1.6px,transparent_1.6px)] [background-size:14px_14px]" />
@@ -279,17 +280,11 @@ const About = ({ isSinglePage }) => {
           <div className="relative max-w-6xl mx-auto">
             {/* Heading */}
             <div className="flex flex-col items-center text-center mb-8 sm:mb-10">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />
-                <span className="px-4 sm:px-5 py-1.5 rounded-full bg-[#ffe9d6] text-[#e8730c] text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.12em]">
-                  Our Foundations
-                </span>
-                <span aria-hidden="true" className="w-8 sm:w-12 h-px bg-[#f7941d]/70" />
-              </div>
-              <h2 className="mt-4 sm:mt-5 text-2xl sm:text-3xl font-extrabold text-[#0b1f4d] tracking-tight leading-tight">
+              <Eyebrow>Our Foundations</Eyebrow>
+              <h2 className="mt-4 sm:mt-5 text-heading font-extrabold text-[#0b1f4d] tracking-tight leading-tight">
                 The <span className="text-[#f7861c]">Values</span> That Guide Us
               </h2>
-              <p className="mt-3 sm:mt-4 max-w-2xl text-[15px] sm:text-[17px] text-slate-600 leading-relaxed">
+              <p className="mt-3 sm:mt-4 max-w-2xl text-[14px] sm:text-[16.5px] text-slate-600 leading-relaxed">
                 Our core values define who we are, how we work, and the impact we create for our clients, partners and the communities we serve.
               </p>
             </div>
@@ -324,9 +319,9 @@ const About = ({ isSinglePage }) => {
                   <span className={`relative inline-flex items-center justify-center w-14 h-14 sm:w-[60px] sm:h-[60px] rounded-xl bg-gradient-to-br ${tone.icon} transition-transform duration-300 group-hover:scale-105`}>
                     <Icon size={28} strokeWidth={1.8} />
                   </span>
-                  <h3 className="relative mt-5 text-xl sm:text-[22px] font-extrabold text-[#0b1f4d]">{title}</h3>
+                  <h3 className="relative mt-5 text-card-title font-extrabold text-[#0b1f4d]">{title}</h3>
                   <span aria-hidden="true" className={`relative block mt-3 w-10 h-1 rounded-full ${tone.bar}`} />
-                  <p className="relative mt-4 text-[14px] sm:text-[15px] text-slate-600 leading-relaxed">{desc}</p>
+                  <p className="relative mt-4 text-card-desc text-slate-600 leading-relaxed">{desc}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -334,12 +329,12 @@ const About = ({ isSinglePage }) => {
         </section>
 
         {/* 4. Quote / Mission Vision Section */}
-        <section className={isSinglePage ? "py-8 sm:py-10 bg-white w-full box-border px-4 sm:px-6 lg:px-8 border-t border-slate-100" : "py-8 sm:py-10 bg-white w-full box-border px-4 sm:px-6 lg:px-8 border-t border-slate-100"}>
+        <section className={isSinglePage ? "py-6 sm:py-10 bg-white w-full box-border px-4 sm:px-6 lg:px-8 border-t border-slate-100" : "py-6 sm:py-10 bg-white w-full box-border px-4 sm:px-6 lg:px-8 border-t border-slate-100"}>
           <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
-            <span className="text-[#ff7f32] opacity-25 text-5xl mb-6">
+            <span className="text-[#ff7f32] opacity-25 text-4xl mb-6">
               <FaQuoteLeft />
             </span>
-            <p className="text-sm sm:text-xl lg:text-2xl font-serif italic text-slate-700 leading-relaxed tracking-wide mb-8">
+            <p className="text-sm sm:text-lg lg:text-xl font-serif italic text-slate-700 leading-relaxed tracking-wide mb-8">
               "Our mission is to remove administrative overhead from dedicated teams. By combining robust automation software with expert compliance directives, we ensure your corporation scales on solid ground."
             </p>
             <div className="h-[2px] w-16 bg-[#ff7f32] mb-4" />
