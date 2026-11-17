@@ -25,12 +25,12 @@ const Footer = () => {
   ];
 
   const schoolSolutions = [
-    { name: "Online Admission / Enrollment", path: "#" },
-    { name: "Student Management", path: "#" },
-    { name: "Fees Management", path: "#" },
-    { name: "Attendance Management", path: "#" },
-    { name: "Exam & Results", path: "#" },
-    { name: "Library Management", path: "#" }
+    { name: "Online Admission / Enrollment", path: "/services/school-management#features" },
+    { name: "Student Management", path: "/services/school-management#features" },
+    { name: "Fees Management", path: "/services/school-management#features" },
+    { name: "Attendance Management", path: "/services/school-management#features" },
+    { name: "Exam & Results", path: "/services/school-management#features" },
+    { name: "Library Management", path: "/services/school-management#features" }
   ];
 
   // const integrations = [

@@ -12,6 +12,7 @@ import {
 // Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
 // import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
+import RelatedServices from '../components/RelatedServices';
 import { TimeBackSection, SwitchingSection, ParentExperience } from '../components/school/SchoolExtras';
 import schoolErpMobile from '../assets/school-erp-mobile.webp';
 import schoolErpHero from '../assets/school-erp-hero.webp';
@@ -1048,6 +1049,8 @@ const SchoolManagement = () => {
         desc="Can't find your answer? Talk to our ERP team."
         items={schoolFaqs.map((f, i) => ({ ...f, Icon: SCHOOL_FAQ_ICONS[i % SCHOOL_FAQ_ICONS.length] }))}
       />
+
+      <RelatedServices current="/services/school-management" />
 
       {/* FINAL CTA SECTION */}
       <section className="py-8 sm:py-10 px-4 sm:px-6 w-full bg-[#0B1B3D] text-white">

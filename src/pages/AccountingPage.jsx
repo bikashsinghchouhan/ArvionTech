@@ -12,6 +12,7 @@ import {
 // Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
 // import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
+import RelatedServices from '../components/RelatedServices';
 import { ProcessSteps, NeedsGuide, ChecklistGroups, DueDates, MistakesGrid, ToolsStrip } from '../components/ServiceSections';
 import { CompareTable } from '../components/ServiceTools';
 import heroIllustration from '../assets/service-heroes/accounting-hero.webp';
@@ -190,6 +191,7 @@ const AccountingPage = () => {
                     <path d="M0 5 Q 50 10, 100 5" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
                   </svg>
                 </span>
+                <span className="sr-only"> and Bookkeeping in Bangalore, India</span>
               </motion.h1>
 
               {/* Subheading */}
@@ -559,6 +561,8 @@ const AccountingPage = () => {
           { Icon: FaLock, q: "How secure is my financial data?", a: "We take data security very seriously. We use enterprise-grade encryption, secure servers, and strict access controls to ensure your sensitive financial information is always protected." },
         ]}
       />
+
+      <RelatedServices current="/services/accounting" />
 
       {/* 5. TESTIMONIALS */}
       {/* <TestimonialSection /> (hidden for now, kept for future use) */}

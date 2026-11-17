@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact Us – 4 mockups in current design | Arvion Technologies</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+<style>
+  body { font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .navy { color:#0b1f4d; }
+  .panel { background: linear-gradient(135deg,#0e3a8c,#0b2f78 50%,#082262); color:#fff; position:relative; overflow:hidden; }
+  .lbl { display:block; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#0b1f4d; margin-bottom:8px; }
+  .lbl b { color:#ff4d4d; }
+  .fw { position:relative; }
+  .fw i { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:#64748b; font-size:18px; }
+  .fld { width:100%; height:52px; border:1px solid #d5dbe5; border-radius:12px; padding:0 14px 0 46px; font-size:15px; background:#fff; outline:none; }
+  .btn { background:linear-gradient(#ff8a3d,#f2700f); color:#fff; font-weight:700; border-radius:12px; padding:15px 28px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 10px 20px -10px rgba(242,112,15,.6); }
+  .dot { width:44px; height:44px; border-radius:999px; display:grid; place-items:center; font-weight:800; }
+  .dot.on { background:linear-gradient(#ffa94d,#f2700f); box-shadow:0 8px 16px -6px rgba(0,0,0,.35); }
+  .dot.off { background:rgba(255,255,255,.2); }
+  .ico { width:44px; height:44px; border-radius:10px; background:rgba(255,255,255,.15); display:grid; place-items:center; font-size:20px; }
+  .badge { width:62px; height:62px; border-radius:16px; background:#fff1e3; color:#f2700f; display:grid; place-items:center; font-size:26px; }
+  .tab-btn.active { background:#0b1f4d; color:#fff; }
+  .mock { display:none; } .mock.active { display:block; }
+</style>
+</head>
+<body class="bg-white text-slate-700">
+
+<div class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex flex-wrap items-center gap-3">
+    <span class="font-extrabold navy mr-2">Contact Us (current design):</span>
+    <button class="tab-btn active px-4 py-2 rounded-full text-sm font-semibold border border-slate-300" data-t="a">A · Split, 2-column form</button>
+    <button class="tab-btn px-4 py-2 rounded-full text-sm font-semibold border border-slate-300" data-t="b">B · Split + next steps</button>
+    <button class="tab-btn px-4 py-2 rounded-full text-sm font-semibold border border-slate-300" data-t="c">C · Navy banner on top</button>
+    <button class="tab-btn px-4 py-2 rounded-full text-sm font-semibold border border-slate-300" data-t="d">D · Mirrored (form left)</button>
+  </div>
+</div>
+
+<div class="bg-[#1747a6] text-white text-sm font-semibold">
+  <div class="max-w-6xl mx-auto px-6 h-12 flex items-center gap-8 overflow-x-auto whitespace-nowrap"><span>Home</span><span>About Us</span><span>Products</span><span>Services</span><span>Features</span><span>Pricing</span><span class="text-[#ffc08a] border-b-2 border-[#ffc08a] pb-1">Contact Us</span></div>
+</div>
+
+<template id="shapes">
+  <svg class="pointer-events-none absolute top-0 right-0 w-24 h-28" viewBox="0 0 100 120" preserveAspectRatio="none"><path d="M40 0 H100 V120 C100 70 80 30 40 0 Z" fill="#f7861c"/></svg>
+  <svg class="pointer-events-none absolute bottom-0 left-0 w-[58%] h-20" viewBox="0 0 300 80" preserveAspectRatio="none"><path d="M0 0 C40 40 120 60 300 80 H0 Z" fill="#f7861c"/></svg>
+  <svg class="pointer-events-none absolute bottom-0 right-0 w-[55%] max-w-[420px] opacity-[0.18]" viewBox="0 0 320 200" fill="none" stroke="#fff" stroke-width="2"><path d="M0 196 C80 172 200 168 320 178"/><rect x="150" y="40" width="80" height="140"/><rect x="230" y="70" width="60" height="110"/><path d="M150 40 L190 20 L230 40"/><circle cx="110" cy="160" r="18"/><path d="M110 178 V196"/><circle cx="300" cy="158" r="14"/><path d="M300 172 V190"/></svg>
+</template>
+
+<template id="stepper">
+  <div class="flex items-center max-w-sm"><span class="dot on">1</span><span class="flex-1 h-[3px] bg-white/25 rounded-full"></span><span class="dot off">2</span><span class="flex-1 h-[3px] bg-white/25 rounded-full"></span><span class="dot off">3</span></div>
+</template>
+
+<template id="contacts">
+  <div class="flex flex-col gap-4 text-[16px]">
+    <p class="flex items-center gap-4"><span class="ico"><i class="ti ti-mail"></i></span>sales@arviontechnologies.com</p>
+    <p class="flex items-center gap-4"><span class="ico"><i class="ti ti-phone"></i></span>+91 9535764655</p>
+    <p class="flex items-center gap-4"><span class="ico"><i class="ti ti-brand-whatsapp text-[#25d366]"></i></span>+91 9535764655</p>
+  </div>
+</template>
+
+<template id="formhead">
+  <div class="flex items-center gap-4 mb-8"><span class="badge"><i class="ti ti-user-filled"></i></span>
+    <div><h2 class="text-[26px] font-extrabold navy leading-tight">Your Contact Information</h2><span class="mt-2 block w-16 h-[3px] rounded-full bg-[#f2700f]"></span></div></div>
+</template>
+
+<!-- A -->
+<section class="mock active" id="m-a">
+  <div class="grid lg:grid-cols-[1fr_1.1fr] min-h-[calc(100vh-110px)]">
+    <div class="panel px-10 xl:px-20 py-16 flex flex-col justify-center" data-shapes>
+      <div class="relative max-w-lg">
+        <div data-stepper></div>
+        <h1 class="mt-8 text-[38px] font-extrabold leading-tight">Let's Get Acquainted</h1>
+        <p class="mt-3 text-[17px] text-white/85">Start by telling us a bit about yourself and your company.</p>
+        <div class="mt-8 pt-7 border-t border-white/20"><p class="font-extrabold text-[13px] mb-5 uppercase tracking-[0.14em]">Or contact us directly:</p><div data-contacts></div></div>
+      </div>
+    </div>
+    <div class="px-8 xl:px-24 py-16 flex flex-col justify-center">
+      <div class="max-w-[720px] w-full">
+        <div data-formhead></div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div><label class="lbl">Full name <b>*</b></label><div class="fw"><i class="ti ti-user"></i><input class="fld" placeholder="e.g., John Doe"></div></div>
+          <div><label class="lbl">Service <b>*</b></label><div class="fw"><i class="ti ti-briefcase"></i><select class="fld"><option>-- Choose a Service --</option></select></div></div>
+          <div><label class="lbl">Phone number <b>*</b></label><div class="fw"><i class="ti ti-phone"></i><input class="fld" placeholder="+91  9876543210"></div></div>
+          <div><label class="lbl">Work email <b>*</b></label><div class="fw"><i class="ti ti-mail"></i><input class="fld" placeholder="e.g., john.doe@company.com"></div></div>
+        </div>
+        <div class="mt-10 flex justify-end"><button class="btn">Next Step <i class="ti ti-arrow-right"></i></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="mock" id="m-b">
+  <div class="grid lg:grid-cols-[5fr_7fr] min-h-[calc(100vh-110px)]">
+    <div class="panel px-10 xl:px-16 py-14 flex flex-col" data-shapes>
+      <div class="relative">
+        <div data-stepper></div>
+        <h1 class="mt-8 text-[36px] font-extrabold leading-tight">Let's Get Acquainted</h1>
+        <p class="mt-3 text-[17px] text-white/85">Start by telling us a bit about yourself and your company.</p>
+        <p class="mt-10 font-extrabold text-[13px] uppercase tracking-[0.14em] text-white/70">What happens next</p>
+        <ol class="mt-4 space-y-4 text-[15px]">
+          <li class="flex gap-3"><i class="ti ti-circle-check-filled text-[#f7941d] text-xl"></i><span><b>We review your needs</b><br><span class="text-white/70">A specialist reads your request.</span></span></li>
+          <li class="flex gap-3"><i class="ti ti-circle-check-filled text-[#f7941d] text-xl"></i><span><b>We confirm your slot</b><br><span class="text-white/70">Email confirmation within 1 business day.</span></span></li>
+          <li class="flex gap-3"><i class="ti ti-circle-check-filled text-[#f7941d] text-xl"></i><span><b>Free demo &amp; proposal</b><br><span class="text-white/70">Tailored to your institution.</span></span></li>
+        </ol>
+        <div class="mt-10 pt-7 border-t border-white/20"><p class="font-extrabold text-[13px] mb-5 uppercase tracking-[0.14em]">Or contact us directly:</p><div data-contacts></div></div>
+      </div>
+    </div>
+    <div class="px-8 xl:px-24 py-16 flex flex-col justify-center">
+      <div class="max-w-[640px] w-full">
+        <div data-formhead></div>
+        <div class="space-y-6">
+          <div><label class="lbl">Full name <b>*</b></label><div class="fw"><i class="ti ti-user"></i><input class="fld" placeholder="e.g., John Doe"></div></div>
+          <div><label class="lbl">Service <b>*</b></label><div class="fw"><i class="ti ti-briefcase"></i><select class="fld"><option>-- Choose a Service --</option></select></div></div>
+          <div><label class="lbl">Phone number <b>*</b></label><div class="fw"><i class="ti ti-phone"></i><input class="fld" placeholder="+91  9876543210"></div></div>
+          <div><label class="lbl">Work email <b>*</b></label><div class="fw"><i class="ti ti-mail"></i><input class="fld" placeholder="e.g., john.doe@company.com"></div></div>
+        </div>
+        <div class="mt-10 flex justify-end"><button class="btn">Next Step <i class="ti ti-arrow-right"></i></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- C -->
+<section class="mock" id="m-c">
+  <div class="panel" data-shapes>
+    <div class="relative max-w-6xl mx-auto px-8 py-14 grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
+      <div>
+        <div data-stepper></div>
+        <h1 class="mt-8 text-[40px] font-extrabold leading-tight">Let's Get Acquainted</h1>
+        <p class="mt-3 text-[17px] text-white/85">Start by telling us a bit about yourself and your company.</p>
+      </div>
+      <div class="lg:border-l border-white/20 lg:pl-10"><p class="font-extrabold text-[13px] mb-5 uppercase tracking-[0.14em]">Or contact us directly:</p><div data-contacts></div></div>
+    </div>
+  </div>
+  <div class="max-w-5xl mx-auto px-8 py-16">
+    <div data-formhead></div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div><label class="lbl">Full name <b>*</b></label><div class="fw"><i class="ti ti-user"></i><input class="fld" placeholder="e.g., John Doe"></div></div>
+      <div><label class="lbl">Service <b>*</b></label><div class="fw"><i class="ti ti-briefcase"></i><select class="fld"><option>-- Choose a Service --</option></select></div></div>
+      <div><label class="lbl">Phone number <b>*</b></label><div class="fw"><i class="ti ti-phone"></i><input class="fld" placeholder="+91  9876543210"></div></div>
+      <div><label class="lbl">Work email <b>*</b></label><div class="fw"><i class="ti ti-mail"></i><input class="fld" placeholder="e.g., john.doe@company.com"></div></div>
+    </div>
+    <div class="mt-10 flex justify-end"><button class="btn">Next Step <i class="ti ti-arrow-right"></i></button></div>
+  </div>
+</section>
+
+<!-- D -->
+<section class="mock" id="m-d">
+  <div class="grid lg:grid-cols-[1.1fr_1fr] min-h-[calc(100vh-110px)]">
+    <div class="px-8 xl:px-24 py-16 flex flex-col justify-center order-2 lg:order-1">
+      <div class="max-w-[640px] w-full ml-auto">
+        <div data-formhead></div>
+        <div class="space-y-6">
+          <div><label class="lbl">Full name <b>*</b></label><div class="fw"><i class="ti ti-user"></i><input class="fld" placeholder="e.g., John Doe"></div></div>
+          <div><label class="lbl">Service <b>*</b></label><div class="fw"><i class="ti ti-briefcase"></i><select class="fld"><option>-- Choose a Service --</option></select></div></div>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div><label class="lbl">Phone <b>*</b></label><div class="fw"><i class="ti ti-phone"></i><input class="fld" placeholder="9876543210"></div></div>
+            <div><label class="lbl">Work email <b>*</b></label><div class="fw"><i class="ti ti-mail"></i><input class="fld" placeholder="john@company.com"></div></div>
+          </div>
+        </div>
+        <div class="mt-10 flex justify-end"><button class="btn">Next Step <i class="ti ti-arrow-right"></i></button></div>
+      </div>
+    </div>
+    <div class="panel px-10 xl:px-20 py-16 flex flex-col justify-center order-1 lg:order-2" data-shapes>
+      <div class="relative max-w-lg">
+        <div data-stepper></div>
+        <h1 class="mt-8 text-[38px] font-extrabold leading-tight">Let's Get Acquainted</h1>
+        <p class="mt-3 text-[17px] text-white/85">Start by telling us a bit about yourself and your company.</p>
+        <div class="mt-8 pt-7 border-t border-white/20"><p class="font-extrabold text-[13px] mb-5 uppercase tracking-[0.14em]">Or contact us directly:</p><div data-contacts></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const tpl = id => document.getElementById(id).innerHTML;
+document.querySelectorAll('[data-shapes]').forEach(el => el.insertAdjacentHTML('afterbegin', tpl('shapes')));
+document.querySelectorAll('[data-stepper]').forEach(el => el.innerHTML = tpl('stepper'));
+document.querySelectorAll('[data-contacts]').forEach(el => el.innerHTML = tpl('contacts'));
+document.querySelectorAll('[data-formhead]').forEach(el => el.innerHTML = tpl('formhead'));
+document.querySelectorAll('.tab-btn').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tab-btn').forEach(x => x.classList.toggle('active', x === b));
+  document.querySelectorAll('.mock').forEach(m => m.classList.toggle('active', m.id === 'm-' + b.dataset.t));
+  scrollTo(0, 0);
+});
+</script>
+</body>
+</html>

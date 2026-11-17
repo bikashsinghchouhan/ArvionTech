@@ -13,6 +13,7 @@ import {
 // Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
 // import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
+import RelatedServices from '../components/RelatedServices';
 import { ProcessSteps, NeedsGuide, ChecklistGroups, DueDates, MistakesGrid } from '../components/ServiceSections';
 import { CompareTable, RegistrationFinder } from '../components/ServiceTools';
 import heroIllustration from '../assets/service-heroes/statutory-hero.webp';
@@ -216,6 +217,7 @@ const RegistrationsPage = () => {
                     <path d="M0 5 Q 50 10, 100 5" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
                   </svg>
                 </span>
+                <span className="sr-only">: Company, GST, PF and ESI Registration in Bangalore</span>
               </motion.h1>
 
               {/* Subheading */}
@@ -602,6 +604,8 @@ const RegistrationsPage = () => {
           { Icon: FaShieldAlt, q: "Do you handle post-incorporation compliances?", a: "Yes, we offer complete post-incorporation support including PAN/TAN applications, bank account opening assistance, GST registration, and ongoing annual compliances." },
         ]}
       />
+
+      <RelatedServices current="/services/statutory-registrations" />
 
       {/* 5. TESTIMONIALS */}
       {/* <TestimonialSection /> (hidden for now, kept for future use) */}

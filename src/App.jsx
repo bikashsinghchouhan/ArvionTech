@@ -54,7 +54,8 @@ function App() {
             <Route path="/services/outsourcing" element={<PayrollPage />} />
             <Route path="/services/statutory-registrations" element={<RegistrationsPage />} />
             <Route path="/services/accounting" element={<AccountingPage />} />
-            <Route path="/services/payroll" element={<PayrollPage />} />
+            {/* Old duplicate of /services/outsourcing (same page): redirect, 301 in public/.htaccess */}
+            <Route path="/services/payroll" element={<Navigate to="/services/outsourcing" replace />} />
 
             {/* Legal Page Routes */}
             {/* Resources */}

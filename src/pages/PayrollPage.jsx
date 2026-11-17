@@ -17,6 +17,7 @@ import {
 // import TestimonialSection from '../components/TestimonialSection';
 import SecurityHighlights from '../components/SecurityHighlights';
 import FaqSection from '../components/FaqSection';
+import RelatedServices from '../components/RelatedServices';
 import { ComplianceGrid, HrRecordsShowcase, EmployeeBenefits } from '../components/payroll/PayrollSections';
 import heroIllustration from '../assets/service-heroes/payroll.webp';
 
@@ -225,6 +226,7 @@ const PayrollPage = () => {
                 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-4"
               >
                 Payroll <span className="text-[#FF7A00]">Outsourcing</span>
+                <span className="sr-only"> Services in Bangalore, India</span>
               </motion.h1>
 
               {/* Subheading */}
@@ -586,6 +588,8 @@ const PayrollPage = () => {
         desc="Everything you need to know about outsourcing your payroll to Arvion."
         items={faqs}
       />
+
+      <RelatedServices current="/services/outsourcing" />
 
       {/* 5. TESTIMONIALS */}
       {/* <TestimonialSection /> (hidden for now, kept for future use) */}

@@ -26,6 +26,14 @@ const Chatbot = () => {
     return () => clearTimeout(timer);
   }, [messages, isOpen]);
 
+  // On phones the chat is full screen: stop the page behind it from scrolling.
+  useEffect(() => {
+    if (!isOpen || !window.matchMedia('(max-width: 639px)').matches) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [isOpen]);
+
   // Handle opening with a delay to attract attention
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -127,7 +135,7 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="absolute bottom-0 right-0 w-[360px] max-w-[calc(100vw-2rem)] h-[520px] max-h-[calc(100vh-5rem)] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-100"
+            className="absolute bottom-0 right-0 w-[360px] max-w-[calc(100vw-2rem)] h-[520px] max-h-[calc(100vh-5rem)] max-sm:fixed max-sm:inset-0 max-sm:w-full max-sm:max-w-none max-sm:h-[100dvh] max-sm:max-h-none max-sm:rounded-none max-sm:border-0 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-100"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-[#ff8c42] to-[#ff7f32] p-4 text-white flex justify-between items-center">
@@ -195,7 +203,7 @@ const Chatbot = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type your question..."
-                className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-[#ff7f32] focus:ring-2 focus:ring-orange-50 transition-all"
+                className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm max-sm:text-base focus:outline-none focus:border-[#ff7f32] focus:ring-2 focus:ring-orange-50 transition-all"
               />
               <button
                 type="submit"
