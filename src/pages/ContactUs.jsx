@@ -29,6 +29,7 @@ const formatMeetingDate = (iso) => {
 
 const ContactUs = ({ isSinglePage }) => {
   const [step, setStep] = useState(1);
+  const [direction, setDirection] = useState(1);
   const [formData, setFormData] = useState({
     name: '', email: '', company: '', phone: '',
     services: [], studentRange: '', schoolPlan: '', outsourcingTeamSize: '', registrationType: '', accountingVolume: '',
@@ -43,7 +44,22 @@ const ContactUs = ({ isSinglePage }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [today, setToday] = useState('');
-  const [selectedService, setSelectedService] = useState("");
+  const [headerH, setHeaderH] = useState(102);
+  const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 992);
+
+  useEffect(() => {
+    const header = document.querySelector('header');
+    if (!header) return undefined;
+    const update = () => {
+      setHeaderH(Math.round(header.getBoundingClientRect().height));
+      setIsDesktop(window.innerWidth >= 992);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(header);
+    window.addEventListener('resize', update);
+    return () => { ro.disconnect(); window.removeEventListener('resize', update); };
+  }, []);
 
   useEffect(() => {
     const date = new Date();
@@ -52,6 +68,17 @@ const ContactUs = ({ isSinglePage }) => {
     const day = String(date.getDate()).padStart(2, '0');
     setToday(`${year}-${month}-${day}`);
   }, []);
+
+  // Services come from the step-2 checkboxes; the first one is the main service in the emails
+  const SERVICE_LABELS = {
+    'School Management': 'School Management',
+    'Outsourcing': 'Payroll Outsourcing',
+    'Statutory Registrations': 'Statutory Registrations',
+    'Accounting': 'Accounting',
+  };
+  const serviceNames = formData.services.map((s) => SERVICE_LABELS[s] || s);
+  const mainService = serviceNames[0] || '';
+  const extraServices = serviceNames.slice(1).join(', ') || 'None';
 
   // --- Validation Logic ---
 
@@ -79,20 +106,21 @@ const ContactUs = ({ isSinglePage }) => {
     if (name === 'phone' && value && !/^[0-9]{10}$/.test(value)) {
       setFieldErrors(prev => ({ ...prev, phone: true }));
     }
-    if (name === 'company' && selectedService && !value) {
+    if (name === 'company' && !value) {
       setFieldErrors(prev => ({ ...prev, [name]: true }));
     }
   };
 
   // Check if Step 1 is completely valid to enable button
-  const isStep1Valid = () => {
-    const basicFields = formData.name &&
-      formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
-      formData.phone && /^[0-9]{10}$/.test(formData.phone) &&
-      selectedService;
-    const companyValid = selectedService ? formData.company : true; // Company required if service selected
-    return basicFields && companyValid;
-  };
+  const isStep1Valid = () => Boolean(
+    formData.name &&
+    formData.company &&
+    formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+    formData.phone && /^[0-9]{10}$/.test(formData.phone)
+  );
+
+  // Step 2 needs at least one service ticked
+  const isStep2Valid = () => formData.services.length > 0;
 
   // Check if Step 3 is completely valid to enable button
   const isStep3Valid = () => {
@@ -133,10 +161,28 @@ const ContactUs = ({ isSinglePage }) => {
       setError("Please fill all fields.");
       return;
     }
+    if (step === 2 && !isStep2Valid()) {
+      setError("Please select at least one service.");
+      return;
+    }
+    setError('');
+    setDirection(1);
     setStep((prev) => prev + 1);
   };
 
-  const handlePrev = () => setStep((prev) => prev - 1);
+  const handlePrev = () => {
+    setError('');
+    setDirection(-1);
+    setStep((prev) => prev - 1);
+  };
+
+  // Step panels slide in from the side you are moving towards
+  const stepVariants = {
+    enter: (dir) => ({ opacity: 0, x: dir * 36 }),
+    center: { opacity: 1, x: 0 },
+    exit: (dir) => ({ opacity: 0, x: dir * -36 }),
+  };
+  const stepTransition = { duration: 0.28, ease: [0.22, 1, 0.36, 1] };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -150,7 +196,7 @@ const ContactUs = ({ isSinglePage }) => {
     try {
       // 1. Parameters for Admin Lead Notification
       const templateParams = {
-        Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${selectedService} services and have requested a meeting on ${meetingDate} at ${meetingTime}.`,
+        Lead_Summary: `Hello! ${formData.name} from ${formData.company || 'a company'} has just submitted the form. They want to know more about your ${serviceNames.join(", ")} services and have requested a meeting on ${meetingDate} at ${meetingTime}.`,
         Name: formData.name,
         Email: formData.email,
         to_name: formData.name,
@@ -158,9 +204,9 @@ const ContactUs = ({ isSinglePage }) => {
         reply_to: formData.email,
         Phone: formData.phone || "Not provided",
         Company: formData.company || "N/A",
-        Main_Service: selectedService,
+        Main_Service: mainService,
         Interested_Plan: formData.schoolPlan || "N/A",
-        Additional_Services: formData.services.join(", ") || "None",
+        Additional_Services: extraServices,
         Student_Range: formData.studentRange || "N/A",
         Outsourcing_Team_Size: formData.outsourcingTeamSize || "N/A",
         Registration_Type: formData.registrationType || "N/A",
@@ -188,12 +234,12 @@ const ContactUs = ({ isSinglePage }) => {
         to_name: formData.name,
         name: formData.name,
         Name: formData.name,
-        Main_Service: selectedService,
+        Main_Service: mainService,
         Meeting_Date: meetingDate,
         Meeting_Time: meetingTime,
         Company: formData.company || "your organization",
         Subject: "Thank You for Reaching Out to Arvion Technologies - We'll Be in Touch Shortly!",
-        Message: `Dear ${formData.name},\n\nThank you for contacting Arvion Technologies! We have received your inquiry regarding our ${selectedService} solutions.\n\nOur team has noted your requested consultation for ${meetingDate} at ${meetingTime}. One of our domain specialists will review your requirements and get in touch with you shortly to confirm your session.\n\nIf you have any urgent questions or need immediate assistance, please feel free to reply directly to this email or call us at +91 9535764655.\n\nWarm regards,\nClient Success Team\nArvion Technologies Pvt Ltd\nwww.arviontechnologies.com`
+        Message: `Dear ${formData.name},\n\nThank you for contacting Arvion Technologies! We have received your inquiry regarding our ${serviceNames.join(", ")} solutions.\n\nOur team has noted your requested consultation for ${meetingDate} at ${meetingTime}. One of our domain specialists will review your requirements and get in touch with you shortly to confirm your session.\n\nIf you have any urgent questions or need immediate assistance, please feel free to reply directly to this email or call us at +91 9535764655.\n\nWarm regards,\nClient Success Team\nArvion Technologies Pvt Ltd\nwww.arviontechnologies.com`
       };
 
       try {
@@ -265,7 +311,7 @@ const ContactUs = ({ isSinglePage }) => {
   }
 
   return (
-    <div className={isSinglePage ? "relative overflow-hidden pt-10 pb-10 sm:pt-12 sm:pb-12 bg-gradient-to-b from-[#f3f7fd] to-white w-full flex flex-col items-center justify-center box-border px-0 sm:px-4" : "tw-contact-page min-h-screen bg-white pt-16 flex flex-col box-border"}>
+    <div className={isSinglePage ? "relative overflow-hidden pt-10 pb-10 sm:pt-12 sm:pb-12 bg-gradient-to-b from-[#f3f7fd] to-white w-full flex flex-col items-center justify-center box-border px-0 sm:px-4" : "tw-contact-page bg-white pt-16 flex flex-col box-border"}>
 
       {!isSinglePage && (
         <h1 className="sr-only">Contact Arvion Technologies – Book a Free Consultation</h1>
@@ -297,10 +343,10 @@ const ContactUs = ({ isSinglePage }) => {
         </div>
       )}
 
-      <div className={`tw-contact-container grid grid-cols-1 min-[992px]:grid-cols-[1fr_1.1fr] w-full bg-white overflow-hidden animate-fadeIn ${isSinglePage ? 'max-w-[1240px] rounded-none sm:rounded-3xl border-0 sm:border border-slate-200/70 shadow-none sm:shadow-[0_30px_60px_-30px_rgba(11,42,107,.35)] min-h-[500px]' : 'flex-1 min-h-[calc(100svh-4rem)] sm:min-h-[calc(100svh-102px)]'}`}>
+      <div className={`tw-contact-container grid grid-cols-1 min-[992px]:grid-cols-[1fr_1.1fr] w-full bg-white overflow-hidden animate-fadeIn ${isSinglePage ? 'max-w-[1240px] rounded-none sm:rounded-3xl border-0 sm:border border-slate-200/70 shadow-none sm:shadow-[0_30px_60px_-30px_rgba(11,42,107,.35)] min-h-[500px]' : 'flex-1'}`} style={isSinglePage || !isDesktop ? undefined : { minHeight: `calc(100svh - ${headerH}px)` }}>
 
         {/* Left Panel */}
-        <div className="tw-contact-left-panel relative overflow-hidden hidden min-[992px]:flex min-[992px]:flex-col min-[992px]:justify-center bg-gradient-to-br from-[#0e3a8c] via-[#0b2f78] to-[#082262] text-white p-10 lg:p-12">
+        <div className="tw-contact-left-panel relative overflow-hidden hidden min-[992px]:flex min-[992px]:flex-col min-[992px]:justify-start bg-gradient-to-br from-[#0e3a8c] via-[#0b2f78] to-[#082262] text-white px-10 lg:px-12 pt-10 pb-8">
           {/* orange corner shapes */}
           <svg aria-hidden="true" className="pointer-events-none absolute top-0 right-0 w-24 h-28" viewBox="0 0 100 120" preserveAspectRatio="none">
             <path d="M40 0 H100 V120 C100 70 80 30 40 0 Z" fill="#f7861c" />
@@ -320,18 +366,28 @@ const ContactUs = ({ isSinglePage }) => {
             <circle cx="300" cy="158" r="14" /><path d="M300 172 V190" />
           </svg>
 
-          <motion.div key={step} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="relative">
-            <div className="tw-progress-bar flex items-center mb-8 max-w-sm">
+          <div className="relative">
+            <div className="tw-progress-bar flex items-center mb-6 max-w-sm">
               {[1, 2, 3].map((num) => (
                 <React.Fragment key={num}>
-                  <div className={`tw-progress-step w-11 h-11 rounded-full flex items-center justify-center font-extrabold text-base transition-all duration-300 ${step >= num ? 'bg-gradient-to-b from-[#ffa94d] to-[#f2700f] text-white shadow-lg shadow-orange-900/30' : 'bg-white/20 text-white'}`}>{num}</div>
-                  {num < 3 && <div className={`tw-progress-line flex-grow h-[3px] rounded-full transition-all duration-300 ${step > num ? 'bg-[#f7941d]' : 'bg-white/25'}`}></div>}
+                  <div className={`tw-progress-step w-11 h-11 rounded-full flex items-center justify-center font-extrabold text-base transition-all duration-500 ${step >= num ? 'bg-gradient-to-b from-[#ffa94d] to-[#f2700f] text-white shadow-lg shadow-orange-900/30' : 'bg-white/20 text-white'} ${step === num ? 'scale-110 ring-4 ring-white/15' : 'scale-100'}`}>{num}</div>
+                  {num < 3 && (
+                    <div className="tw-progress-line flex-grow h-[3px] rounded-full bg-white/25 overflow-hidden">
+                      <div className="h-full rounded-full bg-[#f7941d] origin-left transition-transform duration-500 ease-out" style={{ transform: `scaleX(${step > num ? 1 : 0})` }} />
+                    </div>
+                  )}
                 </React.Fragment>
               ))}
             </div>
-            <h2 className="text-[22.5px] lg:text-[27px] font-extrabold mb-3 leading-tight text-white">{stepContent[step - 1].title}</h2>
-            <p className="text-[15px] leading-[1.6] text-white/85">{stepContent[step - 1].description}</p>
-            <div className="tw-contact-info-block mt-8 pt-7 border-t border-white/20 text-white">
+            <div className="min-h-[84px]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div key={step} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>
+                  <h2 className="text-[22.5px] lg:text-[27px] font-extrabold mb-3 leading-tight text-white">{stepContent[step - 1].title}</h2>
+                  <p className="text-[15px] leading-[1.6] text-white/85">{stepContent[step - 1].description}</p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            <div className="tw-contact-info-block mt-5 pt-6 border-t border-white/20 text-white">
               <p className="font-extrabold text-[12px] mb-5 uppercase tracking-[0.14em] text-white">Or contact us directly:</p>
               <div className="flex flex-col gap-4">
                 <a href="mailto:sales@arviontechnologies.com" className="group text-white hover:text-[#ffc08a] transition-colors flex items-center gap-4 text-[15px]" title="Email Us">
@@ -348,27 +404,31 @@ const ContactUs = ({ isSinglePage }) => {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Right Panel */}
-        <div className={`tw-contact-right-panel p-0 min-[992px]:p-10 lg:p-12 w-full flex flex-col ${isSinglePage ? 'h-full flex flex-col justify-center' : 'min-[992px]:justify-center min-[992px]:px-16 xl:px-24 [&>.tw-form-step]:w-full [&>.tw-form-step]:max-w-[680px]'}`}>
+        <div className={`tw-contact-right-panel p-0 min-[992px]:px-10 lg:px-12 min-[992px]:py-8 w-full flex flex-col ${isSinglePage ? 'h-full flex flex-col justify-center' : 'min-[992px]:justify-center min-[992px]:px-16 xl:px-24 [&>.tw-form-step]:w-full [&>.tw-form-step]:max-w-[680px]'}`}>
           {/* Mobile Header (Hidden on Desktop) */}
           <div className="tw-mobile-form-header block p-6 bg-gradient-to-br from-[#0e3a8c] to-[#082262] min-[992px]:hidden text-white">
             <div className="tw-progress-bar flex items-center mb-4 max-w-xs mx-auto">
               {[1, 2, 3].map((num) => (
                 <React.Fragment key={num}>
-                  <div className={`tw-progress-step w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all duration-300 ${step >= num ? 'bg-[#f2700f] text-white' : 'bg-white/25 text-white'}`}>{num}</div>
-                  {num < 3 && <div className={`tw-progress-line flex-grow h-[2px] transition-all duration-300 ${step > num ? 'bg-[#f7941d]' : 'bg-white/25'}`}></div>}
+                  <div className={`tw-progress-step w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all duration-500 ${step >= num ? 'bg-[#f2700f] text-white' : 'bg-white/25 text-white'} ${step === num ? 'scale-110' : 'scale-100'}`}>{num}</div>
+                  {num < 3 && (
+                    <div className="tw-progress-line flex-grow h-[2px] bg-white/25 overflow-hidden">
+                      <div className="h-full bg-[#f7941d] origin-left transition-transform duration-500 ease-out" style={{ transform: `scaleX(${step > num ? 1 : 0})` }} />
+                    </div>
+                  )}
                 </React.Fragment>
               ))}
             </div>
-            <h2 className="text-lg font-extrabold m-0 text-center uppercase tracking-wider text-white">{stepContent[step - 1].title}</h2>
+            <h2 className="text-lg font-extrabold m-0 text-center text-white">{stepContent[step - 1].title}</h2>
           </div>
 
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" custom={direction} initial={false}>
             {step === 1 && (
-              <motion.div key="step1" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col">
+              <motion.div key="step1" custom={direction} variants={stepVariants} initial="enter" animate="center" exit="exit" transition={stepTransition} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col min-h-[480px]">
                 <div className="flex items-center gap-4 mb-7">
                   <span className="w-14 h-14 rounded-2xl bg-[#fff1e3] text-[#f2700f] flex items-center justify-center flex-shrink-0"><FaUser className="text-xl" /></span>
                   <div>
@@ -387,7 +447,7 @@ const ContactUs = ({ isSinglePage }) => {
                     <input
                       type="text"
                       name="name"
-                      className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.name ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`w-full pl-11 pr-3 h-11 py-0 border rounded-lg text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.name ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                       placeholder="e.g., John Doe"
                       value={formData.name}
                       onChange={handleChange}
@@ -396,37 +456,10 @@ const ContactUs = ({ isSinglePage }) => {
                   </div>
                 </div>
 
-                {/* Service Select with Error Styling */}
-                <div className="tw-input-group relative mb-5">
-                  <label className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">Service <span className="text-[#e53e3e] ml-[1px]">*</span></label>
-                  <div className="relative">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm z-[1]">
-                      <FaBriefcase />
-                    </div>
-                    <select
-                      className={`tw-select-input w-full pl-11 pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.selectedService ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
-                      value={selectedService}
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        setSelectedService(value);
-                        setFieldErrors(prev => ({ ...prev, selectedService: false })); // Clear error
-                        setFormData((prev) => ({ ...prev, company: "" }));
-                      }}
-                    >
-                      <option value="">-- Choose a Service --</option>
-                      <option value="School Management Service">School Management Service</option>
-                      <option value="Payroll Outsourcing">Payroll Outsourcing</option>
-                      <option value="Accounting">Accounting</option>
-                      <option value="Statuary Registration">Statuary Registration</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Company Name (Conditional) with Error Styling */}
-                {selectedService && (
+                {/* Company / School Name with Error Styling */}
                   <div className="tw-input-group relative mb-5">
                     <label className="block text-[11.5px] font-extrabold uppercase tracking-wider text-[#0b1f4d] mb-2">
-                      {selectedService === "School Management Service" ? "School Name" : "Company Name"}{" "}
+                      Company / School Name{" "}
                       <span className="text-[#e53e3e] ml-[1px]">*</span>
                     </label>
                     <div className="relative">
@@ -436,15 +469,14 @@ const ContactUs = ({ isSinglePage }) => {
                       <input
                         type="text"
                         name="company"
-                        className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.company ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
-                        placeholder={selectedService === "School Management Service" ? "e.g., Bright Future School" : "e.g., Arvion Technologies"}
+                        className={`w-full pl-11 pr-3 h-11 py-0 border rounded-lg text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.company ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                        placeholder="e.g., Bright Future School"
                         value={formData.company}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
                     </div>
                   </div>
-                )}
 
 
 
@@ -466,7 +498,7 @@ const ContactUs = ({ isSinglePage }) => {
                       value={formData.phone}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`w-full pl-[84px] pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.phone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`w-full pl-[84px] pr-3 h-11 py-0 border rounded-lg text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.phone ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                     />
                   </div>
                   {fieldErrors.phone && formData.phone && <p className="text-[10px] text-[#ff4d4d] mt-1 font-semibold">Please enter a valid 10-digit number</p>}
@@ -481,7 +513,7 @@ const ContactUs = ({ isSinglePage }) => {
                     <input
                       type="email"
                       name="email"
-                      className={`w-full pl-11 pr-3 py-3 border rounded-xl text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`w-full pl-11 pr-3 h-11 py-0 border rounded-lg text-[14px] bg-white transition-all duration-300 focus:outline-none focus:border-[#ff7f32] focus:ring-4 focus:ring-orange-100 ${fieldErrors.email ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                       placeholder="e.g., john.doe@company.com"
                       value={formData.email}
                       onChange={handleChange}
@@ -495,7 +527,7 @@ const ContactUs = ({ isSinglePage }) => {
 
                 {/* Next Button */}
                 <button
-                  className="tw-nav-btn px-7 py-3.5 rounded-xl font-bold text-[15px] transition-all duration-300 flex items-center justify-center gap-2 bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white self-end hover:brightness-105 shadow-lg shadow-orange-500/25 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer"
+                  className="tw-nav-btn px-5 h-10 rounded-lg font-semibold text-[13.5px] transition-all duration-300 flex items-center justify-center gap-1.5 bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white self-end hover:brightness-105 shadow-sm shadow-orange-500/20 cursor-pointer disabled:bg-none disabled:bg-slate-200 disabled:text-slate-500 disabled:shadow-none disabled:cursor-not-allowed"
                   onClick={handleNext}
                   disabled={!isStep1Valid()}
                 >
@@ -505,7 +537,7 @@ const ContactUs = ({ isSinglePage }) => {
             )}
 
             {step === 2 && (
-              <motion.div key="step2" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col">
+              <motion.div key="step2" custom={direction} variants={stepVariants} initial="enter" animate="center" exit="exit" transition={stepTransition} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col min-h-[480px]">
                 <div className="flex items-center gap-4 mb-7">
                   <span className="w-14 h-14 rounded-2xl bg-[#fff1e3] text-[#f2700f] flex items-center justify-center flex-shrink-0"><FaBriefcase className="text-xl" /></span>
                   <div>
@@ -520,14 +552,14 @@ const ContactUs = ({ isSinglePage }) => {
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden flex flex-col gap-3 pb-2">
                         <div>
                           <h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Interested Plan</h4>
-                          <select name="schoolPlan" value={formData.schoolPlan} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]">
+                          <select name="schoolPlan" value={formData.schoolPlan} onChange={handleChange} className="tw-select-input w-full h-11 px-3 border border-[#d5dbe5] rounded-lg text-[14px] bg-white focus:outline-none focus:border-[#ff7f32]">
                             <option value="">Select a plan</option>
                             {pageConfig.plans.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
                           </select>
                         </div>
                         <div>
                           <h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Students</h4>
-                          <select name="studentRange" value={formData.studentRange} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]">
+                          <select name="studentRange" value={formData.studentRange} onChange={handleChange} className="tw-select-input w-full h-11 px-3 border border-[#d5dbe5] rounded-lg text-[14px] bg-white focus:outline-none focus:border-[#ff7f32]">
                             <option value="">Select a range</option>
                             <option value="1-200">1-200</option>
                             <option value="201-500">201-500</option>
@@ -540,24 +572,25 @@ const ContactUs = ({ isSinglePage }) => {
                   </AnimatePresence>
 
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Outsourcing" onChange={handleCheckboxChange} checked={formData.services.includes('Outsourcing')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Payroll Outsourcing</label>
-                  <AnimatePresence>{formData.services.includes('Outsourcing') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Roles to Fill</h4><select name="outsourcingTeamSize" value={formData.outsourcingTeamSize} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a number</option><option value="1-5">1-5 Roles</option><option value="6-15">6-15 Roles</option><option value="15+">15+ Roles</option></select></motion.div>)}</AnimatePresence>
+                  <AnimatePresence>{formData.services.includes('Outsourcing') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Number of Roles to Fill</h4><select name="outsourcingTeamSize" value={formData.outsourcingTeamSize} onChange={handleChange} className="tw-select-input w-full h-11 px-3 border border-[#d5dbe5] rounded-lg text-[14px] bg-white focus:outline-none focus:border-[#ff7f32]"><option value="">Select a number</option><option value="1-5">1-5 Roles</option><option value="6-15">6-15 Roles</option><option value="15+">15+ Roles</option></select></motion.div>)}</AnimatePresence>
 
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Statutory Registrations" onChange={handleCheckboxChange} checked={formData.services.includes('Statutory Registrations')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Statutory Registrations</label>
-                  <AnimatePresence>{formData.services.includes('Statutory Registrations') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Type of Entity</h4><select name="registrationType" value={formData.registrationType} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a type</option><option value="New Company">New Company</option><option value="Existing Company">Existing Company</option><option value="Sole Proprietorship">Sole Proprietorship</option></select></motion.div>)}</AnimatePresence>
+                  <AnimatePresence>{formData.services.includes('Statutory Registrations') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Type of Entity</h4><select name="registrationType" value={formData.registrationType} onChange={handleChange} className="tw-select-input w-full h-11 px-3 border border-[#d5dbe5] rounded-lg text-[14px] bg-white focus:outline-none focus:border-[#ff7f32]"><option value="">Select a type</option><option value="New Company">New Company</option><option value="Existing Company">Existing Company</option><option value="Sole Proprietorship">Sole Proprietorship</option></select></motion.div>)}</AnimatePresence>
 
                   <label className="flex items-center gap-2 text-sm cursor-pointer text-[#333] font-semibold"><input type="checkbox" value="Accounting" onChange={handleCheckboxChange} checked={formData.services.includes('Accounting')} className="w-4 h-4 text-orange-600 focus:ring-orange-500 border-[#ddd] rounded cursor-pointer" /> Accounting Services</label>
-                  <AnimatePresence>{formData.services.includes('Accounting') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Monthly Transaction Volume</h4><select name="accountingVolume" value={formData.accountingVolume} onChange={handleChange} className="tw-select-input w-full p-2 border border-[#ddd] rounded-lg text-xs focus:outline-none focus:border-[#ff7f32]"><option value="">Select a volume</option><option value="<100 font-semibold">Under 100</option><option value="101-500">101-500</option><option value="500+">Over 500</option></select></motion.div>)}</AnimatePresence>
+                  <AnimatePresence>{formData.services.includes('Accounting') && (<motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="tw-sub-options pl-[20px] mt-1.5 border-l-2 border-[#ffede0] overflow-hidden"><h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">Monthly Transaction Volume</h4><select name="accountingVolume" value={formData.accountingVolume} onChange={handleChange} className="tw-select-input w-full h-11 px-3 border border-[#d5dbe5] rounded-lg text-[14px] bg-white focus:outline-none focus:border-[#ff7f32]"><option value="">Select a volume</option><option value="<100 font-semibold">Under 100</option><option value="101-500">101-500</option><option value="500+">Over 500</option></select></motion.div>)}</AnimatePresence>
                 </div>
+                {!isStep2Valid() && <p className="mt-4 text-[12px] text-slate-500">Select at least one service to continue.</p>}
 
                 <div className="form-nav-buttons flex justify-between mt-8">
-                  <button className="tw-nav-btn bg-white border border-[#d5dbe5] text-[#0b1f4d] px-6 py-3.5 rounded-xl font-bold text-[14px] transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
-                  <button className="tw-nav-btn bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white px-7 py-3.5 rounded-xl font-bold text-[15px] shadow-lg shadow-orange-500/25 transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] cursor-pointer" onClick={handleNext}>Next Step <FaArrowRight /></button>
+                  <button className="tw-nav-btn bg-white border border-[#d5dbe5] text-[#0b1f4d] px-5 h-10 rounded-lg font-semibold text-[13.5px] transition-all duration-300 flex items-center justify-center gap-1.5 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
+                  <button className="tw-nav-btn bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white px-5 h-10 rounded-lg font-semibold text-[13.5px] shadow-sm shadow-orange-500/20 transition-all duration-300 flex items-center justify-center gap-1.5 hover:bg-[#e96e25] cursor-pointer disabled:bg-none disabled:bg-slate-200 disabled:text-slate-500 disabled:shadow-none disabled:cursor-not-allowed" onClick={handleNext} disabled={!isStep2Valid()}>Next Step <FaArrowRight /></button>
                 </div>
               </motion.div>
             )}
 
             {step === 3 && (
-              <motion.div key="step3" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col">
+              <motion.div key="step3" custom={direction} variants={stepVariants} initial="enter" animate="center" exit="exit" transition={stepTransition} className="tw-form-step p-6 min-[992px]:p-0 flex flex-col min-h-[480px]">
                 <div className="flex items-center gap-4 mb-7">
                   <span className="w-14 h-14 rounded-2xl bg-[#fff1e3] text-[#f2700f] flex items-center justify-center flex-shrink-0"><FaCalendarAlt className="text-xl" /></span>
                   <div>
@@ -582,7 +615,7 @@ const ContactUs = ({ isSinglePage }) => {
                       name="date"
                       value={formData.date}
                       onChange={handleDateChange}
-                      className={`date-input w-full px-3 py-3 border rounded-xl text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
+                      className={`w-full px-3 h-11 py-0 border rounded-lg text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] ${!formData.date && fieldErrors.date ? 'border-[#ff4d4d] bg-[#fff5f5] focus:border-[#ff4d4d]' : 'border-[#d5dbe5]'}`}
                       min={today}
                     />
                   </div>
@@ -594,7 +627,7 @@ const ContactUs = ({ isSinglePage }) => {
                       value={formData.startTime}
                       onChange={handleStartTimeChange}
                       disabled={!formData.date}
-                      className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
+                      className="w-full px-3 h-11 py-0 border border-[#d5dbe5] rounded-lg text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
                     >
                       <option value="">{formData.date && availableStartTimes.length === 0 ? 'No slots left' : '--:--'}</option>
                       {availableStartTimes.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -608,7 +641,7 @@ const ContactUs = ({ isSinglePage }) => {
                       value={formData.endTime}
                       onChange={handleChange}
                       disabled={!formData.startTime}
-                      className="w-full px-3 py-3 border border-[#d5dbe5] rounded-xl text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
+                      className="w-full px-3 h-11 py-0 border border-[#d5dbe5] rounded-lg text-[14px] bg-white font-sans transition-all duration-300 focus:outline-none focus:border-[#ff7f32] disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer disabled:cursor-not-allowed"
                     >
                       <option value="">--:--</option>
                       {availableEndTimes.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -622,10 +655,10 @@ const ContactUs = ({ isSinglePage }) => {
                 </div>
 
                 <div className="form-nav-buttons flex justify-between mt-8">
-                  <button className="tw-nav-btn bg-white border border-[#d5dbe5] text-[#0b1f4d] px-6 py-3.5 rounded-xl font-bold text-[14px] transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
+                  <button className="tw-nav-btn bg-white border border-[#d5dbe5] text-[#0b1f4d] px-5 h-10 rounded-lg font-semibold text-[13.5px] transition-all duration-300 flex items-center justify-center gap-1.5 hover:bg-[#dee2e6] cursor-pointer" onClick={handlePrev}><FaArrowLeft /> Back</button>
 
                   <button
-                    className="tw-nav-btn bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white px-7 py-3.5 rounded-xl font-bold text-[15px] shadow-lg shadow-orange-500/25 transition-all duration-300 hover:bg-[#e96e25] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,127,50,0.2)] disabled:bg-[#e0e0e0] disabled:text-[#888] disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none disabled:shadow-none cursor-pointer"
+                    className="tw-nav-btn bg-gradient-to-b from-[#ff8a3d] to-[#f2700f] text-white px-5 h-10 rounded-lg font-semibold text-[13.5px] shadow-sm shadow-orange-500/20 transition-all duration-300 hover:bg-[#e96e25] cursor-pointer disabled:bg-none disabled:bg-slate-200 disabled:text-slate-500 disabled:shadow-none disabled:cursor-not-allowed"
                     onClick={handleSubmit}
                     disabled={isSubmitting || !isStep3Valid()}
                   >

@@ -112,7 +112,7 @@ const FeaturesSection = () => {
                   <span className={`p-2 rounded-lg flex-shrink-0 transition-colors ${isActive ? 'bg-white/20 text-white' : 'bg-orange-50 text-[#ff7f32]'}`}>
                     {featuresData[key].icon}
                   </span>
-                  <span className="text-[12px] tracking-wide uppercase">{featuresData[key].title}</span>
+                  <span className="text-[12.5px]">{featuresData[key].title}</span>
                 </button>
               );
             })}
@@ -146,7 +146,7 @@ const FeaturesSection = () => {
                           <FaCheck className="text-[10px]" />
                         </span>
                         <div className="flex flex-col leading-snug">
-                          <span className="text-xs font-bold text-slate-800 tracking-wide uppercase transition-colors group-hover/item:text-[#ff7f32]">
+                          <span className="text-[13px] font-bold text-slate-800 transition-colors group-hover/item:text-[#ff7f32]">
                             {point.title}
                           </span>
                           <span className="text-[11px] text-slate-400 mt-0.5 leading-normal font-normal">

@@ -185,7 +185,7 @@ export const ToolsStrip = ({ pill, title, highlight, desc, groups }) => (
       <div className="flex flex-col gap-4 sm:gap-6">
         {groups.map(({ Icon, heading, items }) => (
           <motion.div key={heading} {...reveal} transition={{ duration: 0.5 }} className="text-center">
-            <h3 className="inline-flex items-center gap-2 text-[11.5px] sm:text-[13.5px] font-extrabold uppercase tracking-wide text-[#1747a6]">
+            <h3 className="inline-flex items-center gap-2 text-[11.5px] sm:text-[13.5px] font-extrabold text-[#1747a6]">
               {Icon && <Icon />} {heading}
             </h3>
             <ul className="list-none m-0 p-0 mt-2.5 sm:mt-3 flex flex-wrap justify-center gap-2 sm:gap-3">

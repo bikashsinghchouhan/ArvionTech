@@ -163,8 +163,8 @@ const PayrollPage = () => {
                     <path d="M12 2C6.48 2 2 3.34 2 5s4.48 3 10 3 10-1.34 10-3-4.48-3-10-3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V4c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V9c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3z" />
                   </svg>
                 </div>
-                <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
-                  PAYROLL
+                <span className="text-xs sm:text-sm font-extrabold text-white font-sans">
+                  Payroll
                 </span>
               </div>
               {/* Orange accent curve */}
@@ -336,8 +336,8 @@ const PayrollPage = () => {
                         <path d="M12 2C6.48 2 2 3.34 2 5s4.48 3 10 3 10-1.34 10-3-4.48-3-10-3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V4c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3V9c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3z" />
                       </svg>
                     </div>
-                    <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
-                      PAYROLL
+                    <span className="text-xs sm:text-sm font-extrabold text-white font-sans">
+                      Payroll
                     </span>
                   </div>
                   <svg className="absolute bottom-0 right-0 w-16 h-4 pointer-events-none" viewBox="0 0 80 20" fill="none">

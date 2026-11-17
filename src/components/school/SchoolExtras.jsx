@@ -106,7 +106,7 @@ export const TimeBackSection = () => (
           loading="lazy"
           className="block w-full max-w-[580px] mx-auto h-auto [mask-image:radial-gradient(ellipse_at_center,#000_70%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,#000_70%,transparent_100%)]"
         />
-        <ul className="relative -mt-2 grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <ul className="relative mt-4 sm:mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {TIME_BACK_TILES.map(({ Icon, title, tone, bg }) => (
             <li key={title} className={`flex flex-col items-center justify-center gap-2 rounded-2xl ${bg} border border-white shadow-[0_8px_24px_-16px_rgba(11,42,107,.35)] px-2 py-4 text-center`}>
               <Icon className={`text-[21px] ${tone}`} />
@@ -210,7 +210,7 @@ export const StudentExperience = () => (
           {STUDENT_FEATURES.map(({ Icon, title, desc }, idx) => (
             <motion.div
               key={title} {...reveal} transition={{ duration: 0.45, delay: idx * 0.05 }}
-              className="flex items-start gap-3 bg-white rounded-2xl border border-slate-100 shadow-[0_8px_24px_-16px_rgba(11,42,107,.3)] p-3.5 sm:p-4 hover:border-orange-200 transition-colors"
+              className="flex items-start gap-3 bg-white rounded-2xl border border-slate-200/80 shadow-[0_1px_2px_rgba(11,42,107,.05)] p-3.5 sm:p-4 hover:border-orange-200 transition-colors"
             >
               <span className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-orange-50 text-[#f2700f] flex items-center justify-center text-base sm:text-lg flex-shrink-0">
                 {Icon && <Icon />}
@@ -226,7 +226,7 @@ export const StudentExperience = () => (
 
         {/* Phone mockup */}
         <motion.div {...reveal} transition={{ duration: 0.6 }} className="order-1 lg:order-2 flex justify-center" aria-hidden="true">
-          <div className="relative w-[230px] sm:w-[260px] rounded-[2.2rem] bg-[#0b1f4d] p-2.5 shadow-[0_30px_60px_-25px_rgba(11,42,107,.6)]">
+          <div className="relative w-[230px] sm:w-[260px] rounded-[2.2rem] bg-[#0b1f4d] p-2.5 shadow-[0_18px_30px_-22px_rgba(11,42,107,.45)]">
             <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-4 rounded-full bg-[#0b1f4d] z-10" />
             <div className="rounded-[1.8rem] bg-[#f4f7fc] overflow-hidden">
               <div className="bg-gradient-to-r from-[#1747a6] to-[#0c2f79] px-4 pt-7 pb-4 text-white">

@@ -119,8 +119,8 @@ const AccountingPage = () => {
                 <div className="w-6 h-6 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
                   <FaCalculator className="text-white text-xs" />
                 </div>
-                <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
-                  ACCOUNTING
+                <span className="text-xs sm:text-sm font-extrabold text-white font-sans">
+                  Accounting
                 </span>
               </div>
               {/* Orange accent curve */}
@@ -293,8 +293,8 @@ const AccountingPage = () => {
                     <div className="w-6 h-6 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
                       <FaCalculator className="text-white text-xs" />
                     </div>
-                    <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
-                      ACCOUNTING
+                    <span className="text-xs sm:text-sm font-extrabold text-white font-sans">
+                      Accounting
                     </span>
                   </div>
                   <svg className="absolute bottom-0 right-0 w-16 h-4 pointer-events-none" viewBox="0 0 80 20" fill="none">

@@ -165,10 +165,10 @@ const About = ({ isSinglePage }) => {
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
 
-              <Heading className="text-[21px] sm:text-[29px] lg:text-[25px] xl:text-[30px] font-black text-[#0b2a6b] tracking-tight leading-[1.1] uppercase font-sans">
+              <Heading className="text-heading font-extrabold text-[#0b1f4d] tracking-tight leading-tight font-sans">
                 About Arvion <span className="text-[#f2700f]">Technologies</span>
               </Heading>
-              <h2 className="mt-4 text-[16px] sm:text-[19.5px] font-medium text-slate-600 tracking-wide uppercase">
+              <h2 className="mt-3 text-[15px] sm:text-[17px] font-medium text-slate-600">
                 Driving Innovation, Empowering Businesses.
               </h2>
               <span aria-hidden="true" className="mt-5 mb-7 block w-16 sm:w-20 h-1 rounded-full bg-[#f2700f]" />

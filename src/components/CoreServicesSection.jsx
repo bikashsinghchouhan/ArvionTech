@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaSchool, FaUserTie, FaStamp, FaCalculator, FaArrowRight } from 'react-icons/fa';
 
+import { SectionHeading } from './ServiceSections';
 import { SchoolIllustration, PayrollIllustration, StatutoryIllustration, AccountingIllustration } from './CoreServicesIllustrations';
 
 // One colour theme per service: card tint, icon/title colour, button colours
@@ -62,16 +63,10 @@ const services = [
 ];
 
 const CoreServicesSection = () => (
-  <section id="features" className="scroll-mt-24 py-6 sm:py-10 px-4 sm:px-6 lg:px-10 bg-white">
+  <section id="features" className="scroll-mt-24 pt-6 pb-6 sm:pt-8 sm:pb-10 px-4 sm:px-6 lg:px-10 bg-white">
     <div className="max-w-7xl mx-auto">
-      {/* Heading with side lines */}
-      <div className="flex items-center justify-center gap-4 mb-8 sm:mb-10">
-        <span aria-hidden="true" className="hidden sm:block h-[3px] w-16 lg:w-24 rounded-full bg-gradient-to-r from-transparent to-[#f7941d]" />
-        <h2 className="text-heading font-extrabold tracking-tight text-[#0b1f4d] text-center">
-          Our Core <span className="text-[#f2700f]">Services</span>
-        </h2>
-        <span aria-hidden="true" className="hidden sm:block h-[3px] w-16 lg:w-24 rounded-full bg-gradient-to-l from-transparent to-[#f7941d]" />
-      </div>
+      {/* Same eyebrow + heading block as the other sections */}
+      <SectionHeading pill="What We Offer" title="Our Core" highlight="Services" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
         {services.map(({ title, desc, icon: Icon, Art, cta, path, theme }, i) => (

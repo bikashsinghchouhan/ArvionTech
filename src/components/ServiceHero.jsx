@@ -28,7 +28,7 @@ const FeatureCard = ({ title, Icon, points, className = '' }) => (
         <span className="w-7 h-7 rounded-md bg-white/15 flex items-center justify-center flex-shrink-0">
           {Icon && <Icon className="text-[12px]" />}
         </span>
-        <span className="text-[14px] font-black tracking-wider uppercase">{title}</span>
+        <span className="text-[14px] font-extrabold">{title}</span>
       </div>
       <svg aria-hidden="true" className="absolute bottom-0 right-0 w-20 h-5 pointer-events-none" viewBox="0 0 80 20" fill="none">
         <path d="M0 20 Q 50 18, 80 0 L 80 20 Z" fill="#FF7A00" />

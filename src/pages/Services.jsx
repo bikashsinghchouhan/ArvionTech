@@ -67,7 +67,7 @@ const Services = ({ isSinglePage }) => {
                         <span className="inline-block px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-[#ff7f32] bg-orange-50 border border-orange-100 mb-3 shadow-sm">
                             Our Expertise
                         </span>
-                        <Heading className="text-2xl sm:text-3xl font-extrabold text-[#0d1b2a] tracking-tight leading-tight max-w-2xl font-sans uppercase">
+                        <Heading className="text-heading font-extrabold text-[#0b1f4d] tracking-tight leading-tight max-w-2xl font-sans">
                             Comprehensive Enterprise Solutions
                         </Heading>
                         <p className="text-sm text-slate-500 max-w-lg mt-3 leading-relaxed font-semibold">
@@ -96,10 +96,10 @@ const Services = ({ isSinglePage }) => {
                                     </span>
 
                                     {/* Title & Summary */}
-                                    <h3 className="text-card-title font-black text-[#0d1b2a] mb-3 group-hover:text-[#ff7f32] transition-colors leading-tight font-sans">
+                                    <h3 className="text-card-title font-extrabold text-[#0b1f4d] mb-3 group-hover:text-[#ff7f32] transition-colors leading-tight font-sans">
                                         {service.title}
                                     </h3>
-                                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed mb-6 font-medium">
+                                    <p className="text-card-desc text-slate-600 leading-relaxed mb-6">
                                         {service.summary}
                                     </p>
 
@@ -107,10 +107,10 @@ const Services = ({ isSinglePage }) => {
                                     <div className="flex flex-col gap-2.5 mb-8 border-t border-slate-200 pt-5">
                                         {service.features.map((feature, fIdx) => (
                                             <div key={fIdx} className="flex gap-2 items-start">
-                                                <span className="text-[#ff7f32] mt-0.5 text-[10px]">
+                                                <span className="text-[#ff7f32] mt-[3px] text-[11px]">
                                                     <FaCheck />
                                                 </span>
-                                                <span className="text-[10px] sm:text-[11px] font-semibold text-slate-700 leading-tight">
+                                                <span className="text-[12.5px] sm:text-[13px] font-medium text-slate-700 leading-snug">
                                                     {feature}
                                                 </span>
                                             </div>
@@ -121,7 +121,7 @@ const Services = ({ isSinglePage }) => {
                                 {/* Explore Link */}
                                 <Link
                                     to={service.path}
-                                    className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#ff7f32] hover:text-[#e96e25] transition-colors self-start cursor-pointer font-sans"
+                                    className="inline-flex items-center gap-2 text-[13px] font-bold text-[#ff7f32] hover:text-[#e96e25] transition-colors self-start cursor-pointer font-sans"
                                 >
                                     Explore Service
                                     <FaArrowRight className="text-[9px] transition-transform duration-300 group-hover:translate-x-1" />

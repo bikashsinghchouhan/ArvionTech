@@ -54,205 +54,186 @@ export const SchoolIllustration = () => (
 );
 
 /* ---------------------------------------------------------------- Payroll */
+// Payroll specialist at her laptop: floating payslip card, "Salary Paid" chip, plant, mug and coins.
 export const PayrollIllustration = () => (
   <svg {...svgProps}>
     <defs>
-      <linearGradient id="prShirt" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#cbe2fc" />
-        <stop offset="100%" stopColor="#9dc5f5" />
+      <linearGradient id="pyShirt" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#dbeafe" />
+        <stop offset="100%" stopColor="#a5c8f6" />
       </linearGradient>
-
-      <linearGradient id="prCoin" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stopColor="#f59e0b" />
-        <stop offset="45%" stopColor="#fde047" />
-        <stop offset="70%" stopColor="#fbbf24" />
-        <stop offset="100%" stopColor="#d97706" />
+      <linearGradient id="pySkin" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#fbd9bd" />
+        <stop offset="100%" stopColor="#efb88f" />
       </linearGradient>
-
-      <linearGradient id="prLid" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#2d3748" />
-        <stop offset="60%" stopColor="#1a202c" />
-        <stop offset="100%" stopColor="#111827" />
+      <linearGradient id="pyHair" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#3a2d45" />
+        <stop offset="100%" stopColor="#14101a" />
       </linearGradient>
-
-      <linearGradient id="prHair" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#2c2438" />
-        <stop offset="50%" stopColor="#1a1622" />
-        <stop offset="100%" stopColor="#0d0a11" />
+      <linearGradient id="pyChair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#4f7fe6" />
+        <stop offset="100%" stopColor="#2f5fc4" />
       </linearGradient>
-
-      <linearGradient id="prSkin" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#fcdbc0" />
-        <stop offset="100%" stopColor="#f0bc94" />
+      <linearGradient id="pyLid" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#475569" />
+        <stop offset="100%" stopColor="#1e293b" />
       </linearGradient>
-
-      <linearGradient id="prCardHead" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stopColor="#2563eb" />
+      <linearGradient id="pyHead" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor="#1d4ed8" />
         <stop offset="100%" stopColor="#3b82f6" />
       </linearGradient>
-
-      <filter id="prCardShadow" x="-10%" y="-8%" width="125%" height="125%">
-        <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="#0f172a" floodOpacity="0.08" />
+      <linearGradient id="pyCoin" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor="#f59e0b" />
+        <stop offset="50%" stopColor="#fcd34d" />
+        <stop offset="100%" stopColor="#d97706" />
+      </linearGradient>
+      <filter id="pyShadow" x="-20%" y="-20%" width="140%" height="150%">
+        <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#0f172a" floodOpacity="0.12" />
       </filter>
     </defs>
 
-    {/* soft floor shadow */}
-    <ellipse cx="110" cy="140" rx="98" ry="7" fill="#fbdcc2" opacity="0.7" />
+    {/* backdrop: soft glow + sparkles */}
+    <circle cx="110" cy="70" r="54" fill="#ffe2c8" opacity="0.75" />
+    <circle cx="110" cy="70" r="40" fill="#ffd3ad" opacity="0.35" />
+    <circle cx="142" cy="20" r="1.8" fill="#fb923c" />
+    <circle cx="76" cy="14" r="1.4" fill="#60a5fa" />
+    <path d="M86 30 l1.2 3 3 1.2 -3 1.2 -1.2 3 -1.2 -3 -3 -1.2 3 -1.2 Z" fill="#fbbf24" />
 
-    {/* PAYROLL checklist card (Upper Right) */}
-    <g filter="url(#prCardShadow)">
-      <rect x="130" y="19" width="64" height="66" rx="6" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
-      <path d="M130 25 Q130 19 136 19 L188 19 Q194 19 194 25 L194 36 L130 36 Z" fill="url(#prCardHead)" />
-      {/* Orange accent mark on card corner */}
-      <path d="M186 36 L194 28 L194 36 Z" fill="#f97316" />
-      
-      <text x="162" y="30" textAnchor="middle" fontSize="7.5" fontWeight="800" fill="#ffffff" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" letterSpacing="0.8">PAYROLL</text>
-      
-      {/* Checklist items with crisp emerald green checkmarks */}
-      {[
-        { y: 43, w: 37 },
-        { y: 54.5, w: 32 },
-        { y: 66, w: 35 },
-      ].map((item, idx) => (
-        <g key={idx} transform={`translate(136, ${item.y})`}>
-          <circle cx="4" cy="4" r="3.4" fill="#ecfdf5" stroke="#10b981" strokeWidth="0.8" />
-          <path d="M2.6 4 L3.6 5.1 L5.4 2.9" stroke="#10b981" strokeWidth="1.1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          <rect x="11" y="2.3" width={item.w} height="3.4" rx="1.7" fill="#e2e8f0" />
-        </g>
-      ))}
+    {/* floor shadow */}
+    <ellipse cx="110" cy="140" rx="96" ry="6" fill="#f6c9a4" opacity="0.55" />
+
+    {/* chair back */}
+    <rect x="82" y="58" width="56" height="58" rx="13" fill="url(#pyChair)" />
+    <rect x="86" y="62" width="48" height="6" rx="3" fill="#ffffff" opacity="0.18" />
+
+    {/* hair behind shoulders (soft waves at the ends) */}
+    <path d="M91 47 C89 27 101 20 111 20 C124 20 132 29 130 48 C129 60 132 70 136 80 C132 84 128 82 125 84 C120 86 100 86 95 84 C92 82 88 84 84 80 C88 70 92 60 91 47 Z" fill="url(#pyHair)" />
+
+    {/* torso: light-blue shirt */}
+    <path d="M72 116 C72 90 86 74 110 74 C134 74 148 90 148 116 Z" fill="url(#pyShirt)" />
+    <path d="M98 76 C104 80 116 80 122 76 L120 81 C114 84 106 84 100 81 Z" fill="#8fb6ec" opacity="0.35" />
+    <rect x="121" y="92" width="9" height="7" rx="1.4" fill="none" stroke="#8fb6ec" strokeWidth="0.8" />
+
+    {/* arms reaching to the keyboard */}
+    <path d="M80 84 C72 92 68 104 68 113 L78 113 C78 104 81 95 86 89 Z" fill="url(#pyShirt)" stroke="#8fb6ec" strokeWidth="0.7" />
+    <path d="M140 84 C148 92 152 104 152 113 L142 113 C142 104 139 95 134 89 Z" fill="url(#pyShirt)" stroke="#8fb6ec" strokeWidth="0.7" />
+
+    {/* neck */}
+    <path d="M104 58 H116 V74 C113 78 107 78 104 74 Z" fill="url(#pySkin)" />
+    <path d="M104 64 C108 68 112 68 116 64 V68 C112 72 108 72 104 68 Z" fill="#d9946a" opacity="0.35" />
+
+    {/* collar + lanyard */}
+    <path d="M101 73 L109 83 L105 71 Z" fill="#ffffff" stroke="#9cc0ee" strokeWidth="0.6" />
+    <path d="M119 73 L111 83 L115 71 Z" fill="#ffffff" stroke="#9cc0ee" strokeWidth="0.6" />
+    <path d="M103 75 L110 92 L117 75" stroke="#1d4ed8" strokeWidth="1.6" fill="none" strokeLinejoin="round" />
+
+    {/* face */}
+    <ellipse cx="110" cy="46" rx="13.5" ry="15.5" fill="url(#pySkin)" />
+    <ellipse cx="96.8" cy="48" rx="2.2" ry="3.2" fill="#efb88f" />
+    <ellipse cx="123.2" cy="48" rx="2.2" ry="3.2" fill="#efb88f" />
+    <circle cx="96.6" cy="52" r="1.2" fill="#fbbf24" stroke="#d97706" strokeWidth="0.3" />
+    <circle cx="123.4" cy="52" r="1.2" fill="#fbbf24" stroke="#d97706" strokeWidth="0.3" />
+
+    {/* front hair: side part, lighter fringe, long locks over the shoulders */}
+    <path d="M95.5 46 C94 29 105 23 113 24 C123 25 128.5 33 127.5 44 C124 37 118 32.5 111 31.5 C106 33 101 37 98.5 42 C97.5 44 96.5 45 95.5 46 Z" fill="url(#pyHair)" />
+    <path d="M96 41 C92 52 94 64 90 76 C92 82 96 86 99 92 C100 86 97.5 80 97.5 74 C97.5 62 97.5 52 99.5 44 Z" fill="url(#pyHair)" />
+    <path d="M124.5 41 C128.5 52 126.5 64 130.5 76 C128.5 82 124.5 86 121 92 C120 86 122.5 80 122.5 74 C122.5 62 122.5 52 120.5 44 Z" fill="url(#pyHair)" />
+    <path d="M103 28.5 C109 25.5 117 26 122 30.5" stroke="#7a6690" strokeWidth="1.2" fill="none" opacity="0.55" strokeLinecap="round" />
+    <path d="M93.5 56 C93 64 92.5 70 91.5 75" stroke="#5b4a6b" strokeWidth="0.8" fill="none" opacity="0.5" strokeLinecap="round" />
+
+    {/* eyebrows */}
+    <path d="M101.5 41.2 Q105 39.4 108.2 40.8" stroke="#231a2b" strokeWidth="1.1" fill="none" strokeLinecap="round" />
+    <path d="M111.8 40.8 Q115 39.4 118.5 41.2" stroke="#231a2b" strokeWidth="1.1" fill="none" strokeLinecap="round" />
+
+    {/* eyes with lash line */}
+    <ellipse cx="105" cy="46.4" rx="1.7" ry="2" fill="#2a1a12" />
+    <ellipse cx="115" cy="46.4" rx="1.7" ry="2" fill="#2a1a12" />
+    <circle cx="105.6" cy="45.7" r="0.6" fill="#ffffff" />
+    <circle cx="115.6" cy="45.7" r="0.6" fill="#ffffff" />
+    <path d="M102.7 45 Q105 43.4 107.3 45" stroke="#1a1220" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+    <path d="M112.7 45 Q115 43.4 117.3 45" stroke="#1a1220" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+
+    {/* glasses with a small glint */}
+    <rect x="100.3" y="42.6" width="9.4" height="7.6" rx="3.2" fill="#e0f2fe" fillOpacity="0.25" stroke="#1f2937" strokeWidth="0.9" />
+    <rect x="110.3" y="42.6" width="9.4" height="7.6" rx="3.2" fill="#e0f2fe" fillOpacity="0.25" stroke="#1f2937" strokeWidth="0.9" />
+    <path d="M109.7 45.4 Q110 44.8 110.3 45.4" stroke="#1f2937" strokeWidth="0.9" fill="none" />
+    <path d="M107.4 44 L108.4 45.2" stroke="#ffffff" strokeWidth="0.6" strokeLinecap="round" opacity="0.9" />
+    <path d="M117.4 44 L118.4 45.2" stroke="#ffffff" strokeWidth="0.6" strokeLinecap="round" opacity="0.9" />
+
+    {/* nose, blush, smile, bindi */}
+    <path d="M110.2 48.8 Q111.4 51.6 109.6 52.6" stroke="#d48c63" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+    <circle cx="102.3" cy="53.2" r="2.5" fill="#fb7185" opacity="0.22" />
+    <circle cx="117.7" cy="53.2" r="2.5" fill="#fb7185" opacity="0.22" />
+    <path d="M106 55.2 Q110 59.4 114 55.2 Q110 56.6 106 55.2 Z" fill="#c2185b" />
+    <path d="M107.6 56.6 Q110 57.8 112.4 56.6" stroke="#ffffff" strokeWidth="0.5" fill="none" opacity="0.8" />
+    <circle cx="110" cy="39.8" r="0.75" fill="#b91c1c" />
+
+    {/* desk */}
+    <rect x="16" y="115" width="188" height="6" rx="3" fill="#ffffff" stroke="#f3cfae" strokeWidth="1.2" />
+    <rect x="26" y="121" width="168" height="10" rx="2" fill="#fde6d1" opacity="0.7" />
+
+    {/* laptop (back of the lid faces us) */}
+    <path d="M82 85 H138 Q141 85 141.3 88 L143.5 114 H76.5 L78.7 88 Q79 85 82 85 Z" fill="url(#pyLid)" />
+    <path d="M82 86.5 H138" stroke="#94a3b8" strokeWidth="0.6" opacity="0.6" />
+    <path d="M81 89 L79.6 111" stroke="#ffffff" strokeWidth="0.8" opacity="0.18" strokeLinecap="round" />
+    <circle cx="110" cy="99.5" r="5.2" fill="#f97316" />
+    <text x="110" y="101.6" textAnchor="middle" fontSize="5.6" fontWeight="800" fill="#ffffff" fontFamily="Arial, sans-serif">at</text>
+    <rect x="64" y="113" width="92" height="3.4" rx="1.7" fill="#0f172a" />
+    {/* hands resting on the keyboard */}
+    <ellipse cx="73" cy="113" rx="5.2" ry="2.8" fill="url(#pySkin)" />
+    <ellipse cx="147" cy="113" rx="5.2" ry="2.8" fill="url(#pySkin)" />
+
+    {/* plant */}
+    <path d="M23 104 H41 L39 115 H25 Z" fill="#fb923c" />
+    <rect x="22" y="102" width="20" height="4" rx="2" fill="#f97316" />
+    <path d="M32 102 C25 96 20 96 17 89 C25 89 31 94 32 102 Z" fill="#22a06b" />
+    <path d="M32 102 C33 92 38 86 45 84 C45 93 39 99 32 102 Z" fill="#34c27e" />
+    <path d="M32 102 C30 93 30 85 33 78 C37 86 36 95 32 102 Z" fill="#178a54" />
+
+    {/* mug */}
+    <rect x="49" y="104" width="11" height="11" rx="2.2" fill="#ffffff" stroke="#e2e8f0" strokeWidth="0.8" />
+    <path d="M60 106.5 C64 106.5 64 112 60 112" stroke="#e2e8f0" strokeWidth="1.4" fill="none" />
+    <rect x="49" y="107" width="11" height="2.4" fill="#f97316" opacity="0.9" />
+
+    {/* coin stacks */}
+    {[0, 1, 2, 3, 4].map((i) => (
+      <g key={`c1${i}`}>
+        <rect x="153" y={110 - i * 3.6} width="16" height="3.6" fill="url(#pyCoin)" />
+        <ellipse cx="161" cy={110 - i * 3.6} rx="8" ry="2.4" fill="#fde68a" stroke="#f59e0b" strokeWidth="0.4" />
+      </g>
+    ))}
+    {[0, 1, 2].map((i) => (
+      <g key={`c2${i}`}>
+        <rect x="171" y={111 - i * 3.6} width="14" height="3.6" fill="url(#pyCoin)" />
+        <ellipse cx="178" cy={111 - i * 3.6} rx="7" ry="2.1" fill="#fde68a" stroke="#f59e0b" strokeWidth="0.4" />
+      </g>
+    ))}
+
+    {/* floating payslip card */}
+    <g filter="url(#pyShadow)">
+      <rect x="148" y="14" width="56" height="64" rx="7" fill="#ffffff" />
+      <path d="M148 21 Q148 14 155 14 H197 Q204 14 204 21 V28 H148 Z" fill="url(#pyHead)" />
+      <text x="176" y="24" textAnchor="middle" fontSize="6.4" fontWeight="800" fill="#ffffff" fontFamily="Arial, sans-serif" letterSpacing="0.8">PAYSLIP</text>
+      <circle cx="157" cy="37" r="4.2" fill="#dbeafe" />
+      <circle cx="157" cy="35.8" r="1.6" fill="#3b82f6" />
+      <path d="M154 39.6 Q157 37.4 160 39.6" stroke="#3b82f6" strokeWidth="1.2" fill="none" />
+      <rect x="164" y="33.5" width="30" height="3" rx="1.5" fill="#cbd5e1" />
+      <rect x="164" y="38.5" width="20" height="2.6" rx="1.3" fill="#e2e8f0" />
+      <rect x="154" y="46" width="44" height="0.8" fill="#eef2f7" />
+      <text x="154" y="51.5" fontSize="4.6" fill="#64748b" fontFamily="Arial, sans-serif">Net Pay</text>
+      <text x="154" y="59.5" fontSize="7.6" fontWeight="800" fill="#0f2a6b" fontFamily="Arial, sans-serif">₹52,000</text>
+      <rect x="154" y="63.5" width="44" height="8" rx="4" fill="#ecfdf5" />
+      <text x="176" y="69.3" textAnchor="middle" fontSize="4.8" fontWeight="700" fill="#059669" fontFamily="Arial, sans-serif">CREDITED</text>
     </g>
+    <circle cx="203" cy="15" r="6" fill="#10b981" stroke="#ffffff" strokeWidth="1.6" />
+    <path d="M200.3 15 L202.3 17 L205.8 13" stroke="#ffffff" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
 
-    {/* Modern Office Chair (Ergonomic blue back) */}
-    <rect x="16" y="70" width="25" height="52" rx="8" fill="#3b6fd8" />
-    <rect x="14" y="74" width="3.5" height="44" rx="1.7" fill="#2557be" />
-
-    {/* LADY CHARACTER - Professional Indian HR/Payroll Specialist */}
-    {/* 1. Flowing Hair Behind Shoulders */}
-    <path d="M41 44 C39 21 75 17 83 36 C87 52 86 68 91 84 C80 91 52 93 35 87 C40 73 41 58 41 44 Z" fill="url(#prHair)" />
-
-    {/* 2. Torso: Crisp Corporate Light-Blue Shirt */}
-    <path d="M28 121 C26 97 40 79 62 78 C84 77 98 91 100 121 Z" fill="url(#prShirt)" />
-    
-    {/* Crisp Shirt Collar */}
-    <path d="M51 79 L60 90 L62 79 Z" fill="#ffffff" stroke="#93c0f3" strokeWidth="0.6" />
-    <path d="M73 79 L64 90 L62 79 Z" fill="#ffffff" stroke="#93c0f3" strokeWidth="0.6" />
-    <line x1="63" y1="90" x2="63" y2="121" stroke="#86b4ec" strokeWidth="0.8" />
-    <circle cx="63" cy="98" r="0.9" fill="#5b93dc" />
-    <circle cx="63" cy="108" r="0.9" fill="#5b93dc" />
-
-    {/* Corporate ID Lanyard & Badge */}
-    <path d="M56 82 L63 103 L70 82" stroke="#1d4ed8" strokeWidth="1.4" fill="none" strokeLinejoin="round" />
-    <rect x="59.5" y="102" width="7" height="9.5" rx="1" fill="#ffffff" stroke="#94a3b8" strokeWidth="0.5" />
-    <rect x="61" y="103.5" width="4" height="2.8" rx="0.4" fill="#f97316" />
-    <line x1="61" y1="108" x2="65" y2="108" stroke="#64748b" strokeWidth="0.5" />
-    <line x1="61" y1="109.5" x2="64" y2="109.5" stroke="#94a3b8" strokeWidth="0.5" />
-
-    {/* 3. Slender Neck */}
-    <path d="M57 60 H69 V79 C67 82 59 82 57 79 Z" fill="url(#prSkin)" />
-    <path d="M57 66 C61 71 65 71 69 66 V70 C65 74 61 74 57 70 Z" fill="#d99b70" opacity="0.3" />
-
-    {/* 4. Head & Face (Natural, graceful oval contour) */}
-    <path d="M51 43 C51 29 63 25 72 29 C80 33 81 44 79 53 C77 62 70 67 63 67 C55 66 51 58 51 43 Z" fill="url(#prSkin)" />
-
-    {/* Delicate Ear + Pearl Stud Earring */}
-    <ellipse cx="51.5" cy="48" rx="2.4" ry="3.6" fill="#f0bc94" />
-    <circle cx="51.2" cy="49.8" r="1" fill="#ffffff" stroke="#cbd5e1" strokeWidth="0.3" />
-
-    {/* 5. Front Hair: Stylish Side-Swept Volume */}
-    <path d="M48 43 C45 25 64 17 77 23 C84 27 86 36 82 44 C79 36 73 31 65 31 C58 32 54 36 52 42 C51 45 49 47 48 49 Z" fill="url(#prHair)" />
-    <path d="M48 41 C44 53 45 67 40 79 L48 79 C49 67 49 55 51 47 Z" fill="url(#prHair)" />
-    <path d="M62 25 C69 23 75 25 79 30" stroke="#4a3b5c" strokeWidth="0.9" fill="none" opacity="0.5" strokeLinecap="round" />
-
-    {/* Tiny graceful bindi */}
-    <circle cx="68.2" cy="38" r="0.65" fill="#991b1b" />
-
-    {/* 6. Elegant, Professional Facial Features */}
-    {/* Eyebrows */}
-    <path d="M58 37.5 Q62 36 66 37.2" stroke="#1a1622" strokeWidth="0.95" fill="none" strokeLinecap="round" />
-    <path d="M70.5 37.2 Q74 36 77.5 37.5" stroke="#1a1622" strokeWidth="0.95" fill="none" strokeLinecap="round" />
-
-    {/* Chic Modern Wireframe Spectacles (Soft rounded shape, ultra-sleek) */}
-    <rect x="56.5" y="39.5" width="9.5" height="7" rx="3" fill="#ffffff" fillOpacity="0.18" stroke="#334155" strokeWidth="0.8" />
-    <rect x="69" y="39.5" width="9" height="7" rx="3" fill="#ffffff" fillOpacity="0.18" stroke="#334155" strokeWidth="0.8" />
-    <path d="M66 42 Q67.5 41.2 69 42" stroke="#334155" strokeWidth="0.8" fill="none" />
-    <path d="M56.5 41.8 L52 42.8" stroke="#334155" strokeWidth="0.8" strokeLinecap="round" />
-
-    {/* Intelligent, Friendly Almond Eyes (Warm, focused and welcoming) */}
-    {/* Left Eye */}
-    <ellipse cx="61.5" cy="43" rx="1.8" ry="1.3" fill="#ffffff" />
-    <circle cx="61.7" cy="43.1" r="0.95" fill="#2a1810" />
-    <circle cx="62" cy="42.8" r="0.32" fill="#ffffff" />
-    <path d="M59.6 42.4 C60.6 41.6 62.4 41.6 63.4 42.4" stroke="#1a1622" strokeWidth="0.6" fill="none" />
-
-    {/* Right Eye */}
-    <ellipse cx="73.5" cy="43" rx="1.8" ry="1.3" fill="#ffffff" />
-    <circle cx="73.7" cy="43.1" r="0.95" fill="#2a1810" />
-    <circle cx="74" cy="42.8" r="0.32" fill="#ffffff" />
-    <path d="M71.6 42.4 C72.6 41.6 74.4 41.6 75.4 42.4" stroke="#1a1622" strokeWidth="0.6" fill="none" />
-
-    {/* Delicate, refined nose */}
-    <path d="M68.5 43 Q69.6 46.5 68.2 48" stroke="#d99a74" strokeWidth="0.75" fill="none" strokeLinecap="round" />
-
-    {/* Gentle healthy cheek blush */}
-    <circle cx="58" cy="48" r="2.2" fill="#fb7185" opacity="0.18" />
-    <circle cx="76" cy="48" r="2.2" fill="#fb7185" opacity="0.18" />
-
-    {/* Poised, pleasant corporate smile (Warm Rose) */}
-    <path d="M64 52.5 Q68 55.5 72 52.5" stroke="#be123c" strokeWidth="0.95" fill="none" strokeLinecap="round" />
-    <path d="M65.2 53.2 Q68 54.8 70.8 53.2" stroke="#fda4af" strokeWidth="0.5" fill="none" strokeLinecap="round" opacity="0.6" />
-
-    {/* Arms typing naturally at laptop */}
-    <path d="M86 91 C96 97 104 105 110 109 L106 116 C96 112 86 105 80 99 Z" fill="url(#prShirt)" stroke="#7fb0ea" strokeWidth="0.8" />
-    <path d="M40 97 C46 109 62 115 84 114 L84 120 C60 122 42 116 34 105 Z" fill="url(#prShirt)" stroke="#7fb0ea" strokeWidth="0.8" />
-    {/* Graceful hands */}
-    <ellipse cx="109" cy="112" rx="4.5" ry="2.8" fill="url(#prSkin)" />
-    <ellipse cx="85.5" cy="116.5" rx="4.5" ry="2.8" fill="url(#prSkin)" />
-
-    {/* Desk Surface */}
-    <rect x="14" y="118" width="192" height="7" rx="3.5" fill="#fff7ed" stroke="#fed7aa" strokeWidth="1.2" />
-    <rect x="18" y="123" width="184" height="2" fill="#fed7aa" opacity="0.4" />
-
-    {/* Sleek Modern Laptop (placed on desk) */}
-    <path d="M100 75 L144 71 Q147 71 147.4 74 L151 109 L106 113 Z" fill="url(#prLid)" />
-    <line x1="100.5" y1="75.5" x2="144" y2="71.5" stroke="#64748b" strokeWidth="0.6" opacity="0.7" />
-    {/* Arvion orange monogram on laptop lid */}
-    <circle cx="125" cy="91" r="3.5" fill="#f97316" />
-    <path d="M124 89.5 C125.6 89.5 126.6 90.5 126.6 92 C126.6 93.5 125 93.5 124 93.5" stroke="#ffffff" strokeWidth="0.7" fill="none" />
-    {/* Laptop base & keyboard deck */}
-    <path d="M84 114 L106 113 L151 109 L158 112 L156 116 L86 118 Z" fill="#0f172a" />
-    <polygon points="116,115 128,114 127,116 115,117" fill="#334155" opacity="0.6" />
-
-    {/* Minted Gold Coins Stacks (sitting ON desk at right) */}
-    {/* Stack 1 (Taller, 6 coins) */}
-    <g transform="translate(196, 117)">
-      <ellipse cx="0" cy="1" rx="9" ry="2.8" fill="#d97706" opacity="0.4" />
-      <rect x="-9" y="-2" width="18" height="2" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-2" rx="9" ry="2.8" fill="#fde047" stroke="#f59e0b" strokeWidth="0.4" />
-      <rect x="-9" y="-6" width="18" height="4" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-6" rx="9" ry="2.8" fill="#fde047" stroke="#f59e0b" strokeWidth="0.4" />
-      <rect x="-9" y="-10" width="18" height="4" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-10" rx="9" ry="2.8" fill="#fde047" stroke="#f59e0b" strokeWidth="0.4" />
-      <rect x="-9" y="-14" width="18" height="4" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-14" rx="9" ry="2.8" fill="#fde047" stroke="#f59e0b" strokeWidth="0.4" />
-      <rect x="-9" y="-18" width="18" height="4" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-18" rx="9" ry="2.8" fill="#fde047" stroke="#f59e0b" strokeWidth="0.4" />
-      <rect x="-9" y="-22" width="18" height="4" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-22" rx="9" ry="2.8" fill="#fef08a" stroke="#f59e0b" strokeWidth="0.4" />
-      <circle cx="0" cy="-22" r="4.8" fill="none" stroke="#f59e0b" strokeWidth="0.3" strokeDasharray="1.2 1.2" />
-    </g>
-
-    {/* Stack 2 (Shorter, 4 coins) */}
-    <g transform="translate(178, 118)">
-      <ellipse cx="0" cy="1" rx="8" ry="2.5" fill="#d97706" opacity="0.4" />
-      <rect x="-8" y="-2" width="16" height="2" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-2" rx="8" ry="2.5" fill="#fde047" stroke="#f59e0b" strokeWidth="0.4" />
-      <rect x="-8" y="-5.8" width="16" height="3.8" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-5.8" rx="8" ry="2.5" fill="#fde047" stroke="#f59e0b" strokeWidth="0.4" />
-      <rect x="-8" y="-9.6" width="16" height="3.8" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-9.6" rx="8" ry="2.5" fill="#fde047" stroke="#f59e0b" strokeWidth="0.4" />
-      <rect x="-8" y="-13.4" width="16" height="3.8" fill="url(#prCoin)" />
-      <ellipse cx="0" cy="-13.4" rx="8" ry="2.5" fill="#fef08a" stroke="#f59e0b" strokeWidth="0.4" />
-      <circle cx="0" cy="-13.4" r="4.2" fill="none" stroke="#f59e0b" strokeWidth="0.3" strokeDasharray="1.2 1.2" />
+    {/* "Salary Paid" chip */}
+    <g filter="url(#pyShadow)">
+      <rect x="14" y="26" width="56" height="18" rx="9" fill="#ffffff" />
+      <circle cx="24" cy="35" r="5" fill="#fff1e6" />
+      <text x="24" y="37.2" textAnchor="middle" fontSize="6.4" fontWeight="800" fill="#f97316" fontFamily="Arial, sans-serif">₹</text>
+      <text x="32" y="37.4" fontSize="6.2" fontWeight="700" fill="#0f2a6b" fontFamily="Arial, sans-serif">Salary Paid</text>
     </g>
   </svg>
 );

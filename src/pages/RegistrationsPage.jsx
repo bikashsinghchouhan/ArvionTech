@@ -143,8 +143,8 @@ const RegistrationsPage = () => {
                     <path d="m9 14 2 2 4-4" />
                   </svg>
                 </div>
-                <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
-                  REGISTRATIONS
+                <span className="text-xs sm:text-sm font-extrabold text-white font-sans">
+                  Registrations
                 </span>
               </div>
               {/* Orange accent curve */}
@@ -322,8 +322,8 @@ const RegistrationsPage = () => {
                         <path d="m9 14 2 2 4-4" />
                       </svg>
                     </div>
-                    <span className="text-xs sm:text-sm font-black tracking-wider uppercase text-white font-sans">
-                      REGISTRATIONS
+                    <span className="text-xs sm:text-sm font-extrabold text-white font-sans">
+                      Registrations
                     </span>
                   </div>
                   <svg className="absolute bottom-0 right-0 w-16 h-4 pointer-events-none" viewBox="0 0 80 20" fill="none">
