@@ -258,7 +258,7 @@ const RegistrationsPage = () => {
               {/* 4 Feature Badges in a Row */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
-                className="flex flex-wrap gap-2 sm:gap-2.5 w-full mb-8"
+                className="grid grid-cols-4 gap-1.5 sm:flex sm:flex-wrap sm:gap-2.5 w-full mb-6 sm:mb-8"
               >
                 {[
                   { title1: 'Expert', title2: 'Team', icon: <FaUserTie />, bg: 'bg-blue-50', text: 'text-blue-600' },
@@ -266,11 +266,11 @@ const RegistrationsPage = () => {
                   { title1: 'Data', title2: 'Security', icon: <FaShieldAlt />, bg: 'bg-blue-50', text: 'text-blue-600' },
                   { title1: 'Dedicated', title2: 'Support', icon: <FaHeadset />, bg: 'bg-orange-50', text: 'text-[#FF7A00]' }
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-white/90 rounded-xl pl-1.5 pr-3 py-1.5 border border-slate-200/70 shadow-sm flex items-center gap-2.5 hover:shadow-md hover:border-blue-100 transition-all">
+                  <div key={idx} className="flex flex-col items-center text-center gap-1.5 sm:flex-row sm:text-left sm:gap-2.5 sm:bg-white/90 sm:rounded-xl sm:pl-1.5 sm:pr-3 sm:py-1.5 sm:border sm:border-slate-200/70 sm:shadow-sm sm:hover:shadow-md sm:hover:border-blue-100 transition-all">
                     <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.text} flex items-center justify-center text-sm flex-shrink-0`}>
                       {item.icon}
                     </div>
-                    <span className="text-[12px] sm:text-sm font-semibold text-[#0B1B3D] whitespace-nowrap">
+                    <span className="text-[10.5px] leading-tight sm:leading-normal sm:text-sm font-semibold text-[#0B1B3D] sm:whitespace-nowrap">
                       {item.title1} {item.title2}
                     </span>
                   </div>

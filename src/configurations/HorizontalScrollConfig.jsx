@@ -10,6 +10,12 @@ import outsourcingImg from '../assets/service-heroes/payroll.webp';
 import registrationsImg from '../assets/service-heroes/statutory-hero.webp';
 import accountingImg from '../assets/service-heroes/accounting-hero.webp';
 
+// Phone crops: all 900x800, so every slide fills the hero the same way
+import schoolMobileImg from '../assets/hero-mobile/school.webp';
+import outsourcingMobileImg from '../assets/hero-mobile/payroll.webp';
+import registrationsMobileImg from '../assets/hero-mobile/statutory.webp';
+import accountingMobileImg from '../assets/hero-mobile/accounting.webp';
+
 export const services = [
   {
     title: 'School Management System',
@@ -17,6 +23,7 @@ export const services = [
     category: 'Education & Administration',
     description: 'Transform institutional administration with an enterprise-grade academic platform. Seamlessly automate attendance protocols, optimize complex grading matrices, and elevate stakeholder communication.',
     image: schoolImg,
+    mobileImage: schoolMobileImg,
     imagePosition: 'object-[70%_center]',
     path: '/services/school-management',
     // Content of the matching service page hero (used by the home slider)
@@ -33,6 +40,7 @@ export const services = [
     category: 'Talent & Compliance',
     description: 'Accelerate global operations with secure, end-to-end payroll and talent management solutions. We assume the complexities of compliance, taxation, and international onboarding.',
     image: outsourcingImg,
+    mobileImage: outsourcingMobileImg,
     imagePosition: 'object-right',
     path: '/services/outsourcing',
     // Content of the matching service page hero (used by the home slider)
@@ -51,6 +59,7 @@ export const services = [
     category: 'Corporate Services',
     description: 'Establish your corporate footprint with precision. We orchestrate comprehensive statutory compliance, from initial entity incorporation and intellectual property protection to complex tax registrations.',
     image: registrationsImg,
+    mobileImage: registrationsMobileImg,
     imagePosition: 'object-right',
     path: '/services/statutory-registrations',
     // Content of the matching service page hero (used by the home slider)
@@ -68,6 +77,7 @@ export const services = [
     category: 'Finance & Accounts',
     description: 'Gain unparalleled visibility into your financial architecture. We provide rigorous ledger management, real-time analytical reporting, and strategic advisory to drive sustainable corporate growth.',
     image: accountingImg,
+    mobileImage: accountingMobileImg,
     imagePosition: 'object-right',
     path: '/services/accounting',
     // Content of the matching service page hero (used by the home slider)

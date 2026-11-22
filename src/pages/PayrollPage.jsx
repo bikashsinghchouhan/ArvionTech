@@ -274,7 +274,7 @@ const PayrollPage = () => {
               {/* 4 Feature Badges in a Row */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-lg mb-8"
+                className="grid grid-cols-4 gap-1.5 sm:gap-3 w-full max-w-lg mb-6 sm:mb-8"
               >
                 {[
                   { title1: 'Expert', title2: 'Team', icon: <FaUserTie />, bg: 'bg-blue-50', text: 'text-blue-600' },
@@ -282,11 +282,11 @@ const PayrollPage = () => {
                   { title1: 'Data', title2: 'Security', icon: <FaShieldAlt />, bg: 'bg-blue-50', text: 'text-blue-600' },
                   { title1: 'Dedicated', title2: 'Support', icon: <FaHeadset />, bg: 'bg-orange-50', text: 'text-[#FF7A00]' }
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-white rounded-2xl p-3 border border-slate-200/70 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-                    <div className={`w-9 h-9 rounded-xl ${item.bg} ${item.text} flex items-center justify-center text-sm mb-2`}>
+                  <div key={idx} className="sm:bg-white sm:rounded-2xl p-0 sm:p-3 sm:border sm:border-slate-200/70 sm:shadow-sm flex flex-col items-center text-center sm:hover:shadow-md transition-shadow">
+                    <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl ${item.bg} ${item.text} flex items-center justify-center text-sm mb-1.5 sm:mb-2`}>
                       {item.icon}
                     </div>
-                    <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
+                    <span className="text-[10.5px] sm:text-xs font-bold text-[#0B1B3D] leading-tight">
                       {item.title1}<br />{item.title2}
                     </span>
                   </div>

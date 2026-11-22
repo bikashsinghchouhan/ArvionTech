@@ -152,16 +152,24 @@ const HorizontalScroll = () => {
             >
               {/* Phones & tablets: photo as background with dark overlay, text and buttons on top
                   (phones: content sits at the bottom and the long description is hidden) */}
-              <div className="lg:hidden relative overflow-hidden pt-16 min-h-[560px] h-[82svh] max-h-[760px] flex items-end sm:items-center justify-center">
+              {/* Phones: header height + a 9:8 photo area, matching the 900x800 phone crops exactly */}
+              <div className="lg:hidden relative overflow-hidden pt-16 h-[calc(4rem+88.889vw)] sm:min-h-[560px] sm:h-[82svh] max-h-[760px] flex items-end sm:items-center justify-center">
+                <img
+                  src={service.mobileImage || service.image}
+                  alt=""
+                  aria-hidden="true"
+                  loading={index === 1 ? 'eager' : 'lazy'}
+                  className="sm:hidden absolute inset-x-0 top-16 w-full aspect-[9/8] object-cover"
+                />
                 <img
                   src={service.image}
                   alt=""
                   aria-hidden="true"
-                  loading={index === 1 ? 'eager' : 'lazy'}
-                  className={`absolute inset-0 w-full h-full object-cover ${service.imagePosition || 'object-center'}`}
+                  loading="lazy"
+                  className={`hidden sm:block absolute inset-0 w-full h-full object-cover ${service.imagePosition || 'object-center'}`}
                 />
-                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/5 sm:via-black/65 sm:to-black/40" />
-                <div className="relative z-10 w-full max-w-xl px-6 pt-6 pb-14 flex flex-col items-center text-center text-white">
+                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent sm:from-black/90 sm:via-black/65 sm:to-black/40" />
+                <div className="relative z-10 w-full max-w-xl px-6 pt-4 pb-10 sm:pt-6 sm:pb-14 flex flex-col items-center text-center text-white">
                   <span className="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-[#ff7f32]/30 border border-[#ff7f32]/50 text-orange-100 mb-3 backdrop-blur-sm">
                     {service.badge}
                   </span>
@@ -174,15 +182,15 @@ const HorizontalScroll = () => {
                   <p className="hidden sm:block text-[14px] text-slate-100 leading-relaxed mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     {service.description}
                   </p>
-                  <div className="w-full grid grid-cols-2 gap-3">
+                  <div className="w-full max-w-[290px] sm:max-w-none grid grid-cols-2 gap-2.5 sm:gap-3">
                     <button
-                      className="w-full h-12 px-2 rounded-xl bg-gradient-to-r from-[#ea580c] to-[#c2410c] text-white font-bold text-[13px] sm:text-[14.5px] whitespace-nowrap shadow-lg cursor-pointer"
+                      className="w-full h-9 sm:h-12 px-2 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#ea580c] to-[#c2410c] text-white font-bold text-[12px] sm:text-[14.5px] whitespace-nowrap shadow-lg cursor-pointer"
                       onClick={() => navigate('/contact')}
                     >
                       Contact Us
                     </button>
                     <button
-                      className="w-full h-12 px-2 rounded-xl bg-white/10 border border-white/25 text-white font-bold text-[13px] sm:text-[14.5px] whitespace-nowrap backdrop-blur-sm inline-flex items-center justify-center gap-1.5 cursor-pointer"
+                      className="w-full h-9 sm:h-12 px-2 rounded-lg sm:rounded-xl bg-white/10 border border-white/25 text-white font-bold text-[12px] sm:text-[14.5px] whitespace-nowrap backdrop-blur-sm inline-flex items-center justify-center gap-1.5 cursor-pointer"
                       onClick={() => navigate(service.path)}
                     >
                       Explore Solutions <FaArrowRight className="text-xs" />

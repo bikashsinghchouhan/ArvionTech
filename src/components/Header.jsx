@@ -5,6 +5,7 @@ import {
   Home, ChevronDown, Menu, X, Phone, Mail, CalendarCheck, Laptop,
   Users, FileBadge, Calculator, Settings2, UserCog, GraduationCap,
   School, UsersRound, Newspaper, Download, HelpCircle, ClipboardList,
+  Info, Package, Briefcase, Sparkles, LayoutDashboard, BookOpen, Tag, PhoneCall,
 } from 'lucide-react';
 import logo from '../assets/logo-mark.webp';
 import ComingSoonModal from './ComingSoonModal';
@@ -29,9 +30,10 @@ const verticals = [
 // `comingSoon: true` opens the Coming Soon modal instead of navigating.
 const navItems = [
   { key: 'home', label: 'Home', path: '/', icon: Home },
-  { key: 'about', label: 'About Us', path: '/about' },
+  { key: 'about', label: 'About Us', path: '/about', icon: Info },
   {
     key: 'products',
+    icon: Package,
     label: 'Products',
     match: (p) => p.startsWith(ERP),
     children: [
@@ -40,6 +42,7 @@ const navItems = [
   },
   {
     key: 'services',
+    icon: Briefcase,
     label: 'Services',
     match: (p) => p.startsWith('/services') && !p.startsWith(ERP),
     children: [
@@ -50,6 +53,7 @@ const navItems = [
   },
   {
     key: 'features',
+    icon: Sparkles,
     label: 'Features',
     children: [
       { name: 'School ERP Features', path: `${ERP}#features`, icon: Settings2 },
@@ -57,6 +61,7 @@ const navItems = [
   },
   {
     key: 'portals',
+    icon: LayoutDashboard,
     label: 'User Portals',
     children: [
       { name: 'Administrator Portal', path: `${ERP}#portals`, icon: UserCog },
@@ -67,6 +72,7 @@ const navItems = [
   },
   {
     key: 'resources',
+    icon: BookOpen,
     label: 'Resources',
     children: [
       { name: 'Blog & Articles', path: '/blog', icon: Newspaper },
@@ -75,8 +81,8 @@ const navItems = [
       { name: 'Case Studies', path: '/case-studies', icon: ClipboardList },
     ],
   },
-  { key: 'pricing', label: 'Pricing', path: `${ERP}#plans` },
-  { key: 'contact', label: 'Contact Us', path: '/contact' },
+  { key: 'pricing', label: 'Pricing', path: `${ERP}#plans`, icon: Tag },
+  { key: 'contact', label: 'Contact Us', path: '/contact', icon: PhoneCall },
 ];
 
 const Header = () => {
@@ -97,7 +103,7 @@ const Header = () => {
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      setIsCollapsed(window.scrollY > 64);
+      setIsCollapsed(window.scrollY > 56);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -212,10 +218,10 @@ const Header = () => {
     <>
       <header
         id="site-header"
-        className={`fixed top-0 left-0 w-full z-50 bg-white transition-[transform,box-shadow] duration-300 ease-out ${isScrolled ? 'shadow-lg' : 'shadow-sm'} ${isCollapsed ? 'lg:-translate-y-16' : ''}`}
+        className={`fixed top-0 left-0 w-full z-50 bg-white transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isScrolled ? 'shadow-lg' : 'shadow-sm'} ${isCollapsed ? 'lg:-translate-y-14' : ''}`}
       >
         {/* ---------- Top bar: logo, verticals, contact, Request Demo ---------- */}
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div className={`max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-14 flex items-center justify-between gap-4 transition-opacity duration-300 ${isCollapsed ? 'lg:opacity-0' : 'opacity-100'}`}>
           <a href="/" onClick={(e) => go(e, '/')} className="flex items-center gap-2.5 flex-shrink-0 group no-underline">
             <img
               src={logo}
@@ -259,9 +265,9 @@ const Header = () => {
             <a
               href="/contact"
               onClick={(e) => go(e, '/contact')}
-              className="hidden sm:inline-flex items-center gap-2 px-4 lg:px-5 py-2.5 rounded-md bg-gradient-to-b from-[#ffa53a] to-[#f47b14] text-white text-[13px] font-bold shadow-md hover:shadow-lg hover:brightness-105 transition-all whitespace-nowrap no-underline"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 lg:px-4 py-1.5 rounded-md bg-gradient-to-b from-[#ffa53a] to-[#f47b14] text-white text-[12.5px] font-bold shadow-md hover:shadow-lg hover:brightness-105 transition-all whitespace-nowrap no-underline"
             >
-              <CalendarCheck size={17} /> Request Demo
+              <CalendarCheck size={15} /> Request Demo
             </a>
             <button
               type="button"
@@ -277,8 +283,31 @@ const Header = () => {
 
         {/* ---------- Blue navigation bar ---------- */}
         <div id="site-subnav" className="hidden lg:block bg-gradient-to-r from-[#0e3c96] via-[#1747a6] to-[#0e3c96]">
-          <nav ref={navRef} aria-label="Main" className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            <ul className="flex items-center justify-between list-none m-0 p-0">
+          <nav ref={navRef} aria-label="Main" className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+            {/* Logo slides in at the left once the white top bar has scrolled away */}
+            <AnimatePresence initial={false}>
+              {isCollapsed && (
+                <motion.a
+                  key="nav-logo"
+                  href="/"
+                  onClick={(e) => go(e, '/')}
+                  aria-label="Arvion Technologies home"
+                  initial={{ width: 0, opacity: 0, x: -16 }}
+                  animate={{ width: 'auto', opacity: 1, x: 0 }}
+                  exit={{ width: 0, opacity: 0, x: -16 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex-shrink-0 overflow-hidden no-underline"
+                >
+                  <span className="flex items-center gap-2 pr-4 mr-2 border-r border-white/20 whitespace-nowrap">
+                    <span className="flex items-center justify-center w-7 h-7 rounded-md bg-white">
+                      <img src={logo} alt="" width="169" height="160" className="h-5 w-auto object-contain" />
+                    </span>
+                    <span className="text-[15px] font-extrabold text-white tracking-tight leading-none">Arvion</span>
+                  </span>
+                </motion.a>
+              )}
+            </AnimatePresence>
+            <ul className="flex-1 flex items-center justify-between list-none m-0 p-0">
               {navItems.map((item) => {
                 const active = isActive(item);
                 const Icon = item.icon;
@@ -309,6 +338,7 @@ const Header = () => {
                       onClick={() => setOpenDropdown(open ? null : item.key)}
                       className={`${navLinkClass(active || open)} bg-transparent border-0`}
                     >
+                      {Icon && <Icon size={16} />}
                       {item.label}
                       <ChevronDown size={15} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
                     </button>
@@ -336,8 +366,8 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Spacer: the fixed header is taller than before by the blue nav bar (h-[38px]) on desktop */}
-      <div aria-hidden="true" className="hidden lg:block h-[38px] flex-shrink-0" />
+      {/* Spacer: on desktop the fixed header is the 56px top bar + the 38px blue nav bar; pages pad 64px, so this adds the other 30px */}
+      <div aria-hidden="true" className="hidden lg:block h-[30px] flex-shrink-0" />
 
       {/* ---------- Mobile drawer ---------- */}
       <AnimatePresence>
