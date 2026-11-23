@@ -58,7 +58,7 @@ const LegalPage = ({ eyebrow, title, intro, meta = [], sections = [], contact })
 
     {/* Contact CTA */}
     {contact && (
-      <div className="bg-[#f0f4f8] px-4 sm:px-6 py-12 sm:py-16">
+      <div className="bg-white px-4 sm:px-6 pt-2 pb-12 sm:pb-16">
         <div
           className={`max-w-5xl mx-auto rounded-[28px] sm:rounded-[40px] px-6 py-10 sm:p-12 md:p-16 text-center text-white relative overflow-hidden shadow-xl ${
             contact.variant === 'dark' ? 'bg-[#0d1b2a]' : 'bg-gradient-to-r from-[#ff7f32] to-[#e66a22]'

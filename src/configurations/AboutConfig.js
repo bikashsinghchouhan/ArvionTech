@@ -100,8 +100,8 @@ export const journey = [
 export const leaders = [];
 
 export const leadershipTeams = [
-  { key: 'product', title: 'Product & Engineering', desc: 'Designs and builds the School ERP and keeps it secure and fast.' },
-  { key: 'payroll', title: 'Payroll & Compliance', desc: 'Runs payroll and statutory filings on time, every month.' },
+  { key: 'product', title: 'Product & Engineering', desc: 'Designs and builds our software products and keeps them secure, reliable and fast.' },
+  { key: 'payroll', title: 'Payroll & Compliance', desc: 'Runs payroll and statutory filings on time.' },
   { key: 'finance', title: 'Accounting & Finance', desc: 'Keeps client books clean, reconciled and audit-ready.' },
   { key: 'success', title: 'Customer Success', desc: 'Onboards, trains and supports every client after go-live.' },
 ];

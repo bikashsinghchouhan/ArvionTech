@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -55,7 +55,7 @@ const SectionHeader = ({ eyebrow, title, desc, center = true, className = "mb-7 
   </motion.div>
 );
 
-const IconBox = ({ children, tone = "orange", size = "md" }) => {
+const IconBox = ({ children, tone = "orange", size = "md", className = "" }) => {
   const tones = {
     orange: "bg-orange-50 text-[#E67300]",
     blue: "bg-blue-50 text-blue-600",
@@ -65,7 +65,7 @@ const IconBox = ({ children, tone = "orange", size = "md" }) => {
     slate: "bg-slate-100 text-slate-500",
   };
   const sizes = { sm: "w-9 h-9 text-base rounded-lg", md: "w-10 h-10 sm:w-11 sm:h-11 text-lg sm:text-xl rounded-lg sm:rounded-xl" };
-  return <div className={`flex-shrink-0 flex items-center justify-center ${tones[tone]} ${sizes[size]}`}>{children}</div>;
+  return <div className={`flex-shrink-0 flex items-center justify-center ${tones[tone]} ${sizes[size]} ${className}`}>{children}</div>;
 };
 
 // Icons for the feature suite, matched by module title
@@ -148,6 +148,14 @@ const SCHOOL_FAQ_ICONS = [FaSchool, FaUsers, FaSlidersH, FaSitemap, FaCreditCard
 const SchoolManagement = () => {
   const [activeFeature, setActiveFeature] = useState(null);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
+  // Large screens show the modules 3 per row, so preview 9 there (3 full rows); 8 elsewhere (2 per row / list)
+  const [isLarge, setIsLarge] = useState(() => typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const onChange = (e) => setIsLarge(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [featureSearch, setFeatureSearch] = useState("");
   const [planView, setPlanView] = useState("summary");
@@ -194,7 +202,7 @@ const SchoolManagement = () => {
   const isFiltering = featureSearch.trim() !== "" || selectedCategory !== "All";
   const displayedFeatures = (showAllFeatures || isFiltering)
     ? filteredFeatures
-    : filteredFeatures.slice(0, 8);
+    : filteredFeatures.slice(0, isLarge ? 9 : 8);
 
   // Plans are cumulative: each card lists only what it adds over the plan before it
   const plansWithAdditions = pageConfig.plans.map((plan, i) => {
@@ -263,24 +271,6 @@ const SchoolManagement = () => {
                 End-to-end school management software to run admissions, academics, attendance, fees, exams and school communication &ndash; all in one place.
               </motion.p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-                className="flex flex-nowrap justify-center lg:justify-start gap-2.5 sm:gap-4 mt-1"
-              >
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 px-3.5 sm:px-6 rounded-lg text-[12px] bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-bold sm:text-[14.5px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
-                >
-                  <FaCalendarCheck /> Book a Free Demo
-                </Link>
-                <a
-                  href="#features"
-                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 px-3.5 sm:px-6 rounded-lg text-[12px] bg-white text-[#1747a6] border-2 border-[#1747a6] hover:bg-blue-50 font-bold sm:text-[14.5px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
-                >
-                  Explore Modules <FaArrowRight className="text-xs" />
-                </a>
-              </motion.div>
-
               {/* Assurance badges */}
               <motion.ul
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
@@ -298,6 +288,25 @@ const SchoolManagement = () => {
                   </li>
                 ))}
               </motion.ul>
+
+              {/* Action buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+                className="flex flex-nowrap justify-center lg:justify-start gap-2.5 sm:gap-4 mt-2 sm:mt-3"
+              >
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 px-3.5 sm:px-5 rounded-lg text-[12px] bg-[#ffc727] hover:bg-[#ffb800] border border-[#f2b400] text-[#0f2a6b] font-semibold sm:text-[14px] shadow-md shadow-yellow-500/20 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
+                >
+                  <FaCalendarCheck /> Book a Free Demo
+                </Link>
+                <a
+                  href="#features"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 px-3.5 sm:px-5 rounded-lg text-[12px] bg-white text-[#1747a6] border-[1.5px] border-[#1747a6] hover:bg-blue-50 font-semibold sm:text-[14px] shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+                >
+                  Explore Modules <FaArrowRight className="text-xs" />
+                </a>
+              </motion.div>
             </div>
 
             {/* Photo for small screens */}
@@ -382,13 +391,13 @@ const SchoolManagement = () => {
             )}
           </p>
 
-          {/* Two independent columns from tablet up, so opening a card only pushes its own column down.
+          {/* Independent columns from tablet up (2, or 3 on large screens), so opening a card only pushes its own column down.
               On phones the column wrappers use display: contents and `order` keeps the original sequence. */}
-          <div className="flex flex-col gap-2.5 md:grid md:grid-cols-2 md:items-start">
-            {[0, 1].map((col) => (
+          <div className="flex flex-col gap-2.5 md:grid md:grid-cols-2 lg:grid-cols-3 md:items-start">
+            {Array.from({ length: isLarge ? 3 : 2 }, (_, col) => col).map((col) => (
               <div key={col} className="contents md:flex md:flex-col md:gap-2.5">
                 {displayedFeatures.map((feature, idx) => {
-                  if (idx % 2 !== col) return null;
+                  if (idx % (isLarge ? 3 : 2) !== col) return null;
                   const isActive = activeFeature === feature.title;
                   const panelId = `feature-${feature.title.replace(/\W+/g, '-').toLowerCase()}`;
                   return (
@@ -398,7 +407,7 @@ const SchoolManagement = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2, delay: (idx % 8) * 0.025 }}
                       style={{ order: idx }}
-                      className={`bg-white border rounded-xl transition-[box-shadow,border-color,background-color,color] duration-200 ${isActive ? 'border-[#FF8000] shadow-md' : 'border-slate-200 hover:border-slate-300'
+                      className={`group bg-white border rounded-xl transition-[box-shadow,border-color,background-color,color] duration-200 ${isActive ? 'border-[#FF8000] shadow-md' : 'border-slate-200 hover:border-[#FF8000] hover:shadow-sm'
                         }`}
                     >
                       <button
@@ -408,7 +417,7 @@ const SchoolManagement = () => {
                         aria-controls={panelId}
                         className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 flex items-center gap-3 text-left rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-300"
                       >
-                        <IconBox size="sm" tone={categoryTone[feature.category] || "slate"}>
+                        <IconBox size="md" tone={categoryTone[feature.category] || "slate"} className={`transition-colors duration-200 group-hover:bg-[#FF8000] group-hover:text-white ${isActive ? 'bg-[#FF8000]! text-white!' : ''}`}>
                           {featureIcons[norm(feature.title)] || <FaCube />}
                         </IconBox>
                         <span className="grid gap-0.5 min-w-0 flex-1">
@@ -422,7 +431,7 @@ const SchoolManagement = () => {
                         className={`grid transition-all duration-300 ease-in-out ${isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
                       >
                         <div className="overflow-hidden">
-                          <p className="px-3.5 sm:px-4 pb-4 sm:pl-16 text-slate-600 leading-relaxed text-sm sm:text-[14px]">{feature.desc}</p>
+                          <p className="mx-3.5 sm:mx-4 pt-3 pb-4 border-t border-slate-100 text-slate-600 leading-relaxed text-sm sm:text-[14px]">{feature.desc}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -432,7 +441,7 @@ const SchoolManagement = () => {
             ))}
 
             {displayedFeatures.length === 0 && (
-              <div className="md:col-span-2 text-center py-10 sm:py-12 px-5 bg-white rounded-xl sm:rounded-2xl border-2 border-dashed border-slate-300 grid gap-3 justify-items-center">
+              <div className="md:col-span-2 lg:col-span-3 text-center py-10 sm:py-12 px-5 bg-white rounded-xl sm:rounded-2xl border-2 border-dashed border-slate-300 grid gap-3 justify-items-center">
                 <IconBox tone="slate"><FaSearch /></IconBox>
                 <h3 className="text-lg font-bold">No modules match “{featureSearch}”</h3>
                 <p className="text-slate-600">Try a different word, or clear the search and filters to see all {pageConfig.featureSuite.length} modules.</p>

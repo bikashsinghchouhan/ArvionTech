@@ -150,7 +150,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.ariaLabel}
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#8b5cf6] transition-colors"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#ff7518] transition-colors"
               >
                 {social.icon}
               </a>
@@ -162,7 +162,7 @@ const Footer = () => {
 
       {/* Footer Bottom / Legal */}
       <div className="max-w-7xl mx-auto mt-4 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-[11.5px] text-slate-500 relative z-10 text-center">
-        <p>© {new Date().getFullYear()} Arvion Technologies. All Rights Reserved.</p>
+        <p>© 2025 Arvion Technologies. All Rights Reserved.</p>
         <div className="flex items-center justify-center gap-4">
           <Link to="/privacy-policy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
           <span>|</span>

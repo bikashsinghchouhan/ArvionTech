@@ -13,6 +13,9 @@ import { scrollToId } from '../utils/scrollToId';
 
 const ERP = '/services/school-management';
 
+// One easing curve for every part of the desktop header collapse (white bar, its fade, nav logo)
+const HEADER_EASE = 'ease-[cubic-bezier(0.22,1,0.36,1)]';
+
 const CONTACT = {
   phone: '+91 9535764655',
   email: 'sales@arviontechnologies.com',
@@ -101,9 +104,11 @@ const Header = () => {
   // Shadow on scroll; past the top bar's height, the top bar slides away (desktop)
   // and only the blue nav stays pinned at the top
   useEffect(() => {
+    // Collapse past 80px, expand again only under 40px, so small scrolls near the edge don't flicker
     const onScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-      setIsCollapsed(window.scrollY > 56);
+      const y = window.scrollY;
+      setIsScrolled(y > 10);
+      setIsCollapsed((c) => (c ? y > 40 : y > 80));
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -218,10 +223,10 @@ const Header = () => {
     <>
       <header
         id="site-header"
-        className={`fixed top-0 left-0 w-full z-50 bg-white transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isScrolled ? 'shadow-lg' : 'shadow-sm'} ${isCollapsed ? 'lg:-translate-y-14' : ''}`}
+        className={`fixed top-0 left-0 w-full z-50 bg-white will-change-[translate] transition-[translate,box-shadow] duration-500 ${HEADER_EASE} ${isScrolled ? 'shadow-lg' : 'shadow-sm'} ${isCollapsed ? 'lg:-translate-y-14' : ''}`}
       >
         {/* ---------- Top bar: logo, verticals, contact, Request Demo ---------- */}
-        <div className={`max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-14 flex items-center justify-between gap-4 transition-opacity duration-300 ${isCollapsed ? 'lg:opacity-0' : 'opacity-100'}`}>
+        <div className={`max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-14 flex items-center justify-between gap-4 transition-opacity duration-500 ${HEADER_EASE} ${isCollapsed ? 'lg:opacity-0' : 'opacity-100'}`}>
           <a href="/" onClick={(e) => go(e, '/')} className="flex items-center gap-2.5 flex-shrink-0 group no-underline">
             <img
               src={logo}
@@ -285,28 +290,22 @@ const Header = () => {
         <div id="site-subnav" className="hidden lg:block bg-gradient-to-r from-[#0e3c96] via-[#1747a6] to-[#0e3c96]">
           <nav ref={navRef} aria-label="Main" className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
             {/* Logo slides in at the left once the white top bar has scrolled away */}
-            <AnimatePresence initial={false}>
-              {isCollapsed && (
-                <motion.a
-                  key="nav-logo"
-                  href="/"
-                  onClick={(e) => go(e, '/')}
-                  aria-label="Arvion Technologies home"
-                  initial={{ width: 0, opacity: 0, x: -16 }}
-                  animate={{ width: 'auto', opacity: 1, x: 0 }}
-                  exit={{ width: 0, opacity: 0, x: -16 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex-shrink-0 overflow-hidden no-underline"
-                >
-                  <span className="flex items-center gap-2 pr-4 mr-2 border-r border-white/20 whitespace-nowrap">
-                    <span className="flex items-center justify-center w-7 h-7 rounded-md bg-white">
-                      <img src={logo} alt="" width="169" height="160" className="h-5 w-auto object-contain" />
-                    </span>
-                    <span className="text-[15px] font-extrabold text-white tracking-tight leading-none">Arvion</span>
-                  </span>
-                </motion.a>
-              )}
-            </AnimatePresence>
+            {/* Always rendered; CSS transitions on the same 500ms curve as the white bar keep both in step */}
+            <a
+              href="/"
+              onClick={(e) => go(e, '/')}
+              aria-label="Arvion Technologies home"
+              aria-hidden={!isCollapsed}
+              tabIndex={isCollapsed ? 0 : -1}
+              className={`flex-shrink-0 overflow-hidden no-underline transition-[max-width,opacity] duration-500 ${HEADER_EASE} ${isCollapsed ? 'max-w-[160px] opacity-100' : 'max-w-0 opacity-0 pointer-events-none'}`}
+            >
+              <span className={`flex items-center gap-2 pr-4 mr-2 border-r border-white/20 whitespace-nowrap transition-transform duration-500 ${HEADER_EASE} ${isCollapsed ? 'translate-x-0' : '-translate-x-4'}`}>
+                <span className="flex items-center justify-center w-7 h-7 rounded-md bg-white">
+                  <img src={logo} alt="" width="169" height="160" className="h-5 w-auto object-contain" />
+                </span>
+                <span className="text-[15px] font-extrabold text-white tracking-tight leading-none">Arvion</span>
+              </span>
+            </a>
             <ul className="flex-1 flex items-center justify-between list-none m-0 p-0">
               {navItems.map((item) => {
                 const active = isActive(item);

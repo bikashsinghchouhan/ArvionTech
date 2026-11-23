@@ -331,16 +331,16 @@ export const Journey = () => (
           const Icon = journeyIcons[i % journeyIcons.length];
           const last = i === journey.length - 1;
           return (
-            <motion.li key={title} variants={fadeUp} className="relative grid grid-cols-[56px_1fr] gap-4 lg:grid-cols-1 lg:justify-items-center lg:text-center">
+            <motion.li key={title} variants={fadeUp} className="relative grid grid-cols-[56px_1fr] gap-4 lg:grid-cols-1 lg:grid-rows-[auto_1fr] lg:justify-items-center lg:text-center">
               <span className={`relative z-10 w-14 h-14 rounded-full flex items-center justify-center border-4 border-[#f7faff] shadow-md ${last ? 'bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] text-white' : 'bg-white text-[#1747a6]'}`}>
                 <Icon size={22} />
               </span>
-              <div className={`${CARD} p-4 sm:p-5 lg:w-full`}>
-                <span className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.1em] ${last ? 'bg-[#ffe9d6] text-[#e8730c]' : 'bg-blue-50 text-[#1747a6]'}`}>
+              <div className={`${CARD} p-4 lg:w-full lg:h-full`}>
+                <span className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-[0.1em] ${last ? 'bg-[#ffe9d6] text-[#e8730c]' : 'bg-blue-50 text-[#1747a6]'}`}>
                   {year || label}
                 </span>
-                <h3 className="mt-2 text-[15px] sm:text-[16.5px] font-bold text-[#0b1f4d] leading-snug">{title}</h3>
-                <p className="mt-1.5 text-[12px] sm:text-sm text-slate-600 leading-relaxed">{desc}</p>
+                <h3 className="mt-2 text-[14px] sm:text-[15px] font-bold text-[#0b1f4d] leading-snug">{title}</h3>
+                <p className="mt-1.5 text-[12px] sm:text-[13px] text-slate-600 leading-relaxed">{desc}</p>
               </div>
             </motion.li>
           );

@@ -127,46 +127,44 @@ export const PayrollIllustration = () => (
     <path d="M119 73 L111 83 L115 71 Z" fill="#ffffff" stroke="#9cc0ee" strokeWidth="0.6" />
     <path d="M103 75 L110 92 L117 75" stroke="#1d4ed8" strokeWidth="1.6" fill="none" strokeLinejoin="round" />
 
-    {/* face */}
-    <ellipse cx="110" cy="46" rx="13.5" ry="15.5" fill="url(#pySkin)" />
-    <ellipse cx="96.8" cy="48" rx="2.2" ry="3.2" fill="#efb88f" />
-    <ellipse cx="123.2" cy="48" rx="2.2" ry="3.2" fill="#efb88f" />
-    <circle cx="96.6" cy="52" r="1.2" fill="#fbbf24" stroke="#d97706" strokeWidth="0.3" />
-    <circle cx="123.4" cy="52" r="1.2" fill="#fbbf24" stroke="#d97706" strokeWidth="0.3" />
+    {/* face: soft oval with a gentle jawline */}
+    <path d="M97 44.5 C97 35.5 102.8 31 110 31 C117.2 31 123 35.5 123 44.5 C123 54.5 117.4 62 110 62 C102.6 62 97 54.5 97 44.5 Z" fill="url(#pySkin)" />
+    <ellipse cx="96.6" cy="48" rx="2" ry="3" fill="#efb88f" />
+    <ellipse cx="123.4" cy="48" rx="2" ry="3" fill="#efb88f" />
+    <circle cx="96.4" cy="51.8" r="1.15" fill="#fbbf24" stroke="#d97706" strokeWidth="0.3" />
+    <circle cx="123.6" cy="51.8" r="1.15" fill="#fbbf24" stroke="#d97706" strokeWidth="0.3" />
 
-    {/* front hair: side part, lighter fringe, long locks over the shoulders */}
-    <path d="M95.5 46 C94 29 105 23 113 24 C123 25 128.5 33 127.5 44 C124 37 118 32.5 111 31.5 C106 33 101 37 98.5 42 C97.5 44 96.5 45 95.5 46 Z" fill="url(#pyHair)" />
-    <path d="M96 41 C92 52 94 64 90 76 C92 82 96 86 99 92 C100 86 97.5 80 97.5 74 C97.5 62 97.5 52 99.5 44 Z" fill="url(#pyHair)" />
-    <path d="M124.5 41 C128.5 52 126.5 64 130.5 76 C128.5 82 124.5 86 121 92 C120 86 122.5 80 122.5 74 C122.5 62 122.5 52 120.5 44 Z" fill="url(#pyHair)" />
-    <path d="M103 28.5 C109 25.5 117 26 122 30.5" stroke="#7a6690" strokeWidth="1.2" fill="none" opacity="0.55" strokeLinecap="round" />
-    <path d="M93.5 56 C93 64 92.5 70 91.5 75" stroke="#5b4a6b" strokeWidth="0.8" fill="none" opacity="0.5" strokeLinecap="round" />
+    {/* front hair: smooth side-swept fringe kept above the brows, locks framing the face */}
+    <path d="M95.8 46 C94.2 30 103 23 111 23 C121 23 127.2 30.5 125 45 C123.6 39.5 121 35.6 117.4 33.4 C112.6 36.4 105.6 37.8 99.2 40.6 C97.8 42.4 96.6 44 95.8 46 Z" fill="url(#pyHair)" />
+    <path d="M97 42 C93 52 94 64 90 76 C92 82 96 86 99 92 C100 86 97.8 80 97.8 74 C97.8 64 97.4 54 98.4 46.5 Z" fill="url(#pyHair)" />
+    <path d="M123 42 C127 52 126 64 130 76 C128 82 124 86 121 92 C120 86 122.2 80 122.2 74 C122.2 64 122.6 54 121.6 46.5 Z" fill="url(#pyHair)" />
+    <path d="M104 27.6 C109.6 25.4 116.6 26 121.4 30" stroke="#7a6690" strokeWidth="1.1" fill="none" opacity="0.5" strokeLinecap="round" />
 
-    {/* eyebrows */}
-    <path d="M101.5 41.2 Q105 39.4 108.2 40.8" stroke="#231a2b" strokeWidth="1.1" fill="none" strokeLinecap="round" />
-    <path d="M111.8 40.8 Q115 39.4 118.5 41.2" stroke="#231a2b" strokeWidth="1.1" fill="none" strokeLinecap="round" />
+    {/* eyebrows: thin, softly arched */}
+    <path d="M101.4 42.6 Q104.4 40.9 107.5 42" stroke="#3a2a2e" strokeWidth="0.95" fill="none" strokeLinecap="round" />
+    <path d="M112.5 42 Q115.6 40.9 118.6 42.6" stroke="#3a2a2e" strokeWidth="0.95" fill="none" strokeLinecap="round" />
 
-    {/* eyes with lash line */}
-    <ellipse cx="105" cy="46.4" rx="1.7" ry="2" fill="#2a1a12" />
-    <ellipse cx="115" cy="46.4" rx="1.7" ry="2" fill="#2a1a12" />
-    <circle cx="105.6" cy="45.7" r="0.6" fill="#ffffff" />
-    <circle cx="115.6" cy="45.7" r="0.6" fill="#ffffff" />
-    <path d="M102.7 45 Q105 43.4 107.3 45" stroke="#1a1220" strokeWidth="0.8" fill="none" strokeLinecap="round" />
-    <path d="M112.7 45 Q115 43.4 117.3 45" stroke="#1a1220" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+    {/* eyes: almond shape, brown iris, catch-light and a lash line with a small flick */}
+    <path d="M101.6 47.3 Q104.5 44.5 107.4 47.3 Q104.5 49.3 101.6 47.3 Z" fill="#ffffff" />
+    <path d="M112.6 47.3 Q115.5 44.5 118.4 47.3 Q115.5 49.3 112.6 47.3 Z" fill="#ffffff" />
+    <circle cx="104.5" cy="47" r="1.6" fill="#4a2c1d" />
+    <circle cx="115.5" cy="47" r="1.6" fill="#4a2c1d" />
+    <circle cx="104.5" cy="47" r="0.8" fill="#140b07" />
+    <circle cx="115.5" cy="47" r="0.8" fill="#140b07" />
+    <circle cx="105.1" cy="46.4" r="0.5" fill="#ffffff" />
+    <circle cx="116.1" cy="46.4" r="0.5" fill="#ffffff" />
+    <path d="M101.3 47.2 Q104.5 44 107.7 47" stroke="#1a1220" strokeWidth="1" fill="none" strokeLinecap="round" />
+    <path d="M112.3 47 Q115.5 44 118.7 47.2" stroke="#1a1220" strokeWidth="1" fill="none" strokeLinecap="round" />
+    <path d="M101.5 47.1 L100.5 46.3" stroke="#1a1220" strokeWidth="0.8" strokeLinecap="round" />
+    <path d="M118.5 47.1 L119.5 46.3" stroke="#1a1220" strokeWidth="0.8" strokeLinecap="round" />
 
-    {/* glasses with a small glint */}
-    <rect x="100.3" y="42.6" width="9.4" height="7.6" rx="3.2" fill="#e0f2fe" fillOpacity="0.25" stroke="#1f2937" strokeWidth="0.9" />
-    <rect x="110.3" y="42.6" width="9.4" height="7.6" rx="3.2" fill="#e0f2fe" fillOpacity="0.25" stroke="#1f2937" strokeWidth="0.9" />
-    <path d="M109.7 45.4 Q110 44.8 110.3 45.4" stroke="#1f2937" strokeWidth="0.9" fill="none" />
-    <path d="M107.4 44 L108.4 45.2" stroke="#ffffff" strokeWidth="0.6" strokeLinecap="round" opacity="0.9" />
-    <path d="M117.4 44 L118.4 45.2" stroke="#ffffff" strokeWidth="0.6" strokeLinecap="round" opacity="0.9" />
-
-    {/* nose, blush, smile, bindi */}
-    <path d="M110.2 48.8 Q111.4 51.6 109.6 52.6" stroke="#d48c63" strokeWidth="0.8" fill="none" strokeLinecap="round" />
-    <circle cx="102.3" cy="53.2" r="2.5" fill="#fb7185" opacity="0.22" />
-    <circle cx="117.7" cy="53.2" r="2.5" fill="#fb7185" opacity="0.22" />
-    <path d="M106 55.2 Q110 59.4 114 55.2 Q110 56.6 106 55.2 Z" fill="#c2185b" />
-    <path d="M107.6 56.6 Q110 57.8 112.4 56.6" stroke="#ffffff" strokeWidth="0.5" fill="none" opacity="0.8" />
-    <circle cx="110" cy="39.8" r="0.75" fill="#b91c1c" />
+    {/* nose, blush, soft smile, bindi */}
+    <path d="M110.5 49.6 Q111.3 52.2 109.8 52.9" stroke="#d79a74" strokeWidth="0.75" fill="none" strokeLinecap="round" />
+    <circle cx="101.8" cy="52.6" r="2.4" fill="#fb7185" opacity="0.16" />
+    <circle cx="118.2" cy="52.6" r="2.4" fill="#fb7185" opacity="0.16" />
+    <path d="M106.8 55.4 Q110 58.8 113.2 55.4 Q110 56.6 106.8 55.4 Z" fill="#d9546f" />
+    <path d="M106.6 55.3 Q110 57.4 113.4 55.3" stroke="#b23a55" strokeWidth="0.6" fill="none" strokeLinecap="round" />
+    <circle cx="110" cy="40.6" r="0.7" fill="#b91c1c" />
 
     {/* desk */}
     <rect x="16" y="115" width="188" height="6" rx="3" fill="#ffffff" stroke="#f3cfae" strokeWidth="1.2" />

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import receptionImage from '../assets/about-reception.webp';
 import { Link } from 'react-router-dom';
-import { Lightbulb, UsersRound, ShieldCheck, Rocket } from 'lucide-react';
+import { Lightbulb, UsersRound, ShieldCheck, Rocket, MapPin, Layers, Boxes, Languages } from 'lucide-react';
+import { whoWeAre } from '../configurations/AboutConfig';
 // Testimonials hidden for now (kept for future use): uncomment this import and the <TestimonialSection /> below to bring them back.
 // import TestimonialSection from '../components/TestimonialSection';
 import { WhoWeAre, VisionMissionValues, WhatWeDo, WhyChooseArvion, Journey, Leadership, FinalCTA } from '../components/about/AboutSections';
@@ -12,6 +13,9 @@ import {
 } from 'react-icons/fa';
 import Eyebrow from '../components/ui/Eyebrow';
 import '../csssection/AboutUs.css'; // Maintaining backward compatibility
+
+// Icons for the hero highlights (desktop), keyed like whoWeAre.highlights in AboutConfig.js
+const heroHighlightIcons = { office: MapPin, areas: Layers, modules: Boxes, languages: Languages };
 
 const About = ({ isSinglePage }) => {
   // Only one <h1> per page: embedded in the home page this becomes an <h2>.
@@ -88,7 +92,7 @@ const About = ({ isSinglePage }) => {
                 </nav>
 
                 <div className="lg:flex-1 lg:flex lg:items-center">
-                <div className="w-full lg:w-[40%] pt-6 pb-10 sm:pt-8 sm:pb-12 lg:pt-6 lg:pb-16 xl:pb-20 grid gap-4 sm:gap-5 text-center lg:text-left justify-items-center lg:justify-items-start">
+                <div className="w-full lg:w-[44%] xl:w-[42%] pt-6 pb-10 sm:pt-8 sm:pb-12 lg:pt-6 lg:pb-16 xl:pb-20 grid gap-4 sm:gap-5 text-center lg:text-left justify-items-center lg:justify-items-start">
                   <motion.span
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
                     className="mt-2 inline-flex items-center gap-2 w-max max-w-full bg-white/10 border border-white/15 text-white text-xs sm:text-[12.5px] font-semibold px-3.5 py-1.5 rounded-full"
@@ -98,9 +102,9 @@ const About = ({ isSinglePage }) => {
 
                   <motion.h1
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
-                    className="text-[23.5px] sm:text-[30px] lg:text-[36.5px] xl:text-[37px] font-extrabold leading-[1.1] tracking-[-0.02em] text-white"
+                    className="text-[23.5px] sm:text-[30px] lg:text-[30px] xl:text-[35px] font-extrabold leading-[1.1] tracking-[-0.02em] text-white lg:whitespace-nowrap"
                   >
-                    About Arvion<br />
+                    About Arvion{" "}
                     <span className="relative inline-block">
                       Technologies
                       <svg aria-hidden="true" viewBox="0 0 120 14" preserveAspectRatio="none" className="absolute right-0 -bottom-2 sm:-bottom-3 w-[42%] h-2.5 sm:h-3.5 text-[#f7941d]">
@@ -116,19 +120,40 @@ const About = ({ isSinglePage }) => {
                     Arvion Technologies Private Limited is a technology-driven company providing software products and business services for educational institutions and organisations.
                   </motion.p>
 
+                  {/* Key facts (desktop only): fill the space under the description; text comes from whoWeAre.highlights */}
+                  <motion.ul
+                    initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+                    className="hidden lg:grid grid-cols-2 gap-x-8 gap-y-5 w-full max-w-xl mt-5 pt-7 border-t border-white/15 list-none"
+                  >
+                    {whoWeAre.highlights.map(({ key, title, text }) => {
+                      const Icon = heroHighlightIcons[key] || Layers;
+                      return (
+                        <li key={key} className="flex items-start gap-3">
+                          <span className="flex-shrink-0 w-10 h-10 rounded-lg bg-white/10 ring-1 ring-white/15 text-[#ffb36b] flex items-center justify-center">
+                            <Icon size={18} />
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block text-[15px] font-bold text-white leading-tight">{title}</span>
+                            <span className="block mt-1 text-[13px] text-white/70 leading-snug">{text}</span>
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </motion.ul>
+
                   <motion.div
-                    initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-                    className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mt-2"
+                    initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+                    className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mt-2 lg:mt-5"
                   >
                     <Link
                       to="/contact"
-                      className="inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] hover:brightness-105 text-white font-bold text-sm sm:text-[14.5px] shadow-lg shadow-orange-900/30 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300"
+                      className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-4 sm:px-5 rounded-lg bg-gradient-to-b from-[#ff9c3f] to-[#f2700f] hover:brightness-105 text-white font-semibold text-[12.5px] sm:text-[14px] whitespace-nowrap shadow-md shadow-orange-900/30 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-300"
                     >
                       <FaCalendarCheck /> Book a Free Demo
                     </Link>
                     <Link
                       to="/services"
-                      className="inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-white hover:bg-blue-50 text-[#0f2a6b] font-bold text-sm sm:text-[14.5px] shadow-lg shadow-black/15 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+                      className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-4 sm:px-5 rounded-lg bg-white hover:bg-blue-50 text-[#0f2a6b] font-semibold text-[12.5px] sm:text-[14px] whitespace-nowrap shadow-md shadow-black/15 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
                     >
                       Explore Our Solutions <FaArrowRight className="text-xs" />
                     </Link>

@@ -183,33 +183,26 @@ const RegistrationsPage = () => {
         <div aria-hidden="true" className="pointer-events-none absolute top-1/2 left-1/4 w-[500px] h-60 rounded-full bg-sky-100/40 blur-3xl -translate-y-1/2" />
 
         <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 relative z-10 lg:flex-1 lg:flex lg:flex-col">
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 pt-5 text-[11.5px] sm:text-sm text-slate-500">
+            <Link to="/" className="hover:text-[#0B1B3D] transition-colors">Home</Link>
+            <span className="text-slate-300">&gt;</span>
+            <Link to="/services" className="hover:text-[#0B1B3D] transition-colors">Services</Link>
+            <span className="text-slate-300">&gt;</span>
+            <span className="font-bold text-[#0B1B3D]">Statutory Registrations</span>
+          </nav>
+
           <div className="grid lg:grid-cols-2 items-center lg:flex-1">
 
             {/* Left Content Column */}
-            <div className="w-full flex flex-col justify-center items-start text-left pt-5 pb-8 lg:pb-14 min-w-0 lg:pr-6">
+            <div className="w-full flex flex-col justify-center items-center text-center lg:items-start lg:text-left pt-4 sm:pt-5 pb-8 lg:pb-14 min-w-0 lg:pr-6">
 
-              {/* Breadcrumb */}
-              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 mb-5">
-                <Link to="/" className="hover:text-[#0B1B3D] transition-colors">Home</Link>
-                <span className="text-slate-300">&gt;</span>
-                <Link to="/services" className="hover:text-[#0B1B3D] transition-colors">Services</Link>
-                <span className="text-slate-300">&gt;</span>
-                <span className="font-bold text-[#0B1B3D]">Statutory Registrations</span>
-              </nav>
 
-              {/* Pill badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/80 shadow-sm text-xs font-semibold text-slate-800 mb-5"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#FF7A00]" />
-                Arvion Statutory Registrations
-              </motion.div>
 
               {/* Main Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
-                className="text-3xl sm:text-4xl lg:text-[37px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-4 relative"
+                className="text-[26px] sm:text-4xl lg:text-[37px] font-extrabold text-[#0B1B3D] leading-[1.1] tracking-tight mb-3 sm:mb-4 relative"
               >
                 Statutory <span className="text-[#FF7A00] relative inline-block">
                   Registrations
@@ -223,7 +216,7 @@ const RegistrationsPage = () => {
               {/* Subheading */}
               <motion.h2
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-xl sm:text-2xl font-bold text-[#0B1B3D] mb-4 leading-snug"
+                className="text-[16px] sm:text-2xl font-bold text-[#0B1B3D] mb-3 sm:mb-4 leading-snug text-balance"
               >
                 Entity Setups, Tax Registrations &amp; Compliance
               </motion.h2>
@@ -231,34 +224,16 @@ const RegistrationsPage = () => {
               {/* Description paragraph */}
               <motion.p
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}
-                className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mb-7 font-normal"
+                className="text-[14px] sm:text-lg text-slate-600 leading-relaxed max-w-xl mb-6 sm:mb-7 font-normal"
               >
                 We handle the paperwork and legal complexities so you can focus on scaling your business operations globally.
               </motion.p>
 
-              {/* Action Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }}
-                className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-8 w-full sm:w-auto"
-              >
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#FF7A00] hover:bg-[#E66E00] text-white font-bold text-sm sm:text-base shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5"
-                >
-                  <FaCalendarAlt className="text-base" /> Get Expert Guidance
-                </Link>
-                <a
-                  href="#services"
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#0B1B3D] border-2 border-[#0B1B3D] font-bold text-sm sm:text-base transition-colors shadow-sm"
-                >
-                  View Services <FaArrowRight className="text-xs" />
-                </a>
-              </motion.div>
 
               {/* 4 Feature Badges in a Row */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }}
-                className="grid grid-cols-4 gap-1.5 sm:flex sm:flex-wrap sm:gap-2.5 w-full mb-6 sm:mb-8"
+                className="grid grid-cols-4 gap-1.5 sm:flex sm:flex-wrap sm:justify-center lg:justify-start sm:gap-x-6 lg:gap-x-4 xl:gap-x-5 sm:gap-y-3 w-full max-w-sm sm:max-w-none mx-auto lg:mx-0 mb-6 sm:mb-8"
               >
                 {[
                   { title1: 'Expert', title2: 'Team', icon: <FaUserTie />, bg: 'bg-blue-50', text: 'text-blue-600' },
@@ -266,7 +241,7 @@ const RegistrationsPage = () => {
                   { title1: 'Data', title2: 'Security', icon: <FaShieldAlt />, bg: 'bg-blue-50', text: 'text-blue-600' },
                   { title1: 'Dedicated', title2: 'Support', icon: <FaHeadset />, bg: 'bg-orange-50', text: 'text-[#FF7A00]' }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center text-center gap-1.5 sm:flex-row sm:text-left sm:gap-2.5 sm:bg-white/90 sm:rounded-xl sm:pl-1.5 sm:pr-3 sm:py-1.5 sm:border sm:border-slate-200/70 sm:shadow-sm sm:hover:shadow-md sm:hover:border-blue-100 transition-all">
+                  <div key={idx} className="flex flex-col items-center text-center gap-1.5 sm:flex-row sm:text-left sm:gap-2.5">
                     <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.text} flex items-center justify-center text-sm flex-shrink-0`}>
                       {item.icon}
                     </div>
@@ -277,20 +252,39 @@ const RegistrationsPage = () => {
                 ))}
               </motion.div>
 
-              {/* Talk to an Expert Callout */}
+              {/* Talk to an Expert Callout (large screens only) */}
               <motion.a
                 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }}
                 href="tel:+919535764655"
-                className="inline-flex items-center gap-3.5 bg-white border border-slate-200/80 rounded-2xl pl-2.5 pr-6 py-2.5 shadow-sm hover:shadow-md transition-[box-shadow,border-color,background-color,color] hover:border-orange-200"
+                className="group hidden lg:inline-flex lg:mb-7 items-center gap-3 rounded-lg pr-2 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-100"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#FF7A00] text-white flex items-center justify-center text-lg flex-shrink-0 shadow-sm">
+                <div className="w-10 h-10 rounded-full bg-orange-50 ring-1 ring-orange-100 text-[#FF7A00] flex items-center justify-center text-[14px] flex-shrink-0 transition-colors group-hover:bg-[#FF7A00] group-hover:text-white">
                   <FaPhoneAlt />
                 </div>
                 <div className="text-left">
-                  <span className="block text-[11px] text-slate-500 font-medium leading-none mb-1">Talk to an expert</span>
-                  <span className="block text-sm sm:text-base font-bold text-[#0B1B3D] leading-none">+91 95357 64655</span>
+                  <span className="block text-[11px] uppercase tracking-[0.08em] text-slate-500 font-semibold leading-none mb-1.5">Talk to an expert</span>
+                  <span className="block text-[15px] font-semibold text-[#0B1B3D] leading-none tabular-nums transition-colors group-hover:text-[#FF7A00]">+91 95357 64655</span>
                 </div>
               </motion.a>
+              {/* Action Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }}
+                className="flex flex-nowrap items-center justify-center lg:justify-start gap-2.5 sm:gap-4 w-full sm:w-auto"
+              >
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 px-4 sm:px-5 rounded-lg bg-[#FF7A00] hover:bg-[#E66E00] text-white font-semibold text-[12.5px] sm:text-[14px] tracking-[0.01em] whitespace-nowrap shadow-[0_6px_16px_-6px_rgba(255,122,0,.55)] transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-200"
+                >
+                  <FaCalendarAlt className="text-[12px] sm:text-[13px]" /> Get Expert Guidance
+                </Link>
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 px-4 sm:px-5 rounded-lg bg-white hover:bg-slate-50 text-[#0B1B3D] border border-slate-300 hover:border-[#0B1B3D] font-semibold text-[12.5px] sm:text-[14px] tracking-[0.01em] whitespace-nowrap transition-colors shadow-sm focus:outline-none focus-visible:ring-4 focus-visible:ring-slate-200"
+                >
+                  View Services <FaArrowRight className="text-xs" />
+                </a>
+              </motion.div>
+
 
             </div>
 
