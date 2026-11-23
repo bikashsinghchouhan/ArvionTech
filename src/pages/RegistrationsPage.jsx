@@ -449,7 +449,7 @@ const RegistrationsPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-orange-200 transition-[box-shadow,border-color,background-color,color] group"
+                  className="flex items-center gap-4 bg-white p-4 rounded-lg shadow-sm border border-slate-100 hover:shadow-md hover:border-orange-200 transition-[box-shadow,border-color,background-color,color] group"
                 >
                   <div className="w-10 h-10 rounded-full bg-green-50 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 group-hover:text-white transition-colors">
                     <FaCheckCircle className="text-lg" />

@@ -711,7 +711,7 @@ const SchoolManagement = () => {
                   type="button"
                   aria-pressed={planView === value}
                   onClick={() => setPlanView(value)}
-                  className={`min-h-[40px] px-2 rounded-lg text-[12px] sm:text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${planView === value ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
+                  className={`min-h-[40px] px-2 cursor-pointer   rounded-lg text-[12px] sm:text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${planView === value ? 'bg-white text-[#0B1B3D] shadow-sm' : 'text-slate-600 hover:text-[#0B1B3D]'
                     }`}
                 >
                   {label}
@@ -787,8 +787,8 @@ const SchoolManagement = () => {
                     key={plan.name}
                     variants={fadeUpVariant}
                     className={`relative bg-white rounded-xl sm:rounded-2xl overflow-hidden flex flex-col transition-[box-shadow,border-color,background-color,color] duration-300 ${plan.popular
-                        ? 'border-2 border-[#FF8000] shadow-md sm:shadow-xl shadow-orange-500/10 md:col-span-2 lg:col-span-1'
-                        : 'border border-slate-200 shadow-sm hover:shadow-lg hover:border-[#FF8000]'
+                      ? 'border-2 border-[#FF8000] shadow-md sm:shadow-xl shadow-orange-500/10 md:col-span-2 lg:col-span-1'
+                      : 'border border-slate-200 shadow-sm hover:shadow-lg hover:border-[#FF8000]'
                       }`}
                   >
                     {plan.popular && (

@@ -425,18 +425,18 @@ const AccountingPage = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {benefits.map((benefit, idx) => (
-                <motion.div whileHover={{ y: -2, transition: { duration: 0.25, ease: 'easeOut' } }}
+                <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.08 }}
-                  className="flex items-center gap-4 bg-white px-5 py-5 rounded-2xl shadow-[0_8px_24px_-14px_rgba(11,42,107,.25)] border border-slate-100 hover:shadow-[0_14px_30px_-14px_rgba(11,42,107,.3)] transition-[box-shadow,border-color,background-color,color]"
+                  className="flex items-center gap-4 bg-white p-4 rounded-lg shadow-sm border border-slate-100 hover:shadow-md hover:border-orange-200 transition-[box-shadow,border-color,background-color,color] group"
                 >
-                  <span className="w-11 h-11 rounded-full bg-[#e7f8ee] flex items-center justify-center flex-shrink-0">
-                    <FaCheckCircle className="text-[17.5px] text-[#16a34a]" />
+                  <span className="w-10 h-10 rounded-full bg-green-50 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                    <FaCheckCircle className="text-lg" />
                   </span>
-                  <span className="text-[14px] sm:text-[16.5px] text-[#0b2a6b] font-bold leading-snug">{benefit}</span>
+                  <span className="text-sm md:text-base text-slate-700 font-bold leading-snug">{benefit}</span>
                 </motion.div>
               ))}
             </div>
